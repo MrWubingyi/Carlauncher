@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 车辆 TCP 客户端，用于与车载系统进行通信。
@@ -22,6 +23,7 @@ public class VehicleTcpClient {
 
     /**
      * 构造函数。
+     *
      * @param host 服务器 IP 地址
      * @param port 服务器端口号
      */
@@ -31,14 +33,20 @@ public class VehicleTcpClient {
     }
 
     // 使用单线程线程池处理所有网络操作，确保线程安全并避免阻塞主线程
-    private final ExecutorService executor =
-            Executors.newSingleThreadExecutor();
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     private Socket socket;
     private BufferedWriter writer;
 
+    private final AtomicBoolean connected = new AtomicBoolean(false);
+
+    public boolean isConnected() {
+        return connected.get();
+    }
+
     /**
      * 连接到服务器。
+     *
      * @param callback 连接状态回调
      */
     public void connect(Callback callback) {
@@ -48,24 +56,18 @@ public class VehicleTcpClient {
 
                 Socket newSocket = new Socket();
                 // 设置连接超时时间为 3 秒
-                newSocket.connect(
-                        new InetSocketAddress(host, port),
-                        3000
-                );
+                newSocket.connect(new InetSocketAddress(host, port), 3000);
 
-                BufferedWriter newWriter = new BufferedWriter(
-                        new OutputStreamWriter(
-                                newSocket.getOutputStream(),
-                                StandardCharsets.UTF_8
-                        )
-                );
+                BufferedWriter newWriter = new BufferedWriter(new OutputStreamWriter(newSocket.getOutputStream(), StandardCharsets.UTF_8));
 
                 socket = newSocket;
                 writer = newWriter;
+                connected.set(true);
 
                 Log.i(TAG, "Connected to " + host + ":" + port);
                 callback.onConnected();
             } catch (IOException exception) {
+                connected.set(false);
                 Log.e(TAG, "Connect failed", exception);
                 closeInternal();
                 callback.onError(exception);
@@ -75,18 +77,14 @@ public class VehicleTcpClient {
 
     /**
      * 发送一行字符串数据。
-     * @param message 要发送的消息
+     *
+     * @param message  要发送的消息
      * @param callback 发送状态回调
      */
     public void sendLine(String message, Callback callback) {
         executor.execute(() -> {
-            if (socket == null
-                    || writer == null
-                    || socket.isClosed()
-                    || !socket.isConnected()) {
-                callback.onError(
-                        new IllegalStateException("TCP 未连接")
-                );
+            if (!connected.get() || socket == null || writer == null || socket.isClosed() || !socket.isConnected()) {
+                callback.onError(new IllegalStateException("TCP 未连接"));
                 return;
             }
 
@@ -95,7 +93,7 @@ public class VehicleTcpClient {
                 writer.newLine(); // 添加换行符
                 writer.flush();   // 刷新缓冲区，确保数据发出
 
-                Log.i(TAG, "Sent: " + message);
+//                Log.i(TAG, "Sent: " + message);
                 callback.onMessageSent(message);
             } catch (IOException exception) {
                 Log.e(TAG, "Send failed", exception);
@@ -109,6 +107,8 @@ public class VehicleTcpClient {
      * 关闭连接。
      */
     public void close() {
+        connected.set(false);
+
         executor.execute(this::closeInternal);
     }
 
@@ -159,6 +159,7 @@ public class VehicleTcpClient {
 
         /**
          * 消息发送成功回调。
+         *
          * @param message 已发送的消息
          */
         default void onMessageSent(String message) {
@@ -166,6 +167,7 @@ public class VehicleTcpClient {
 
         /**
          * 发生错误时的回调。
+         *
          * @param exception 异常对象
          */
         default void onError(Exception exception) {

@@ -1,112 +1,121 @@
 package com.example.carlauncher;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.carlauncher.databinding.ActivityMainBinding;
-import com.example.carlauncher.network.VehicleTcpClient;
+import com.example.carlauncher.service.VehicleSendService;
 
+/**
+ * 车载启动器主 Activity。
+ * 负责 UI 控制、TCP 连接管理以及模拟车辆数据的启动与停止。
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "CAR_LAUNCHER";
 
     private ActivityMainBinding binding;
-    private VehicleTcpClient tcpClient;
 
+
+     private  Intent serviceIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 初始化视图绑定 (ViewBinding)
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Log.i(TAG, "MainActivity onCreate");
 
-        tcpClient = new VehicleTcpClient(
-                "192.168.31.248",
-                19090
-        );
 
-        binding.connectButton.setOnClickListener(view ->
-                connectToUbuntu()
-        );
+        // 连接按钮点击事件
+        binding.connectButton.setOnClickListener(view -> connectToUbuntu());
 
-        binding.sendButton.setOnClickListener(view ->
-                sendTestVehicleState()
-        );
+
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        startVehicleRefresh();
+        Log.i(TAG, "MainActivity onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        Log.i(TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.i(TAG, "onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.i(TAG, "onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.i(TAG, "onStop");
+
+        super.onStop();
+    }
+
+    /**
+     * 启动车辆模拟并将生成的数据通过 TCP 发送。
+     */
+    @SuppressLint("SetTextI18n")
+    private void startVehicleSimulation() {
+
+    }
+
+    /**
+     * 连接到 Ubuntu 服务器。
+     */
     private void connectToUbuntu() {
-        tcpClient.connect(new VehicleTcpClient.Callback() {
-            @Override
-            public void onConnected() {
-                runOnUiThread(() -> {
-                    binding.connectionStatusText.setText("CONNECTED");
 
-                    Toast.makeText(
-                            MainActivity.this,
-                            "TCP connected",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                });
-            }
+        serviceIntent = new Intent(this, VehicleSendService.class);
 
-            @Override
-            public void onError(Exception exception) {
-                showError(exception);
-            }
-        });
+        ContextCompat.startForegroundService(this, serviceIntent);
+
     }
 
-    private void sendTestVehicleState() {
-        String message =
-                "{\"version\":1,"
-                        + "\"seq\":2,"
-                        + "\"speedKph\":80,"
-                        + "\"rpm\":2500,"
-                        + "\"gear\":\"D\","
-                        + "\"soc\":79}";
 
-        tcpClient.sendLine(
-                message,
-                new VehicleTcpClient.Callback() {
-                    @Override
-                    public void onMessageSent(String sentMessage) {
-                        runOnUiThread(() ->
-                                binding.lastMessageText.setText(sentMessage)
-                        );
-                    }
-
-                    @Override
-                    public void onError(Exception exception) {
-                        showError(exception);
-                    }
-                }
-        );
-    }
-
+    /**
+     * 显示错误信息并重置 UI 状态。
+     */
+    @SuppressLint("SetTextI18n")
     private void showError(Exception exception) {
         Log.e(TAG, "TCP operation failed", exception);
 
         runOnUiThread(() -> {
+            if (binding == null) {
+                return;
+            }
             binding.connectionStatusText.setText("ERROR");
 
-            Toast.makeText(
-                    MainActivity.this,
-                    exception.getMessage(),
-                    Toast.LENGTH_LONG
-            ).show();
+
+            Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
         });
     }
 
     @Override
     protected void onDestroy() {
-        if (tcpClient != null) {
-            tcpClient.shutdown();
-        }
-
-        binding = null;
+        Log.i(TAG, "onDestroy");
+        stopService(serviceIntent);
+        binding = null; // 释放视图绑定
         super.onDestroy();
     }
 }

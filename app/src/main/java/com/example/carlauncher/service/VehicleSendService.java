@@ -1,182 +1,468 @@
 package com.example.carlauncher.service;
 
-import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.carlauncher.data.MockVehicleDataSource;
-
 import com.example.carlauncher.R;
+import com.example.carlauncher.data.DataSourceStatus;
+import com.example.carlauncher.data.SourceType;
+import com.example.carlauncher.data.VehicleDataSource;
+import com.example.carlauncher.data.VehicleDataSourceFactory;
+import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.network.VehicleTcpClient;
 
 import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * 前台服务，负责管理车辆数据源和 LVGL TCP 传输。
+ * 数据源的生命周期与 TCP 连接的生命周期是独立的。
+ *
+ * Foreground service that owns the vehicle data source and LVGL TCP transport.
+ * The data source lifecycle is independent from the TCP connection lifecycle.
+ */
 public class VehicleSendService extends Service {
-    private static String TAG = "VEHICLE_SENDSERVICE";
+    private static final String TAG = "VEHICLE_SERVICE";
     private static final String CHANNEL_ID = "vehicle_send_channel";
     private static final int NOTIFICATION_ID = 1001;
-    private ScheduledExecutorService scheduler;
+    private static final long RECONNECT_DELAY_SECONDS = 2L;
+
+    private final IBinder binder = new LocalBinder();
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    // 连接状态标志
+    private final AtomicBoolean connecting = new AtomicBoolean(false);
+    // 是否已开始发送数据标志
+    private final AtomicBoolean sendingStarted = new AtomicBoolean(false);
+    // 是否已调度重连标志
+    private final AtomicBoolean reconnectScheduled = new AtomicBoolean(false);
+
+    private ScheduledExecutorService reconnectScheduler;
     private VehicleTcpClient tcpClient;
-    private long sequence = 0;
-    private MockVehicleDataSource mockDataSource; // 模拟车辆数据源
-    private final AtomicBoolean sendingStarted =
-            new AtomicBoolean(false);
+    private VehicleDataSource vehicleDataSource;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Log.i(TAG, "Service onCreate");
-        // 初始化模拟数据源
-        mockDataSource = new MockVehicleDataSource();
+    private volatile boolean stopping;
+    private volatile VehicleState latestVehicleState;
+    private volatile DataSourceStatus sourceStatus = DataSourceStatus.STOPPED;
+    private StateListener stateListener;
 
-        createNotificationChannel();
-
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("车辆数据发送中")
-                .setContentText("正在向 LVGL 仪表发送车辆状态")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setOngoing(true)
-                .build();
-
-        // 必须尽快调用，否则系统会终止 Service。
-        startForeground(NOTIFICATION_ID, notification);
-
-        tcpClient = new VehicleTcpClient(
-                "192.168.31.248",
-                19090
-        );
-        tcpClient.connect(new VehicleTcpClient.Callback(){
-            @Override
-            public void onConnected() {
-                Log.i(TAG, "TCP connected");
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                Log.e(TAG, "TCP connect failed", exception);
-            }
-        });
-        scheduler = Executors.newSingleThreadScheduledExecutor();
+    /**
+     * 服务状态监听接口
+     */
+    public interface StateListener {
+        /**
+         * 当连接状态或数据源状态发生变化时回调
+         */
+        void onStateChanged();
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        startSending();
-
-        // 进程被系统回收后，允许系统尝试重建 Service。
-        return START_STICKY;
-    }
-
-    private void startSending() {
-        Log.i(TAG,"startSending");
-        if (scheduler == null || scheduler.isShutdown()) {
-            return;
-        }
-        // 只有第一次能从 false 改为 true。
-        if (!sendingStarted.compareAndSet(false, true)) {
-            Log.i(TAG, "Sending already started, skip");
-            return;
-        }
-        Log.i(TAG, "Start vehicle data sending");
-        scheduler.scheduleWithFixedDelay(() -> {
-            sequence++;
-
-            int speed = (int) ((sequence * 2) % 201);
-            int rpm = 800 + speed * 25;
-
-            String json = "{"
-                    + "\"version\":1,"
-                    + "\"seq\":" + sequence + ","
-                    + "\"timestampMs\":" + System.currentTimeMillis() + ","
-                    + "\"speedKph\":" + speed + ","
-                    + "\"rpm\":" + rpm + ","
-                    + "\"gear\":\"D\","
-                    + "\"soc\":79"
-                    + "}";
-
-            tcpClient.sendLine(json, new VehicleTcpClient.Callback() {
+    /**
+     * 车辆数据源监听器，处理数据更新和状态变更
+     */
+    private final VehicleDataSource.Listener dataListener =
+            new VehicleDataSource.Listener() {
                 @Override
-                public void onMessageSent(String sentMessage) {
-                    // 数据发送成功，在 UI 上更新最后一次发送的状态
-                    if (sequence%100 == 1){
+                public void onStateChanged(VehicleState state) {
+                    if (stopping || state == null) {
+                        return;
+                    }
 
-                    Log.i(TAG, "seq=" + sequence
-                            + "  speed="
-                            + speed
-                            + " km/h");
+                    latestVehicleState = state;
+                    // 发送车辆状态到 TCP 客户端
+                    sendVehicleState(state);
+                }
+
+                @Override
+                public void onSourceStatusChanged(DataSourceStatus status) {
+                    if (status == null) {
+                        return;
+                    }
+
+                    sourceStatus = status;
+                    if (!stopping) {
+                        notifyStateChanged();
                     }
                 }
 
                 @Override
                 public void onError(Exception exception) {
-                    // 发送失败，停止模拟并显示错误
-                    Log.e(TAG, "Send failed", exception);
+                    Log.e(TAG, "Vehicle data source error", exception);
+                    sourceStatus = DataSourceStatus.ERROR;
+                    if (!stopping) {
+                        notifyStateChanged();
+                    }
                 }
-            });
+            };
 
-        }, 0, 100, TimeUnit.MILLISECONDS);
+    /**
+     * 用于与 Activity 绑定的 Binder 类
+     */
+    public class LocalBinder extends Binder {
+        public VehicleSendService getService() {
+            return VehicleSendService.this;
+        }
     }
 
     @Override
-    public void onDestroy() {
-        sendingStarted.set(false);
-        if (scheduler != null) {
-            scheduler.shutdownNow();
+    public void onCreate() {
+        super.onCreate();
+        Log.i(TAG, "Service onCreate");
+
+        // 创建通知渠道并启动前台服务
+        createNotificationChannel();
+        startForeground(NOTIFICATION_ID, createNotification());
+
+        // 初始化重连调度器、TCP 客户端和车辆数据源
+        reconnectScheduler =
+                Executors.newSingleThreadScheduledExecutor();
+        tcpClient = new VehicleTcpClient(
+                "192.168.31.248",
+                19090
+        );
+        vehicleDataSource = VehicleDataSourceFactory.create(
+                this,
+                SourceType.MOCK
+        );
+
+        // 启动数据源并连接 TCP
+        startVehicleDataSource();
+        connectTcp();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        // 服务被系统杀死后尝试重启
+        return START_STICKY;
+    }
+
+    /**
+     * 启动车辆数据源
+     */
+    private void startVehicleDataSource() {
+        if (stopping
+                || vehicleDataSource == null
+                || vehicleDataSource.isRunning()) {
+            return;
         }
+
+        try {
+            sourceStatus = DataSourceStatus.CONNECTING;
+            notifyStateChanged();
+            vehicleDataSource.start(dataListener);
+        } catch (RuntimeException exception) {
+            sourceStatus = DataSourceStatus.ERROR;
+            Log.e(TAG, "Start vehicle data source failed", exception);
+            notifyStateChanged();
+        }
+    }
+
+    /**
+     * 发起 TCP 连接
+     */
+    private void connectTcp() {
+        if (stopping
+                || tcpClient == null
+                || tcpClient.isConnected()) {
+            return;
+        }
+
+        // 确保只有一个连接任务在进行
+        if (!connecting.compareAndSet(false, true)) {
+            Log.d(TAG, "TCP connection already in progress");
+            return;
+        }
+
+        Log.i(TAG, "Try connect TCP");
+        notifyStateChanged();
+
+        tcpClient.connect(new VehicleTcpClient.Callback() {
+            @Override
+            public void onConnected() {
+                connecting.set(false);
+                reconnectScheduled.set(false);
+
+                if (stopping) {
+                    return;
+                }
+
+                sendingStarted.set(true);
+                Log.i(TAG, "TCP connected; vehicle frames can be sent");
+                notifyStateChanged();
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                connecting.set(false);
+                sendingStarted.set(false);
+
+                if (stopping) {
+                    return;
+                }
+
+                Log.e(
+                        TAG,
+                        "TCP connect failed; retry after 2 seconds",
+                        exception
+                );
+                notifyStateChanged();
+                // 连接失败，调度重连
+                scheduleReconnect();
+            }
+        });
+    }
+
+    /**
+     * 将车辆状态序列化为 JSON 并通过 TCP 发送
+     */
+    private void sendVehicleState(VehicleState state) {
+        VehicleTcpClient client = tcpClient;
+        if (stopping
+                || !sendingStarted.get()
+                || client == null
+                || !client.isConnected()) {
+            return;
+        }
+
+        final String json;
+        try {
+            json = state.toJson();
+        } catch (Exception exception) {
+            Log.e(TAG, "VehicleState JSON failed", exception);
+            return;
+        }
+
+        client.sendLine(json, new VehicleTcpClient.Callback() {
+            @Override
+            public void onMessageSent(String message) {
+                long sequence = state.getSequence();
+                // 每发送 100 帧打印一次日志
+                if (sequence % 100 == 1) {
+                    Log.i(
+                            TAG,
+                            "seq=" + sequence
+                                    + " speed="
+                                    + state.getVehSpeedKph()
+                                    + " km/h"
+                    );
+                }
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Log.e(TAG, "Send failed", exception);
+                // 发送失败，处理连接丢失
+                handleConnectionLost();
+            }
+        });
+    }
+
+    /**
+     * 处理连接丢失的情况
+     */
+    private void handleConnectionLost() {
+        if (stopping
+                || !sendingStarted.compareAndSet(true, false)) {
+            return;
+        }
+
+        Log.w(
+                TAG,
+                "TCP connection lost; keep data source running"
+        );
+        connecting.set(false);
 
         if (tcpClient != null) {
             tcpClient.close();
         }
-        Log.i(TAG, "Service onDestroy");
-        super.onDestroy();
+
+        notifyStateChanged();
+        // 调度自动重连
+        scheduleReconnect();
+    }
+
+    /**
+     * 调度 TCP 重连任务
+     */
+    private void scheduleReconnect() {
+        ScheduledExecutorService scheduler = reconnectScheduler;
+        if (stopping
+                || scheduler == null
+                || scheduler.isShutdown()
+                || !reconnectScheduled.compareAndSet(false, true)) {
+            return;
+        }
+
+        try {
+            scheduler.schedule(
+                    () -> {
+                        reconnectScheduled.set(false);
+                        connectTcp();
+                    },
+                    RECONNECT_DELAY_SECONDS,
+                    TimeUnit.SECONDS
+            );
+        } catch (RejectedExecutionException exception) {
+            reconnectScheduled.set(false);
+            if (!stopping) {
+                Log.e(TAG, "Schedule TCP reconnect failed", exception);
+            }
+        }
+    }
+
+    /**
+     * 是否正在发送数据
+     */
+    public boolean isSending() {
+        return sendingStarted.get() && isTcpConnected();
+    }
+
+    /**
+     * 是否正在尝试连接
+     */
+    public boolean isConnecting() {
+        return connecting.get();
+    }
+
+    /**
+     * TCP 是否已连接
+     */
+    public boolean isTcpConnected() {
+        return tcpClient != null && tcpClient.isConnected();
+    }
+
+    /**
+     * 获取最新的车辆状态
+     */
+    public VehicleState getLatestVehicleState() {
+        return latestVehicleState;
+    }
+
+    /**
+     * 获取数据源状态
+     */
+    public DataSourceStatus getSourceStatus() {
+        return sourceStatus;
+    }
+
+    /**
+     * 设置状态监听器
+     */
+    public void setStateListener(StateListener listener) {
+        stateListener = listener;
+        notifyStateChanged();
+    }
+
+    /**
+     * 清除状态监听器
+     */
+    public void clearStateListener(StateListener listener) {
+        if (stateListener == listener) {
+            stateListener = null;
+        }
+    }
+
+    /**
+     * 通知状态已变更，在主线程执行
+     */
+    private void notifyStateChanged() {
+        if (stopping) {
+            return;
+        }
+
+        mainHandler.post(() -> {
+            StateListener listener = stateListener;
+            if (!stopping && listener != null) {
+                listener.onStateChanged();
+            }
+        });
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        Log.i(TAG, "Service onBind");
+        return binder;
     }
 
-    public boolean isRunning() {
-        if (mockDataSource.isRunning()) {
-            return true;
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.i(TAG, "Service onUnbind");
+        return super.onUnbind(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.i(TAG, "Service onDestroy");
+        stopping = true;
+        connecting.set(false);
+        sendingStarted.set(false);
+        reconnectScheduled.set(false);
+        stateListener = null;
+        mainHandler.removeCallbacksAndMessages(null);
+
+        // 停止并清理资源
+        if (vehicleDataSource != null) {
+            vehicleDataSource.stop();
+            vehicleDataSource = null;
         }
-        return false;
+
+        if (reconnectScheduler != null) {
+            reconnectScheduler.shutdownNow();
+            reconnectScheduler = null;
+        }
+
+        if (tcpClient != null) {
+            tcpClient.shutdown();
+            tcpClient = null;
+        }
+
+        sourceStatus = DataSourceStatus.STOPPED;
+        stopForeground(STOP_FOREGROUND_REMOVE);
+        super.onDestroy();
     }
 
     /**
-     * 停止车辆模拟。
+     * 创建前台服务通知
      */
-    @SuppressLint("SetTextI18n")
-    private void stopVehicleSimulation() {
-        if (mockDataSource != null) {
-            mockDataSource.stop();
-        }
+    private Notification createNotification() {
+        return new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Vehicle data service")
+                .setContentText("Sending vehicle state to LVGL")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setOngoing(true)
+                .build();
     }
 
+    /**
+     * 创建通知渠道（Android 8.0+）
+     */
     private void createNotificationChannel() {
-        NotificationChannel channel = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "车辆数据发送",
-                    NotificationManager.IMPORTANCE_LOW
-            );
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return;
         }
+
+        NotificationChannel channel = new NotificationChannel(
+                CHANNEL_ID,
+                "Vehicle data",
+                NotificationManager.IMPORTANCE_LOW
+        );
 
         NotificationManager manager =
                 getSystemService(NotificationManager.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (manager != null) {
             manager.createNotificationChannel(channel);
         }
     }

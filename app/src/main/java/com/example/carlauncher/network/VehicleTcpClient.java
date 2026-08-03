@@ -93,7 +93,6 @@ public class VehicleTcpClient {
                 writer.newLine(); // 添加换行符
                 writer.flush();   // 刷新缓冲区，确保数据发出
 
-//                Log.i(TAG, "Sent: " + message);
                 callback.onMessageSent(message);
             } catch (IOException exception) {
                 Log.e(TAG, "Send failed", exception);
@@ -108,7 +107,6 @@ public class VehicleTcpClient {
      */
     public void close() {
         connected.set(false);
-
         executor.execute(this::closeInternal);
     }
 

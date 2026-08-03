@@ -1,3 +1,14 @@
+import java.util.Properties
+
+val localProperties = Properties().apply {
+    rootProject.file("local.properties")
+        .inputStream()
+        .use(::load)
+}
+
+val sdkDir = localProperties.getProperty("sdk.dir")
+    ?: error("sdk.dir is not defined in local.properties")
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -44,4 +55,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+    compileOnly(
+        files(
+            "${sdkDir}/platforms/android-36.1/optional/android.car.jar"
+        )
+    )
 }

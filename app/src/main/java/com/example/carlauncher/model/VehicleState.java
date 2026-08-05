@@ -18,6 +18,7 @@ public class VehicleState {
     private final String gear;      // 当前档位 (P, R, N, D)
     private final int soc;          // 电池电量状态 (State of Charge, 0-100)
     private final TurnSignal turnSignal;         //转向灯状态
+    private final boolean parkingBrake;     // 驻车制动状态 (true = 开启)
     private final DataValidity validity;
     private WarningState warning;        //告警
     private DataStatus dataStatus;   //数据质量
@@ -35,6 +36,7 @@ public class VehicleState {
             String gear,
             int soc,
             TurnSignal turnSignal,
+            boolean parkingBrake,
             WarningState warning,
             DataValidity validity
     ) {
@@ -45,9 +47,10 @@ public class VehicleState {
         this.engRpm = clamp(rpm, 0, 8000);          // 限制转速范围
         this.gear = validateGear(gear);          // 校验档位有效性
         this.soc = clamp(soc, 0, 100);           // 限制电量范围
-        this.turnSignal = TurnSignal.NONE;
-        this.warning = warning;
-        this.validity = validity;
+        this.turnSignal = turnSignal == null ? TurnSignal.NONE : turnSignal;
+        this.parkingBrake = parkingBrake;
+        this.warning = warning == null ? WarningState.NONE : warning;
+        this.validity = validity == null ? DataValidity.INCOMPLETE : validity;
     }
 
     public long getSequence() {
@@ -70,6 +73,22 @@ public class VehicleState {
         return soc;
     }
 
+    public TurnSignal getTurnSignal() {
+        return turnSignal;
+    }
+
+    public boolean isParkingBrake() {
+        return parkingBrake;
+    }
+
+    public WarningState getWarning() {
+        return warning;
+    }
+
+    public DataValidity getValidity() {
+        return validity;
+    }
+
     /**
      * 将车辆状态转换为 JSON 字符串，以便通过网络发送。
      *
@@ -86,7 +105,10 @@ public class VehicleState {
         json.put("rpm", engRpm);
         json.put("gear", gear);
         json.put("soc", soc);
-
+        json.put("turnSignal", turnSignal.name());
+        json.put("parkingBrake", parkingBrake);
+        json.put("warning", warning.name());
+        json.put("validity", validity.name());
         return json.toString();
     }
 

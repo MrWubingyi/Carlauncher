@@ -3,8 +3,9 @@ package com.example.carlauncher.data;
 import android.content.Context;
 
 import com.example.carlauncher.data.mock.MockVehicleDataSource;
+import com.example.carlauncher.data.vhal.VhalVehicleDataSource;
 
-public class VehicleDataSourceFactory {
+public final class VehicleDataSourceFactory {
     private VehicleDataSourceFactory() {
     }
 
@@ -12,13 +13,9 @@ public class VehicleDataSourceFactory {
             Context context,
             SourceType sourceType
     ) {
-        switch (sourceType) {
-//            case VHAL:
-//                return new VhalVehicleDataSource(context);
-
-            case MOCK:
-            default:
-                return new MockVehicleDataSource();
+        if (sourceType == SourceType.VHAL) {
+            return new VhalVehicleDataSource(context);
         }
+        return new MockVehicleDataSource();
     }
 }

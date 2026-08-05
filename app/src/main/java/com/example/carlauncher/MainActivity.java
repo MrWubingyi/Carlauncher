@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "VEHICLE_LAUNCHER";
     private static final long UI_REFRESH_INTERVAL_MS = 100L;
+    private static final String CAR_SPEED_PERMISSION =
+            "android.car.permission.CAR_SPEED";
+    private static final int CAR_PERMISSION_REQUEST_CODE = 100;
 
     private ActivityMainBinding binding;
     private Intent serviceIntent;
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         serviceIntent = new Intent(this, VehicleSendService.class);
+        requestCarSpeedPermissionIfNeeded();
         // 连接按钮点击事件
         binding.connectButton.setOnClickListener(view -> {
             if (serviceBound
@@ -68,6 +73,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void requestCarSpeedPermissionIfNeeded() {
+        boolean isAutomotive = getPackageManager().hasSystemFeature(
+                "android.hardware.type.automotive"
+        );
+        if (isAutomotive
+                && checkSelfPermission(CAR_SPEED_PERMISSION)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(
+                    new String[]{CAR_SPEED_PERMISSION},
+                    CAR_PERMISSION_REQUEST_CODE
+            );
+        }
     }
 
     private void startVehicleService() {
@@ -150,7 +169,12 @@ public class MainActivity extends AppCompatActivity {
         binding.lastMessageText.setText(
                 "Speed: " + state.getVehSpeedKph() + " km/h"
                         + "\nGear: " + state.getGear()
-                        + "\nStatus: "
+                        + "\nTurn: " + state.getTurnSignal()
+                        + "\nParkingBrake: " + (state.isParkingBrake() ? "ON" : "OFF")
+                        + "\nWarning: " + state.getWarning()
+                        + "\nValidity: " + state.getValidity()
+                        + "\nSource: " + vehicleService.getSourceStatus()
+                        + "\nTransport: "
                         + (vehicleService.isTcpConnected() ? "NORMAL" : "OFFLINE")
                         + "\nSequence: " + state.getSequence()
         );

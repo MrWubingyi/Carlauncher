@@ -135,7 +135,9 @@ public class VehicleSendService extends Service {
         );
         vehicleDataSource = VehicleDataSourceFactory.create(
                 this,
-                SourceType.MOCK
+                getPackageManager().hasSystemFeature(
+                        "android.hardware.type.automotive"
+                ) ? SourceType.VHAL : SourceType.MOCK
         );
 
         // 启动数据源并连接 TCP
@@ -201,6 +203,11 @@ public class VehicleSendService extends Service {
 
                 sendingStarted.set(true);
                 Log.i(TAG, "TCP connected; vehicle frames can be sent");
+
+                VehicleState state = latestVehicleState;
+                if (state != null) {
+                    sendVehicleState(state);
+                }
                 notifyStateChanged();
             }
 

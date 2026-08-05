@@ -66,6 +66,7 @@ public final class MockVehicleDataSource
                 gear,
                 70,//电量不变
                 TurnSignal.NONE,
+                speed == 0 && "P".equals(gear), // 模拟：停车且档位为P时开启手刹
                 WarningState.NONE,
                 validity
         );

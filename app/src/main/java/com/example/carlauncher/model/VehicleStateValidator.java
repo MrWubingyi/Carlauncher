@@ -6,7 +6,7 @@ public final class VehicleStateValidator {
 
     public static DataValidity validate(
             float speedKph,
-            String gear
+            Gear gear
     ) {
         if (Float.isNaN(speedKph)
                 || Float.isInfinite(speedKph)
@@ -15,17 +15,10 @@ public final class VehicleStateValidator {
             return DataValidity.INVALID_SPEED;
         }
 
-        if (!isValidGear(gear)) {
+        if (gear == null) {
             return DataValidity.INCOMPLETE;
         }
 
         return DataValidity.VALID;
-    }
-
-    private static boolean isValidGear(String gear) {
-        return "P".equals(gear)
-                || "R".equals(gear)
-                || "N".equals(gear)
-                || "D".equals(gear);
     }
 }

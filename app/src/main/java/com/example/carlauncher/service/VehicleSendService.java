@@ -135,9 +135,7 @@ public class VehicleSendService extends Service {
         );
         vehicleDataSource = VehicleDataSourceFactory.create(
                 this,
-                getPackageManager().hasSystemFeature(
-                        "android.hardware.type.automotive"
-                ) ? SourceType.VHAL : SourceType.MOCK
+                SourceType.MOCK
         );
 
         // 启动数据源并连接 TCP
@@ -247,6 +245,7 @@ public class VehicleSendService extends Service {
         final String json;
         try {
             json = state.toJson();
+            Log.i(TAG,"json = " +json);
         } catch (Exception exception) {
             Log.e(TAG, "VehicleState JSON failed", exception);
             return;
@@ -256,14 +255,16 @@ public class VehicleSendService extends Service {
             @Override
             public void onMessageSent(String message) {
                 long sequence = state.getSequence();
-                // 每发送 100 帧打印一次日志
-                if (sequence % 100 == 1) {
+                // 每发送 20 帧打印一次日志 (约 2 秒)，并包含告警状态
+                if (sequence % 20 == 1) {
                     Log.i(
                             TAG,
                             "seq=" + sequence
-                                    + " speed="
-                                    + state.getVehSpeedKph()
-                                    + " km/h"
+                                    + " speed=" + state.getVehSpeedKph()
+                                    + " brk=" + state.isParkingBrake()
+                                    + " lock=" + state.getDoorLock()
+                                    + " belt=" + state.getBeltWarning()
+                                    + " warn=" + state.getWarning().getValue()
                     );
                 }
             }

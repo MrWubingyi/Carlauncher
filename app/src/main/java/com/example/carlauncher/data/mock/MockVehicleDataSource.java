@@ -1,7 +1,9 @@
 package com.example.carlauncher.data.mock;
 
 import com.example.carlauncher.data.DataSourceStatus;
+import com.example.carlauncher.data.DataStatus;
 import com.example.carlauncher.model.DataValidity;
+import com.example.carlauncher.model.Gear;
 import com.example.carlauncher.model.TurnSignal;
 import com.example.carlauncher.data.VehicleDataSource;
 import com.example.carlauncher.model.WarningState;
@@ -46,10 +48,46 @@ public final class MockVehicleDataSource
     }
 
     private void generateState() {
+        // 1. 先递增序列号
+        sequence++;
+
+        // --- 测试场景控制 ---
+        // 总循环周期：120秒 (1200个 100ms)
+        // 0-60秒 (0-600): 正常模拟
+        // 60-70秒 (600-700): 非法数据测试 (数值超出范围)
+        // 70-100秒 (700-1000): 静默测试 (30秒不发送数据)
+        // 100-120秒 (1000-1200): 恢复正常模拟
+        long testCycle = sequence % 1200;
+
+        if (testCycle >= 700 && testCycle < 1000) {
+            // 静默测试：直接返回，不触发 onStateChanged
+            if (testCycle == 700) {
+                listener.onSourceStatusChanged(DataSourceStatus.NO_DATA);
+            }
+            return;
+        }
+
+        if (testCycle == 1000) {
+            listener.onSourceStatusChanged(DataSourceStatus.CONNECTED);
+        }
+
         updateSpeed();
 
-        float rawSpeedKph = speed;
-        String gear = speed == 0 ? "P" : "D";
+        int finalSpeed = speed;
+        int finalRpm = calculateRpm(speed);
+        int finalSoc = 70;
+        float finalTemp = 90.0f;
+
+        // 非法数据测试场景
+        if (testCycle >= 600 && testCycle < 700) {
+            finalSpeed = 255;  // 超出 200 限制
+            finalRpm = 9999;   // 超出 8000 限制
+            finalSoc = 150;    // 超出 100 限制
+            finalTemp = -999f; // 异常低迷
+        }
+
+        float rawSpeedKph = finalSpeed;
+        Gear gear = finalSpeed == 0 ? Gear.P : Gear.D;
 
         DataValidity validity =
                 VehicleStateValidator.validate(
@@ -57,19 +95,36 @@ public final class MockVehicleDataSource
                         gear
                 );
 
-        VehicleState state = new VehicleState(
-                0,
-                ++sequence,
-                System.currentTimeMillis(),
-                speed,
-                calculateRpm(speed),
-                gear,
-                70,//电量不变
-                TurnSignal.NONE,
-                speed == 0 && "P".equals(gear), // 模拟：停车且档位为P时开启手刹
-                WarningState.NONE,
-                validity
-        );
+        // 模拟灯光、车门、安全带和告警逻辑
+        TurnSignal turnSignal = calculateMockTurnSignal();
+        WarningState warning = calculateMockWarning();
+        boolean highBeam = (sequence / 50) % 2 == 0; // 每 5 秒切换一次远光灯
+        
+        // 模拟告警类状态（长周期切换，方便测试）
+        boolean parkingBrakeOn = (sequence / 600) % 2 == 0; // 每 60 秒切换一次手刹
+        boolean doorLocked = (sequence / 450) % 2 == 0;    // 每 45 秒切换一次车门锁
+        boolean beltWarning = (sequence / 300) % 2 == 0;   // 每 30 秒切换一次安全带告警
+
+        VehicleState state = new VehicleState.Builder()
+                .setVersion(0)
+                .setSequence(sequence)
+                .setTimestampMs(System.currentTimeMillis())
+                .setVehSpeedKph(finalSpeed)
+                .setEngRpm(finalRpm)
+                .setGear(gear)
+                .setSoc(finalSoc)
+                .setTurnSignal(turnSignal)
+                .setParkingBrake(parkingBrakeOn)
+                .setWarning(warning)
+                .setValidity(validity)
+                .setDoorLock(doorLocked)
+                .setBeltWarning(beltWarning)
+                .setHeadlightsState(1) // 模拟开启近光灯
+                .setHighBeamLightsState(highBeam ? 1 : 0)
+                .setEngineCoolantTemp(finalTemp)
+                .setEvBatteryLevel((float) finalSoc)
+                .setDataStatus(testCycle >= 600 && testCycle < 700 ? DataStatus.INVALID : DataStatus.NORMAL)
+                .build();
 
         Listener currentListener = listener;
         if (currentListener != null) {
@@ -96,6 +151,28 @@ public final class MockVehicleDataSource
             );
         }
     }
+    /**
+     * 根据序列号循环生成不同的转向灯状态进行测试
+     */
+    private TurnSignal calculateMockTurnSignal() {
+        long cycle = (sequence / 30) % 4; // 每 3 秒切换一次状态
+        if (cycle == 1) return TurnSignal.LEFT;
+        if (cycle == 2) return TurnSignal.RIGHT;
+        if (cycle == 3) return TurnSignal.HAZARD;
+        return TurnSignal.NONE;
+    }
+
+    /**
+     * 根据序列号循环生成不同的告警状态进行测试
+     * 每个状态持续 30 秒，方便观察 UI 变化
+     */
+    private WarningState calculateMockWarning() {
+        long cycle = (sequence / 300) % 3; // 每 30 秒切换一次状态 (300 * 100ms)
+        if (cycle == 1) return WarningState.GENERAL_WARNING;
+        if (cycle == 2) return WarningState.CRITICAL;
+        return WarningState.NONE;
+    }
+
     /**
      * 内部方法：模拟速度的变化逻辑（在 0 到 100 之间往复）。
      */

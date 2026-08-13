@@ -15,18 +15,46 @@ public class VehicleState {
     private final long timestampMs; // 生成状态时的时间戳 (毫秒)
     private final int vehSpeedKph;     // 车速 (公里/小时)
     private final int engRpm;          // 发动机/电机转速 (RPM)
-    private final String gear;      // 当前档位 (P, R, N, D)
+    private final Gear gear;      // 当前档位 (P, R, N, D)
     private final int soc;          // 电池电量状态 (State of Charge, 0-100)
     private final TurnSignal turnSignal;         //转向灯状态
     private final boolean parkingBrake;     // 驻车制动状态 (true = 开启)
+    private final WarningState warning;        //告警
     private final DataValidity validity;
-    private WarningState warning;        //告警
-    private DataStatus dataStatus;   //数据质量
+    private final Boolean doorLock; //车门上锁状态
+    private final Boolean beltWarning; // 安全带告警 (true = 未系)
+    private final Integer headlightsState; // 前照灯/近光灯状态
+    private final Integer highBeamLightsState; //远光灯状态
+    private final Float engineCoolantTemp; //冷却液温度
+    private final Float evBatteryLevel; // 电动汽车电池电量
+    private final DataStatus dataStatus;   //数据质量
 
-    /**
-     * 构造函数。
-     */
+    private VehicleState(Builder builder) {
+        this.version = builder.version;
+        this.sequence = builder.sequence;
+        this.timestampMs = builder.timestampMs;
+//        this.vehSpeedKph = clamp(builder.vehSpeedKph, 0, 200);
+        this.vehSpeedKph = builder.vehSpeedKph;
+//        this.engRpm = clamp(builder.engRpm, 0, 8000);
+        this.engRpm = builder.engRpm;
+        this.gear = builder.gear == null ? Gear.P : builder.gear;
+        this.soc = clamp(builder.soc, 0, 100);
+        this.turnSignal = builder.turnSignal == null ? TurnSignal.NONE : builder.turnSignal;
+        this.parkingBrake = builder.parkingBrake;
+        this.warning = builder.warning == null ? WarningState.NONE : builder.warning;
+        this.validity = builder.validity == null ? DataValidity.INCOMPLETE : builder.validity;
+        this.doorLock = builder.doorLock;
+        this.headlightsState = builder.headlightsState;
+        this.highBeamLightsState = builder.highBeamLightsState;
+        this.engineCoolantTemp = builder.engineCoolantTemp;
+        this.evBatteryLevel = builder.evBatteryLevel;
+        this.dataStatus = builder.dataStatus;
+        this.beltWarning = builder.beltWarning;
+    }
 
+    // Keep the old constructor temporarily for compatibility if needed, but better to migrate all.
+    // Based on the plan, I will remove it or update it to use Builder.
+    // To avoid breaking build immediately, I'll keep a version of it that maps to builder.
     public VehicleState(
             int version,
             long sequence,
@@ -40,96 +68,184 @@ public class VehicleState {
             WarningState warning,
             DataValidity validity
     ) {
-        this.version = version;
-        this.sequence = sequence;
-        this.timestampMs = timestampMs;
-        this.vehSpeedKph = clamp(speedKph, 0, 200); // 限制车速范围
-        this.engRpm = clamp(rpm, 0, 8000);          // 限制转速范围
-        this.gear = validateGear(gear);          // 校验档位有效性
-        this.soc = clamp(soc, 0, 100);           // 限制电量范围
-        this.turnSignal = turnSignal == null ? TurnSignal.NONE : turnSignal;
-        this.parkingBrake = parkingBrake;
-        this.warning = warning == null ? WarningState.NONE : warning;
-        this.validity = validity == null ? DataValidity.INCOMPLETE : validity;
+        this(new Builder()
+                .setVersion(version)
+                .setSequence(sequence)
+                .setTimestampMs(timestampMs)
+                .setVehSpeedKph(speedKph)
+                .setEngRpm(rpm)
+                .setGear(gear)
+                .setSoc(soc)
+                .setTurnSignal(turnSignal)
+                .setParkingBrake(parkingBrake)
+                .setWarning(warning)
+                .setValidity(validity));
     }
 
-    public long getSequence() {
-        return sequence;
+    public VehicleState(
+            int version,
+            long sequence,
+            long timestampMs,
+            int speedKph,
+            int rpm,
+            String gear,
+            int soc,
+            TurnSignal turnSignal,
+            boolean parkingBrake,
+            WarningState warning,
+            DataValidity validity,
+            Boolean doorLock,
+            Integer headlightsState,
+            Integer highBeamLightsState,
+            Float engineCoolantTemp,
+            Float evBatteryLevel
+    ) {
+        this(new Builder()
+                .setVersion(version)
+                .setSequence(sequence)
+                .setTimestampMs(timestampMs)
+                .setVehSpeedKph(speedKph)
+                .setEngRpm(rpm)
+                .setGear(gear)
+                .setSoc(soc)
+                .setTurnSignal(turnSignal)
+                .setParkingBrake(parkingBrake)
+                .setWarning(warning)
+                .setValidity(validity)
+                .setDoorLock(doorLock)
+                .setHeadlightsState(headlightsState)
+                .setHighBeamLightsState(highBeamLightsState)
+                .setEngineCoolantTemp(engineCoolantTemp)
+                .setEvBatteryLevel(evBatteryLevel));
     }
 
-    public int getVehSpeedKph() {
-        return vehSpeedKph;
-    }
+    public int getVersion() { return version; }
+    public long getSequence() { return sequence; }
+    public long getTimestampMs() { return timestampMs; }
+    public int getVehSpeedKph() { return vehSpeedKph; }
+    public int getEngRpm() { return engRpm; }
+    public Gear getGear() { return gear; }
+    public int getSoc() { return soc; }
+    public TurnSignal getTurnSignal() { return turnSignal; }
+    public boolean isParkingBrake() { return parkingBrake; }
+    public WarningState getWarning() { return warning; }
+    public DataValidity getValidity() { return validity; }
+    public Boolean getDoorLock() { return doorLock; }
+    public Boolean getBeltWarning() { return beltWarning; }
+    public Integer getHeadlightsState() { return headlightsState; }
+    public Integer getHighBeamLightsState() { return highBeamLightsState; }
+    public Float getEngineCoolantTemp() { return engineCoolantTemp; }
+    public Float getEvBatteryLevel() { return evBatteryLevel; }
+    public DataStatus getDataStatus() { return dataStatus; }
 
-    public int getEngRpm() {
-        return engRpm;
-    }
-
-    public String getGear() {
-        return gear;
-    }
-
-    public int getSoc() {
-        return soc;
-    }
-
-    public TurnSignal getTurnSignal() {
-        return turnSignal;
-    }
-
-    public boolean isParkingBrake() {
-        return parkingBrake;
-    }
-
-    public WarningState getWarning() {
-        return warning;
-    }
-
-    public DataValidity getValidity() {
-        return validity;
-    }
-
-    /**
-     * 将车辆状态转换为 JSON 字符串，以便通过网络发送。
-     *
-     * @return JSON 格式的字符串
-     * @throws JSONException 如果转换过程中发生错误
-     */
     public String toJson() throws JSONException {
         JSONObject json = new JSONObject();
-
         json.put("version", version);
         json.put("seq", sequence);
         json.put("timestampMs", timestampMs);
         json.put("speedKph", vehSpeedKph);
         json.put("rpm", engRpm);
-        json.put("gear", gear);
+        json.put("gear", gear.getValue());
         json.put("soc", soc);
-        json.put("turnSignal", turnSignal.name());
+        json.put("turnSignal", turnSignal.getValue());
         json.put("parkingBrake", parkingBrake);
-        json.put("warning", warning.name());
-        json.put("validity", validity.name());
+        json.put("warning", warning.getValue());
+        json.put("validity", validity.getValue());
+        json.put("doorLock", doorLock);
+        json.put("beltWarning", beltWarning);
+        json.put("headlightsState", headlightsState);
+        json.put("highBeamLightsState", highBeamLightsState);
+        json.put("engineCoolantTemp", engineCoolantTemp);
+        json.put("evBatteryLevel", evBatteryLevel);
+        if (dataStatus != null) {
+            json.put("dataStatus", dataStatus.getValue());
+        }
         return json.toString();
     }
 
-    /**
-     * 辅助方法：将数值限制在指定范围内。
-     */
     private static int clamp(int value, int minimum, int maximum) {
         return Math.max(minimum, Math.min(value, maximum));
     }
 
-    /**
-     * 辅助方法：校验档位是否合法，非法档位默认返回 "P"。
-     */
-    private static String validateGear(String gear) {
-        if ("P".equals(gear)
-                || "R".equals(gear)
-                || "N".equals(gear)
-                || "D".equals(gear)) {
-            return gear;
-        }
+    public static class Builder {
+        private int version;
+        private long sequence;
+        private long timestampMs;
+        private int vehSpeedKph;
+        private int engRpm;
+        private Gear gear = Gear.P;
+        private int soc;
+        private TurnSignal turnSignal = TurnSignal.NONE;
+        private boolean parkingBrake;
+        private WarningState warning = WarningState.NONE;
+        private DataValidity validity = DataValidity.INCOMPLETE;
+        private Boolean doorLock = false;
+        private Boolean beltWarning = false;
+        private Integer headlightsState = 0;
+        private Integer highBeamLightsState;
+        private Float engineCoolantTemp;
+        private Float evBatteryLevel;
+        private DataStatus dataStatus;
 
-        return "P";
+        public Builder() {}
+
+        public int getVersion() { return version; }
+        public Builder setVersion(int version) { this.version = version; return this; }
+
+        public long getSequence() { return sequence; }
+        public Builder setSequence(long sequence) { this.sequence = sequence; return this; }
+
+        public long getTimestampMs() { return timestampMs; }
+        public Builder setTimestampMs(long timestampMs) { this.timestampMs = timestampMs; return this; }
+
+        public int getVehSpeedKph() { return vehSpeedKph; }
+        public Builder setVehSpeedKph(int vehSpeedKph) { this.vehSpeedKph = vehSpeedKph; return this; }
+
+        public int getEngRpm() { return engRpm; }
+        public Builder setEngRpm(int engRpm) { this.engRpm = engRpm; return this; }
+
+        public Gear getGear() { return gear; }
+        public Builder setGear(Gear gear) { this.gear = gear; return this; }
+        public Builder setGear(String gearStr) { this.gear = Gear.fromString(gearStr); return this; }
+
+        public int getSoc() { return soc; }
+        public Builder setSoc(int soc) { this.soc = soc; return this; }
+
+        public TurnSignal getTurnSignal() { return turnSignal; }
+        public Builder setTurnSignal(TurnSignal turnSignal) { this.turnSignal = turnSignal; return this; }
+
+        public boolean isParkingBrake() { return parkingBrake; }
+        public Builder setParkingBrake(boolean parkingBrake) { this.parkingBrake = parkingBrake; return this; }
+
+        public WarningState getWarning() { return warning; }
+        public Builder setWarning(WarningState warning) { this.warning = warning; return this; }
+
+        public DataValidity getValidity() { return validity; }
+        public Builder setValidity(DataValidity validity) { this.validity = validity; return this; }
+
+        public Boolean getDoorLock() { return doorLock; }
+        public Builder setDoorLock(Boolean doorLock) { this.doorLock = doorLock; return this; }
+
+        public Boolean getBeltWarning() { return beltWarning; }
+        public Builder setBeltWarning(Boolean beltWarning) { this.beltWarning = beltWarning; return this; }
+
+        public Integer getHeadlightsState() { return headlightsState; }
+        public Builder setHeadlightsState(Integer headlightsState) { this.headlightsState = headlightsState; return this; }
+
+        public Integer getHighBeamLightsState() { return highBeamLightsState; }
+        public Builder setHighBeamLightsState(Integer highBeamLightsState) { this.highBeamLightsState = highBeamLightsState; return this; }
+
+        public Float getEngineCoolantTemp() { return engineCoolantTemp; }
+        public Builder setEngineCoolantTemp(Float engineCoolantTemp) { this.engineCoolantTemp = engineCoolantTemp; return this; }
+
+        public Float getEvBatteryLevel() { return evBatteryLevel; }
+        public Builder setEvBatteryLevel(Float evBatteryLevel) { this.evBatteryLevel = evBatteryLevel; return this; }
+
+        public DataStatus getDataStatus() { return dataStatus; }
+        public Builder setDataStatus(DataStatus dataStatus) { this.dataStatus = dataStatus; return this; }
+
+        public VehicleState build() {
+            return new VehicleState(this);
+        }
     }
 }

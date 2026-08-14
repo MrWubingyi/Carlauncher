@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * 前台服务，负责管理车辆数据源和 LVGL TCP 传输。
  * 数据源的生命周期与 TCP 连接的生命周期是独立的。
- *
+ * <p>
  * Foreground service that owns the vehicle data source and LVGL TCP transport.
  * The data source lifecycle is independent from the TCP connection lifecycle.
  */
@@ -241,11 +241,13 @@ public class VehicleSendService extends Service {
                 || !client.isConnected()) {
             return;
         }
-
         final String json;
         try {
             json = state.toJson();
-            Log.i(TAG,"json = " +json);
+            if (state.getSequence() % 20 == 1) {
+                Log.d(TAG, "json=" + json);
+            }
+            Log.i(TAG, "json = " + json);
         } catch (Exception exception) {
             Log.e(TAG, "VehicleState JSON failed", exception);
             return;

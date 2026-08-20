@@ -84,6 +84,7 @@ public class VehicleSendService extends Service {
                     latestVehicleState = state;
                     // 发送车辆状态到 TCP 客户端
                     sendVehicleState(state);
+                    notifyStateChanged();
                 }
 
                 @Override

@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,13 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
-import com.example.carlauncher.data.VehicleRepository;
 import com.example.carlauncher.databinding.ActivityMainBinding;
 import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.service.VehicleSendService;
+import com.example.carlauncher.ui.CockpitUiState;
+import com.example.carlauncher.ui.CockpitViewModel;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * 车载启动器主 Activity。
@@ -32,35 +32,23 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "VEHICLE_LAUNCHER";
-    private static final long UI_REFRESH_INTERVAL_MS = 100L; // UI 刷新间隔（毫秒）
     private static final String CAR_SPEED_PERMISSION =
             "android.car.permission.CAR_SPEED"; // 读取车速所需的权限
     private static final int CAR_PERMISSION_REQUEST_CODE = 100;
 
     private ActivityMainBinding binding; // 视图绑定
     private Intent serviceIntent; // 启动服务的 Intent
-    private VehicleSendService vehicleService; // 绑定的服务实例
-    private boolean serviceBound = false; // 是否已绑定服务
-    private boolean bindingInProgress = false; // 是否正在进行绑定
-    private final Handler uiHandler = new Handler(Looper.getMainLooper()); // 用于定时刷新 UI 的 Handler
-    private boolean uiRefreshActive = false; // UI 刷新任务是否处于激活状态
+    private VehicleSendService vehicleService;
+    private boolean serviceBindingActive;
+
+    private CockpitViewModel viewModel;
     private final VehicleSendService.StateListener serviceStateListener =
-            this::updateServiceUi; // 服务状态变化监听器
+            () -> {
+                if (viewModel != null) {
+                    viewModel.refresh();
+                }
+            };
 
-    private final VehicleRepository repository =
-            new VehicleRepository();
-
-    // UI 定时刷新任务
-    private final Runnable vehicleUiRefreshTask = new Runnable() {
-        @Override
-        public void run() {
-            if (!uiRefreshActive) {
-                return;
-            }
-            renderLatestVehicleState(); // 渲染最新的车辆状态数据
-            uiHandler.postDelayed(this, UI_REFRESH_INTERVAL_MS); // 安排下一次刷新
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         // 初始化视图绑定 (ViewBinding)
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        viewModel = new ViewModelProvider(this)
+                .get(CockpitViewModel.class);
+
+        viewModel.getUiState().observe(this, this::render);
 
         // 处理系统栏（状态栏、导航栏）的内边距，实现沉浸式体验
         ViewCompat.setOnApplyWindowInsetsListener(
@@ -98,17 +91,30 @@ public class MainActivity extends AppCompatActivity {
 
         // 配置连接/断开按钮的点击逻辑
         binding.connectButton.setOnClickListener(view -> {
-            if (serviceBound
-                    && vehicleService != null
-                    && vehicleService.isSending()) {
-                // 如果正在发送数据，点击则停止
+            CockpitUiState state = viewModel.getUiState().getValue();
+
+            if (state != null && state.isSending()) {
                 stopVehicleService();
-            } else {
-                // 否则，启动服务并开始连接/发送
-                startVehicleService();
+                return;
             }
+            ContextCompat.startForegroundService(this, serviceIntent);
+            bindVehicleService(Context.BIND_AUTO_CREATE);
         });
 
+    }
+
+    private void bindVehicleService(int flags) {
+        if (serviceBindingActive) {
+            return;
+        }
+
+        serviceBindingActive = bindService(
+                serviceIntent,
+                serviceConnection,
+                flags
+        );
+
+        Log.i(TAG, "bindService requested: " + serviceBindingActive);
     }
 
     /**
@@ -134,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
         binding.validityText.setText("INVALID");
         binding.sequenceText.setText("Seq --");
 
-        binding.sourceStatusText.setText("STOPPED");
-        binding.transportStatusText.setText("Transport: OFFLINE");
         binding.lastUpdateText.setText("Waiting for vehicle data");
     }
 
@@ -165,115 +169,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 启动 VehicleSendService 服务（前台服务）并执行绑定操作。
-     */
-    private void startVehicleService() {
-        ContextCompat.startForegroundService(this, serviceIntent);
-
-        if (!serviceBound && !bindingInProgress) {
-            bindingInProgress = bindService(
-                    serviceIntent,
-                    serviceConnection,
-                    Context.BIND_AUTO_CREATE
-            );
-        }
-    }
-
-    /**
-     * 停止 VehicleSendService 服务。
-     * 包括解绑服务、移除监听器和停止服务本身。
-     */
-    private void stopVehicleService() {
-
-
-        if (serviceBound || bindingInProgress) {
-            if (vehicleService != null) {
-                vehicleService.clearStateListener(serviceStateListener);
-            }
-            unbindService(serviceConnection);
-            serviceBound = false;
-            bindingInProgress = false;
-            vehicleService = null;
-        }
-
-        stopService(serviceIntent);
-
-        updateServiceUi();
-        renderNoData();
-    }
 
     /**
      * 根据当前服务的状态（连接中、已连接、正在发送等）更新 UI 上的状态文字和按钮。
      */
-    private void updateServiceUi() {
-        Log.i(TAG, "updateServiceUi");
-
-        if (binding == null) {
-            return;
-        }
-
-        if (!serviceBound || vehicleService == null) {
-            binding.connectionStatusText.setText("SERVICE UNBOUND");
-            binding.connectButton.setText("START SEND");
-            binding.connectButton.setEnabled(true);
-            return;
-        }
-
-        if (vehicleService.isSending()) {
-            binding.connectionStatusText.setText("SENDING");
-            binding.connectButton.setText("STOP SEND");
-            binding.connectButton.setEnabled(true);
-
-        } else if (vehicleService.isConnecting()) {
-            binding.connectionStatusText.setText("CONNECTING");
-            binding.connectButton.setText("PLEASE WAIT");
-            binding.connectButton.setEnabled(false);
-
-        } else if (vehicleService.isTcpConnected()) {
-            binding.connectionStatusText.setText("CONNECTED");
-            binding.connectButton.setText("START SEND");
-            binding.connectButton.setEnabled(true);
-
-        } else {
-            binding.connectionStatusText.setText("DISCONNECTED");
-            binding.connectButton.setText("START SEND");
-            binding.connectButton.setEnabled(true);
-        }
-    }
 
     /**
      * 获取服务中最新的车辆状态并渲染到对应的 UI 控件上。
      */
-    private void renderLatestVehicleState() {
-        if (binding == null || !serviceBound || vehicleService == null) {
+    private void renderVehicleState(VehicleState state) {
+        if (binding == null) {
             renderNoData();
             return;
         }
 
-        VehicleState state = vehicleService.getLatestVehicleState();
         if (state == null) {
             renderNoData();
             return;
         }
-        
-        // 更新数据源状态
-        binding.sourceStatusText.setText(
-                String.valueOf(vehicleService.getSourceStatus())
-        );
 
-        // 更新传输层（TCP）连接状态
-        binding.transportStatusText.setText(
-                vehicleService.isTcpConnected()
-                        ? "Transport: ONLINE"
-                        : "Transport: OFFLINE"
-        );
 
         // 更新最后更新时间/序列号
         binding.lastUpdateText.setText(
                 "Updated · Seq " + state.getSequence()
         );
-        
+
         // 更新各项车辆动态指标
         binding.speedText.setText(
                 getString(R.string.speed_value, state.getVehSpeedKph())
@@ -305,6 +225,22 @@ public class MainActivity extends AppCompatActivity {
         renderNullableFields(state);
     }
 
+    private int resolveConnectionBackground(CockpitUiState state) {
+        if (!state.isServiceBound()) {
+            return R.drawable.bg_status_offline;
+        }
+
+        if (state.isConnecting()) {
+            return R.drawable.bg_status_connecting;
+        }
+
+        if (state.isTcpConnected()) {
+            return R.drawable.bg_status_online;
+        }
+
+        return R.drawable.bg_status_offline;
+    }
+
     /**
      * 渲染可能为空的字段（可选属性）。
      */
@@ -325,6 +261,34 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private void render(CockpitUiState uiState) {
+        if (binding == null) {
+            return;
+        }
+
+        renderConnectionState(
+                uiState.getConnectionLabel(),
+                resolveConnectionBackground(uiState),
+                uiState.isActionEnabled(),
+                uiState.getActionLabel()
+        );
+
+        binding.sourceStatusText.setText(
+                String.valueOf(uiState.getDataSourceStatus())
+        );
+        binding.transportStatusText.setText(
+                uiState.getTransportLabel()
+        );
+
+        VehicleState state = uiState.getVehicleState();
+        if (state == null) {
+            renderNoData();
+            return;
+        }
+
+        renderVehicleState(state);
+    }
+
     private void renderConnectionState(
             String label,
             int backgroundRes,
@@ -335,30 +299,6 @@ public class MainActivity extends AppCompatActivity {
         binding.connectionStatusText.setBackgroundResource(backgroundRes);
         binding.connectButton.setEnabled(buttonEnabled);
         binding.connectButton.setText(buttonLabel);
-    }
-
-    /**
-     * 开启 UI 定时刷新。通常在 Activity 可见时调用。
-     */
-    private void startVehicleUiRefresh() {
-        if (uiRefreshActive) {
-            return;
-        }
-        uiRefreshActive = true;
-        Log.i(TAG, "Start lifecycle-aware UI refresh (100 ms)");
-        uiHandler.post(vehicleUiRefreshTask);
-    }
-
-    /**
-     * 停止 UI 定时刷新。通常在 Activity 不可见或销毁时调用。
-     */
-    private void stopVehicleUiRefresh() {
-        if (!uiRefreshActive) {
-            return;
-        }
-        uiRefreshActive = false;
-        uiHandler.removeCallbacks(vehicleUiRefreshTask);
-        Log.i(TAG, "Stop lifecycle-aware UI refresh");
     }
 
     /**
@@ -379,13 +319,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        Log.i(TAG, "onDestroy");
-        stopVehicleUiRefresh();
-        binding = null; // 释放视图绑定
-        super.onDestroy();
-    }
 
     /**
      * 处理与 VehicleSendService 建立绑定的连接回调。
@@ -402,42 +335,52 @@ public class MainActivity extends AppCompatActivity {
                     VehicleSendService.LocalBinder localBinder =
                             (VehicleSendService.LocalBinder) binder;
 
-
                     vehicleService = localBinder.getService();
-                    serviceBound = true;
-
-                    repository.attachService(vehicleService);
-
-                    bindingInProgress = false;
+                    // 先把 Service 交给 Repository，再注册立即回调的监听器。
+                    viewModel.attachService(vehicleService);
                     vehicleService.setStateListener(serviceStateListener);
-
                     Log.i(TAG, "Activity bound to VehicleSendService");
 
-                    // 绑定成功后立即更新 UI 状态
-                    updateServiceUi();
                 }
 
                 @Override
                 public void onServiceDisconnected(ComponentName name) {
                     // 当 Service 进程因崩溃等原因意外终止时触发
-
-                    if (!serviceBound || vehicleService == null) {
-                        binding.connectionStatusText.setText("SERVICE UNBOUND");
-                        binding.connectButton.setText("START SEND");
-                        binding.connectButton.setEnabled(true);
-                        renderNoData();
-                        return;
-                    }
-
                     vehicleService = null;
-                    serviceBound = false;
-                    bindingInProgress = false;
+                    viewModel.detachService();
 
                     Log.w(TAG, "VehicleSendService disconnected");
 
-                    updateServiceUi();
                 }
             };
+
+    private void unbindVehicleService() {
+
+        if (vehicleService != null) {
+            vehicleService.clearStateListener(serviceStateListener);
+        }
+
+        viewModel.detachService();
+
+        if (serviceBindingActive) {
+            unbindService(serviceConnection);
+            serviceBindingActive = false;
+        }
+
+        vehicleService = null;
+    }
+
+    private void stopVehicleService() {
+        unbindVehicleService();
+        stopService(serviceIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i(TAG, "onDestroy");
+        binding = null; // 释放视图绑定
+        super.onDestroy();
+    }
 
     @Override
     protected void onResume() {
@@ -462,34 +405,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         Log.i(TAG, "onStart");
         super.onStart();
-        startVehicleUiRefresh();
-
-        if (!serviceBound && !bindingInProgress) {
-            // 只绑定已经运行的 Service，避免进入 Activity 时自动启动它。
-            bindingInProgress = bindService(
-                    serviceIntent,
-                    serviceConnection,
-                    0
-            );
-        }
+        bindVehicleService(0);
     }
 
     @Override
     protected void onStop() {
         Log.i(TAG, "onStop");
-        stopVehicleUiRefresh();
-
-        if (serviceBound || bindingInProgress) {
-            if (vehicleService != null) {
-                vehicleService.clearStateListener(serviceStateListener);
-            }
-            repository.detachService();
-            unbindService(serviceConnection);
-            serviceBound = false;
-            bindingInProgress = false;
-            vehicleService = null;
-        }
-
+        unbindVehicleService();
         super.onStop();
     }
 

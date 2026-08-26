@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.example.carlauncher.data.DataSourceStatus;
+import com.example.carlauncher.data.VehicleProtocol;
 import com.example.carlauncher.data.VehicleDataSource;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.Gear;
@@ -31,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 public final class VhalVehicleDataSource implements VehicleDataSource {
     private static final String TAG = "VEHICLE_VHAL";
     private static final int GLOBAL_AREA_ID = 0; // 全局区域 ID
-    private static final long NO_DATA_TIMEOUT_MS = 1500L; // 无数据超时阈值（1.5秒）
+    private static final long NO_DATA_TIMEOUT_MS = VehicleProtocol.DATA_STALE_TIMEOUT_MS; // 无数据超时阈值
     private static final long WATCHDOG_PERIOD_MS = 500L; // 看门狗检查周期（0.5秒）
 
     private final Context applicationContext;

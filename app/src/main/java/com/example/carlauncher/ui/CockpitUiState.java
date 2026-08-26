@@ -1,11 +1,14 @@
 package com.example.carlauncher.ui;
 
 import com.example.carlauncher.data.DataSourceStatus;
+import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
+import com.example.carlauncher.service.TcpConnectionState;
+
 
 /**
  * Cockpit 首页某一时刻的完整 UI 状态快照。
- *
+ * <p>
  * 该对象只保存状态：
  * - 不访问 Service
  * - 不操作 Android View
@@ -17,24 +20,39 @@ public final class CockpitUiState {
     private final DataSourceStatus dataSourceStatus;
 
     private final boolean serviceBound;
-    private final boolean connecting;
-    private final boolean tcpConnected;
-    private final boolean sending;
+    private final CockpitConnectionState state;
 
     public CockpitUiState(
             VehicleState vehicleState,
             DataSourceStatus dataSourceStatus,
             boolean serviceBound,
-            boolean connecting,
-            boolean tcpConnected,
-            boolean sending
+            TcpConnectionState tcpconnectstate,
+            DataValidity validity
     ) {
         this.vehicleState = vehicleState;
         this.dataSourceStatus = dataSourceStatus;
         this.serviceBound = serviceBound;
-        this.connecting = connecting;
-        this.tcpConnected = tcpConnected;
-        this.sending = sending;
+        state = mapState(validity, tcpconnectstate);
+    }
+
+    public CockpitConnectionState mapState(
+            DataValidity validity,
+            TcpConnectionState tcpstate
+    ) {
+        if (tcpstate == TcpConnectionState.DISCONNECTED) {
+            return CockpitConnectionState.DISCONNECTED;
+        }
+
+        if (tcpstate == TcpConnectionState.CONNECTING
+                || tcpstate == TcpConnectionState.RECOVERING) {
+            return CockpitConnectionState.RECOVERING;
+        }
+
+        if (validity != DataValidity.VALID) {
+            return CockpitConnectionState.INVALID_DATA;
+        }
+
+        return CockpitConnectionState.ONLINE;
     }
 
     /**
@@ -45,9 +63,8 @@ public final class CockpitUiState {
                 null,
                 DataSourceStatus.STOPPED,
                 false,
-                false,
-                false,
-                false
+                TcpConnectionState.DISCONNECTED,
+                DataValidity.VALID
         );
     }
 
@@ -63,21 +80,10 @@ public final class CockpitUiState {
         return serviceBound;
     }
 
-    public boolean isConnecting() {
-        return connecting;
-    }
-
-    public boolean isTcpConnected() {
-        return tcpConnected;
-    }
-
-    public boolean isSending() {
-        return sending;
-    }
 
     /**
      * 页面当前是否具有可以显示的车辆数据。
-     *
+     * <p>
      * TCP 断开不等于车辆数据不存在：
      * Mock/VHAL 数据源仍可能继续产生状态。
      */
@@ -92,44 +98,51 @@ public final class CockpitUiState {
         if (!serviceBound) {
             return "SERVICE UNBOUND";
         }
-
-        if (sending) {
-            return "SENDING";
+        switch (state) {
+            case ONLINE:
+                return "SENDING";
+            case CONNECTING:
+                return "CONNECTING";
+            case RECOVERING:
+                return "RECOVERING";
+            case DISCONNECTED:
+                return "DISCONNECTED";
+            case INVALID_DATA:
+                return "INVALID_DATA";
+            default:
+                return "UNKNOWN";
         }
-
-        if (connecting) {
-            return "CONNECTING";
-        }
-
-        if (tcpConnected) {
-            return "CONNECTED";
-        }
-
-        return "DISCONNECTED";
     }
 
     /**
      * 根据状态生成按钮文字。
      */
     public String getActionLabel() {
-        if (sending) {
-            return "STOP SEND";
-        }
-
-        if (connecting) {
-            return "PLEASE WAIT";
-        }
-
-        return "START SEND";
+        return state.getActionLabel();
     }
 
     public boolean isActionEnabled() {
-        return !connecting;
+        return state.isActionEnabled();
     }
 
     public String getTransportLabel() {
-        return tcpConnected
+        return state == CockpitConnectionState.ONLINE
+                ||state == CockpitConnectionState.INVALID_DATA
                 ? "Transport: ONLINE"
                 : "Transport: OFFLINE";
+    }
+
+    public boolean isStopAction() {
+        return state.isStopAction();
+    }
+
+    public String getConnectionState() {
+        return state == CockpitConnectionState.ONLINE
+                ? "Connection: ONLINE"
+                : "Connection: OFFLINE";
+    }
+
+    public CockpitConnectionState getState() {
+        return state;
     }
 }

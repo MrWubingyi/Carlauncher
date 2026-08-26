@@ -93,10 +93,15 @@ public class MainActivity extends AppCompatActivity {
         binding.connectButton.setOnClickListener(view -> {
             CockpitUiState state = viewModel.getUiState().getValue();
 
-            if (state != null && state.isSending()) {
+            if (state == null || !state.isActionEnabled()) {
+                return;
+            }
+
+            if (state.isStopAction()) {
                 stopVehicleService();
                 return;
             }
+
             ContextCompat.startForegroundService(this, serviceIntent);
             bindVehicleService(Context.BIND_AUTO_CREATE);
         });
@@ -226,19 +231,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int resolveConnectionBackground(CockpitUiState state) {
-        if (!state.isServiceBound()) {
-            return R.drawable.bg_status_offline;
-        }
+        switch (state.getState()) {
+            case ONLINE:
+                return R.drawable.bg_status_online;
+            case CONNECTING:
+            case RECOVERING:
+                return R.drawable.bg_status_connecting;
+            case DISCONNECTED:
+                return R.drawable.bg_status_offline;
+            case INVALID_DATA:
+                return R.drawable.bg_status_error;
 
-        if (state.isConnecting()) {
-            return R.drawable.bg_status_connecting;
         }
-
-        if (state.isTcpConnected()) {
-            return R.drawable.bg_status_online;
-        }
-
         return R.drawable.bg_status_offline;
+
     }
 
     /**
@@ -300,25 +306,6 @@ public class MainActivity extends AppCompatActivity {
         binding.connectButton.setEnabled(buttonEnabled);
         binding.connectButton.setText(buttonLabel);
     }
-
-    /**
-     * 显示错误信息并重置 UI 状态。
-     */
-    @SuppressLint("SetTextI18n")
-    private void showError(Exception exception) {
-        Log.e(TAG, "TCP operation failed", exception);
-
-        runOnUiThread(() -> {
-            if (binding == null) {
-                return;
-            }
-            binding.connectionStatusText.setText("ERROR");
-
-
-            Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
-        });
-    }
-
 
     /**
      * 处理与 VehicleSendService 建立绑定的连接回调。

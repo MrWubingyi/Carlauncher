@@ -32,7 +32,7 @@ public final class VehicleRepository {
             return;
         }
         uiState.setValue(new CockpitUiState(service.getLatestVehicleState(),
-                service.getSourceStatus(), true, service.isConnecting(), service.isTcpConnected(), service.isSending()));
+                service.getSourceStatus(), true, service.getTcpState(),service.getDataValidity()));
 
     }
 

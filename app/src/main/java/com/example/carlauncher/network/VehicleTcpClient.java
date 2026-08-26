@@ -1,5 +1,6 @@
 package com.example.carlauncher.network;
 
+import com.example.carlauncher.data.VehicleProtocol;
 import android.util.Log;
 
 import java.io.BufferedWriter;
@@ -55,8 +56,8 @@ public class VehicleTcpClient {
                 closeInternal(); // 连接前先关闭旧连接
 
                 Socket newSocket = new Socket();
-                // 设置连接超时时间为 3 秒
-                newSocket.connect(new InetSocketAddress(host, port), 3000);
+                // 使用协议定义的连接超时时间
+                newSocket.connect(new InetSocketAddress(host, port), VehicleProtocol.CONNECT_TIMEOUT_MS);
 
                 BufferedWriter newWriter = new BufferedWriter(new OutputStreamWriter(newSocket.getOutputStream(), StandardCharsets.UTF_8));
 

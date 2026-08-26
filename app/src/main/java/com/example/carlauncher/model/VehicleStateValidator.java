@@ -1,5 +1,7 @@
 package com.example.carlauncher.model;
 
+import com.example.carlauncher.data.VehicleProtocol;
+
 public final class VehicleStateValidator {
     private VehicleStateValidator() {
     }
@@ -10,8 +12,7 @@ public final class VehicleStateValidator {
     ) {
         if (Float.isNaN(speedKph)
                 || Float.isInfinite(speedKph)
-                || speedKph < 0
-                || speedKph > 200) {
+                || !VehicleProtocol.isSpeedValid(Math.round(speedKph))) {
             return DataValidity.INVALID_SPEED;
         }
 

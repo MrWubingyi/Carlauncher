@@ -19,6 +19,8 @@ import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.data.SourceType;
 import com.example.carlauncher.data.VehicleDataSource;
 import com.example.carlauncher.data.VehicleDataSourceFactory;
+import com.example.carlauncher.data.VehicleProtocol;
+import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.network.VehicleTcpClient;
 
@@ -27,6 +29,7 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 前台服务，负责管理车辆数据源和 LVGL TCP 传输。
@@ -39,7 +42,7 @@ public class VehicleSendService extends Service {
     private static final String TAG = "VEHICLE_SERVICE";
     private static final String CHANNEL_ID = "vehicle_send_channel";
     private static final int NOTIFICATION_ID = 1001;
-    private static final long RECONNECT_DELAY_SECONDS = 2L;
+    private static final long RECONNECT_DELAY_SECONDS = VehicleProtocol.RECONNECT_DELAY_SECONDS;
 
     private final IBinder binder = new LocalBinder();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -59,6 +62,28 @@ public class VehicleSendService extends Service {
     private volatile VehicleState latestVehicleState;
     private volatile DataSourceStatus sourceStatus = DataSourceStatus.STOPPED;
     private StateListener stateListener;
+
+    private final AtomicReference<TcpConnectionState> tcpState =
+            new AtomicReference<>(TcpConnectionState.DISCONNECTED);
+
+    private void transitionTo(
+            TcpConnectionState next,
+            String reason
+    ) {
+        TcpConnectionState previous = tcpState.getAndSet(next);
+        if (previous == next) {
+            return;
+        }
+
+        Log.i(TAG, "TCP_STATE " + previous + " -> " + next
+                + " reason=" + reason);
+
+        notifyStateChanged();
+    }
+
+    public TcpConnectionState getTcpState() {
+        return tcpState.get();
+    }
 
     /**
      * 服务状态监听接口
@@ -175,17 +200,23 @@ public class VehicleSendService extends Service {
      * 发起 TCP 连接
      */
     private void connectTcp() {
-        if (stopping
-                || tcpClient == null
-                || tcpClient.isConnected()) {
+        if (stopping || getTcpState() == TcpConnectionState.ONLINE) {
             return;
         }
-
         // 确保只有一个连接任务在进行
         if (!connecting.compareAndSet(false, true)) {
             Log.d(TAG, "TCP connection already in progress");
             return;
         }
+
+
+        TcpConnectionState current = tcpState.get();
+        transitionTo(
+                current == TcpConnectionState.DISCONNECTED
+                        ? TcpConnectionState.CONNECTING
+                        : TcpConnectionState.RECOVERING,
+                "connect requested"
+        );
 
         Log.i(TAG, "Try connect TCP");
         notifyStateChanged();
@@ -199,6 +230,11 @@ public class VehicleSendService extends Service {
                 if (stopping) {
                     return;
                 }
+                // TCP 已建立，但尚未证明数据可正常发送。
+                transitionTo(
+                        TcpConnectionState.RECOVERING,
+                        "socket connected"
+                );
 
                 sendingStarted.set(true);
                 Log.i(TAG, "TCP connected; vehicle frames can be sent");
@@ -218,6 +254,10 @@ public class VehicleSendService extends Service {
                 if (stopping) {
                     return;
                 }
+                transitionTo(
+                        TcpConnectionState.DISCONNECTED,
+                        "connect failed: " + exception.getMessage()
+                );
 
                 Log.e(
                         TAG,
@@ -257,6 +297,12 @@ public class VehicleSendService extends Service {
         client.sendLine(json, new VehicleTcpClient.Callback() {
             @Override
             public void onMessageSent(String message) {
+                if (state.getValidity() == DataValidity.VALID) {
+                    transitionTo(
+                            TcpConnectionState.ONLINE,
+                            "first valid frame sent"
+                    );
+                }
                 long sequence = state.getSequence();
                 // 每发送 20 帧打印一次日志 (约 2 秒)，并包含告警状态
                 if (sequence % 20 == 1) {
@@ -276,7 +322,7 @@ public class VehicleSendService extends Service {
             public void onError(Exception exception) {
                 Log.e(TAG, "Send failed", exception);
                 // 发送失败，处理连接丢失
-                handleConnectionLost();
+                handleConnectionLost(exception);
             }
         });
     }
@@ -284,7 +330,7 @@ public class VehicleSendService extends Service {
     /**
      * 处理连接丢失的情况
      */
-    private void handleConnectionLost() {
+    private void handleConnectionLost(Exception exception) {
         if (stopping
                 || !sendingStarted.compareAndSet(true, false)) {
             return;
@@ -299,7 +345,10 @@ public class VehicleSendService extends Service {
         if (tcpClient != null) {
             tcpClient.close();
         }
-
+        transitionTo(
+                TcpConnectionState.DISCONNECTED,
+                "send failed: " + exception.getMessage()
+        );
         notifyStateChanged();
         // 调度自动重连
         scheduleReconnect();
@@ -316,6 +365,10 @@ public class VehicleSendService extends Service {
                 || !reconnectScheduled.compareAndSet(false, true)) {
             return;
         }
+        transitionTo(
+                TcpConnectionState.RECOVERING,
+                "retry scheduled"
+        );
 
         try {
             scheduler.schedule(
@@ -345,7 +398,7 @@ public class VehicleSendService extends Service {
      * 是否正在尝试连接
      */
     public boolean isConnecting() {
-        return connecting.get();
+        return getTcpState() == TcpConnectionState.CONNECTING;
     }
 
     /**
@@ -367,6 +420,13 @@ public class VehicleSendService extends Service {
      */
     public DataSourceStatus getSourceStatus() {
         return sourceStatus;
+    }
+
+    public DataValidity getDataValidity() {
+        if (null != latestVehicleState) {
+            return latestVehicleState.getValidity();
+        }
+        return DataValidity.INCOMPLETE;
     }
 
     /**
@@ -423,7 +483,10 @@ public class VehicleSendService extends Service {
         reconnectScheduled.set(false);
         stateListener = null;
         mainHandler.removeCallbacksAndMessages(null);
-
+        transitionTo(
+                TcpConnectionState.DISCONNECTED,
+                "on destory"
+        );
         // 停止并清理资源
         if (vehicleDataSource != null) {
             vehicleDataSource.stop();

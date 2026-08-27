@@ -7,13 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".AppDrawerActivity">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="240dp"
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:text="@string/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/clickButton"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="set time to 5" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appRecyclerView"
@@ -24,6 +51,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
+        app:layout_constraintTop_toBottomOf="@+id/topBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

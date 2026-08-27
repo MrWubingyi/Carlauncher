@@ -27,12 +27,12 @@ public class AppDrawerActivity extends AppCompatActivity {
     private static final String TAG = "APP_COMPACT";
 
     private ActivityAppDrawerBinding binding; // 视图绑定
+    private Integer createTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "on Create ");
         super.onCreate(savedInstanceState);
-
 
         // 初始化视图绑定 (ViewBinding)
         binding = ActivityAppDrawerBinding.inflate(getLayoutInflater());
@@ -45,8 +45,15 @@ public class AppDrawerActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         binding.backButton.setOnClickListener(v -> finish());
+        binding.clickButton.setOnClickListener(v -> {
+            createTime = 5;
+            binding.text.setText(createTime.toString());
+        });
+        if (savedInstanceState != null) {
+            createTime = savedInstanceState.getInt("test_count", 0);
+            Log.i(TAG, "onCreate, restored=" + (savedInstanceState != null));
+        }
         List<AppInfo> apps = loadInstalledApps();
         AppAdapter adapter = new AppAdapter(apps, app -> {
             Log.i(
@@ -58,6 +65,7 @@ public class AppDrawerActivity extends AppCompatActivity {
             );
 
             Intent launchIntent = app.getLaunchIntent();
+
 
             if (launchIntent == null) {
                 Log.e(TAG, "Launch Intent is null: " + app.getPackageName());
@@ -158,6 +166,14 @@ public class AppDrawerActivity extends AppCompatActivity {
         super.onResume();
 //        startVehicleRefresh();
         Log.i(TAG, "AppDrawerActivity  onResume");
+        binding.text.setText(createTime.toString());
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("test_count", createTime);
+        Log.i(TAG, "onSaveInstanceState, count=" + createTime);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

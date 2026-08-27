@@ -108,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
            Intent intent = new Intent(this, AppDrawerActivity.class);
            startActivity(intent);
        });
+       binding.settingsButton.setOnClickListener(v -> {
+           Intent intent = new Intent(this, FragmentLabActivity.class);
+           startActivity(intent);
+       });
     }
 
     private void bindVehicleService(int flags) {

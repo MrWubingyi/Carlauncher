@@ -5,4 +5,13 @@
     <string name="battery_value">%1$d%%</string>
     <string name="back">Back</string>
     <string name="app_icon" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_settings_menu_title">Settings Menu Fragment</string>
+    <string name="settings_display">Display</string>
+    <string name="settings_network">Network</string>
+    <string name="settings_about">About</string>
+    <string name="fragment_detail_title">%1$s Detail</string>
+    <string name="fragment_detail_description">Fixed placeholder content for the Fragment transaction lab.</string>
+    <string name="back_to_settings_menu">Back to menu</string>
 </resources>

@@ -3,4 +3,6 @@
     <string name="speed_value">%1$d km/h</string>
     <string name="rpm_value">%1$d rpm</string>
     <string name="battery_value">%1$d%%</string>
+    <string name="back">Back</string>
+    <string name="app_icon" />
 </resources>

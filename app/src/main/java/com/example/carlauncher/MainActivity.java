@@ -1,6 +1,5 @@
 package com.example.carlauncher;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -106,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
             bindVehicleService(Context.BIND_AUTO_CREATE);
         });
 
+       binding.appsButton.setOnClickListener(view->{
+           Intent intent = new Intent(this, AppDrawerActivity.class);
+           startActivity(intent);
+       });
     }
 
     private void bindVehicleService(int flags) {

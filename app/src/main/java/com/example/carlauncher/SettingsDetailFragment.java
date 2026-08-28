@@ -62,10 +62,16 @@ public class SettingsDetailFragment extends Fragment {
         TextView titleView = view.findViewById(R.id.detailTitleText);
         titleView.setText(getString(R.string.fragment_detail_title, title));
 
-        view.findViewById(R.id.detailBackButton)
-                .setOnClickListener(v ->
-                        getParentFragmentManager().popBackStack()
-                );
+        boolean isTwoPane =
+                requireActivity().findViewById(R.id.detail_container) != null;
+
+        View backButton = view.findViewById(R.id.detailBackButton);
+        backButton.setVisibility(isTwoPane ? View.GONE : View.VISIBLE);
+        if (!isTwoPane) {
+            backButton.setOnClickListener(v ->
+                    getParentFragmentManager().popBackStack()
+            );
+        }
     }
 
     @Override

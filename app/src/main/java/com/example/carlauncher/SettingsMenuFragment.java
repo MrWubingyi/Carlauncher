@@ -52,16 +52,8 @@ public class SettingsMenuFragment extends Fragment {
 
     private void openDetail(String title) {
         Log.i(TAG, "Open detail: " + title);
-
-        getParentFragmentManager()
-                .beginTransaction()
-                .replace(
-                        R.id.fragmentContainer,
-                        SettingsDetailFragment.newInstance(title),
-                        SettingsDetailFragment.TAG
-                )
-                .addToBackStack(SettingsDetailFragment.TAG)
-                .commit();
+        ((OnSettingSelectedListener) requireActivity())
+                .onSettingSelected(title);
     }
 
     @Override
@@ -93,4 +85,8 @@ public class SettingsMenuFragment extends Fragment {
         Log.i(TAG, "onDestroyView");
         super.onDestroyView();
     }
+    public interface OnSettingSelectedListener {
+        void onSettingSelected(String title);
+    }
+
 }

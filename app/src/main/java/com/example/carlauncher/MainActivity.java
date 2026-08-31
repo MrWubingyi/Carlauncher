@@ -104,14 +104,18 @@ public class MainActivity extends AppCompatActivity {
             bindVehicleService(Context.BIND_AUTO_CREATE);
         });
 
-       binding.appsButton.setOnClickListener(view->{
-           Intent intent = new Intent(this, AppDrawerActivity.class);
-           startActivity(intent);
-       });
-       binding.settingsButton.setOnClickListener(v -> {
-           Intent intent = new Intent(this, FragmentLabActivity.class);
-           startActivity(intent);
-       });
+        binding.appsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AppDrawerActivity.class);
+            startActivity(intent);
+        });
+        binding.settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FragmentLabActivity.class);
+            startActivity(intent);
+        });
+        binding.boardButton.setOnClickListener(v -> {
+            Intent boardIntent = new Intent(this, BroadcastLabActivity.class);
+            startActivity(boardIntent);
+        });
     }
 
     private void bindVehicleService(int flags) {

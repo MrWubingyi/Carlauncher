@@ -14,7 +14,6 @@ public final class ThemePreferences {
     public static final String THEME_SYSTEM = "system";
     public static final String THEME_LIGHT = "light";
     public static final String THEME_DARK = "dark";
-    public static final String THEME_UNKNOWN = "unknown";
 
     private ThemePreferences() {
     }
@@ -57,9 +56,6 @@ public final class ThemePreferences {
         if (THEME_DARK.equals(theme)) {
             return 2;
         }
-        if(THEME_UNKNOWN.equals(theme)){
-            return 3;
-        }
         return 0;
     }
 
@@ -69,9 +65,6 @@ public final class ThemePreferences {
         }
         if (position == 2) {
             return THEME_DARK;
-        }
-        if (position== 3){
-            return THEME_UNKNOWN;
         }
         return THEME_SYSTEM;
     }

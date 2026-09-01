@@ -1,14 +1,18 @@
 package com.example.carlauncher;
 
+import android.Manifest;
+import android.app.ComponentCaller;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -86,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
 
         // 如果是车载系统，请求必要的车速读取权限
         requestCarSpeedPermissionIfNeeded();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    100
+            );
+        }
 
         // 配置连接/断开按钮的点击逻辑
         binding.connectButton.setOnClickListener(view -> {
@@ -412,5 +425,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-
+    @Override
+    public void onNewIntent(@NonNull Intent intent, @NonNull ComponentCaller caller) {
+        super.onNewIntent(intent, caller);
+        setIntent(intent);
+        Log.i(TAG,"MainActivity onNewIntent");
+    }
 }

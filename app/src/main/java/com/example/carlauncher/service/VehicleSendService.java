@@ -3,6 +3,7 @@ package com.example.carlauncher.service;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
@@ -14,6 +15,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.carlauncher.MainActivity;
 import com.example.carlauncher.R;
 import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.data.SourceType;
@@ -285,10 +287,8 @@ public class VehicleSendService extends Service {
         final String json;
         try {
             json = state.toJson();
-            if (state.getSequence() % 20 == 1) {
-                Log.d(TAG, "json=" + json);
-            }
-            Log.i(TAG, "json = " + json);
+
+//            Log.i(TAG, "json = " + json);
         } catch (Exception exception) {
             Log.e(TAG, "VehicleState JSON failed", exception);
             return;
@@ -512,11 +512,30 @@ public class VehicleSendService extends Service {
      * 创建前台服务通知
      */
     private Notification createNotification() {
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.setFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_SINGLE_TOP
+        );
+
+        PendingIntent contentIntent = PendingIntent.getActivity(
+                this,
+                1001,
+                notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+                        | PendingIntent.FLAG_IMMUTABLE
+        );
+
+
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Vehicle data service")
                 .setContentText("Sending vehicle state to LVGL")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentIntent(contentIntent)
                 .setOngoing(true)
+                .setForegroundServiceBehavior(
+                        NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE
+                )
                 .build();
     }
 

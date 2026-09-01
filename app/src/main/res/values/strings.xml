@@ -14,4 +14,9 @@
     <string name="fragment_detail_title">%1$s Detail</string>
     <string name="fragment_detail_description">Fixed placeholder content for the Fragment transaction lab.</string>
     <string name="back_to_settings_menu">Back to menu</string>
+    <string name="theme_label">Theme</string>
+    <string name="theme_system">Follow system</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_unknown">Unknown</string>
 </resources>

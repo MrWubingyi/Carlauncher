@@ -1,17 +1,21 @@
 package com.example.carlauncher;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.carlauncher.databinding.FragmentSettingsMenuBinding;
+
 public class SettingsMenuFragment extends Fragment {
     public static final String TAG = "SETTINGS_MENU";
+
+    private FragmentSettingsMenuBinding binding;
 
     // FragmentManager 需要无参构造函数来恢复 Fragment。
     public SettingsMenuFragment() {
@@ -31,7 +35,8 @@ public class SettingsMenuFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         Log.i(TAG, "onCreateView");
-        return inflater.inflate(R.layout.fragment_settings_menu, container, false);
+        binding = FragmentSettingsMenuBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -42,11 +47,11 @@ public class SettingsMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated");
 
-        view.findViewById(R.id.displaySettingsButton)
+        binding.displaySettingsButton
                 .setOnClickListener(v -> openDetail("Display"));
-        view.findViewById(R.id.networkSettingsButton)
+        binding.networkSettingsButton
                 .setOnClickListener(v -> openDetail("Network"));
-        view.findViewById(R.id.aboutSettingsButton)
+        binding.aboutSettingsButton
                 .setOnClickListener(v -> openDetail("About"));
     }
 
@@ -83,10 +88,11 @@ public class SettingsMenuFragment extends Fragment {
     @Override
     public void onDestroyView() {
         Log.i(TAG, "onDestroyView");
+        binding = null;
         super.onDestroyView();
     }
+
     public interface OnSettingSelectedListener {
         void onSettingSelected(String title);
     }
-
 }

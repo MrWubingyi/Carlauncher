@@ -14,7 +14,7 @@
         android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="@string/fragment_settings_menu_title"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="32sp"
         android:textStyle="bold" />
 

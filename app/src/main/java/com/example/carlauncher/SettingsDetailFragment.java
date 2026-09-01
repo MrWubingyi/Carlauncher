@@ -1,23 +1,26 @@
 package com.example.carlauncher;
 
 import android.os.Bundle;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.util.Log;
-import android.widget.TextView;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.carlauncher.databinding.FragmentSettingsDetailBinding;
+
 public class SettingsDetailFragment extends Fragment {
     public static final String TAG = "SETTINGS_DETAIL";
     private static final String ARG_TITLE = "title";
 
+    private FragmentSettingsDetailBinding binding;
     private String title = "Unknown";
 
+    // FragmentManager 需要无参构造函数来恢复 Fragment。
     public SettingsDetailFragment() {
     }
 
@@ -48,7 +51,8 @@ public class SettingsDetailFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         Log.i(TAG, "onCreateView, title=" + title);
-        return inflater.inflate(R.layout.fragment_settings_detail, container, false);
+        binding = FragmentSettingsDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -59,19 +63,64 @@ public class SettingsDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated, title=" + title);
 
-        TextView titleView = view.findViewById(R.id.detailTitleText);
-        titleView.setText(getString(R.string.fragment_detail_title, title));
+        binding.detailTitleText.setText(
+                getString(R.string.fragment_detail_title, title)
+        );
+
+        if ("Display".equals(title)) {
+            setupThemeSpinner();
+        }
 
         boolean isTwoPane =
                 requireActivity().findViewById(R.id.detail_container) != null;
 
-        View backButton = view.findViewById(R.id.detailBackButton);
-        backButton.setVisibility(isTwoPane ? View.GONE : View.VISIBLE);
+        binding.detailBackButton.setVisibility(
+                isTwoPane ? View.GONE : View.VISIBLE
+        );
         if (!isTwoPane) {
-            backButton.setOnClickListener(v ->
+            binding.detailBackButton.setOnClickListener(v ->
                     getParentFragmentManager().popBackStack()
             );
         }
+    }
+
+    private void setupThemeSpinner() {
+        binding.themeLabelText.setVisibility(View.VISIBLE);
+        binding.themeSpinner.setVisibility(View.VISIBLE);
+
+        String savedTheme = ThemePreferences.getTheme(requireContext());
+        binding.themeSpinner.setSelection(
+                ThemePreferences.themeToPosition(savedTheme),
+                false
+        );
+        binding.themeSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(
+                            AdapterView<?> parent,
+                            View selectedView,
+                            int position,
+                            long id
+                    ) {
+                        String selectedTheme =
+                                ThemePreferences.positionToTheme(position);
+                        String currentTheme =
+                                ThemePreferences.getTheme(requireContext());
+                        if (!selectedTheme.equals(currentTheme)) {
+                            Log.i(TAG, "Theme selected=" + selectedTheme);
+                            ThemePreferences.saveAndApplyTheme(
+                                    requireContext(),
+                                    selectedTheme
+                            );
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // Keep the persisted value when no item is selected.
+                    }
+                }
+        );
     }
 
     @Override
@@ -101,6 +150,8 @@ public class SettingsDetailFragment extends Fragment {
     @Override
     public void onDestroyView() {
         Log.i(TAG, "onDestroyView");
+        binding.themeSpinner.setOnItemSelectedListener(null);
+        binding = null;
         super.onDestroyView();
     }
 }

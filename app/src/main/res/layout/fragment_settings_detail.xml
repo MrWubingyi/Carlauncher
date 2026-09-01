@@ -12,7 +12,7 @@
         android:id="@+id/detailTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="32sp"
         android:textStyle="bold"
         tools:text="Display Detail" />
@@ -22,8 +22,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/fragment_detail_description"
-        android:textColor="#B8C4D8"
+        android:textColor="?android:attr/textColorSecondary"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/themeLabelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/theme_label"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <Spinner
+        android:id="@+id/themeSpinner"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:entries="@array/theme_labels"
+        android:spinnerMode="dropdown"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/detailBackButton"

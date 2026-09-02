@@ -105,4 +105,19 @@ public final class ThemePreferences {
                 Context.MODE_PRIVATE
         );
     }
+    public static void resetToDefaults(Context context) {
+        preferences(context)
+                .edit()
+                .remove(KEY_COLOR_THEME)
+                .remove(KEY_WELCOME_ENABLED)
+                .apply();
+
+        Log.i(
+                TAG,
+                "Settings reset: colorTheme="
+                        + THEME_COLOR_SYSTEM
+                        + ", welcomeEnabled="
+                        + DEFAULT_WELCOME_ENABLED
+        );
+    }
 }

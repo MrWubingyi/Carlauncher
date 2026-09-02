@@ -56,4 +56,12 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:text="启用界面提示" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/resetSettingsButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="恢复默认设置" />
 </LinearLayout>

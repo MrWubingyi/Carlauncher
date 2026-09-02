@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.carlauncher.databinding.FragmentSettingsDetailBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsDetailFragment extends Fragment {
     public static final String TAG = "SETTINGS_DETAIL";
@@ -70,6 +71,7 @@ public class SettingsDetailFragment extends Fragment {
         if ("Display".equals(title)) {
             setupThemeSpinner();
             setupSwitchCompat();
+            setupResetSettingsButton();
         }
 
         boolean isTwoPane =
@@ -83,15 +85,49 @@ public class SettingsDetailFragment extends Fragment {
                     getParentFragmentManager().popBackStack()
             );
         }
+
     }
+    private void setupResetSettingsButton() {
+        binding.resetSettingsButton.setVisibility(View.VISIBLE);
 
-    private void setupSwitchCompat() {
-        binding.welcomeSwitch.setVisibility(View.VISIBLE);
-        // 先恢复保存值，再注册监听器，避免初始化时被误判为用户操作。
-        boolean savedEnabled =
-                ThemePreferences.isWelcomeEnabled(requireContext());
+        binding.resetSettingsButton.setOnClickListener(view -> {
+            ThemePreferences.resetToDefaults(requireContext());
 
-        binding.welcomeSwitch.setChecked(savedEnabled);
+            // 避免 setChecked() 被当成用户操作。
+            binding.welcomeSwitch.setOnCheckedChangeListener(null);
+
+            String defaultTheme =
+                    ThemePreferences.getColorTheme(requireContext());
+            boolean defaultWelcome =
+                    ThemePreferences.isWelcomeEnabled(requireContext());
+
+            binding.themeSpinner.setSelection(
+                    ThemePreferences.themeToPosition(defaultTheme),
+                    false
+            );
+            binding.welcomeSwitch.setChecked(defaultWelcome);
+
+            setupWelcomeSwitchListener();
+
+            Log.i(
+                    TAG,
+                    "Reset UI applied, theme="
+                            + defaultTheme
+                            + ", welcomeEnabled="
+                            + defaultWelcome
+            );
+
+            Snackbar.make(
+                    binding.getRoot(),
+                    "已恢复默认设置",
+                    Snackbar.LENGTH_LONG
+            ).show();
+
+            // 最后应用主题；如果主题发生变化，Activity 可能重建。
+            ThemePreferences.applySavedTheme(requireContext());
+        });
+    }
+    private void setupWelcomeSwitchListener() {
         binding.welcomeSwitch.setOnCheckedChangeListener(
                 (buttonView, isChecked) -> {
                     Log.i(TAG, "Welcome switch changed=" + isChecked);
@@ -100,8 +136,17 @@ public class SettingsDetailFragment extends Fragment {
                             requireContext(),
                             isChecked
                     );
+                }
+        );
+    }
+    private void setupSwitchCompat() {
+        binding.welcomeSwitch.setVisibility(View.VISIBLE);
+        // 先恢复保存值，再注册监听器，避免初始化时被误判为用户操作。
+        boolean savedEnabled =
+                ThemePreferences.isWelcomeEnabled(requireContext());
 
-                });
+        binding.welcomeSwitch.setChecked(savedEnabled);
+        setupWelcomeSwitchListener();
     }
 
     private void setupThemeSpinner() {

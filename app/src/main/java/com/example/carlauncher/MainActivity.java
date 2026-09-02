@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        viewModel.getUiState().observe(this, this::render);
         viewModel.getUiState().observe(this, uiState -> {
-            Log.i(
+            Log.d(
                     TAG,
                     "LiveData emitted, activity="
                             + System.identityHashCode(this)

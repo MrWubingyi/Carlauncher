@@ -1,5 +1,7 @@
 package com.example.carlauncher.ui;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -11,6 +13,13 @@ public final class CockpitViewModel extends ViewModel {
 
     private final VehicleRepository repository =
             new VehicleRepository();
+
+    public CockpitViewModel() {
+        Log.i(
+                "COCKPIT_VIEW_MODEL",
+                "created, id=" + System.identityHashCode(this)
+        );
+    }
 
     public LiveData<CockpitUiState> getUiState() {
         return repository.getUiState();
@@ -26,5 +35,13 @@ public final class CockpitViewModel extends ViewModel {
 
     public void refresh() {
         repository.refresh();
+    }
+
+    @Override
+    protected void onCleared() {
+        Log.i(
+                "COCKPIT_VIEW_MODEL",
+                "onCleared, id=" + System.identityHashCode(this)
+        );
     }
 }

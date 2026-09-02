@@ -1,5 +1,7 @@
 package com.example.carlauncher.ui;
 
+import android.util.Log;
+
 import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
@@ -15,6 +17,8 @@ import com.example.carlauncher.service.TcpConnectionState;
  * - 创建后不可修改
  */
 public final class CockpitUiState {
+
+    private static final String TAG = "CockpitUiState";
 
     private final VehicleState vehicleState;
     private final DataSourceStatus dataSourceStatus;
@@ -33,32 +37,38 @@ public final class CockpitUiState {
         this.dataSourceStatus = dataSourceStatus;
         this.serviceBound = serviceBound;
         state = mapState(validity, tcpconnectstate);
+        Log.d(TAG, "Created CockpitUiState: state=" + state
+                + ", serviceBound=" + serviceBound
+                + ", dataSourceStatus=" + dataSourceStatus
+                + ", tcpState=" + tcpconnectstate
+                + ", validity=" + validity
+                + ", vehicleState=" + (vehicleState != null ? "non-null" : "null"));
     }
 
     public CockpitConnectionState mapState(
             DataValidity validity,
             TcpConnectionState tcpstate
     ) {
+        CockpitConnectionState mappedState;
         if (tcpstate == TcpConnectionState.DISCONNECTED) {
-            return CockpitConnectionState.DISCONNECTED;
-        }
-
-        if (tcpstate == TcpConnectionState.CONNECTING
+            mappedState = CockpitConnectionState.DISCONNECTED;
+        } else if (tcpstate == TcpConnectionState.CONNECTING
                 || tcpstate == TcpConnectionState.RECOVERING) {
-            return CockpitConnectionState.RECOVERING;
+            mappedState = CockpitConnectionState.RECOVERING;
+        } else if (validity != DataValidity.VALID) {
+            mappedState = CockpitConnectionState.INVALID_DATA;
+        } else {
+            mappedState = CockpitConnectionState.ONLINE;
         }
-
-        if (validity != DataValidity.VALID) {
-            return CockpitConnectionState.INVALID_DATA;
-        }
-
-        return CockpitConnectionState.ONLINE;
+        Log.d(TAG, "mapState: validity=" + validity + ", tcpState=" + tcpstate + " -> mappedState=" + mappedState);
+        return mappedState;
     }
 
     /**
      * App 尚未绑定或启动 Service 时的初始状态。
      */
     public static CockpitUiState initial() {
+        Log.d(TAG, "Creating initial state");
         return new CockpitUiState(
                 null,
                 DataSourceStatus.STOPPED,
@@ -127,7 +137,7 @@ public final class CockpitUiState {
 
     public String getTransportLabel() {
         return state == CockpitConnectionState.ONLINE
-                ||state == CockpitConnectionState.INVALID_DATA
+                || state == CockpitConnectionState.INVALID_DATA
                 ? "Transport: ONLINE"
                 : "Transport: OFFLINE";
     }

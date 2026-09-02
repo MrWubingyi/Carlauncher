@@ -67,8 +67,20 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this)
                 .get(CockpitViewModel.class);
 
-        viewModel.getUiState().observe(this, this::render);
+//        viewModel.getUiState().observe(this, this::render);
+        viewModel.getUiState().observe(this, uiState -> {
+            Log.i(
+                    TAG,
+                    "LiveData emitted, activity="
+                            + System.identityHashCode(this)
+                            + ", viewModel="
+                            + System.identityHashCode(viewModel)
+                            + ", state="
+                            + uiState.getConnectionState()
+            );
 
+            render(uiState);
+        });
         // 处理系统栏（状态栏、导航栏）的内边距，实现沉浸式体验
         ViewCompat.setOnApplyWindowInsetsListener(
                 binding.cockpitRoot,
@@ -115,7 +127,16 @@ public class MainActivity extends AppCompatActivity {
                 stopVehicleService();
                 return;
             }
+            int activityId = System.identityHashCode(this);
+            int viewModelId = System.identityHashCode(viewModel);
 
+            Log.i(
+                    TAG,
+                    "Observer owner activity="
+                            + activityId
+                            + ", viewModel="
+                            + viewModelId
+            );
             ContextCompat.startForegroundService(this, serviceIntent);
             bindVehicleService(Context.BIND_AUTO_CREATE);
         });

@@ -22,6 +22,7 @@ import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.service.VehicleSendService;
 import com.example.carlauncher.ui.CockpitUiState;
 import com.example.carlauncher.ui.CockpitViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private Intent serviceIntent; // 启动服务的 Intent
     private VehicleSendService vehicleService;
     private boolean serviceBindingActive;
-
+    private boolean shouldShowWelcome;
     private CockpitViewModel viewModel;
     private final VehicleSendService.StateListener serviceStateListener =
             () -> {
@@ -60,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         // 初始化视图绑定 (ViewBinding)
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        shouldShowWelcome =
+                savedInstanceState == null
+                        && ThemePreferences.isWelcomeEnabled(this);
         viewModel = new ViewModelProvider(this)
                 .get(CockpitViewModel.class);
 
@@ -386,6 +389,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPostResume() {
+
+        super.onPostResume();
+        if (!shouldShowWelcome) {
+            return;
+        }
+
+        // 立即清除，防止重复进入 onPostResume 时再次显示。
+        shouldShowWelcome = false;
+
+        binding.getRoot().post(() -> {
+            Snackbar.make(
+                    binding.getRoot(),
+                    "欢迎进入 CarLauncher",
+                    Snackbar.LENGTH_LONG
+            ).show();
+
+            Log.i(TAG, "Welcome Snackbar displayed");
+        });
+    }
+
+    @Override
     protected void onDestroy() {
         Log.i(TAG, "onDestroy");
         binding = null; // 释放视图绑定
@@ -429,6 +454,6 @@ public class MainActivity extends AppCompatActivity {
     public void onNewIntent(@NonNull Intent intent, @NonNull ComponentCaller caller) {
         super.onNewIntent(intent, caller);
         setIntent(intent);
-        Log.i(TAG,"MainActivity onNewIntent");
+        Log.i(TAG, "MainActivity onNewIntent");
     }
 }

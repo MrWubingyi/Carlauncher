@@ -69,6 +69,7 @@ public class SettingsDetailFragment extends Fragment {
 
         if ("Display".equals(title)) {
             setupThemeSpinner();
+            setupSwitchCompat();
         }
 
         boolean isTwoPane =
@@ -84,11 +85,30 @@ public class SettingsDetailFragment extends Fragment {
         }
     }
 
+    private void setupSwitchCompat() {
+        binding.welcomeSwitch.setVisibility(View.VISIBLE);
+        // 先恢复保存值，再注册监听器，避免初始化时被误判为用户操作。
+        boolean savedEnabled =
+                ThemePreferences.isWelcomeEnabled(requireContext());
+
+        binding.welcomeSwitch.setChecked(savedEnabled);
+        binding.welcomeSwitch.setOnCheckedChangeListener(
+                (buttonView, isChecked) -> {
+                    Log.i(TAG, "Welcome switch changed=" + isChecked);
+
+                    ThemePreferences.setWelcomeEnabled(
+                            requireContext(),
+                            isChecked
+                    );
+
+                });
+    }
+
     private void setupThemeSpinner() {
         binding.themeLabelText.setVisibility(View.VISIBLE);
         binding.themeSpinner.setVisibility(View.VISIBLE);
 
-        String savedTheme = ThemePreferences.getTheme(requireContext());
+        String savedTheme = ThemePreferences.getColorTheme(requireContext());
         binding.themeSpinner.setSelection(
                 ThemePreferences.themeToPosition(savedTheme),
                 false
@@ -103,12 +123,12 @@ public class SettingsDetailFragment extends Fragment {
                             long id
                     ) {
                         String selectedTheme =
-                                ThemePreferences.positionToTheme(position);
+                                ThemePreferences.positionToColorTheme(position);
                         String currentTheme =
-                                ThemePreferences.getTheme(requireContext());
+                                ThemePreferences.getColorTheme(requireContext());
                         if (!selectedTheme.equals(currentTheme)) {
                             Log.i(TAG, "Theme selected=" + selectedTheme);
-                            ThemePreferences.saveAndApplyTheme(
+                            ThemePreferences.saveAndApplyColorTheme(
                                     requireContext(),
                                     selectedTheme
                             );
@@ -151,6 +171,7 @@ public class SettingsDetailFragment extends Fragment {
     public void onDestroyView() {
         Log.i(TAG, "onDestroyView");
         binding.themeSpinner.setOnItemSelectedListener(null);
+        binding.welcomeSwitch.setOnCheckedChangeListener(null);
         binding = null;
         super.onDestroyView();
     }

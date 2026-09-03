@@ -57,6 +57,38 @@ public final class DatabaseLabActivity
             insertRecord(name, value, note);
         });
 
+        binding.updateButton.setOnClickListener(view -> {
+            String name =
+                    binding.nameInput.getText().toString().trim();
+            String value =
+                    binding.valueInput.getText().toString().trim();
+            String note =
+                    binding.noteInput.getText().toString().trim();
+
+            if (name.isEmpty() || value.isEmpty()) {
+                binding.databaseStatusText.setText(
+                        "更新失败：name 和 value 不能为空"
+                );
+                return;
+            }
+
+            updateRecord(name, value, note);
+        });
+
+        binding.deleteButton.setOnClickListener(view -> {
+            String name =
+                    binding.nameInput.getText().toString().trim();
+
+            if (name.isEmpty()) {
+                binding.databaseStatusText.setText(
+                        "删除失败：请输入要删除的 name"
+                );
+                return;
+            }
+
+            deleteRecord(name);
+        });
+
         binding.queryButton.setOnClickListener(
                 view -> queryAllRecords()
         );
@@ -160,11 +192,12 @@ public final class DatabaseLabActivity
                                 + name
                 );
 
-                runOnUiThread(() ->
+                runOnUiThread(() -> {
                         binding.databaseStatusText.setText(
                                 "新增成功，rowId=" + rowId
-                        )
-                );
+                        );
+                        queryAllRecords();
+                });
             } catch (SQLiteConstraintException exception) {
                 Log.w(
                         TAG,
@@ -179,6 +212,129 @@ public final class DatabaseLabActivity
                 );
             } catch (RuntimeException exception) {
                 Log.e(TAG, "Insert failed", exception);
+            }
+        });
+    }
+    private void updateRecord(
+            String name,
+            String value,
+            String note
+    ) {
+        databaseExecutor.execute(() -> {
+            try {
+                SQLiteDatabase database =
+                        databaseHelper.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put(
+                        LabDatabaseContract
+                                .LabRecordEntry
+                                .COLUMN_VALUE,
+                        value
+                );
+                values.put(
+                        LabDatabaseContract
+                                .LabRecordEntry
+                                .COLUMN_NOTE,
+                        note
+                );
+
+                String selection =
+                        LabDatabaseContract
+                                .LabRecordEntry
+                                .COLUMN_NAME
+                                + " = ?";
+                String[] selectionArgs = { name };
+
+                int updatedRows = database.update(
+                        LabDatabaseContract
+                                .LabRecordEntry
+                                .TABLE_NAME,
+                        values,
+                        selection,
+                        selectionArgs
+                );
+
+                Log.i(
+                        TAG,
+                        "Update finish, name="
+                                + name
+                                + ", updatedRows="
+                                + updatedRows
+                );
+
+                runOnUiThread(() -> {
+                    if (updatedRows > 0) {
+                        binding.databaseStatusText.setText(
+                                "更新成功，影响行数：" + updatedRows
+                        );
+                        queryAllRecords();
+                    } else {
+                        binding.databaseStatusText.setText(
+                                "未找到匹配记录，更新失败"
+                        );
+                    }
+                });
+            } catch (RuntimeException exception) {
+                Log.e(TAG, "Update failed", exception);
+
+                runOnUiThread(() ->
+                        binding.databaseStatusText.setText(
+                                "更新失败，请查看 Logcat"
+                        )
+                );
+            }
+        });
+    }
+    private void deleteRecord(String name) {
+        databaseExecutor.execute(() -> {
+            try {
+                SQLiteDatabase database =
+                        databaseHelper.getWritableDatabase();
+
+                String selection =
+                        LabDatabaseContract
+                                .LabRecordEntry
+                                .COLUMN_NAME
+                                + " = ?";
+                String[] selectionArgs = { name };
+
+                int deletedRows = database.delete(
+                        LabDatabaseContract
+                                .LabRecordEntry
+                                .TABLE_NAME,
+                        selection,
+                        selectionArgs
+                );
+
+                Log.i(
+                        TAG,
+                        "Delete finish, name="
+                                + name
+                                + ", deletedRows="
+                                + deletedRows
+                );
+
+                runOnUiThread(() -> {
+                    if (deletedRows > 0) {
+                        binding.databaseStatusText.setText(
+                                "删除成功，影响行数：" + deletedRows
+                        );
+                        queryAllRecords();
+                    } else {
+                        binding.databaseStatusText.setText(
+                                "未找到匹配记录，删除失败"
+                        );
+                    }
+                });
+            } catch (RuntimeException exception) {
+                Log.e(TAG, "Delete failed", exception);
+
+                runOnUiThread(() ->
+                        binding.databaseStatusText.setText(
+                                "删除失败，请查看 Logcat"
+                        )
+                );
             }
         });
     }

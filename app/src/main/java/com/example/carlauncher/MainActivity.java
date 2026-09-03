@@ -153,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
             Intent boardIntent = new Intent(this, BroadcastLabActivity.class);
             startActivity(boardIntent);
         });
+        binding.databaseButton.setOnClickListener(v -> {
+            Intent databaseIntent = new Intent(this, DatabaseLabActivity.class);
+            startActivity(databaseIntent);
+        });
     }
 
     private void bindVehicleService(int flags) {

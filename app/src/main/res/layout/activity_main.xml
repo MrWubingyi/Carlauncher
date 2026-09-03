@@ -570,10 +570,26 @@
 
                 <Button
                     android:id="@+id/boardButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:backgroundTint="#263247"
                     android:text="Board"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="1dp" />
+
+                <Button
+                    android:id="@+id/databaseButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="#263247"
+                    android:text="Database"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp" />

@@ -21,10 +21,27 @@ public final class MockVehicleDataSource
         implements VehicleDataSource {
 
     private ScheduledExecutorService scheduler; // 用于定时执行模拟任务的调度器
+    private ScheduledExecutorService injectedScheduler; // 测试注入的可控调度器（生产恒为 null）
     private long sequence = 0; // 消息序列号
     private int speed = 0;    // 当前模拟的车速
     private boolean accelerating = true; // 模拟加速或减速状态
     private volatile Listener listener;
+
+    /**
+     * 生产环境默认构造：首次 start() 时创建真实单线程调度器。
+     */
+    public MockVehicleDataSource() {
+        this(null);
+    }
+
+    /**
+     * 测试专用构造：注入可控的 {@link ScheduledExecutorService}，
+     * 使 100ms 定时生成逻辑可以在测试中同步驱动。
+     * 包级可见，不对外部调用方暴露。
+     */
+    MockVehicleDataSource(ScheduledExecutorService scheduler) {
+        this.injectedScheduler = scheduler;
+    }
 
     /**
      * 开始生成模拟数据。
@@ -36,7 +53,9 @@ public final class MockVehicleDataSource
             return;
         }
         this.listener = listener;
-        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler = injectedScheduler != null
+                ? injectedScheduler
+                : Executors.newSingleThreadScheduledExecutor();
         listener.onSourceStatusChanged(DataSourceStatus.CONNECTED);
         // 每秒执行一次速度更新和状态分发
         scheduler.scheduleWithFixedDelay(

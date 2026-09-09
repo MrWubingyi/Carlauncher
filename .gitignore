@@ -7,6 +7,13 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+# Machine-specific IDE settings and local device/session state
+/.idea/deploymentTargetSelector.xml
+/.idea/deviceManager.xml
+/.idea/emulatorDisplays.xml
+/.idea/misc.xml
+/.idea/planningMode.xml
+/.idea/vcs.xml
 .DS_Store
 /build
 /captures

@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>SOME/IP Method 开发验证</title>
+<style>body{font:16px/1.7 system-ui,sans-serif;max-width:1000px;margin:40px auto;padding:0 20px;color:#202830}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccd3db;padding:10px;text-align:left}.notice{background:#fff2d5;padding:16px}code{overflow-wrap:anywhere}</style>
+<h1>SOME/IP Method 开发验证 · 2026-09-09</h1>
+<p class="notice">native 注册及启停修复通过；Android→Ubuntu Method 往返未通过。普通 Android 应用绑定 NETLINK_ROUTE 被拒绝，当前 vSomeIP 库未启用外部 IP 路由。抓包为 0 个业务报文。WP2 端到端仍未完成。</p>
+<table><tr><th>检查</th><th>结果</th><th>证据</th></tr>
+<tr><td>完整 JVM</td><td>62 项通过；失败 0，错误 0，跳过 0</td><td><a href="verification/unit/">JUnit XML</a></td></tr>
+<tr><td>完整设备回归</td><td>63 项：61 通过、2 个显式启用探针跳过；失败 0，错误 0</td><td><a href="verification/device/">JUnit XML</a></td></tr>
+<tr><td>真实 native 生命周期</td><td>1 项通过，包含 3 轮注册、重复启动、重复停止、停止后发送拒绝</td><td><a href="native-lifecycle-pass/">JUnit 与 Logcat</a></td></tr>
+<tr><td>真实 Method</td><td>2 次尝试均失败；第一次定位 /tmp 权限，第二次确认修复注册后仍有 NETLINK 权限阻塞</td><td><a href="attempt1-routing-failure/">第一次</a> · <a href="attempt2-netlink-failure/">第二次</a></td></tr>
+<tr><td>Ubuntu 测试服务</td><td>GCC 11.4 / vSomeIP 3.7.5 构建成功；配套库启动成功。临时服务与抓包均已停止</td><td><a href="service-fixed.log">服务日志</a> · <a href="capture-fixed.log">抓包统计</a> · <a href="method-probe-fixed.pcap">PCAP</a></td></tr>
+<tr><td>Android Debug 构建</td><td>成功</td><td><a href="../../app/build/outputs/apk/debug/app-debug.apk">APK</a></td></tr>
+<tr><td>Lint</td><td>Fatal 0，Error 0，Warning 101；任务通过</td><td><a href="../../app/build/reports/lint-results-debug.html">HTML</a> · <a href="../../app/build/reports/lint-results-debug.xml">XML</a></td></tr>
+<tr><td>JaCoCo / 覆盖率门禁</td><td>未生成本轮有效覆盖率结论，门禁未执行。设备 coverage.ec 导出失败；09-04 的旧 .ec 和历史覆盖率报告不能计入本轮</td><td>不以普通回归通过代替网络探针或全模块覆盖率通过</td></tr></table>
+<h2>命令与退出结果</h2><ul>
+<li><code>gradlew.bat :app:testDebugUnitTest :app:connectedDebugAndroidTest :app:lintDebug :app:assembleDebug --offline --continue</code>：退出 0。</li>
+<li><code>VsomeipNativeProbeTest#nativeRegistrationAndRepeatedStopAreSafe</code>，参数 <code>someipLocal=10.0.2.16, someipLifecycle=true</code>：退出 0。</li>
+<li><code>VsomeipNativeProbeTest#requestResponseRejectAndRestart</code>，参数 <code>someipLocal=10.0.2.16, someipPeer=192.168.31.248</code>：两次 Gradle 退出 1，服务可用性等待超时。</li>
+</ul><p>完整命令见 <a href="../../tools/someip-probe/README.md">探针说明</a>；范围和失败分析见 <a href="README.md">证据说明</a>。源码与证据的工作树快照由 <a href="SHA256SUMS.txt">SHA-256</a> 记录，未生成提交 ID。</p></html>

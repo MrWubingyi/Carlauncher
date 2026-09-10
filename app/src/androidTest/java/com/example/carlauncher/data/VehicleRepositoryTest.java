@@ -57,7 +57,7 @@ public class VehicleRepositoryTest {
         onMain(() -> repository.attachService(new StubVehicleSendService()
                 .withLatestState(vehicleState)
                 .withSourceStatus(DataSourceStatus.CONNECTED)
-                .withTcpState(TcpConnectionState.ONLINE)
+                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.VALID)));
 
         CockpitUiState state = repository.getUiState().getValue();
@@ -73,7 +73,7 @@ public class VehicleRepositoryTest {
 
         onMain(() -> repository.attachService(new StubVehicleSendService()
                 .withLatestState(new VehicleState.Builder().build())
-                .withTcpState(TcpConnectionState.ONLINE)
+                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.INVALID_SPEED)));
 
         assertEquals(CockpitConnectionState.INVALID_DATA,
@@ -85,14 +85,14 @@ public class VehicleRepositoryTest {
         VehicleRepository repository = new VehicleRepository();
         StubVehicleSendService service = new StubVehicleSendService()
                 .withLatestState(new VehicleState.Builder().build())
-                .withTcpState(TcpConnectionState.ONLINE)
+                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.VALID);
         onMain(() -> repository.attachService(service));
         assertEquals(CockpitConnectionState.ONLINE,
                 repository.getUiState().getValue().getState());
 
         // 服务状态变化后由外部触发刷新
-        service.withTcpState(TcpConnectionState.RECOVERING);
+        service.withSomeipAvailable(false, 100).withSomeipAvailable(true, 200);
         onMain(repository::refresh);
 
         CockpitUiState refreshed = repository.getUiState().getValue();
@@ -104,7 +104,7 @@ public class VehicleRepositoryTest {
         VehicleRepository repository = new VehicleRepository();
         onMain(() -> repository.attachService(new StubVehicleSendService()
                 .withLatestState(new VehicleState.Builder().build())
-                .withTcpState(TcpConnectionState.ONLINE)));
+                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)));
 
         onMain(repository::detachService);
 
@@ -118,5 +118,31 @@ public class VehicleRepositoryTest {
     private static void onMain(Runnable action) {
         InstrumentationRegistry.getInstrumentation().runOnMainSync(action);
     }
-}
 
+    @Test
+    public void tcpSuccessCannotHideSomeipWaitingErrorOrTimeout() {
+        VehicleRepository repository = new VehicleRepository();
+        StubVehicleSendService service = new StubVehicleSendService()
+                .withTcpState(TcpConnectionState.ONLINE)
+                .withValidity(DataValidity.VALID)
+                .withSomeipAvailable(true, 0);
+        onMain(() -> repository.attachService(service));
+        assertEquals("SOME/IP WAITING_RESPONSE", repository.getUiState().getValue().getConnectionLabel());
+
+        service.withSomeipResponse(false, 1, 100);
+        onMain(repository::refresh);
+        assertEquals("SOME/IP RESPONSE_ERROR", repository.getUiState().getValue().getConnectionLabel());
+
+        service.checkSomeipTimeout(3100);
+        onMain(repository::refresh);
+        assertEquals("SOME/IP RESPONSE_TIMEOUT", repository.getUiState().getValue().getConnectionLabel());
+        assertTrue(repository.getUiState().getValue().isStopAction());
+
+        service.withTcpState(TcpConnectionState.DISCONNECTED).withSomeipResponse(true, 0, 3200);
+        onMain(repository::refresh);
+        assertEquals("SOME/IP ONLINE", repository.getUiState().getValue().getConnectionLabel());
+        service.withSomeipAvailable(false, 3300);
+        onMain(repository::refresh);
+        assertEquals("SOME/IP UNAVAILABLE", repository.getUiState().getValue().getConnectionLabel());
+    }
+}

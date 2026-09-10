@@ -1,0 +1,9 @@
+
+Algorithm : SHA256
+Hash      : F9410574DE60A44DC3E293D328688E5ABB751E96128D025D8625861B578CFE19
+Path      : E:\Src\vsomeip\build-android-x86_64-mono\libvsomeip3.so
+
+Algorithm : SHA256
+Hash      : 145D6B5203AB1F5FAFBCE6DD076EC1533FA8D4CB2B5A35C58F5889B30C2109EF
+Path      : D:\Android\AndroidStudioProjects\CarLauncher\app\build\outputs\apk\debug\app-debug.apk
+

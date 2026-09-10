@@ -1,0 +1,6 @@
+Packets=4 Requests=0 Responses=0 UniqueRequests=0
+
+Count Name
+----- ----
+    4 10.0.2.16, 224.244.224.245, Find:1111/2222:ttl=16777215, 
+

@@ -1,0 +1,6 @@
+Packets=61 Requests=0 Responses=0 UniqueRequests=0
+
+Count Name
+----- ----
+   61 192.168.31.248, 224.244.224.245, Offer:1111/2222:ttl=3, 192.168.31.248:30509/proto=17
+

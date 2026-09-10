@@ -1,0 +1,82 @@
+# proto-message: google.testing.platform.proto.api.core.TestSuiteResult
+# 2026-09-09T06:46:56.673049800Z:
+test_suite_meta_data {
+  scheduled_test_case_count: 1
+  device {
+    id: "emulator-5554"
+    friendly_name: "primary"
+  }
+}
+test_status: FAILED
+test_result {
+  test_case {
+    test_class: "VsomeipNativeProbeTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "requestResponseRejectAndRestart"
+    start_time {
+      seconds: 1788936404
+      nanos: 949000000
+    }
+    end_time {
+      seconds: 1788936415
+      nanos: 9000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: FAILED
+  error {
+    error_message: "java.lang.AssertionError: service availability expected:<true> but was:<null>\nat org.junit.Assert.fail(Assert.java:89)\nat org.junit.Assert.failNotEquals(Assert.java:835)\nat org.junit.Assert.assertEquals(Assert.java:120)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.requestResponseRejectAndRestart(VsomeipNativeProbeTest.java:52)\n"
+    error_type: "java.lang.AssertionError"
+    stack_trace: "java.lang.AssertionError: service availability expected:<true> but was:<null>\nat org.junit.Assert.fail(Assert.java:89)\nat org.junit.Assert.failNotEquals(Assert.java:835)\nat org.junit.Assert.assertEquals(Assert.java:120)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.requestResponseRejectAndRestart(VsomeipNativeProbeTest.java:52)\n"
+  }
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.someip.VsomeipNativeProbeTest-requestResponseRejectAndRestart.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+output_artifact {
+  label {
+    label: "test-results.log"
+    namespace: "com.google.testing.platform.runtime.android.driver.AndroidInstrumentationDriver"
+  }
+  source_path {
+    path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\testlog\\test-results.log"
+  }
+  type: TEST_DATA
+  mime_type: "text/plain"
+}

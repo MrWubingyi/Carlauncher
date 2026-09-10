@@ -1,0 +1,27 @@
+Start testing: Sep 09 17:11 CST
+----------------------------------------------------------
+1/1 Testing: vehicle_processor_behavior
+1/1 Test: vehicle_processor_behavior
+Command: "/root/develop/carlauncher-probe-20260909/build/vehicle_processor_test"
+Directory: /root/develop/carlauncher-probe-20260909/build
+"vehicle_processor_behavior" start time: Sep 09 17:11 CST
+Output:
+----------------------------------------------------------
+PASS decode_and_replay_once
+PASS invalid_frames_never_modify_snapshot
+PASS inclusive_boundaries
+PASS expiry_is_anchored_to_first_request
+PASS capacity_fails_closed_without_live_eviction
+PASS client_session_and_payload_identity
+PASS concurrent_duplicates_apply_once
+PASS invalid_limits_rejected
+RESULT 8 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vehicle_processor_behavior" end time: Sep 09 17:11 CST
+"vehicle_processor_behavior" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 09 17:11 CST

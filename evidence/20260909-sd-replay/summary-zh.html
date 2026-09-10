@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SOME/IP 服务端去重与 SD 验证</title>
+<style>body{max-width:1050px;margin:40px auto;padding:0 24px;font:16px/1.7 system-ui;color:#202c3d;background:#f8fafc}h1{font-size:28px}h2{font-size:21px;margin-top:30px}table{width:100%;border-collapse:collapse;background:white}td,th{border:1px solid #d8e0e9;text-align:left;padding:10px}th{background:#eaf0f6}.good{color:#146941}.blocked{border-left:4px solid #bd8121;background:#fff4d6;padding:15px}a{color:#1258a2}code{font-size:13px;overflow-wrap:anywhere}</style>
+<h1>SOME/IP 服务端去重与 SD 验证</h1><p>2026-09-09 · CarLauncher / Android 15 x86_64 → Ubuntu</p>
+<p class="good"><strong>服务端去重和两轮真实静态 Method 通过。</strong>16 条请求中 8 条重复，4 条合法新请求只更新了 4 次内存 snapshot。</p>
+<p class="blocked"><strong>SD 端到端仍未通过。</strong>修正实验组播路由后，Ubuntu 发出 61 条 Offer，Android 发出 4 条 Find，但双端都没有收到对方 SD 消息；尚未进入 SD 模式下的 Method 验证。</p>
+<table><tr><th>验证层</th><th>结果</th><th>材料</th></tr>
+<tr><td>C++ 行为 / 并发</td><td>Windows、Ubuntu 各 8 项通过；Ubuntu CTest 1/1</td><td><a href="processor-tests-windows.txt">Windows</a> · <a href="processor-linux-ctest.log">Ubuntu 原始日志</a></td></tr>
+<tr><td>JVM 全量</td><td>65 通过，0 失败</td><td><a href="verification/unit/">JUnit</a></td></tr>
+<tr><td>普通设备全量</td><td>66 总数：63 通过、3 个 opt-in 探针跳过，0 失败</td><td><a href="verification/device/">JUnit</a></td></tr>
+<tr><td>真实静态 Method</td><td>1 项通过；2 轮 × 4 请求，含拒收、恢复和重启</td><td><a href="method-pass/android-logcat.txt">Android</a> · <a href="method-pass/service.log">Ubuntu</a> · <a href="method-pass/">JUnit</a></td></tr>
+<tr><td>真实 SD</td><td>2 次失败，服务可用性等待超时</td><td><a href="sd-attempt/android-logcat.txt">首次</a> · <a href="sd-routed-attempt/android-logcat.txt">路由修正后</a></td></tr>
+<tr><td>Lint / 构建</td><td>0 fatal / 0 error / 101 warnings；APK、测试 APK 构建成功</td><td><a href="verification/lint/lint-results-debug.html">Lint HTML</a> · <a href="verification/lint/lint-results-debug.xml">XML</a></td></tr>
+<tr><td>JaCoCo / 门禁</td><td>本轮设备 .ec 无效，未报告覆盖率或门禁通过</td><td>user10 导出仍误读 user0 路径；没有采用旧 .ec</td></tr></table>
+<h2>去重证据</h2><p>Client/Session/完整 payload 构成身份，5 秒固定窗口，容量 256 条；缓存满时拒收，不淘汰有效身份。校验、登记身份和更新状态在一个互斥锁内完成。</p>
+<p>PCAP：32 包 = 16 REQUEST + 16 RESPONSE；8 组不同请求，每组出现两次，0 抓包丢弃。每轮 RC 为 <code>00,01,01,00</code>，最终 <code>applied=4</code>。</p>
+<p><a href="method-pass/method.pcap">PCAP</a> · <a href="method-pass/packets.csv">逐包字段</a> · <a href="method-pass/replay-check.txt">自动核对</a> · <a href="method-pass/pcap-check.txt">请求响应关联</a></p>
+<h2>SD 双端抓包</h2><table><tr><th>尝试</th><th>Android wlan0</th><th>Ubuntu ens33</th><th>结论</th></tr>
+<tr><td>默认路由</td><td>4 Find</td><td>0 包，Offer 在 pending 队列</td><td>实验组播地址默认路由到了 VPN tun0</td></tr>
+<tr><td>临时 /32 路由</td><td>4 Find；没有远端 Offer</td><td>61 Offer；没有远端 Find</td><td>两端之间组播未互通</td></tr></table>
+<p>Offer 为 <code>1111/2222, TTL=3, 192.168.31.248:30509/UDP</code>。Android 没有配置静态服务端地址，日志确认 MulticastLock 获取与释放、<code>multicastRoute=true</code>。尚不能确定具体阻塞于模拟器、宿主机、虚拟机网络或其他转发环节。</p>
+<p><a href="sd-routed-attempt/android.pcap">Android PCAP</a> · <a href="sd-routed-attempt/discovery.pcap">Ubuntu PCAP</a> · <a href="sd-routed-attempt/android-packets.csv">Android CSV</a> · <a href="sd-routed-attempt/ubuntu-packets.csv">Ubuntu CSV</a> · <a href="sd-routed-attempt/route-during.txt">测试中路由</a></p>
+<h2>执行与清理</h2><p>全量 <code>:app:testDebugUnitTest :app:connectedDebugAndroidTest :app:lintDebug --offline --continue</code> 退出码 0；真实 Method 退出码 0；SD 显式探针两次退出码 1。<a href="README.md">完整命令与证据索引</a>。</p>
+<p>临时 <code>224.244.224.245/32 dev ens33</code> 已撤销，服务与抓包进程退出。应用保持普通 UID，未修改 SELinux。用户已授权向指定 Ubuntu 联调目录上传探针文件。</p>
+<h2>下一步</h2><div class="blocked">需要一条支持双向组播互通的链路，复跑同一 SD 探针，再验收 StopOffer/TTL 失效。LVGL 尚未接入。当前去重是进程内有限窗口，不是无限 exactly-once；多客户端、跨请求新旧排序和进程重启后的去重策略仍需单独确定。</div>
+<p><a href="../../tools/someip-probe/REPLAY_AND_SD.md">实现契约与复现方法</a> · <a href="https://github.com/COVESA/vsomeip/blob/master/documentation/vsomeipConfiguration.md">COVESA 官方配置文档</a></p></html>

@@ -48,7 +48,7 @@ public class CockpitViewModelTest {
         onMain(() -> viewModel.attachService(new StubVehicleSendService()
                 .withLatestState(vehicleState)
                 .withSourceStatus(DataSourceStatus.CONNECTED)
-                .withTcpState(TcpConnectionState.ONLINE)
+                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.VALID)));
 
         CockpitUiState state = viewModel.getUiState().getValue();
@@ -85,4 +85,3 @@ public class CockpitViewModelTest {
         InstrumentationRegistry.getInstrumentation().runOnMainSync(action);
     }
 }
-

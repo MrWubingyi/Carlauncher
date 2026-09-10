@@ -1,0 +1,11 @@
+10.0.2.0/24 dev wlan0 table wlan0_local proto static scope link 
+224.0.0.0/24 dev wlan0 table wlan0_local proto static scope link 
+default dev dummy0 table dummy0 proto static scope link 
+default via 10.0.2.2 dev wlan0 table wlan0 proto static 
+10.0.2.0/24 dev wlan0 table wlan0 proto static scope link 
+10.0.2.0/24 dev wlan0 proto kernel scope link src 10.0.2.16 
+local 10.0.2.16 dev wlan0 table local proto kernel scope host src 10.0.2.16 
+broadcast 10.0.2.255 dev wlan0 table local proto kernel scope link src 10.0.2.16 
+local 127.0.0.0/8 dev lo table local proto kernel scope host src 127.0.0.1 
+local 127.0.0.1 dev lo table local proto kernel scope host src 127.0.0.1 
+broadcast 127.255.255.255 dev lo table local proto kernel scope link src 127.0.0.1 

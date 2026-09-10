@@ -29,7 +29,17 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        ndk {
+            abiFilters += listOf("x86_64")
+        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags += ""
+                arguments += "-DANDROID_STL=c++_shared"
+            }
+        }
     }
 
     buildTypes {
@@ -48,6 +58,12 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
     }
     testOptions {
         unitTests.isReturnDefaultValues = true

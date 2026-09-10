@@ -1,0 +1,6 @@
+# Preserve raw evidence bytes so SHA-256 checks survive checkout on every OS.
+evidence/20260909-someip-method/** -text
+evidence/20260909-android-network/** -text
+evidence/20260909-sd-replay/** -text
+*.pcap binary
+*.pb binary

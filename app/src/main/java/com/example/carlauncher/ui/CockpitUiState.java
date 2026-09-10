@@ -1,158 +1,82 @@
 package com.example.carlauncher.ui;
 
-import android.util.Log;
-
 import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
-import com.example.carlauncher.service.TcpConnectionState;
+import com.example.carlauncher.someip.SomeipConnectionMonitor;
+import com.example.carlauncher.someip.SomeipConnectionMonitor.Snapshot;
 
+import java.util.Locale;
 
-/**
- * Cockpit 首页某一时刻的完整 UI 状态快照。
- * <p>
- * 该对象只保存状态：
- * - 不访问 Service
- * - 不操作 Android View
- * - 创建后不可修改
- */
+/** Immutable cockpit snapshot. Transport health is determined only by SOME/IP. */
 public final class CockpitUiState {
-
-    private static final String TAG = "CockpitUiState";
-
     private final VehicleState vehicleState;
     private final DataSourceStatus dataSourceStatus;
-
     private final boolean serviceBound;
+    private final Snapshot someip;
     private final CockpitConnectionState state;
 
-    public CockpitUiState(
-            VehicleState vehicleState,
-            DataSourceStatus dataSourceStatus,
-            boolean serviceBound,
-            TcpConnectionState tcpconnectstate,
-            DataValidity validity
-    ) {
+    public CockpitUiState(VehicleState vehicleState, DataSourceStatus dataSourceStatus,
+                          boolean serviceBound, Snapshot someip, DataValidity validity) {
         this.vehicleState = vehicleState;
         this.dataSourceStatus = dataSourceStatus;
         this.serviceBound = serviceBound;
-        state = mapState(validity, tcpconnectstate);
-        Log.d(TAG, "Created CockpitUiState: state=" + state
-                + ", serviceBound=" + serviceBound
-                + ", dataSourceStatus=" + dataSourceStatus
-                + ", tcpState=" + tcpconnectstate
-                + ", validity=" + validity
-                + ", vehicleState=" + (vehicleState != null ? "non-null" : "null"));
+        this.someip = someip;
+        this.state = serviceBound ? mapState(validity, someip) : CockpitConnectionState.DISCONNECTED;
     }
 
-    public CockpitConnectionState mapState(
-            DataValidity validity,
-            TcpConnectionState tcpstate
-    ) {
-        CockpitConnectionState mappedState;
-        if (tcpstate == TcpConnectionState.DISCONNECTED) {
-            mappedState = CockpitConnectionState.DISCONNECTED;
-        } else if (tcpstate == TcpConnectionState.CONNECTING
-                || tcpstate == TcpConnectionState.RECOVERING) {
-            mappedState = CockpitConnectionState.RECOVERING;
-        } else if (validity != DataValidity.VALID) {
-            mappedState = CockpitConnectionState.INVALID_DATA;
-        } else {
-            mappedState = CockpitConnectionState.ONLINE;
-        }
-        Log.d(TAG, "mapState: validity=" + validity + ", tcpState=" + tcpstate + " -> mappedState=" + mappedState);
-        return mappedState;
-    }
-
-    /**
-     * App 尚未绑定或启动 Service 时的初始状态。
-     */
-    public static CockpitUiState initial() {
-        Log.d(TAG, "Creating initial state");
-        return new CockpitUiState(
-                null,
-                DataSourceStatus.STOPPED,
-                false,
-                TcpConnectionState.DISCONNECTED,
-                DataValidity.VALID
-        );
-    }
-
-    public VehicleState getVehicleState() {
-        return vehicleState;
-    }
-
-    public DataSourceStatus getDataSourceStatus() {
-        return dataSourceStatus;
-    }
-
-    public boolean isServiceBound() {
-        return serviceBound;
-    }
-
-
-    /**
-     * 页面当前是否具有可以显示的车辆数据。
-     * <p>
-     * TCP 断开不等于车辆数据不存在：
-     * Mock/VHAL 数据源仍可能继续产生状态。
-     */
-    public boolean hasVehicleData() {
-        return vehicleState != null;
-    }
-
-    /**
-     * 根据底层状态生成顶部状态文字。
-     */
-    public String getConnectionLabel() {
-        if (!serviceBound) {
-            return "SERVICE UNBOUND";
-        }
-        switch (state) {
+    private static CockpitConnectionState mapState(DataValidity validity, Snapshot someip) {
+        switch (someip.getState()) {
+            case STARTING:
+                return CockpitConnectionState.CONNECTING;
+            case WAITING_RESPONSE:
+                return CockpitConnectionState.RECOVERING;
             case ONLINE:
-                return "SENDING";
-            case CONNECTING:
-                return "CONNECTING";
-            case RECOVERING:
-                return "RECOVERING";
-            case DISCONNECTED:
-                return "DISCONNECTED";
-            case INVALID_DATA:
-                return "INVALID_DATA";
+                return validity == DataValidity.VALID
+                        ? CockpitConnectionState.ONLINE : CockpitConnectionState.INVALID_DATA;
+            case RESPONSE_ERROR:
+                return CockpitConnectionState.INVALID_DATA;
             default:
-                return "UNKNOWN";
+                return CockpitConnectionState.DISCONNECTED;
         }
     }
 
-    /**
-     * 根据状态生成按钮文字。
-     */
-    public String getActionLabel() {
-        return state.getActionLabel();
+    public static CockpitUiState initial() {
+        return new CockpitUiState(null, DataSourceStatus.STOPPED, false,
+                new SomeipConnectionMonitor().snapshot(), DataValidity.VALID);
     }
 
-    public boolean isActionEnabled() {
-        return state.isActionEnabled();
+    public VehicleState getVehicleState() { return vehicleState; }
+    public DataSourceStatus getDataSourceStatus() { return dataSourceStatus; }
+    public boolean isServiceBound() { return serviceBound; }
+    public boolean hasVehicleData() { return vehicleState != null; }
+    public Snapshot getSomeipStatus() { return someip; }
+    public CockpitConnectionState getState() { return state; }
+
+    public String getConnectionLabel() {
+        if (!serviceBound) return "SERVICE UNBOUND";
+        if (someip.getState() == SomeipConnectionMonitor.State.ONLINE
+                && state == CockpitConnectionState.INVALID_DATA) {
+            return "SOME/IP ONLINE / INVALID DATA";
+        }
+        return "SOME/IP " + someip.getState().name();
     }
+
+    // Service ownership, rather than network health, determines whether STOP is possible.
+    public String getActionLabel() { return serviceBound ? "STOP SEND" : "START SEND"; }
+    public boolean isActionEnabled() { return true; }
+    public boolean isStopAction() { return serviceBound; }
 
     public String getTransportLabel() {
-        return state == CockpitConnectionState.ONLINE
-                || state == CockpitConnectionState.INVALID_DATA
-                ? "Transport: ONLINE"
-                : "Transport: OFFLINE";
-    }
-
-    public boolean isStopAction() {
-        return state.isStopAction();
+        if (!serviceBound) return "SOME/IP: STOPPED";
+        String code = someip.getReturnCode() == null ? "--"
+                : String.format(Locale.ROOT, "0x%02X", someip.getReturnCode());
+        return "SOME/IP: " + (someip.isAvailable() ? "AVAILABLE" : "UNAVAILABLE")
+                + " | " + someip.getState().name() + " | Last RC: " + code;
     }
 
     public String getConnectionState() {
-        return state == CockpitConnectionState.ONLINE
-                ? "Connection: ONLINE"
-                : "Connection: OFFLINE";
-    }
-
-    public CockpitConnectionState getState() {
-        return state;
+        return serviceBound && someip.getState() == SomeipConnectionMonitor.State.ONLINE
+                ? "Connection: ONLINE" : "Connection: OFFLINE";
     }
 }

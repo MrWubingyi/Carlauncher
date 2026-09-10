@@ -1,0 +1,313 @@
+09-09 09:20:39.152   528   588 I TestRunner: started: discoversServiceAndExchangesMethods(com.example.carlauncher.someip.VsomeipNativeProbeTest)
+09-09 09:20:39.169   528   588 D nativeloader: Load /data/app/~~65t7jI28vktIOmdNGFlbcw==/com.example.carlauncher-AVluHoqysvs1TYIbWCuaLw==/base.apk!/lib/x86_64/libvsomeip3.so using ns clns-7 from class loader (caller=/data/app/~~65t7jI28vktIOmdNGFlbcw==/com.example.carlauncher-AVluHoqysvs1TYIbWCuaLw==/base.apk!classes6.dex): ok
+09-09 09:20:39.173   528   588 D nativeloader: Load /data/app/~~65t7jI28vktIOmdNGFlbcw==/com.example.carlauncher-AVluHoqysvs1TYIbWCuaLw==/base.apk!/lib/x86_64/libcarlauncher.so using ns clns-7 from class loader (caller=/data/app/~~65t7jI28vktIOmdNGFlbcw==/com.example.carlauncher-AVluHoqysvs1TYIbWCuaLw==/base.apk!classes6.dex): ok
+09-09 09:20:39.173   528   588 I VSOMEIP_JNI: System.loadLibrary ok
+09-09 09:20:39.181   709  4143 I WifiService: acquireMulticastLock uid=1010285 tag=carlauncher-someip-sd
+09-09 09:20:39.182   528   588 I VSOMEIP_JNI: SD multicast lock acquired
+09-09 09:20:39.185  1087 21911 D IpClient.wlan0: set max DTIM multiplier to 1
+09-09 09:20:39.188   528   588 I VSOMEIP_NETWORK: address=10.0.2.16 interface= available=false multicastRoute=false
+09-09 09:20:39.190   709   867 E WifiStaIfaceAidlImpl: setDtimMultiplier failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+09-09 09:20:39.192   528   588 I VSOMEIP_JNI: nativeStart: begin
+09-09 09:20:39.192   709   874 D ConnectivityService: NetReassign [no changes] [c 0] [a 0] [i 0]
+09-09 09:20:39.192   528   588 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files
+09-09 09:20:39.195   528   588 I VSOMEIP_JNI: create_application ok
+09-09 09:20:39.195   528   588 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-09 09:20:39.197   528   588 I         : VSIP: Using configuration file: "/data/user/10/com.example.carlauncher/files/vsomeip-sd-probe.json".
+09-09 09:20:39.198   528   588 I         : VSIP: Parsed vsomeip configuration in 1ms
+09-09 09:20:39.198   528   588 I         : VSIP: Configuration loaded with Multiple Routing Managers ENABLED.
+09-09 09:20:39.199   528   598 I VSOMEIP_NETWORK: address=10.0.2.16 interface=wlan0 available=true multicastRoute=true
+09-09 09:20:39.199   528   588 I         : VSIP: Security disabled!
+09-09 09:20:39.200   528   588 I         : VSIP: Initializing vsomeip (3.7.5) application "soc-vehicle-client".
+09-09 09:20:39.200   528   588 I         : VSIP: Instantiating routing manager [Host].
+09-09 09:20:39.202   528   588 I         : VSIP: Starting Routing Manager [Host] with state RS_UNKNOWN
+09-09 09:20:39.202   528   588 I         : VSIP: Creating routing root with transport protocol: UDS
+09-09 09:20:39.203   528   588 I         : VSIP: Routing root @ /data/user/10/com.example.carlauncher/files/vsomeip-0
+09-09 09:20:39.204   528   588 I         : VSIP: Service Discovery enabled. Trying to load module.
+09-09 09:20:39.207   528   588 E         : VSIP: Could not dlopen "libvsomeip_sd.so" due to err: dlopen failed: library "libvsomeip_sd.so" not found
+09-09 09:20:39.208   528   588 I         : VSIP: Service Discovery module not available via plugin; using built-in implementation.
+09-09 09:20:39.208   528   588 I         : VSIP: Service Discovery Stop Offer watchdog enabled.
+09-09 09:20:39.208   528   588 I         : VSIP: Service Discovery Offer watchdog enabled.
+09-09 09:20:39.209   528   588 I         : VSIP: Instantiating routing manager [Proxy].
+09-09 09:20:39.209   528   588 I         : VSIP: vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+09-09 09:20:39.210   528   588 I         : VSIP: Application(soc-vehicle-client, 5566) is initialized (11, 100).
+09-09 09:20:39.212   528   588 I         : VSIP: app::init: End of init, application "soc-vehicle-client" (5566)
+09-09 09:20:39.212   528   588 I VSOMEIP_JNI: app_->init() ok
+09-09 09:20:39.212   528   588 I VSOMEIP_JNI: vsomeip io thread spawned
+09-09 09:20:39.213   528   588 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 09:20:39.213   528   588 I VSOMEIP_JNI: nativeStart: begin
+09-09 09:20:39.214   528   588 I VSOMEIP_JNI: start_io: io thread already running
+09-09 09:20:39.214   528   588 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 09:20:39.215   528   599 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-09 09:20:39.215   528   599 I         : VSIP: Starting vsomeip application "soc-vehicle-client" (5566) using 1 threads I/O nice 0
+09-09 09:20:39.216   528   599 I         : VSIP: Client [0000] routes unicast:10.0.2.16, netmask:255.255.255.0
+09-09 09:20:39.216   528   599 I         : VSIP: Android network connector: waiting for ConnectivityManager, address=10.0.2.16
+09-09 09:20:39.216   528   623 I         : VSIP: Started thread m_auxiliary, id 124451132618880, tid 623
+09-09 09:20:39.216   528   612 I         : VSIP: Started thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451134748800, tid 612
+09-09 09:20:39.217   528   599 I         : VSIP: vSomeIP routing ready.
+09-09 09:20:39.217   528   599 I         : VSIP: Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+09-09 09:20:39.217   528   599 I         : VSIP: Client [ffff] is connecting to [0000] at /data/user/10/com.example.carlauncher/files/vsomeip-0 endpoint > 0x713283401b70
+09-09 09:20:39.218   528   612 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-09 09:20:39.219   528   622 I         : VSIP: Started thread m_multicast 124451133683840, tid 622
+09-09 09:20:39.220   528   599 I         : VSIP: le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933da0e8, fd: -1, 0x7130933da0e8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+09-09 09:20:39.221   528   599 I         : VSIP: Started thread 5566_io00, application 'soc-vehicle-client', id 124451135813760, tid 599
+09-09 09:20:39.221   528   599 W         : VSIP: Network interface "wlan0" state changed: up
+09-09 09:20:39.221   528   599 W         : VSIP: Route "wlan0" state changed: up
+09-09 09:20:39.223   528   599 I         : VSIP: usei::udp_server_endpoint_impl: #1::
+09-09 09:20:39.223   528   599 I         : VSIP: usei::init: #1::10.0.2.16:30490, lifecycle_idx=0
+09-09 09:20:39.224   528   599 I         : VSIP: usei::init_unlocked: #1::Failed to force receive buffer size 1703936, Operation not permitted
+09-09 09:20:39.224   528   599 I         : VSIP: usei::init: #1::10.0.2.16:30490:: lifecycle_idx=0, Success
+09-09 09:20:39.226   528   599 I         : VSIP: usei::start: #1::10.0.2.16:30490:: lifecycle_idx=0
+09-09 09:20:39.227   528   599 I         : VSIP: usei::start_unlocked: #1::10.0.2.16:30490:: Start unicast data handler, lifecycle_idx=1, fd: 106
+09-09 09:20:39.228   528   599 I         : VSIP: usei::start_unlocked: #1::10.0.2.16:30490:: Join 0 groups
+09-09 09:20:39.228   528   599 I         : VSIP: usei::start: #1::10.0.2.16:30490:: Done, lifecycle_idx=1
+09-09 09:20:39.229   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:39.230   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:39.230   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Failed to force received buffer size, Operation not permitted
+09-09 09:20:39.230   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Start multicast data handler, lifecycle_idx=1, fd: 107
+09-09 09:20:39.230 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:39.230   528   599 I         : VSIP: SOME/IP routing ready.
+09-09 09:20:39.231   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:39.232   528   599 I         : VSIP: le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933da0e8, fd: 104, 0x7130933da0e8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+09-09 09:20:39.232   528   599 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-09 09:20:39.232   528   599 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-09 09:20:39.232   528   599 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-09 09:20:39.232   528   599 I         : VSIP: Assigned client ID 0x5566 to "soc-vehicle-client" ("localhost") @ 1010285/1010285
+09-09 09:20:39.232   528   599 I         : VSIP: emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x5566, connection > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e8ae8, fd: 108
+09-09 09:20:39.232   528   599 I         : VSIP: Application/Client 5566 is registering
+09-09 09:20:39.232   528   599 I         : VSIP: Creating local server endpoint for client 0x5566 with transport type UDS.
+09-09 09:20:39.233   528   599 I         : VSIP: Listening @ /data/user/10/com.example.carlauncher/files/vsomeip-5566
+09-09 09:20:39.233   528   599 I         : VSIP: rmc::on_client_assign_ack: Client 0x5566 (soc-vehicle-client) successfully connected to routing via UDS ~> registering...
+09-09 09:20:39.233   528   599 I         : VSIP: rmc::register_application: Client 0x5566 Registering to routing manager @ vsomeip-0
+09-09 09:20:39.233   528   599 I         : VSIP: rcsm::registered: Former client id: 0xffff, new 0x5566
+09-09 09:20:39.233   528   599 I         : VSIP: Client 0x5566, state ST_REGISTERING -> ST_REGISTERED
+09-09 09:20:39.233   528   599 I         : VSIP: Application/Client 5566 (soc-vehicle-client) is registered.
+09-09 09:20:39.233   528   612 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-09 09:20:39.233   528   612 I VSOMEIP_JNI: native: registered
+09-09 09:20:39.236   528   599 I         : VSIP: REQUEST(5566): [1111.2222:255.4294967295]
+09-09 09:20:39.236   528   599 I         : VSIP: REQUEST SD: [1111.2222:255.4294967295]
+09-09 09:20:39.230   528   528 W com.example.carlauncher: type=1400 audit(0.0:1251): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c29,c257,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-09 09:20:39.240   180   624 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:39.230   528   528 W com.example.carlauncher: type=1400 audit(0.0:1252): avc:  denied  { read } for  comm=353536365F696F2030 name="tcp" dev="proc" ino=4026532053 scontext=u:r:untrusted_app:s0:c29,c257,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-09 09:20:39.782  1985 32666 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-09 09:20:39.782  1985 32666 W WakeLock: GCM_HB_ALARM counter does not exist
+09-09 09:20:39.787   410   625 I resolv  : GetAddrInfoHandler::run: {101 983141 101 983141 10212 0}
+09-09 09:20:39.788   410   626 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+09-09 09:20:39.788   410   627 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-09 09:20:39.925   226   430 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-09 09:20:40.237 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:40.243   180   628 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:40.278   410   627 I resolv  : res_nsend: used send_dg 55 terrno: 0
+09-09 09:20:40.278   410   626 I resolv  : res_nsend: used send_dg 39 terrno: 0
+09-09 09:20:40.278   410   627 I resolv  : doQuery: rcode=0, ancount=1, return value=55
+09-09 09:20:40.278   410   626 I resolv  : doQuery: rcode=0, ancount=0, return value=39
+09-09 09:20:40.279  1985 32597 D TrafficStats: tagSocket(-1) with statsTag=0x407, statsUid=-1
+09-09 09:20:40.279  1985 32597 I TrafficStats: tagSocketFd(-1, 1031, -1) failed with errno-9
+09-09 09:20:40.280  1985 32597 D TrafficStats: tagSocket(117) with statsTag=0x407, statsUid=-1
+09-09 09:20:40.330   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:40.330   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:40.330   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:40.330   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:40.330   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:40.330   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:40.331   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:41.241 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:41.246   180   629 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:41.431   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:41.431   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:41.431   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:41.431   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:41.431   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:41.431   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:41.432   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:42.244 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:42.249   180   630 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:42.532   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:42.532   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:42.532   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:42.533   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:42.533   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:42.533   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:42.533   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:42.537  1917 25427 D TrafficStats: tagSocket(103) with statsTag=0x5065fff, statsUid=-1
+09-09 09:20:42.542  1917 25427 D TrafficStats: tagSocket(106) with statsTag=0x5065fff, statsUid=-1
+09-09 09:20:42.545  1985 25406 D TrafficStats: tagSocket(118) with statsTag=0x4000401, statsUid=10212
+09-09 09:20:42.549  1985 25406 D TrafficStats: tagSocket(185) with statsTag=0x4000401, statsUid=10212
+09-09 09:20:42.843  1917  1917 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.common.telemetry.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+09-09 09:20:42.844 25289 25293 W id.gms.unstable: Reducing the number of considered missed Gc histogram windows from 208 to 100
+09-09 09:20:42.927   226   430 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-09 09:20:43.034  1985 25406 D TrafficStats: tagSocket(186) with statsTag=0x5065fff, statsUid=-1
+09-09 09:20:43.038  1985 25406 D TrafficStats: tagSocket(193) with statsTag=0x5065fff, statsUid=-1
+09-09 09:20:43.249 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:43.253   180   631 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:43.277  1985  1985 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.common.telemetry.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+09-09 09:20:43.633   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:43.633   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:43.633   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:43.634   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:43.634   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:43.634   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:43.635   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:44.252 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:44.257   180   632 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:44.734   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:44.734   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:44.734   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:44.734   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:44.735   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:44.735   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:44.735   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:44.787  1985  2158 E WakeLock: GCM_CONN_ALARM ** IS FORCE-RELEASED ON TIMEOUT ** [CONTEXT service_id=259 ]
+09-09 09:20:45.036   528   633 D ProfileInstaller: Installing profile for com.example.carlauncher
+09-09 09:20:45.046  1697  2554 W native  : W0000 00:00:1788945640.731810    2554 lag_detector.cc:58] Pipeline lagging by 21h18m48.727122148s. Continue processing samples.
+09-09 09:20:45.256 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:45.264   180   634 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:45.451  2214  2220 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~65t7jI28vktIOmdNGFlbcw==/com.example.carlauncher-AVluHoqysvs1TYIbWCuaLw==/base.apk' with 1 weak references
+09-09 09:20:45.835   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:45.835   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:45.835   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:45.835   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:45.835   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:45.835   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:45.835   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:45.929   226   430 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-09 09:20:46.260 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:46.264   180   636 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:46.334  1985 32597 V NativeCrypto: SSL handshake aborted: ssl=0x7132533e10d8: I/O error during system call, Connection reset by peer
+09-09 09:20:46.336  1985 32666 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-09 09:20:46.336  1985 32666 W WakeLock: GCM_HB_ALARM counter does not exist
+09-09 09:20:46.339  1985 32666 W WakeLock: GCM_CONN_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-09 09:20:46.339  1985 32666 W WakeLock: GCM_CONN_ALARM counter does not exist
+09-09 09:20:46.600 21909 21909 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS
+09-09 09:20:46.936   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:46.936   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:46.936   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:46.936   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:46.936   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:46.936   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:46.936   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:47.263 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:47.268   180   640 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:47.391  1917 25427 D TrafficStats: tagSocket(103) with statsTag=0x4000401, statsUid=1010212
+09-09 09:20:47.546  1917 25427 E chromium: [0909/092047.546461:ERROR:net/socket/ssl_client_socket_impl.cc:924] handshake failed; returned -1, SSL error code 1, net_error -101
+09-09 09:20:47.548  1917 25427 D TrafficStats: tagSocket(106) with statsTag=0x5065fff, statsUid=-1
+09-09 09:20:47.552  1985 25406 E chromium: [0909/092047.552201:ERROR:net/socket/ssl_client_socket_impl.cc:924] handshake failed; returned -1, SSL error code 1, net_error -101
+09-09 09:20:47.554  1985 25406 D TrafficStats: tagSocket(112) with statsTag=0x4000401, statsUid=10212
+09-09 09:20:48.037   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:48.037   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:48.037   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:48.038   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:48.038   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:48.039   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:48.039   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:48.042  1985 25406 E chromium: [0909/092048.042625:ERROR:net/socket/ssl_client_socket_impl.cc:924] handshake failed; returned -1, SSL error code 1, net_error -101
+09-09 09:20:48.043  1985 25406 D TrafficStats: tagSocket(116) with statsTag=0x5065fff, statsUid=-1
+09-09 09:20:48.104   413   413 I Zygote  : Process 25312 exited due to signal 9 (Killed)
+09-09 09:20:48.112   709   746 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_1010151/pid_25312
+09-09 09:20:48.112   410   471 I netd    : tetherGetStats() -> {[]} <0.40ms>
+09-09 09:20:48.145   709   874 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-09 09:20:48.145   709   874 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-09 09:20:48.145   709   874 D InetDiagMessage: Destroyed live tcp sockets for uids={1010164} in 0ms
+09-09 09:20:48.266 32460 32520 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-09 09:20:48.271   180   641 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-09 09:20:48.418  1697  1710 W tant:interactor: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~65t7jI28vktIOmdNGFlbcw==/com.example.carlauncher-AVluHoqysvs1TYIbWCuaLw==/base.apk' with 1 weak references
+09-09 09:20:48.462   709   874 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-09 09:20:48.462   709   874 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-09 09:20:48.462   709   874 D InetDiagMessage: Destroyed live tcp sockets for uids={1010155} in 1ms
+09-09 09:20:48.463   709   874 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-09 09:20:48.463   709   874 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-09 09:20:48.463   709   874 D InetDiagMessage: Destroyed live tcp sockets for uids={1099000} in 1ms
+09-09 09:20:48.930   226   430 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-09 09:20:49.139   528   599 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-09 09:20:49.139   528   599 I         : VSIP: usei::leave: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:49.139   528   599 I         : VSIP: usei::join: #1::10.0.2.16:30490:: 224.244.224.245
+09-09 09:20:49.139   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:49.139   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Leave successful
+09-09 09:20:49.139   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-09 09:20:49.140   528   622 I         : VSIP: usei::set_multicast_option: #1::10.0.2.16:30490:: Join successful
+09-09 09:20:49.216   528   588 I VSOMEIP_NETWORK: address=10.0.2.16 interface= available=false multicastRoute=false
+09-09 09:20:49.218   528   599 I         : VSIP: Route "" state changed: down
+09-09 09:20:49.218   528   599 I         : VSIP: Network interface "" state changed: down
+09-09 09:20:49.218   528   588 I VSOMEIP_JNI: stopping vsomeip app
+09-09 09:20:49.219   528   599 I         : VSIP: RELEASE(5566): [1111.2222]
+09-09 09:20:49.219   528   599 I         : VSIP: RELEASE SD: [1111.2222]
+09-09 09:20:49.220   528   588 I         : VSIP: app::stop: Stopping vsomeip application "soc-vehicle-client" (5566).
+09-09 09:20:49.220   528   599 I         : VSIP: Client 0x5566, state ST_REGISTERED -> ST_DEREGISTERED
+09-09 09:20:49.220   528   599 I         : VSIP: rmc::stop: starting to flush the sender
+09-09 09:20:49.221   528   599 I         : VSIP: emb::stop: Start endpoint flushing for client 0x5566
+09-09 09:20:49.221   528   599 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-5566, mem: 0x7130933e78e8
+09-09 09:20:49.221   528   599 I         : VSIP: lsui::stop: role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933da0e8
+09-09 09:20:49.221   528   599 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933da0e8, fd: -1, 0x7130933da0e8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+09-09 09:20:49.221   528   599 I         : VSIP: rmc::cleanup_client: self 0x5566 handles shutdown. Not reconnecting to host 0x0000
+09-09 09:20:49.222   528   612 I         : VSIP: Stopped thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451134748800, tid 612
+09-09 09:20:49.222   528   599 W         : VSIP: le::receive_cbk: Escalating the error: End of file socket > Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e8ae8, fd: 108, 0x7130933e8ae8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 09:20:49.223   528   599 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e8ae8, fd: 108, 0x7130933e8ae8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 09:20:49.223   528   599 I         : VSIP: rmi::cleanup_client: self 0x0000 handles cleanup of client 0x5566
+09-09 09:20:49.224   528   599 I         : VSIP: Application/Client 5566 is deregistering
+09-09 09:20:49.224   528   599 I         : VSIP: emi::remove_routing_endpoint: client 0x5566
+09-09 09:20:49.224   528   599 I         : VSIP: lsui::stop: role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e8ae8
+09-09 09:20:49.224   528   599 I         : VSIP: le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e8ae8, fd: -1, 0x7130933e8ae8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+09-09 09:20:49.224   528   599 I         : VSIP: emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x5566 endpoint > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e8ae8, fd: -1
+09-09 09:20:49.225   528   599 I         : VSIP: rmc::stop: All endpoints cleared. Finishing the shutdown
+09-09 09:20:49.225   528   599 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e77c8
+09-09 09:20:49.225   528   599 I         : VSIP: emi::stop: called
+09-09 09:20:49.225   528   599 I         : VSIP: emi::clear_routing_endpoints:
+09-09 09:20:49.225   528   599 I         : VSIP: usei::stop: #1::10.0.2.16:30490:: lifecycle_idx=1
+09-09 09:20:49.226   528   599 I         : VSIP: usei::stop: #1::10.0.2.16:30490:: Done, lifecycle_idx=2
+09-09 09:20:49.226   528   622 I         : VSIP: Stopped thread m_multicast 124451133683840, tid 622
+09-09 09:20:49.226   528   599 I         : VSIP: emi::stop: Joined thread m_multicast 124451135813760
+09-09 09:20:49.227   528   623 I         : VSIP: Stopped thread m_auxiliary, id 124451132618880, tid 623
+09-09 09:20:49.227   528   599 I         : VSIP: Joined thread m_auxiliary, id 124451132618880
+09-09 09:20:49.227   528   599 I         : VSIP: app::start: : io_.run() end for app(soc-vehicle-client, 5566); Join Dispatcher threads for app(soc-vehicle-client, 5566)
+09-09 09:20:49.228   528   599 I         : VSIP: Join IO threads for app(soc-vehicle-client, 5566)
+09-09 09:20:49.228   528   599 I         : VSIP: Stopped thread 5566_io00, application 'soc-vehicle-client', id 124451135813760, tid 599
+09-09 09:20:49.228   528   599 I VSOMEIP_JNI: vsomeip io thread exited
+09-09 09:20:49.229   528   588 I VSOMEIP_JNI: vsomeip app stopped
+09-09 09:20:49.230   528   588 I VSOMEIP_JNI: native: stopped
+09-09 09:20:49.230   528   588 I         : VSIP: usei::~udp_server_endpoint_impl: #1::10.0.2.16:30490:: lifecycle_idx=2
+09-09 09:20:49.231   709  4143 I WifiService: releaseMulticastLock uid=1010285 tag=carlauncher-someip-sd
+09-09 09:20:49.231   528   588 I VSOMEIP_JNI: SD multicast lock released
+09-09 09:20:49.233  1087 21911 D IpClient.wlan0: set max DTIM multiplier to 2
+09-09 09:20:49.235   528   588 E TestRunner: failed: discoversServiceAndExchangesMethods(com.example.carlauncher.someip.VsomeipNativeProbeTest)
+09-09 09:20:49.236   709   867 E WifiStaIfaceAidlImpl: setDtimMultiplier failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+09-09 09:20:49.236   528   588 E TestRunner: ----- begin exception -----
+09-09 09:20:49.236   528   588 E TestRunner: java.lang.AssertionError: service availability expected:<true> but was:<null>
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.Assert.fail(Assert.java:89)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.Assert.failNotEquals(Assert.java:835)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.Assert.assertEquals(Assert.java:120)
+09-09 09:20:49.236   528   588 E TestRunner: 	at com.example.carlauncher.someip.VsomeipNativeProbeTest.runMethodProbe(VsomeipNativeProbeTest.java:84)
+09-09 09:20:49.236   528   588 E TestRunner: 	at com.example.carlauncher.someip.VsomeipNativeProbeTest.discoversServiceAndExchangesMethods(VsomeipNativeProbeTest.java:49)
+09-09 09:20:49.236   528   588 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+09-09 09:20:49.236   528   588 E TestRunner: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+09-09 09:20:49.236   528   588 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+09-09 09:20:49.236   528   588 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+09-09 09:20:49.236   528   588 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+09-09 09:20:49.236   528   588 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:467)
+09-09 09:20:49.236   528   588 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2596)
+09-09 09:20:49.236   528   588 E TestRunner: ----- end exception -----
+09-09 09:20:49.240   528   588 I TestRunner: finished: discoversServiceAndExchangesMethods(com.example.carlauncher.someip.VsomeipNativeProbeTest)

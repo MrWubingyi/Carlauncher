@@ -1,0 +1,22 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Android 网络适配与 SOME/IP Method 验证</title>
+<style>body{font:16px/1.7 system-ui,sans-serif;max-width:1050px;margin:40px auto;padding:0 24px;color:#202c3d;background:#f8fafc}h1{font-size:28px}h2{margin-top:32px;font-size:21px}table{border-collapse:collapse;width:100%;background:white}td,th{border:1px solid #d8e0e9;padding:10px;text-align:left}th{background:#eaf0f6}.pass{color:#146941}.note{padding:16px;background:#fff4d6;border-left:4px solid #bc8622}a{color:#1258a2}code{font-size:13px;overflow-wrap:anywhere}li{margin:6px 0}</style>
+<h1>Android 网络适配与 SOME/IP Method 验证</h1><p>2026-09-09 · CarLauncher · Android 15 / x86_64 → Ubuntu · 静态 UDP 单播</p>
+<p class="pass"><strong>真实 Method 两轮通过。</strong>NETLINK 权限阻塞已由 Android 平台网络回调适配解除；按 Client/Session 过滤重复与过期响应。</p>
+<table><tr><th>验证层</th><th>结果</th><th>原始材料</th></tr>
+<tr><td>JVM 全量</td><td>65 通过，0 失败</td><td><a href="verification/unit/">JUnit XML</a></td></tr>
+<tr><td>普通设备全量</td><td>65 总数：63 通过，2 个 opt-in 探针跳过，0 失败</td><td><a href="verification/device/">JUnit XML</a></td></tr>
+<tr><td>真实 Method</td><td>1 项通过：2 轮 × 4 请求，含错误拒收、恢复和重启</td><td><a href="method-pass/logcat.txt">Android 日志</a> · <a href="method-pass/service.log">Ubuntu 日志</a> · <a href="method-pass/">JUnit</a></td></tr>
+<tr><td>真实 native 生命周期</td><td>1 项通过：3 轮注册、重复启动/停止</td><td><a href="lifecycle-pass/logcat.txt">日志</a> · <a href="lifecycle-pass/">JUnit</a></td></tr>
+<tr><td>Android Lint</td><td>0 fatal / 0 error / 101 warnings</td><td><a href="verification/lint/lint-results-debug.html">HTML</a> · <a href="verification/lint/lint-results-debug.xml">XML</a></td></tr>
+<tr><td>构建与检查</td><td>最终 Gradle 退出码 0；APK 构建成功；git diff --check 通过</td><td><a href="build-artifacts.txt">库/APK SHA256</a></td></tr>
+<tr><td>JaCoCo / 覆盖率门禁</td><td>不可用；没有本轮有效设备 .ec，不报告覆盖率百分比或门禁通过</td><td>user10 设备导出误读 user0 路径；旧 .ec 不计入</td></tr></table>
+<h2>PCAP 与 Session 核对</h2><p>32 包：16 REQUEST + 16 RESPONSE，8 组不同请求，每组请求与响应均重复 2 次；抓包丢弃数 0。JNI 接收 8 个有效终态响应，另 8 个重复响应被忽略。</p>
+<table><tr><th>轮次</th><th>seq</th><th>Session</th><th>用例</th><th>RC</th></tr>
+<tr><td>1</td><td>16909060 / 61 / 62 / 63</td><td>0001 / 0002 / 0003 / 0004</td><td>合法 / 速度越界 / schema 错误 / 合法恢复</td><td>00 / 01 / 01 / 00</td></tr>
+<tr><td>2</td><td>16909070 / 71 / 72 / 73</td><td>0001 / 0002 / 0003 / 0004</td><td>合法 / 速度越界 / schema 错误 / 合法恢复</td><td>00 / 01 / 01 / 00</td></tr></table>
+<p><a href="method-pass/method.pcap">原始 PCAP</a> · <a href="method-pass/packets.csv">逐包字段 CSV</a> · <a href="method-pass/pcap-check.txt">双向地址、端口、Client/Session 关联</a> · <a href="method-pass/capture.log">抓包统计</a></p>
+<h2>失败证据保留</h2><ol><li><a href="attempt1-udp-bind/logcat.txt">网络适配后的首次尝试</a>：外部路由已启动，但模拟器内核 IPv4 路由缺失；正常 Wi-Fi 重连刷新 DHCP 后恢复。</li><li><a href="attempt2-return-code/logcat.txt">真实响应首次到达</a>：重复响应串入下一请求；加入待处理请求匹配和去重后通过。</li></ol>
+<h2>执行任务</h2><p><code>:app:testDebugUnitTest :app:connectedDebugAndroidTest :app:lintDebug :app:assembleDebug --offline --continue</code>，退出码 0。真实 Method 与 lifecycle 通过 class / someipPeer / someipLocal / someipLifecycle 参数分别显式执行，退出码均为 0。完整命令与补丁见 <a href="README.md">证据索引</a>、<a href="../../tools/vsomeip-android/README.md">依赖重建说明</a>。</p>
+<h2>下一步与边界</h2><div class="note">SD 组播与 LVGL 尚未验收。重复请求的来源尚未定位，服务端状态写入需考虑幂等/去重。真实断网漫游与 IP 自动迁移尚未验收；新 IP 目前需要停止再启动 Service。Android 24–32 的 SD 路由保持不可用，本轮只在 API 35 设备实测。</div>
+<p>依据 <a href="https://developer.android.com/reference/android/net/ConnectivityManager.NetworkCallback">Android 官方 NetworkCallback 文档</a>使用有序回调参数。所有已有失败记录保持原样；不以 TCP、AVAILABLE 或发送提交成功代替 Method RESPONSE。</p></html>

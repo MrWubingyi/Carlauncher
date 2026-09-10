@@ -1,0 +1,9 @@
+PASS decode_and_replay_once
+PASS invalid_frames_never_modify_snapshot
+PASS inclusive_boundaries
+PASS expiry_is_anchored_to_first_request
+PASS capacity_fails_closed_without_live_eviction
+PASS client_session_and_payload_identity
+PASS concurrent_duplicates_apply_once
+PASS invalid_limits_rejected
+RESULT 8 passed, 0 failed

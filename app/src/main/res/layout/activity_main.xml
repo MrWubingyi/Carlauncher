@@ -55,6 +55,11 @@
             android:layout_height="40dp"
             android:background="#32506B"
             android:gravity="center"
+            android:maxLines="2"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="11sp"
+            app:autoSizeMaxTextSize="16sp"
+            app:autoSizeStepGranularity="1sp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="SERVICE UNBOUND"
@@ -615,7 +620,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Transport: OFFLINE"
+                android:text="SOME/IP: STOPPED"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
@@ -624,7 +629,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="192.168.31.248:19090"
+                android:text="TCP baseline: 192.168.31.248:19090"
                 android:textColor="#8290A6"
                 android:textSize="14sp" />
 

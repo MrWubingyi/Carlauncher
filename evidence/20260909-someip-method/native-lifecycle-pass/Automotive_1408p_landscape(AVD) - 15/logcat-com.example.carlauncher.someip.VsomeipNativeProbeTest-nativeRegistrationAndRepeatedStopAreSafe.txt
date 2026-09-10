@@ -1,0 +1,282 @@
+09-09 06:54:41.648 19217 19232 I TestRunner: started: nativeRegistrationAndRepeatedStopAreSafe(com.example.carlauncher.someip.VsomeipNativeProbeTest)
+09-09 06:54:41.663 19217 19232 D nativeloader: Load /data/app/~~wN5cGZE61kuAUIKf88z3Eg==/com.example.carlauncher-GSfruDyUYE8yQ_tSUIftAg==/base.apk!/lib/x86_64/libvsomeip3.so using ns clns-7 from class loader (caller=/data/app/~~wN5cGZE61kuAUIKf88z3Eg==/com.example.carlauncher-GSfruDyUYE8yQ_tSUIftAg==/base.apk!classes6.dex): ok
+09-09 06:54:41.666 19217 19232 D nativeloader: Load /data/app/~~wN5cGZE61kuAUIKf88z3Eg==/com.example.carlauncher-GSfruDyUYE8yQ_tSUIftAg==/base.apk!/lib/x86_64/libcarlauncher.so using ns clns-7 from class loader (caller=/data/app/~~wN5cGZE61kuAUIKf88z3Eg==/com.example.carlauncher-GSfruDyUYE8yQ_tSUIftAg==/base.apk!classes6.dex): ok
+09-09 06:54:41.667 19217 19232 I VSOMEIP_JNI: System.loadLibrary ok
+09-09 06:54:41.668 19217 19232 I VSOMEIP_JNI: nativeStart: begin
+09-09 06:54:41.668 19217 19232 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files
+09-09 06:54:41.669 19217 19232 I VSOMEIP_JNI: create_application ok
+09-09 06:54:41.669 19217 19232 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-09 06:54:41.672 19217 19232 I         : VSIP: Using configuration file: "/data/user/10/com.example.carlauncher/files/vsomeip-probe.json".
+09-09 06:54:41.672 19217 19232 I         : VSIP: Parsed vsomeip configuration in 1ms
+09-09 06:54:41.672 19217 19232 I         : VSIP: Configuration loaded with Multiple Routing Managers ENABLED.
+09-09 06:54:41.672 19217 19232 I         : VSIP: Security disabled!
+09-09 06:54:41.672 19217 19232 I         : VSIP: Initializing vsomeip (3.7.5) application "soc-vehicle-client".
+09-09 06:54:41.673 19217 19232 I         : VSIP: Instantiating routing manager [Host].
+09-09 06:54:41.673 19217 19232 I         : VSIP: Starting Routing Manager [Host] with state RS_UNKNOWN
+09-09 06:54:41.673 19217 19232 I         : VSIP: Creating routing root with transport protocol: UDS
+09-09 06:54:41.673 19217 19232 I         : VSIP: Routing root @ /data/user/10/com.example.carlauncher/files/vsomeip-0
+09-09 06:54:41.673 19217 19232 I         : VSIP: Instantiating routing manager [Proxy].
+09-09 06:54:41.673 19217 19232 I         : VSIP: vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+09-09 06:54:41.673 19217 19232 I         : VSIP: Application(soc-vehicle-client, 5566) is initialized (11, 100).
+09-09 06:54:41.673 19217 19232 I         : VSIP: app::init: End of init, application "soc-vehicle-client" (5566)
+09-09 06:54:41.673 19217 19232 I VSOMEIP_JNI: app_->init() ok
+09-09 06:54:41.674 19217 19232 I VSOMEIP_JNI: vsomeip io thread spawned
+09-09 06:54:41.674 19217 19232 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 06:54:41.674 19217 19235 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-09 06:54:41.674 19217 19235 I         : VSIP: Starting vsomeip application "soc-vehicle-client" (5566) using 1 threads I/O nice 0
+09-09 06:54:41.674 19217 19235 I         : VSIP: Client [0000] routes unicast:10.0.2.16, netmask:255.255.255.0
+09-09 06:54:41.674 19217 19235 E         : VSIP: Error binding NETLINK socket: Permission denied
+09-09 06:54:41.674 19217 19235 I         : VSIP: vSomeIP routing ready.
+09-09 06:54:41.674 19217 19235 I         : VSIP: Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+09-09 06:54:41.675 19217 19235 I         : VSIP: Client [ffff] is connecting to [0000] at /data/user/10/com.example.carlauncher/files/vsomeip-0 endpoint > 0x7132833e36b0
+09-09 06:54:41.675 19217 19235 I         : VSIP: le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933d84c8, fd: -1, 0x7130933d84c8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+09-09 06:54:41.675 19217 19235 I         : VSIP: Started thread 5566_io00, application 'soc-vehicle-client', id 124451121277056, tid 19235
+09-09 06:54:41.675 19217 19235 I         : VSIP: le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933d84c8, fd: 101, 0x7130933d84c8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+09-09 06:54:41.676 19217 19235 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-09 06:54:41.676 19217 19236 I         : VSIP: Started thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451120212096, tid 19236
+09-09 06:54:41.676 19217 19236 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-09 06:54:41.676 19217 19238 I         : VSIP: Started thread m_auxiliary, id 124451118082176, tid 19238
+09-09 06:54:41.677 19217 19237 I         : VSIP: Started thread m_multicast 124451119147136, tid 19237
+09-09 06:54:41.670 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1183): avc:  denied  { bind } for  comm=353536365F696F2030 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tclass=netlink_route_socket permissive=0 bug=b/155595000
+09-09 06:54:41.678 19217 19235 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-09 06:54:41.678 19217 19235 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-09 06:54:41.679 19217 19235 I         : VSIP: Assigned client ID 0x5566 to "soc-vehicle-client" ("localhost") @ 1010265/1010265
+09-09 06:54:41.679 19217 19235 I         : VSIP: emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x5566, connection > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e2d88, fd: 102
+09-09 06:54:41.679 19217 19235 I         : VSIP: Application/Client 5566 is registering
+09-09 06:54:41.679 19217 19235 I         : VSIP: Creating local server endpoint for client 0x5566 with transport type UDS.
+09-09 06:54:41.680 19217 19235 I         : VSIP: Listening @ /data/user/10/com.example.carlauncher/files/vsomeip-5566
+09-09 06:54:41.680 19217 19235 I         : VSIP: rmc::on_client_assign_ack: Client 0x5566 (soc-vehicle-client) successfully connected to routing via UDS ~> registering...
+09-09 06:54:41.681 19217 19235 I         : VSIP: rmc::register_application: Client 0x5566 Registering to routing manager @ vsomeip-0
+09-09 06:54:41.681 19217 19235 I         : VSIP: rcsm::registered: Former client id: 0xffff, new 0x5566
+09-09 06:54:41.681 19217 19235 I         : VSIP: Client 0x5566, state ST_REGISTERING -> ST_REGISTERED
+09-09 06:54:41.681 19217 19235 I         : VSIP: Application/Client 5566 (soc-vehicle-client) is registered.
+09-09 06:54:41.681 19217 19236 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-09 06:54:41.681 19217 19235 I         : VSIP: REQUEST(5566): [1111.2222:255.4294967295]
+09-09 06:54:41.670 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1184): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-09 06:54:41.678 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1185): avc:  denied  { read } for  comm=353536365F696F2030 name="tcp" dev="proc" ino=4026532053 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-09 06:54:41.684 19217 19236 I VSOMEIP_JNI: native: registered
+09-09 06:54:41.686 19217 19232 I VSOMEIP_JNI: nativeStart: begin
+09-09 06:54:41.687 19217 19232 I VSOMEIP_JNI: start_io: io thread already running
+09-09 06:54:41.687 19217 19232 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 06:54:41.688 19217 19232 I VSOMEIP_JNI: stopping vsomeip app
+09-09 06:54:41.689 19217 19235 I         : VSIP: RELEASE(5566): [1111.2222]
+09-09 06:54:41.690 19217 19232 I         : VSIP: app::stop: Stopping vsomeip application "soc-vehicle-client" (5566).
+09-09 06:54:41.691 19217 19236 I         : VSIP: Stopped thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451120212096, tid 19236
+09-09 06:54:41.691 19217 19235 I         : VSIP: Client 0x5566, state ST_REGISTERED -> ST_DEREGISTERED
+09-09 06:54:41.691 19217 19235 I         : VSIP: rmc::stop: starting to flush the sender
+09-09 06:54:41.691 19217 19235 I         : VSIP: emb::stop: Start endpoint flushing for client 0x5566
+09-09 06:54:41.691 19217 19235 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-5566, mem: 0x7130933d8dc8
+09-09 06:54:41.692 19217 19235 I         : VSIP: lsui::stop: role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933d84c8
+09-09 06:54:41.692 19217 19235 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933d84c8, fd: -1, 0x7130933d84c8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+09-09 06:54:41.693 19217 19235 I         : VSIP: rmc::cleanup_client: self 0x5566 handles shutdown. Not reconnecting to host 0x0000
+09-09 06:54:41.693 19217 19235 W         : VSIP: le::receive_cbk: Escalating the error: End of file socket > Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e2d88, fd: 102, 0x7130933e2d88, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 06:54:41.694 19217 19235 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e2d88, fd: 102, 0x7130933e2d88, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 06:54:41.694 19217 19235 I         : VSIP: rmi::cleanup_client: self 0x0000 handles cleanup of client 0x5566
+09-09 06:54:41.694 19217 19235 I         : VSIP: Application/Client 5566 is deregistering
+09-09 06:54:41.695 19217 19235 I         : VSIP: emi::remove_routing_endpoint: client 0x5566
+09-09 06:54:41.695 19217 19235 I         : VSIP: lsui::stop: role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e2d88
+09-09 06:54:41.695 19217 19235 I         : VSIP: le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e2d88, fd: -1, 0x7130933e2d88, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+09-09 06:54:41.696 19217 19235 I         : VSIP: emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x5566 endpoint > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933e2d88, fd: -1
+09-09 06:54:41.696 19217 19235 I         : VSIP: rmc::stop: All endpoints cleared. Finishing the shutdown
+09-09 06:54:41.696 19217 19235 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e9aa8
+09-09 06:54:41.696 19217 19235 I         : VSIP: emi::stop: called
+09-09 06:54:41.696 19217 19235 I         : VSIP: emi::clear_routing_endpoints:
+09-09 06:54:41.697 19217 19237 I         : VSIP: Stopped thread m_multicast 124451119147136, tid 19237
+09-09 06:54:41.698 19217 19235 I         : VSIP: emi::stop: Joined thread m_multicast 124451121277056
+09-09 06:54:41.698 19217 19238 I         : VSIP: Stopped thread m_auxiliary, id 124451118082176, tid 19238
+09-09 06:54:41.700 19217 19235 I         : VSIP: Joined thread m_auxiliary, id 124451118082176
+09-09 06:54:41.700 19217 19235 I         : VSIP: app::start: : io_.run() end for app(soc-vehicle-client, 5566); Join Dispatcher threads for app(soc-vehicle-client, 5566)
+09-09 06:54:41.701 19217 19235 I         : VSIP: Join IO threads for app(soc-vehicle-client, 5566)
+09-09 06:54:41.701 19217 19235 I         : VSIP: Stopped thread 5566_io00, application 'soc-vehicle-client', id 124451121277056, tid 19235
+09-09 06:54:41.701 19217 19235 I VSOMEIP_JNI: vsomeip io thread exited
+09-09 06:54:41.701 19217 19232 I VSOMEIP_JNI: vsomeip app stopped
+09-09 06:54:41.701 19217 19232 I VSOMEIP_JNI: native: stopped
+09-09 06:54:41.703 19217 19232 E VSOMEIP_JNI: nativeSendState: expect 16 bytes, got 15
+09-09 06:54:41.703 19217 19232 E VSOMEIP_JNI: send_state: not started
+09-09 06:54:41.703 19217 19232 D VSOMEIP_JNI: skipped seq=1 speed=0 gear=0 dataStatus=0
+09-09 06:54:41.704 19217 19232 I VSOMEIP_PROBE: registration-stop cycle=0 passed
+09-09 06:54:41.704 19217 19232 I VSOMEIP_JNI: nativeStart: begin
+09-09 06:54:41.704 19217 19232 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files
+09-09 06:54:41.704 19217 19232 I VSOMEIP_JNI: create_application ok
+09-09 06:54:41.704 19217 19232 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-09 06:54:41.705 19217 19232 I         : VSIP: Using configuration file: "/data/user/10/com.example.carlauncher/files/vsomeip-probe.json".
+09-09 06:54:41.705 19217 19232 I         : VSIP: Parsed vsomeip configuration in 0ms
+09-09 06:54:41.705 19217 19232 I         : VSIP: Configuration loaded with Multiple Routing Managers ENABLED.
+09-09 06:54:41.705 19217 19232 I         : VSIP: Security disabled!
+09-09 06:54:41.705 19217 19232 I         : VSIP: Initializing vsomeip (3.7.5) application "soc-vehicle-client".
+09-09 06:54:41.705 19217 19232 I         : VSIP: Instantiating routing manager [Host].
+09-09 06:54:41.705 19217 19232 I         : VSIP: Starting Routing Manager [Host] with state RS_UNKNOWN
+09-09 06:54:41.706 19217 19232 I         : VSIP: Creating routing root with transport protocol: UDS
+09-09 06:54:41.706 19217 19232 I         : VSIP: Routing root @ /data/user/10/com.example.carlauncher/files/vsomeip-0
+09-09 06:54:41.706 19217 19232 I         : VSIP: Instantiating routing manager [Proxy].
+09-09 06:54:41.707 19217 19232 I         : VSIP: vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+09-09 06:54:41.707 19217 19232 I         : VSIP: Application(soc-vehicle-client, 5566) is initialized (11, 100).
+09-09 06:54:41.707 19217 19232 I         : VSIP: app::init: End of init, application "soc-vehicle-client" (5566)
+09-09 06:54:41.707 19217 19232 I VSOMEIP_JNI: app_->init() ok
+09-09 06:54:41.707 19217 19232 I VSOMEIP_JNI: vsomeip io thread spawned
+09-09 06:54:41.707 19217 19232 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 06:54:41.708 19217 19239 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-09 06:54:41.708 19217 19239 I         : VSIP: Starting vsomeip application "soc-vehicle-client" (5566) using 1 threads I/O nice 0
+09-09 06:54:41.708 19217 19239 I         : VSIP: Client [0000] routes unicast:10.0.2.16, netmask:255.255.255.0
+09-09 06:54:41.708 19217 19242 I         : VSIP: Started thread m_auxiliary, id 124451118082176, tid 19242
+09-09 06:54:41.709 19217 19240 I         : VSIP: Started thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451120212096, tid 19240
+09-09 06:54:41.709 19217 19239 E         : VSIP: Error binding NETLINK socket: Permission denied
+09-09 06:54:41.709 19217 19240 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-09 06:54:41.709 19217 19241 I         : VSIP: Started thread m_multicast 124451119147136, tid 19241
+09-09 06:54:41.709 19217 19239 I         : VSIP: vSomeIP routing ready.
+09-09 06:54:41.710 19217 19239 I         : VSIP: Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+09-09 06:54:41.710 19217 19239 I         : VSIP: Client [ffff] is connecting to [0000] at /data/user/10/com.example.carlauncher/files/vsomeip-0 endpoint > 0x7132833e36b0
+09-09 06:54:41.710 19217 19239 I         : VSIP: le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e2fc8, fd: -1, 0x7130933e2fc8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+09-09 06:54:41.710 19217 19239 I         : VSIP: Started thread 5566_io00, application 'soc-vehicle-client', id 124451121277056, tid 19239
+09-09 06:54:41.710 19217 19239 I         : VSIP: le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e2fc8, fd: 101, 0x7130933e2fc8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+09-09 06:54:41.710 19217 19239 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-09 06:54:41.706 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1186): avc:  denied  { bind } for  comm=353536365F696F2030 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tclass=netlink_route_socket permissive=0 bug=b/155595000
+09-09 06:54:41.710 19217 19239 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-09 06:54:41.711 19217 19239 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-09 06:54:41.711 19217 19239 I         : VSIP: Assigned client ID 0x5566 to "soc-vehicle-client" ("localhost") @ 1010265/1010265
+09-09 06:54:41.711 19217 19239 I         : VSIP: emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x5566, connection > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d8dc8, fd: 102
+09-09 06:54:41.711 19217 19239 I         : VSIP: Application/Client 5566 is registering
+09-09 06:54:41.711 19217 19239 I         : VSIP: Creating local server endpoint for client 0x5566 with transport type UDS.
+09-09 06:54:41.711 19217 19239 I         : VSIP: Listening @ /data/user/10/com.example.carlauncher/files/vsomeip-5566
+09-09 06:54:41.711 19217 19239 I         : VSIP: rmc::on_client_assign_ack: Client 0x5566 (soc-vehicle-client) successfully connected to routing via UDS ~> registering...
+09-09 06:54:41.711 19217 19239 I         : VSIP: rmc::register_application: Client 0x5566 Registering to routing manager @ vsomeip-0
+09-09 06:54:41.711 19217 19239 I         : VSIP: rcsm::registered: Former client id: 0xffff, new 0x5566
+09-09 06:54:41.711 19217 19239 I         : VSIP: Client 0x5566, state ST_REGISTERING -> ST_REGISTERED
+09-09 06:54:41.711 19217 19239 I         : VSIP: Application/Client 5566 (soc-vehicle-client) is registered.
+09-09 06:54:41.712 19217 19240 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-09 06:54:41.713 19217 19240 I VSOMEIP_JNI: native: registered
+09-09 06:54:41.706 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1187): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-09 06:54:41.714 19217 19232 I VSOMEIP_JNI: nativeStart: begin
+09-09 06:54:41.714 19217 19232 I VSOMEIP_JNI: start_io: io thread already running
+09-09 06:54:41.714 19217 19232 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 06:54:41.714 19217 19232 I VSOMEIP_JNI: stopping vsomeip app
+09-09 06:54:41.714 19217 19232 I         : VSIP: app::stop: Stopping vsomeip application "soc-vehicle-client" (5566).
+09-09 06:54:41.715 19217 19239 I         : VSIP: REQUEST(5566): [1111.2222:255.4294967295]
+09-09 06:54:41.716 19217 19239 I         : VSIP: Client 0x5566, state ST_REGISTERED -> ST_DEREGISTERED
+09-09 06:54:41.706 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1188): avc:  denied  { read } for  comm=353536365F696F2030 name="tcp" dev="proc" ino=4026532053 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-09 06:54:41.717 19217 19239 I         : VSIP: rmc::stop: starting to flush the sender
+09-09 06:54:41.717 19217 19239 I         : VSIP: emb::stop: Start endpoint flushing for client 0x5566
+09-09 06:54:41.717 19217 19240 I         : VSIP: Stopped thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451120212096, tid 19240
+09-09 06:54:41.717 19217 19239 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-5566, mem: 0x7130933d84c8
+09-09 06:54:41.717 19217 19239 I         : VSIP: RELEASE(5566): [1111.2222]
+09-09 06:54:41.718 19217 19239 I         : VSIP: lsui::stop: role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e2fc8
+09-09 06:54:41.718 19217 19239 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e2fc8, fd: -1, 0x7130933e2fc8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+09-09 06:54:41.718 19217 19239 I         : VSIP: rmc::cleanup_client: self 0x5566 handles shutdown. Not reconnecting to host 0x0000
+09-09 06:54:41.718 19217 19239 W         : VSIP: le::receive_cbk: Escalating the error: End of file socket > Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d8dc8, fd: 102, 0x7130933d8dc8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 06:54:41.719 19217 19239 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d8dc8, fd: 102, 0x7130933d8dc8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 06:54:41.720 19217 19239 I         : VSIP: rmi::cleanup_client: self 0x0000 handles cleanup of client 0x5566
+09-09 06:54:41.720 19217 19239 I         : VSIP: Application/Client 5566 is deregistering
+09-09 06:54:41.721 19217 19239 I         : VSIP: emi::remove_routing_endpoint: client 0x5566
+09-09 06:54:41.721 19217 19239 I         : VSIP: lsui::stop: role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d8dc8
+09-09 06:54:41.721 19217 19239 I         : VSIP: le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d8dc8, fd: -1, 0x7130933d8dc8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+09-09 06:54:41.721 19217 19239 I         : VSIP: emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x5566 endpoint > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d8dc8, fd: -1
+09-09 06:54:41.721 19217 19239 I         : VSIP: rmc::stop: All endpoints cleared. Finishing the shutdown
+09-09 06:54:41.721 19217 19239 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e9aa8
+09-09 06:54:41.721 19217 19239 I         : VSIP: emi::stop: called
+09-09 06:54:41.721 19217 19239 I         : VSIP: emi::clear_routing_endpoints:
+09-09 06:54:41.721 19217 19241 I         : VSIP: Stopped thread m_multicast 124451119147136, tid 19241
+09-09 06:54:41.723 19217 19239 I         : VSIP: emi::stop: Joined thread m_multicast 124451121277056
+09-09 06:54:41.724 19217 19242 I         : VSIP: Stopped thread m_auxiliary, id 124451118082176, tid 19242
+09-09 06:54:41.724 19217 19239 I         : VSIP: Joined thread m_auxiliary, id 124451118082176
+09-09 06:54:41.724 19217 19239 I         : VSIP: app::start: : io_.run() end for app(soc-vehicle-client, 5566); Join Dispatcher threads for app(soc-vehicle-client, 5566)
+09-09 06:54:41.724 19217 19239 I         : VSIP: Join IO threads for app(soc-vehicle-client, 5566)
+09-09 06:54:41.725 19217 19239 I         : VSIP: Stopped thread 5566_io00, application 'soc-vehicle-client', id 124451121277056, tid 19239
+09-09 06:54:41.725 19217 19239 I VSOMEIP_JNI: vsomeip io thread exited
+09-09 06:54:41.726 19217 19232 I VSOMEIP_JNI: vsomeip app stopped
+09-09 06:54:41.726 19217 19232 I VSOMEIP_JNI: native: stopped
+09-09 06:54:41.728 19217 19232 E VSOMEIP_JNI: nativeSendState: expect 16 bytes, got 15
+09-09 06:54:41.728 19217 19232 E VSOMEIP_JNI: send_state: not started
+09-09 06:54:41.728 19217 19232 D VSOMEIP_JNI: skipped seq=1 speed=0 gear=0 dataStatus=0
+09-09 06:54:41.729 19217 19232 I VSOMEIP_PROBE: registration-stop cycle=1 passed
+09-09 06:54:41.730 19217 19232 I VSOMEIP_JNI: nativeStart: begin
+09-09 06:54:41.730 19217 19232 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files
+09-09 06:54:41.730 19217 19232 I VSOMEIP_JNI: create_application ok
+09-09 06:54:41.730 19217 19232 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-09 06:54:41.731 19217 19232 I         : VSIP: Using configuration file: "/data/user/10/com.example.carlauncher/files/vsomeip-probe.json".
+09-09 06:54:41.732 19217 19232 I         : VSIP: Parsed vsomeip configuration in 0ms
+09-09 06:54:41.732 19217 19232 I         : VSIP: Configuration loaded with Multiple Routing Managers ENABLED.
+09-09 06:54:41.733 19217 19232 I         : VSIP: Security disabled!
+09-09 06:54:41.733 19217 19232 I         : VSIP: Initializing vsomeip (3.7.5) application "soc-vehicle-client".
+09-09 06:54:41.733 19217 19232 I         : VSIP: Instantiating routing manager [Host].
+09-09 06:54:41.733 19217 19232 I         : VSIP: Starting Routing Manager [Host] with state RS_UNKNOWN
+09-09 06:54:41.733 19217 19232 I         : VSIP: Creating routing root with transport protocol: UDS
+09-09 06:54:41.733 19217 19232 I         : VSIP: Routing root @ /data/user/10/com.example.carlauncher/files/vsomeip-0
+09-09 06:54:41.733 19217 19232 I         : VSIP: Instantiating routing manager [Proxy].
+09-09 06:54:41.733 19217 19232 I         : VSIP: vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+09-09 06:54:41.734 19217 19232 I         : VSIP: Application(soc-vehicle-client, 5566) is initialized (11, 100).
+09-09 06:54:41.734 19217 19232 I         : VSIP: app::init: End of init, application "soc-vehicle-client" (5566)
+09-09 06:54:41.735 19217 19232 I VSOMEIP_JNI: app_->init() ok
+09-09 06:54:41.736 19217 19232 I VSOMEIP_JNI: vsomeip io thread spawned
+09-09 06:54:41.737 19217 19243 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-09 06:54:41.737 19217 19243 I         : VSIP: Starting vsomeip application "soc-vehicle-client" (5566) using 1 threads I/O nice 0
+09-09 06:54:41.738 19217 19232 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 06:54:41.738 19217 19243 I         : VSIP: Client [0000] routes unicast:10.0.2.16, netmask:255.255.255.0
+09-09 06:54:41.739 19217 19245 I         : VSIP: Started thread m_multicast 124451119147136, tid 19245
+09-09 06:54:41.739 19217 19243 E         : VSIP: Error binding NETLINK socket: Permission denied
+09-09 06:54:41.739 19217 19243 I         : VSIP: vSomeIP routing ready.
+09-09 06:54:41.739 19217 19243 I         : VSIP: Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+09-09 06:54:41.739 19217 19246 I         : VSIP: Started thread m_auxiliary, id 124451118082176, tid 19246
+09-09 06:54:41.740 19217 19243 I         : VSIP: Client [ffff] is connecting to [0000] at /data/user/10/com.example.carlauncher/files/vsomeip-0 endpoint > 0x7132833e36b0
+09-09 06:54:41.740 19217 19243 I         : VSIP: le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e4408, fd: -1, 0x7130933e4408, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+09-09 06:54:41.741 19217 19243 I         : VSIP: Started thread 5566_io00, application 'soc-vehicle-client', id 124451121277056, tid 19243
+09-09 06:54:41.741 19217 19243 I         : VSIP: le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e4408, fd: 102, 0x7130933e4408, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+09-09 06:54:41.741 19217 19243 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-09 06:54:41.734 19217 19217 W com.example.carlauncher: type=1400 audit(0.0:1189): avc:  denied  { bind } for  comm=353536365F696F2030 scontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tcontext=u:r:untrusted_app:s0:c9,c257,c522,c768 tclass=netlink_route_socket permissive=0 bug=b/155595000
+09-09 06:54:41.744 19217 19244 I         : VSIP: Started thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451120212096, tid 19244
+09-09 06:54:41.744 19217 19244 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-09 06:54:41.746 19217 19243 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-09 06:54:41.746 19217 19243 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-09 06:54:41.746 19217 19243 I         : VSIP: Assigned client ID 0x5566 to "soc-vehicle-client" ("localhost") @ 1010265/1010265
+09-09 06:54:41.746 19217 19243 I         : VSIP: emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x5566, connection > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d84c8, fd: 103
+09-09 06:54:41.746 19217 19243 I         : VSIP: Application/Client 5566 is registering
+09-09 06:54:41.748 19217 19243 I         : VSIP: Creating local server endpoint for client 0x5566 with transport type UDS.
+09-09 06:54:41.748 19217 19243 I         : VSIP: Listening @ /data/user/10/com.example.carlauncher/files/vsomeip-5566
+09-09 06:54:41.748 19217 19243 I         : VSIP: rmc::on_client_assign_ack: Client 0x5566 (soc-vehicle-client) successfully connected to routing via UDS ~> registering...
+09-09 06:54:41.749 19217 19243 I         : VSIP: rmc::register_application: Client 0x5566 Registering to routing manager @ vsomeip-0
+09-09 06:54:41.749 19217 19243 I         : VSIP: rcsm::registered: Former client id: 0xffff, new 0x5566
+09-09 06:54:41.749 19217 19243 I         : VSIP: Client 0x5566, state ST_REGISTERING -> ST_REGISTERED
+09-09 06:54:41.749 19217 19243 I         : VSIP: Application/Client 5566 (soc-vehicle-client) is registered.
+09-09 06:54:41.749 19217 19244 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-09 06:54:41.750 19217 19244 I VSOMEIP_JNI: native: registered
+09-09 06:54:41.750 19217 19243 I         : VSIP: REQUEST(5566): [1111.2222:255.4294967295]
+09-09 06:54:41.750 19217 19232 I VSOMEIP_JNI: nativeStart: begin
+09-09 06:54:41.750 19217 19232 I VSOMEIP_JNI: start_io: io thread already running
+09-09 06:54:41.750 19217 19232 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-09 06:54:41.750 19217 19232 I VSOMEIP_JNI: stopping vsomeip app
+09-09 06:54:41.751 19217 19243 I         : VSIP: RELEASE(5566): [1111.2222]
+09-09 06:54:41.752 19217 19232 I         : VSIP: app::stop: Stopping vsomeip application "soc-vehicle-client" (5566).
+09-09 06:54:41.752 19217 19243 I         : VSIP: Client 0x5566, state ST_REGISTERED -> ST_DEREGISTERED
+09-09 06:54:41.752 19217 19243 I         : VSIP: rmc::stop: starting to flush the sender
+09-09 06:54:41.752 19217 19244 I         : VSIP: Stopped thread 5566_m_dispatch, application 'soc-vehicle-client', id 124451120212096, tid 19244
+09-09 06:54:41.753 19217 19243 I         : VSIP: emb::stop: Start endpoint flushing for client 0x5566
+09-09 06:54:41.753 19217 19243 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-5566, mem: 0x7130933e2fc8
+09-09 06:54:41.753 19217 19243 I         : VSIP: lsui::stop: role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e4408
+09-09 06:54:41.754 19217 19243 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e4408, fd: -1, 0x7130933e4408, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+09-09 06:54:41.754 19217 19243 I         : VSIP: rmc::cleanup_client: self 0x5566 handles shutdown. Not reconnecting to host 0x0000
+09-09 06:54:41.754 19217 19243 W         : VSIP: le::receive_cbk: Escalating the error: End of file socket > Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d84c8, fd: 103, 0x7130933d84c8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 06:54:41.755 19217 19243 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d84c8, fd: 103, 0x7130933d84c8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-09 06:54:41.756 19217 19243 I         : VSIP: rmi::cleanup_client: self 0x0000 handles cleanup of client 0x5566
+09-09 06:54:41.756 19217 19243 I         : VSIP: Application/Client 5566 is deregistering
+09-09 06:54:41.756 19217 19243 I         : VSIP: emi::remove_routing_endpoint: client 0x5566
+09-09 06:54:41.756 19217 19243 I         : VSIP: lsui::stop: role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d84c8
+09-09 06:54:41.756 19217 19243 I         : VSIP: le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d84c8, fd: -1, 0x7130933d84c8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+09-09 06:54:41.757 19217 19243 I         : VSIP: emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x5566 endpoint > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip-0, peer: , mem: 0x7130933d84c8, fd: -1
+09-09 06:54:41.757 19217 19243 I         : VSIP: rmc::stop: All endpoints cleared. Finishing the shutdown
+09-09 06:54:41.758 19217 19243 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip-0, mem: 0x7130933e9aa8
+09-09 06:54:41.758 19217 19243 I         : VSIP: emi::stop: called
+09-09 06:54:41.758 19217 19243 I         : VSIP: emi::clear_routing_endpoints:
+09-09 06:54:41.759 19217 19245 I         : VSIP: Stopped thread m_multicast 124451119147136, tid 19245
+09-09 06:54:41.760 19217 19243 I         : VSIP: emi::stop: Joined thread m_multicast 124451121277056
+09-09 06:54:41.760 19217 19246 I         : VSIP: Stopped thread m_auxiliary, id 124451118082176, tid 19246
+09-09 06:54:41.761 19217 19243 I         : VSIP: Joined thread m_auxiliary, id 124451118082176
+09-09 06:54:41.761 19217 19243 I         : VSIP: app::start: : io_.run() end for app(soc-vehicle-client, 5566); Join Dispatcher threads for app(soc-vehicle-client, 5566)
+09-09 06:54:41.762 19217 19243 I         : VSIP: Join IO threads for app(soc-vehicle-client, 5566)
+09-09 06:54:41.762 19217 19243 I         : VSIP: Stopped thread 5566_io00, application 'soc-vehicle-client', id 124451121277056, tid 19243
+09-09 06:54:41.762 19217 19243 I VSOMEIP_JNI: vsomeip io thread exited
+09-09 06:54:41.764 19217 19232 I VSOMEIP_JNI: vsomeip app stopped
+09-09 06:54:41.764 19217 19232 I VSOMEIP_JNI: native: stopped
+09-09 06:54:41.764 19217 19232 E VSOMEIP_JNI: nativeSendState: expect 16 bytes, got 15
+09-09 06:54:41.764 19217 19232 E VSOMEIP_JNI: send_state: not started
+09-09 06:54:41.765 19217 19232 D VSOMEIP_JNI: skipped seq=1 speed=0 gear=0 dataStatus=0
+09-09 06:54:41.765 19217 19232 I VSOMEIP_PROBE: registration-stop cycle=2 passed
+09-09 06:54:41.766 19217 19232 I TestRunner: finished: nativeRegistrationAndRepeatedStopAreSafe(com.example.carlauncher.someip.VsomeipNativeProbeTest)

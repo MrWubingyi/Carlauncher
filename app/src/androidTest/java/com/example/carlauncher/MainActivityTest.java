@@ -55,7 +55,7 @@ public class MainActivityTest {
                 assertEquals("START SEND", text(activity, R.id.connectButton));
                 Button connectButton = activity.findViewById(R.id.connectButton);
                 assertTrue(connectButton.isEnabled());
-                assertEquals("Transport: OFFLINE", text(activity, R.id.transportStatusText));
+                assertEquals("SOME/IP: STOPPED", text(activity, R.id.transportStatusText));
             });
         }
     }
@@ -85,7 +85,7 @@ public class MainActivityTest {
                     .attachService(new StubVehicleSendService()
                             .withLatestState(vehicleState)
                             .withSourceStatus(DataSourceStatus.CONNECTED)
-                            .withTcpState(TcpConnectionState.ONLINE)
+                            .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                             .withValidity(DataValidity.VALID)));
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
             scenario.onActivity(activity -> {
@@ -102,10 +102,10 @@ public class MainActivityTest {
                 assertEquals("VALID", text(activity, R.id.validityText));
                 assertEquals("Seq 12", text(activity, R.id.sequenceText));
                 assertEquals("Updated · Seq 12", text(activity, R.id.lastUpdateText));
-                assertEquals("SENDING", text(activity, R.id.connectionStatusText));
+                assertEquals("SOME/IP ONLINE", text(activity, R.id.connectionStatusText));
                 assertEquals("STOP SEND", text(activity, R.id.connectButton));
                 assertEquals("CONNECTED", text(activity, R.id.sourceStatusText));
-                assertEquals("Transport: ONLINE", text(activity, R.id.transportStatusText));
+                assertEquals("SOME/IP: AVAILABLE | ONLINE | Last RC: 0x00", text(activity, R.id.transportStatusText));
             });
         }
     }
@@ -118,11 +118,11 @@ public class MainActivityTest {
                     .attachService(new StubVehicleSendService()
                             .withLatestState(null)
                             .withSourceStatus(DataSourceStatus.CONNECTED)
-                            .withTcpState(TcpConnectionState.ONLINE)
+                            .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                             .withValidity(DataValidity.VALID)));
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
             scenario.onActivity(activity -> {
-                assertEquals("SENDING", text(activity, R.id.connectionStatusText));
+                assertEquals("SOME/IP ONLINE", text(activity, R.id.connectionStatusText));
                 assertEquals("-- km/h", text(activity, R.id.speedText));
                 assertEquals("NO DATA", text(activity, R.id.warningText));
             });
@@ -133,6 +133,33 @@ public class MainActivityTest {
         TextView view = activity.findViewById(viewId);
         return view.getText().toString();
     }
+
+    @Test
+    public void someipFaultsRemainVisibleWhileTcpIsOnline() {
+        StubVehicleSendService service = new StubVehicleSendService()
+                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0);
+        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+            scenario.onActivity(activity -> {
+                CockpitViewModel model = new ViewModelProvider(activity).get(CockpitViewModel.class);
+                model.attachService(service);
+                assertEquals("SOME/IP WAITING_RESPONSE", text(activity, R.id.connectionStatusText));
+                assertEquals("STOP SEND", text(activity, R.id.connectButton));
+                assertTrue(activity.findViewById(R.id.connectButton).isEnabled());
+
+                service.withSomeipResponse(false, 1, 10);
+                model.refresh();
+                assertEquals("SOME/IP RESPONSE_ERROR", text(activity, R.id.connectionStatusText));
+                assertTrue(text(activity, R.id.transportStatusText).contains("0x01"));
+
+                service.checkSomeipTimeout(3010);
+                model.refresh();
+                assertEquals("SOME/IP RESPONSE_TIMEOUT", text(activity, R.id.connectionStatusText));
+                assertEquals("STOP SEND", text(activity, R.id.connectButton));
+
+                service.withTcpState(TcpConnectionState.DISCONNECTED).withSomeipResponse(true, 0, 3020);
+                model.refresh();
+                assertEquals("SOME/IP ONLINE", text(activity, R.id.connectionStatusText));
+            });
+        }
+    }
 }
-
-

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.someip.NetworkStateTrackerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-09T07:17:00.029Z" hostname="DESKTOP-H9SISPA" time="0.002">
+  <properties/>
+  <testcase name="requiresConfiguredAddressAndUnblockedVerdict" classname="com.example.carlauncher.someip.NetworkStateTrackerTest" time="0.001"/>
+  <testcase name="addressChangeLossAndClearRevokeAvailability" classname="com.example.carlauncher.someip.NetworkStateTrackerTest" time="0.0"/>
+  <testcase name="unrelatedLossPreservesAddressAndChoiceIsDeterministic" classname="com.example.carlauncher.someip.NetworkStateTrackerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,95 @@
+diff --git a/implementation/endpoints/include/netlink_connector.hpp b/implementation/endpoints/include/netlink_connector.hpp
+index a24a6a33..afb261c0 100644
+--- a/implementation/endpoints/include/netlink_connector.hpp
++++ b/implementation/endpoints/include/netlink_connector.hpp
+@@ -12,6 +12,10 @@
+ #include <linux/rtnetlink.h>
+ 
+ #include <map>
++#if defined(__ANDROID__)
++#include <boost/asio/strand.hpp>
++#include <boost/asio/post.hpp>
++#endif
+ #include <mutex>
+ 
+ #include <boost/asio/basic_raw_socket.hpp>
+@@ -111,7 +115,11 @@ public:
+                       const boost::asio::ip::address& _multicast_address, bool _is_requiring_link = true) :
+         net_if_index_for_address_(0), handler_(nullptr), socket_(_io),
+         recv_buffer_(_multicast_address.is_v4() || _multicast_address.is_v6() ? multicast_buffer_size : default_buffer_size, 0),
+-        address_(_address), multicast_address_(_multicast_address), is_requiring_link_(_is_requiring_link) { }
++        address_(_address), multicast_address_(_multicast_address), is_requiring_link_(_is_requiring_link)
++#if defined(__ANDROID__)
++        , android_strand_(_io.get_executor())
++#endif
++        { }
+     ~netlink_connector() { }
+ 
+     void register_net_if_changes_handler(const net_if_changed_handler_t& _handler) override;
+@@ -119,9 +127,23 @@ public:
+ 
+     void start() override;
+     void stop() override;
++#if defined(__ANDROID__)
++    void android_update(const std::string& address, const std::string& iface, bool up, bool route);
++#endif
+ 
+ private:
+     void set_state(state_e _state);
++#if defined(__ANDROID__)
++    void android_start();
++    void android_stop();
++    boost::asio::strand<boost::asio::io_context::executor_type> android_strand_;
++    bool android_running_ = false;
++    bool android_published_ = false;
++    bool android_up_ = false;
++    bool android_route_ = false;
++    std::string android_iface_;
++    std::uint64_t android_generation_ = 0;
++#endif
+ 
+     bool has_address(const struct ifaddrmsg* ifa_struct, size_t length) const;
+     void send_ifa_request(std::uint32_t _retry = 0);
+diff --git a/implementation/endpoints/src/netlink_connector.cpp b/implementation/endpoints/src/netlink_connector.cpp
+index 005186d1..21e6141f 100644
+--- a/implementation/endpoints/src/netlink_connector.cpp
++++ b/implementation/endpoints/src/netlink_connector.cpp
+@@ -16,16 +16,27 @@
+ #include "../include/netlink_connector.hpp"
+ 
+ namespace vsomeip_v3 {
++#include "android_network_connector.inc"
+ 
+ void netlink_connector::register_net_if_changes_handler(const net_if_changed_handler_t& _handler) {
++#if defined(__ANDROID__)
++    std::lock_guard<std::mutex> lock(socket_mutex_);
++#endif
+     handler_ = _handler;
+ }
+ 
+ void netlink_connector::unregister_net_if_changes_handler() {
++#if defined(__ANDROID__)
++    std::lock_guard<std::mutex> lock(socket_mutex_);
++#endif
+     handler_ = nullptr;
+ }
+ 
+ void netlink_connector::stop() {
++#if defined(__ANDROID__)
++    android_stop();
++    return;
++#endif
+     std::scoped_lock its_lock(socket_mutex_);
+     boost::system::error_code its_error;
+     socket_.shutdown(socket_.shutdown_both, its_error);
+@@ -36,6 +47,10 @@ void netlink_connector::stop() {
+ }
+ 
+ void netlink_connector::start() {
++#if defined(__ANDROID__)
++    android_start();
++    return;
++#endif
+     std::unique_lock its_lock(socket_mutex_);
+     boost::system::error_code ec;
+     if (socket_.is_open()) {

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="1" errors="0" skipped="0" time="11.685" timestamp="2026-09-09T07:19:03" hostname="localhost">
+  <testsuite name="com.example.carlauncher.someip.VsomeipNativeProbeTest" tests="1" failures="1" errors="0" skipped="0" time="10.038" timestamp="2026-09-09T07:19:03" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="requestResponseRejectAndRestart" classname="com.example.carlauncher.someip.VsomeipNativeProbeTest" time="10.038">
+      <failure>java.lang.AssertionError: service availability expected:&lt;true&gt; but was:&lt;null&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at com.example.carlauncher.someip.VsomeipNativeProbeTest.runMethodProbe(VsomeipNativeProbeTest.java:62)
+at com.example.carlauncher.someip.VsomeipNativeProbeTest.requestResponseRejectAndRestart(VsomeipNativeProbeTest.java:27)
+</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

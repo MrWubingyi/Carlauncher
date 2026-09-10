@@ -1,0 +1,66 @@
+07989D880E5A5C09ABDF94E090CEC6A69029FB3657CAD4A846F1794D403A67D0  evidence/20260909-someip-method/capture-fixed.log
+704E5E5B3234433C01FCFD1B20A306E77E985038120492DC53965C3EDD38A4EA  evidence/20260909-someip-method/method-probe-fixed.pcap
+9BDEDA67D15F332B99AF9C054E38B3CF91115BB40E24EBD6E320EF2767EF8795  evidence/20260909-someip-method/README.md
+DE2D9EC46D209CCF8428D9500501056A1D2CA00306BB1E5D35E76BC3ED551272  evidence/20260909-someip-method/service-build-libs.log
+DC1CE3327960F158F456060C28A03A05C0396B1530E3096664BE1DA77D3CE423  evidence/20260909-someip-method/service-fixed.log
+AC31FC89F59BDA4B5007D9798677F6627935894E7C827C040CFD636422570F39  evidence/20260909-someip-method/service.log
+6BB0C550763C9CADC3D94C858A259B7D20ED088D2260620C49C1F03FA7DB02D9  evidence/20260909-someip-method/summary-zh.html
+0C6C53FE2933F69AFAE4E0686A41D4A9F7CA35C2C1AD1B892FE7DBAC7B12E2ED  evidence/20260909-someip-method/attempt1-routing-failure/TEST-Automotive_1408p_landscape(AVD) - 15-_app-.xml
+6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B  evidence/20260909-someip-method/attempt1-routing-failure/test-result-exit-code.txt
+270724A19E3E68C20C1CF3B86CE14451A93F20AE754E6FDB9993D609AEE9C5CF  evidence/20260909-someip-method/attempt1-routing-failure/test-result.pb
+3C5E710D212FC0E0CB325698242006AE56E371D21841943AF87AE7AA4C1C0E54  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/aapt.exe.1.ok.txt
+FAD00C879DEC615BABAFC84C877EA3D3E7AE72E6860ACC9FB7723CF8EB3975F2  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/aapt.exe.2.ok.txt
+7BCA198F8951D27210CFBE2717EDBF3392C1E572A73AAF1D354F5699FF7DDB6D  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/cpuinfo
+2C05E3F422DA431B035B73E1E4450357541C9F4C98C788ACA20CC524006DE502  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/device-info.pb
+1AD47E5D4FE4195E094A18071168307349D6915D23417F35CD964C4006980DEB  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/logcat-com.example.carlauncher.someip.VsomeipNativeProbeTest-requestResponseRejectAndRestart.txt
+BDE8A632CD496996071CCBA968695BCBD39AF3406ADD034A270055DB2E74281B  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/meminfo
+922AAAF81DCD558FC55398AAA288DDBB200D8C522B94E899779DC1BFEE80F371  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/test-result.pb
+5C337BF7C0F63E07A93E74955873DF2B6C0A7C605A65E34614C6753707D8F9C8  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/test-result.textproto
+760BF55E35D355DE998B9C236829362956320E0717946DD1BD56406224860F06  evidence/20260909-someip-method/attempt1-routing-failure/Automotive_1408p_landscape(AVD) - 15/testlog/test-results.log
+8A81F1F4F8A07A94BE7739CCE917DF946A582B11DFF8B9EDAC52FA76B97814E8  evidence/20260909-someip-method/attempt2-netlink-failure/TEST-Automotive_1408p_landscape(AVD) - 15-_app-.xml
+6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B  evidence/20260909-someip-method/attempt2-netlink-failure/test-result-exit-code.txt
+5D7D7822ECB93E8E84AE735C8A2CA34A8B4130C2B0BA31C7CFCAACEBF169DC48  evidence/20260909-someip-method/attempt2-netlink-failure/test-result.pb
+D362D375E143C8A46DF9F5F6C5ABF1FF4653ABF3797802711E35DBE3AF1A1362  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/aapt.exe.1.ok.txt
+38170BEEA8E235FE74885FA5337BE4CAF4753ADC0B408083F47A0DF92EA27581  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/aapt.exe.2.ok.txt
+B89A2C4F06712C1A7B27EB78ED577757FEFE6B2A18D3B663279B7F4FD13CB737  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/cpuinfo
+2C05E3F422DA431B035B73E1E4450357541C9F4C98C788ACA20CC524006DE502  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/device-info.pb
+A313EE3EF0F47F1A09ED2810630AB940A986960B9E6DE121B5EEA3801080E310  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/logcat-com.example.carlauncher.someip.VsomeipNativeProbeTest-requestResponseRejectAndRestart.txt
+9D7FF6BD29D5F3E1B810C31A8F5B1501511F635322D4F50DB94460FA76D50C30  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/meminfo
+C122F225AC6A4D40333F1066E0C9AD1201FB7164B6FF52D39D74F32C283CBC9C  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/test-result.pb
+BE653119085D5CF15E23A83FE8DFDD835BD81B9D3B60044AEA584125A3C404F7  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/test-result.textproto
+A6E219D3597F708BBEAD155DB6F5CF4DDCC429F8B0C6AB0B2B26C8F82D77CC95  evidence/20260909-someip-method/attempt2-netlink-failure/Automotive_1408p_landscape(AVD) - 15/testlog/test-results.log
+3A207E7AB7D0A8F0EB3B05A48007F0FF1BA864E74AF5FDF6A934A20BF89C51CB  evidence/20260909-someip-method/native-lifecycle-pass/TEST-Automotive_1408p_landscape(AVD) - 15-_app-.xml
+5FECEB66FFC86F38D952786C6D696C79C2DBC239DD4E91B46729D73A27FB57E9  evidence/20260909-someip-method/native-lifecycle-pass/test-result-exit-code.txt
+15F2E7C250A7A988577251C65861FA86B74BAA7A71925ED8F08E3B30582DC1DF  evidence/20260909-someip-method/native-lifecycle-pass/test-result.pb
+98BB8A0FED217810C233CC7E8F59D5D71AB23D8DA8E82DF4E220AAEE7BAF5D65  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/aapt.exe.1.ok.txt
+63301EC657AFF0577EB9785E4738FFC9AC067AA50A847DEC8481AA95E207C8E1  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/aapt.exe.2.ok.txt
+8DFA6FA4B6D1DEBDB9679F291508356A03A989029E37D59229FE3B4B2D5BC91F  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/cpuinfo
+2C05E3F422DA431B035B73E1E4450357541C9F4C98C788ACA20CC524006DE502  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/device-info.pb
+5C14D1D83E30723D757F2FBAAFC8B3A5541C145DD1D54EF80A47DA7EC82ED725  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/logcat-com.example.carlauncher.someip.VsomeipNativeProbeTest-nativeRegistrationAndRepeatedStopAreSafe.txt
+E1708687D3E4602A9B1F8D34605F3A1A36DED6383D2E6CABC81212A24F01CE57  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/meminfo
+7F75E393B143CD6540596002B7E535AC3CE159A7C5B3B28F6FE268280F566E45  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/test-result.pb
+20C45EBD4804FC627558EEBE7A7054C53311450FD7C65828005AAF6B73958B50  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/test-result.textproto
+3046D8C5819380DA6AA369DA5A7042B635F1CB610C77BC0E61E0EE82C168C5BA  evidence/20260909-someip-method/native-lifecycle-pass/Automotive_1408p_landscape(AVD) - 15/testlog/test-results.log
+B8159A81DD6C0DADF96D69A09A623E683BADFDE4073CFE131B6CBCEED1F1071D  evidence/20260909-someip-method/verification/device/TEST-Automotive_1408p_landscape(AVD) - 15-_app-.xml
+F9A11FE247572EE8DF0E4562538D30AB177D22974083473191A6EC12B19A2039  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.data.DataStatusTest.xml
+079C5E34636D076A357CF0F499429B14F6814277FB9832612E9D340C22F65D66  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.data.mock.MockVehicleDataSourceTest.xml
+4D73F489296E5318631E9D7924CDC524FFEE06467B9F6A91C098D7B442A0E2D9  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.data.VehicleProtocolTest.xml
+69BD0FBA62D557E3D5AA4DB9BCE57BE7F05F33B1DBD0BB456D91613F16E393D3  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.ExampleUnitTest.xml
+69F3176FD7D23FD5FCDAA440250A2E79A2CEE717B1AE03E6A79E8F059B1A9C2A  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.model.EnumValueContractTest.xml
+22BE0B6A3DEDF80C7C67B90AB7E97396B0BB41911CF7BDA5C1C4D7F878987A60  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.model.GearTest.xml
+CF450BFA22FA4C009DC9D5A5EDD9C199625DA0A515AE536D7C00AFB65B223858  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.model.VehicleStateTest.xml
+E1F5F91D11C2BE0189960C528D02566389B7BEE117377AFFABC4CCB7E212EBC1  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.model.VehicleStateValidatorTest.xml
+43F2D6CBE74ECAD9F716F3E3D545A80E75BE1AFD7E7F129B0F7B17FDB9058509  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.someip.SomeipConnectionMonitorTest.xml
+0CEE21CC716C39E7DEB47A050EED0E1337AE1ED49DF4495032210FB8B2C4C7DB  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.someip.SomeipPayloadCodecTest.xml
+177A3D8AC5599F1671319CAB853AF235F253FF86193933BB5F5A75849C116D38  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.ThemePreferencesTest.xml
+B7F16760FC05C956C1B3167FA58E03E6688B6317BC5E3173AE329A6543F4C248  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.ui.CockpitConnectionStateTest.xml
+4D9AC2726A9CEAE6534BDA97DDA2DFFB791BF49E5BCA2A80BAA868269DD24505  evidence/20260909-someip-method/verification/unit/TEST-com.example.carlauncher.ui.CockpitUiStateTest.xml
+695E9CED32CFE483AE59A9FBD1ABBC2D7D186E67475FF788EE0E6612BCBCC902  tools/someip-probe/CMakeLists.txt
+AFE356CF67733163AC370F9F9698111B3CDA726B85ACDC2E442C908297D85A56  tools/someip-probe/README.md
+4B7E6E6E555E09E09AFDEFD359B328F77B10F4E3CDBCF8803A4708FC31862D54  tools/someip-probe/service.cpp
+BE12EF9929202D02E096BCC89748403CAA848AB19D9332128557FB1CAB091B75  tools/someip-probe/service.json
+B0537C9D87CD5F216B19DDA074E9FCCEA53880E05087F1B23BA9BD4C8E248507  app/src/main/cpp/carlauncher.cpp
+BA1972EC4F50719091CE753AB3971A491F0C1016D796C73698691B67312BECB2  app/src/main/java/com/example/carlauncher/someip/VsomeipClient.java
+D56922B5D9863A13BB2C4EE0F9EE6993C62FD66A69AB6DFB103F2298D884DCE8  app/src/main/java/com/example/carlauncher/someip/SomeipPayloadCodec.java
+DF7535501B6480C2BCB820FFFA6620DBA1735847B4EE1BC76BE2B0C674238DCD  app/src/androidTest/java/com/example/carlauncher/someip/VsomeipNativeProbeTest.java
+74FAA7896CC7B9B6126FA432ECA6AC1C85FA99FCB17DAA713BA4185F82A5FB74  app/src/test/java/com/example/carlauncher/someip/SomeipPayloadCodecTest.java

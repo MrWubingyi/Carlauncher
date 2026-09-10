@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -26,12 +27,27 @@ import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.network.VehicleTcpClient;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+
+import com.example.carlauncher.someip.VsomeipClient;
+import com.example.carlauncher.someip.SomeipConnectionMonitor;
 
 /**
  * 前台服务，负责管理车辆数据源和 LVGL TCP 传输。
@@ -57,10 +73,54 @@ public class VehicleSendService extends Service {
     private final AtomicBoolean reconnectScheduled = new AtomicBoolean(false);
 
     private ScheduledExecutorService reconnectScheduler;
+    // vSomeIP 生命周期专用单线程执行器：native start/stop 与 10 Hz 发送解耦，
+    // 避免在主线程上执行 vsomeip（其 start() 会阻塞）导致 UI/Service.onCreate 卡死。
+    private ExecutorService vsomeipExecutor;
+    // The native client is process-wide; serialize lifecycle across Service recreation too.
+    private static final class SomeipLifecycle {
+        static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
+    }
+    private final SomeipConnectionMonitor someipMonitor = new SomeipConnectionMonitor();
+    private final VsomeipClient.Listener someipListener = new VsomeipClient.Listener() {
+        @Override public void onAvailable(boolean available) {
+            if (stopping) return;
+            someipMonitor.onAvailability(available, SystemClock.elapsedRealtime());
+            notifyStateChanged();
+        }
+
+        @Override public void onResponse(boolean ok, int returnCode) {
+            if (stopping) return;
+            someipMonitor.onResponse(ok, returnCode, SystemClock.elapsedRealtime());
+            notifyStateChanged();
+        }
+
+        @Override public void onStopped() {
+            if (stopping) return;
+            vsomeipStarted = false;
+            someipMonitor.stop();
+            notifyStateChanged();
+        }
+    };
+    private final Runnable someipWatchdog = new Runnable() {
+        @Override public void run() {
+            if (stopping) return;
+            if (someipMonitor.checkTimeout(SystemClock.elapsedRealtime())) {
+                Log.w(TAG, "SOMEIP_STATE RESPONSE_TIMEOUT (3000 ms without response)");
+                notifyStateChanged();
+            }
+            mainHandler.postDelayed(this, 100);
+        }
+    };
+
+    public SomeipConnectionMonitor.Snapshot getSomeipStatus() {
+        return someipMonitor.snapshot();
+    }
     private VehicleTcpClient tcpClient;
     private VehicleDataSource vehicleDataSource;
 
     private volatile boolean stopping;
+    // vSomeIP 是否已启动成功（native 不可用时跳过 10 Hz 发送，避免空转 JNI 调用）
+    private volatile boolean vsomeipStarted;
     private volatile VehicleState latestVehicleState;
     private volatile DataSourceStatus sourceStatus = DataSourceStatus.STOPPED;
     private StateListener stateListener;
@@ -111,6 +171,19 @@ public class VehicleSendService extends Service {
                     latestVehicleState = state;
                     // 发送车辆状态到 TCP 客户端
                     sendVehicleState(state);
+                    // vSomeIP 路径（TCP 保留作对照；native 侧在 Service 不可用/未 init 时自动跳过）
+                    if (vsomeipStarted) {
+                        try {
+                            VsomeipClient.buildAndSend(
+                                    (int) state.getSequence(),
+                                    state.getTimestampMs(),
+                                    state.getVehSpeedKph(),
+                                    state.getGear() == null ? 0xFF : state.getGear().getValue(),
+                                    state.getDataStatus() == null ? 0xFF : state.getDataStatus().getValue());
+                        } catch (Exception e) {
+                            Log.e(TAG, "vsomeip send failed", e);
+                        }
+                    }
                     notifyStateChanged();
                 }
 
@@ -157,6 +230,7 @@ public class VehicleSendService extends Service {
         // 初始化重连调度器、TCP 客户端和车辆数据源
         reconnectScheduler =
                 Executors.newSingleThreadScheduledExecutor();
+        vsomeipExecutor = SomeipLifecycle.EXECUTOR;
         tcpClient = new VehicleTcpClient(
                 "192.168.31.248",
                 19090
@@ -169,6 +243,7 @@ public class VehicleSendService extends Service {
         // 启动数据源并连接 TCP
         startVehicleDataSource();
         connectTcp();
+        startVsomeipClient();
     }
 
     @Override
@@ -195,6 +270,148 @@ public class VehicleSendService extends Service {
             sourceStatus = DataSourceStatus.ERROR;
             Log.e(TAG, "Start vehicle data source failed", exception);
             notifyStateChanged();
+        }
+    }
+
+    /**
+     * 调度 vSomeIP 启动到专用单线程执行器（不占主线程；native start 内部不再阻塞）。
+     */
+    private void startVsomeipClient() {
+        someipMonitor.start();
+        mainHandler.post(someipWatchdog);
+        notifyStateChanged();
+        ExecutorService executor = vsomeipExecutor;
+        if (executor == null || executor.isShutdown()) {
+            Log.w(TAG, "vsomeip executor unavailable, skip start");
+            someipMonitor.startFailed();
+            notifyStateChanged();
+            return;
+        }
+        try {
+            executor.execute(this::runVsomeipStart);
+        } catch (RejectedExecutionException exception) {
+            Log.e(TAG, "schedule vsomeip start rejected", exception);
+            someipMonitor.startFailed();
+            notifyStateChanged();
+        }
+    }
+
+    /**
+     * 从 assets 拷贝 vsomeip 配置到 filesDir（unicast 修正为当前设备 IPv4）后启动 Client。
+     * 在 vsomeipExecutor 线程执行；幂等由 native 保证（已启动则直接返回）。
+     */
+    private void runVsomeipStart() {
+        if (stopping) return;
+        try {
+            final String configName = "vsomeip-client.json";
+            final File dir = new File(getFilesDir(), "vsomeip");
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new IllegalStateException("mkdir vsomeip dir failed");
+            }
+            final File config = new File(dir, configName);
+            if (!config.exists()) {
+                copyAssetToFile(configName, config);
+            }
+
+            // 修正 unicast：vsomeip 用它绑定本地收包地址；填服务器 IP（192.168.31.248）
+            // 会在启动 io 时绑定失败并触发 vsomeip 内部 VSOMEIP_TERMINATE -> abort 杀进程。
+            final String localIp = findLocalIpv4();
+            if (localIp == null) {
+                throw new IllegalStateException("no usable IPv4 address");
+            }
+            rewriteUnicast(config, localIp);
+
+            if (stopping) return;
+            VsomeipClient.setListener(someipListener);
+            boolean ok = VsomeipClient.start(this, config.getAbsolutePath());
+            vsomeipStarted = ok && !stopping;
+            if (!ok) someipMonitor.startFailed();
+            notifyStateChanged();
+            Log.i(TAG, "VsomeipClient.start=" + ok
+                    + " unicast=" + localIp
+                    + " (on executor thread)");
+        } catch (Exception | LinkageError e) {
+            Log.e(TAG, "start vsomeip failed", e);
+            someipMonitor.startFailed();
+            notifyStateChanged();
+        }
+    }
+
+    private void copyAssetToFile(String assetName, File target) throws Exception {
+        try (InputStream in = getAssets().open(assetName);
+             FileOutputStream out = new FileOutputStream(target)) {
+            byte[] buf = new byte[4096];
+            int n;
+            while ((n = in.read(buf)) > 0) {
+                out.write(buf, 0, n);
+            }
+        }
+    }
+
+    /**
+     * 把配置 JSON 中的 "unicast" 改写为当前设备网卡的 IPv4；无变化则不动文件。
+     */
+    private void rewriteUnicast(File config, String ip) {
+        final String content;
+        try (FileInputStream in = new FileInputStream(config)) {
+            byte[] buf = new byte[(int) Math.min(config.length(), 64 * 1024)];
+            int n = in.read(buf);
+            content = new String(buf, 0, Math.max(n, 0), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            Log.e(TAG, "read vsomeip config failed", e);
+            return;
+        }
+        final String rewritten = content.replaceAll(
+                "(?s)(\"unicast\"\\s*:\\s*\")[^\"]*(\")",
+                "$1" + ip + "$2");
+        if (rewritten.equals(content)) {
+            return;
+        }
+        try (FileOutputStream out = new FileOutputStream(config);
+             OutputStreamWriter writer = new OutputStreamWriter(out, StandardCharsets.UTF_8)) {
+            writer.write(rewritten);
+        } catch (Exception e) {
+            Log.e(TAG, "rewrite vsomeip unicast failed", e);
+        }
+    }
+
+    /**
+     * 取本机非回环 IPv4；优先 192.168.x（与 Ubuntu 服务同网段），否则取任意非回环地址。
+     */
+    private String findLocalIpv4() {
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            if (interfaces == null) {
+                return null;
+            }
+            String fallback = null;
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface networkInterface = interfaces.nextElement();
+                if (!networkInterface.isUp() || networkInterface.isLoopback()) {
+                    continue;
+                }
+                Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress address = addresses.nextElement();
+                    if (!(address instanceof Inet4Address) || address.isLoopbackAddress()) {
+                        continue;
+                    }
+                    String ip = address.getHostAddress();
+                    if (ip == null) {
+                        continue;
+                    }
+                    if (ip.startsWith("192.168.")) {
+                        return ip;
+                    }
+                    if (fallback == null) {
+                        fallback = ip;
+                    }
+                }
+            }
+            return fallback;
+        } catch (SocketException e) {
+            Log.e(TAG, "findLocalIpv4 failed", e);
+            return null;
         }
     }
 
@@ -478,6 +695,7 @@ public class VehicleSendService extends Service {
     public void onDestroy() {
         Log.i(TAG, "Service onDestroy");
         stopping = true;
+        someipMonitor.stop();
         connecting.set(false);
         sendingStarted.set(false);
         reconnectScheduled.set(false);
@@ -496,6 +714,26 @@ public class VehicleSendService extends Service {
         if (reconnectScheduler != null) {
             reconnectScheduler.shutdownNow();
             reconnectScheduler = null;
+        }
+
+        // 停止 vSomeIP：排队到同一单线程执行器（与 start 保持先后顺序），
+        // 避免主线程被 native stop 的 join 阻塞；native stop 幂等（未启动则直接返回）。
+        vsomeipStarted = false;
+        ExecutorService vsomeipExecutorToStop = vsomeipExecutor;
+        vsomeipExecutor = null;
+        if (vsomeipExecutorToStop != null) {
+            try {
+                vsomeipExecutorToStop.execute(() -> {
+                    try {
+                        VsomeipClient.clearListener(someipListener);
+                        VsomeipClient.stop();
+                    } catch (Throwable t) {
+                        Log.e(TAG, "vsomeip stop failed", t);
+                    }
+                });
+            } catch (RejectedExecutionException exception) {
+                Log.e(TAG, "schedule vsomeip stop rejected", exception);
+            }
         }
 
         if (tcpClient != null) {

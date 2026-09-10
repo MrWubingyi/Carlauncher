@@ -1,0 +1,659 @@
+2026-09-09 17:20:03.114865 [info] Using configuration file: "/root/develop/carlauncher-probe-20260909/service-sd.json".
+2026-09-09 17:20:03.114927 [info] Parsed vsomeip configuration in 0ms
+2026-09-09 17:20:03.114936 [info] Configuration module loaded.
+2026-09-09 17:20:03.114940 [info] Security disabled!
+2026-09-09 17:20:03.114943 [info] Initializing vsomeip (3.7.5) application "vehicle-probe-service".
+2026-09-09 17:20:03.114988 [info] Instantiating routing manager [Host].
+2026-09-09 17:20:03.115005 [info] Starting Routing Manager [Host] with state RS_UNKNOWN
+2026-09-09 17:20:03.115019 [info] Creating routing root with transport protocol: UDS
+2026-09-09 17:20:03.115024 [info] Routing root @ /tmp/vsomeip-0
+2026-09-09 17:20:03.115082 [info] Service Discovery enabled. Trying to load module.
+2026-09-09 17:20:03.115259 [info] Service Discovery module loaded.
+2026-09-09 17:20:03.115350 [info] Service Discovery Stop Offer watchdog enabled.
+2026-09-09 17:20:03.115359 [info] Service Discovery Offer watchdog enabled.
+2026-09-09 17:20:03.115368 [info] Instantiating routing manager [Proxy].
+2026-09-09 17:20:03.115386 [info] vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+2026-09-09 17:20:03.115391 [info] Application(vehicle-probe-service, 4444) is initialized (11, 100).
+2026-09-09 17:20:03.115396 [info] app::init: End of init, application "vehicle-probe-service" (4444)
+2026-09-09 17:20:03.116220 [info] Starting vsomeip application "vehicle-probe-service" (4444) using 1 threads I/O nice 0
+2026-09-09 17:20:03.116400 [info] Client [0000] routes unicast:192.168.31.248, netmask:255.255.255.0
+2026-09-09 17:20:03.116447 [info] netlink: from 0 to 1, if=0, mc=0, count=0
+2026-09-09 17:20:03.116486 [info] Started thread m_multicast 780a82bfd640, tid 14765
+2026-09-09 17:20:03.116703 [info] Started thread 4444_m_dispatch, application 'vehicle-probe-service', id 780a833fe640, tid 14764
+2026-09-09 17:20:03.116765 [info] Started thread m_auxiliary, id 780a823fc640, tid 14766
+2026-09-09 17:20:03.116853 [info] vSomeIP routing ready.
+2026-09-09 17:20:03.116872 [info] Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+2026-09-09 17:20:03.116892 [info] Client [ffff] is connecting to [0000] at /tmp/vsomeip-0 endpoint > 0x780a7c007010
+2026-09-09 17:20:03.116902 [info] le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x780a7c005e90, fd: -1, 0x780a7c005e90, send_queue: 101, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+2026-09-09 17:20:03.116932 [info] Started thread 4444_io00, application 'vehicle-probe-service', id 780a83bff640, tid 14763
+2026-09-09 17:20:03.116944 [info] netlink: from 1 to 2, if=2, mc=0, count=0
+2026-09-09 17:20:03.116981 [info] le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x780a7c005e90, fd: 9, 0x780a7c005e90, send_queue: 101, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+2026-09-09 17:20:03.117049 [info] Assigned client ID 0x4444 to "vehicle-probe-service" ("wuby-virtual-machine") @ 0/0
+2026-09-09 17:20:03.117058 [info] emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x4444, connection > role: server, own: /tmp/vsomeip-0, peer: , mem: 0x780a7c0082d0, fd: 10
+2026-09-09 17:20:03.117070 [info] Application/Client 4444 is registering
+2026-09-09 17:20:03.117084 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:20:03.117169 [info] util::log_network_state: UDP connections
+2026-09-09 17:20:03.117175 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:03.117185 [info] 392: 127.0.0.53:53 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 101 0 20771
+2026-09-09 17:20:03.117194 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:20:03.117207 [info] 407: 192.168.50.128:68 192.168.50.254:67 01 00000000:00000000 00:00000000 00000000 0 0 24695
+2026-09-09 17:20:03.117213 [info] 450: 0.0.0.0:111 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 8228
+2026-09-09 17:20:03.117218 [info] 506: 0.0.0.0:57511 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23625
+2026-09-09 17:20:03.117222 [info] 1193: 127.0.0.1:854 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 22216
+2026-09-09 17:20:03.117227 [info] 1634: 0.0.0.0:42255 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23741
+2026-09-09 17:20:03.117231 [info] 4051: 0.0.0.0:36480 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23725
+2026-09-09 17:20:03.117235 [info] 5496: 0.0.0.0:46117 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 20075
+2026-09-09 17:20:03.117240 [info] 5692: 0.0.0.0:5353 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23623
+2026-09-09 17:20:03.117244 [info] 7715: 0.0.0.0:48336 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 131 0 22224
+2026-09-09 17:20:03.117249 [info] 7898: 0.0.0.0:40327 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23733
+2026-09-09 17:20:03.117570 [info] util::log_network_state: TCP connections
+2026-09-09 17:20:03.117579 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:03.117589 [info] 0: 0.0.0.0:22 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 10837
+2026-09-09 17:20:03.117595 [info] 1: 0.0.0.0:111 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 8227
+2026-09-09 17:20:03.117600 [info] 2: 127.0.0.1:631 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22727
+2026-09-09 17:20:03.117605 [info] 3: 0.0.0.0:2049 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22248
+2026-09-09 17:20:03.117610 [info] 4: 0.0.0.0:44195 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23735
+2026-09-09 17:20:03.117615 [info] 5: 0.0.0.0:52479 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23727
+2026-09-09 17:20:03.117619 [info] 6: 0.0.0.0:36997 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 20076
+2026-09-09 17:20:03.117624 [info] 7: 127.0.0.53:53 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 101 0 20772
+2026-09-09 17:20:03.117629 [info] 8: 0.0.0.0:39325 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23743
+2026-09-09 17:20:03.117634 [info] 9: 0.0.0.0:47245 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 131 0 22227
+2026-09-09 17:20:03.117638 [info] 10: 127.0.0.1:6010 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 67032
+2026-09-09 17:20:03.117643 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 01 00000000:00000000 02:00000B52 00000000 0 0 206329
+2026-09-09 17:20:03.117648 [info] 12: 192.168.50.128:55418 198.18.1.96:80 06 00000000:00000000 03:000012AF 00000000 0 0 0
+2026-09-09 17:20:03.117653 [info] 13: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:000786A7 00000000 0 0 31857
+2026-09-09 17:20:03.117658 [info] 14: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008CDA1 00000000 0 0 74815
+2026-09-09 17:20:03.117663 [info] 15: 192.168.31.248:35816 192.168.31.85:7890 01 00000000:00000000 02:000006FA 00000000 0 0 206425
+2026-09-09 17:20:03.117668 [info] 16: 192.168.31.248:22 192.168.31.85:63728 01 00000048:00000000 01:00000012 00000000 0 0 202585
+2026-09-09 17:20:03.117672 [info] 17: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008CD92 00000000 0 0 74811
+2026-09-09 17:20:03.117677 [info] 18: 192.168.31.248:57918 91.189.91.60:80 06 00000000:00000000 03:000015DE 00000000 0 0 0
+2026-09-09 17:20:03.118057 [info] netlink: from 2 to 3, if=2, mc=0, count=1
+2026-09-09 17:20:03.118089 [warning] Network interface "ens33" state changed: up
+2026-09-09 17:20:03.118175 [info] netlink: from 3 to 4, if=2, mc=1, count=1
+2026-09-09 17:20:03.118184 [warning] Route "ens33" state changed: up
+2026-09-09 17:20:03.118191 [info] usei::udp_server_endpoint_impl: #1::
+2026-09-09 17:20:03.118193 [info] usei::init: #1::192.168.31.248:30490, lifecycle_idx=0
+2026-09-09 17:20:03.118216 [info] usei::init: #1::192.168.31.248:30490:: lifecycle_idx=0, Success
+2026-09-09 17:20:03.118221 [info] usei::start: #1::192.168.31.248:30490:: lifecycle_idx=0
+2026-09-09 17:20:03.118223 [info] usei::start_unlocked: #1::192.168.31.248:30490:: Start unicast data handler, lifecycle_idx=1, fd: 11
+2026-09-09 17:20:03.118228 [info] usei::start_unlocked: #1::192.168.31.248:30490:: Join 0 groups
+2026-09-09 17:20:03.118230 [info] usei::start: #1::192.168.31.248:30490:: Done, lifecycle_idx=1
+2026-09-09 17:20:03.118234 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:03.118263 [info] SOME/IP routing ready.
+2026-09-09 17:20:03.118265 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:03.118296 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Start multicast data handler, lifecycle_idx=1, fd: 12
+2026-09-09 17:20:03.118315 [info] Creating local server endpoint for client 0x4444 with transport type UDS.
+2026-09-09 17:20:03.118350 [info] Listening @ /tmp/vsomeip-4444
+2026-09-09 17:20:03.118357 [info] rmc::on_client_assign_ack: Client 0x4444 (vehicle-probe-service) successfully connected to routing via UDS ~> registering...
+2026-09-09 17:20:03.118360 [info] rmc::register_application: Client 0x4444 Registering to routing manager @ vsomeip-0
+2026-09-09 17:20:03.118362 [info] rcsm::registered: Former client id: 0xffff, new 0x4444
+2026-09-09 17:20:03.118364 [info] Client 0x4444, state ST_REGISTERING -> ST_REGISTERED
+2026-09-09 17:20:03.118367 [info] Application/Client 4444 (vehicle-probe-service) is registered.
+2026-09-09 17:20:03.118446 [info] usei::udp_server_endpoint_impl: #2::
+2026-09-09 17:20:03.118454 [info] usei::init: #2::192.168.31.248:30509, lifecycle_idx=0
+2026-09-09 17:20:03.118471 [info] usei::init: #2::192.168.31.248:30509:: lifecycle_idx=0, Success
+2026-09-09 17:20:03.118475 [info] usei::start: #2::192.168.31.248:30509:: lifecycle_idx=0
+2026-09-09 17:20:03.118477 [info] usei::start_unlocked: #2::192.168.31.248:30509:: Start unicast data handler, lifecycle_idx=1, fd: 14
+2026-09-09 17:20:03.118481 [info] usei::start_unlocked: #2::192.168.31.248:30509:: Join 0 groups
+2026-09-09 17:20:03.118484 [info] usei::start: #2::192.168.31.248:30509:: Done, lifecycle_idx=1
+2026-09-09 17:20:03.118488 [info] ON_OFFER_SERVICE(4444): [1111.2222:0.0]
+2026-09-09 17:20:03.118491 [info] OFFER(4444): [1111.2222:0.0] (true)
+2026-09-09 17:20:03.118693 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:04.218438 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:04.218478 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:04.218514 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:04.218574 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:04.219253 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:04.219269 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:04.220002 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:05.318584 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:05.318622 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:05.318656 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:05.318687 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:05.319405 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:05.319417 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:05.320002 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:06.418816 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:06.418848 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:06.418870 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:06.418894 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:06.419169 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:06.419177 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:06.419384 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:07.519033 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:07.519073 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:07.519164 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:07.519201 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:07.519894 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:07.519906 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:07.520545 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:08.620044 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:08.620087 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:08.620178 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:08.620380 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:08.620974 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:08.620985 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:08.621638 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:09.720367 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:09.720408 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:09.720448 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:09.720493 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:09.721188 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:09.721202 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:09.721759 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:10.825413 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:10.825454 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:10.825492 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:10.826046 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:10.827005 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:10.827020 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:10.827595 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:11.925710 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:11.925847 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:11.926158 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:11.926380 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:11.927536 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:11.927590 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:11.929321 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:13.026722 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:13.026808 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:13.026842 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:13.027728 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:13.028413 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:13.028836 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:13.029434 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:13.118327 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:20:13.118473 [info] util::log_network_state: UDP connections
+2026-09-09 17:20:13.118480 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:13.118490 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:20:13.118500 [info] 6253: 192.168.31.248:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208351
+2026-09-09 17:20:13.118524 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208366
+2026-09-09 17:20:13.118867 [info] util::log_network_state: TCP connections
+2026-09-09 17:20:13.118874 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:13.118886 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 01 00000000:00000000 02:0000076A 00000000 0 0 206329
+2026-09-09 17:20:13.118892 [info] 13: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:000782BF 00000000 0 0 31857
+2026-09-09 17:20:13.118897 [info] 14: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008C9B9 00000000 0 0 74815
+2026-09-09 17:20:13.118901 [info] 15: 192.168.31.248:35816 192.168.31.85:7890 01 00000000:00000000 02:00000311 00000000 0 0 206425
+2026-09-09 17:20:13.118906 [info] 17: 192.168.31.248:22 192.168.31.85:63728 01 00000000:00000000 02:000AF882 00000000 0 0 202585
+2026-09-09 17:20:13.118911 [info] 18: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008C9AA 00000000 0 0 74811
+2026-09-09 17:20:13.118915 [info] 19: 192.168.31.248:57918 91.189.91.60:80 06 00000000:00000000 03:000011F5 00000000 0 0 0
+2026-09-09 17:20:14.126915 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:14.126954 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:14.126988 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:14.127044 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:14.127776 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:14.127792 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:14.128393 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:15.227046 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:15.227082 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:15.227220 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:15.227248 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:15.227859 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:15.227871 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:15.228491 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:16.327411 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:16.327455 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:16.327496 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:16.327535 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:16.328236 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:16.328258 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:16.328876 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:17.427586 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:17.427626 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:17.427666 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:17.427717 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:17.428428 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:17.428448 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:17.429024 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:18.528777 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:18.528821 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:18.528859 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:18.529035 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:18.529786 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:18.529814 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:18.530452 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:19.629377 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:19.629415 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:19.629448 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:19.629665 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:19.630501 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:19.630517 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:19.631057 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:20.729518 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:20.729555 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:20.729597 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:20.729631 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:20.730332 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:20.730345 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:20.730935 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:21.832167 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:21.832199 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:21.832225 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:21.832252 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:21.832523 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:21.832527 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:21.832709 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:22.932918 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:22.932958 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:22.932996 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:22.933059 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:22.934520 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:22.934541 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:22.935221 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:23.119337 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:20:23.119444 [info] util::log_network_state: UDP connections
+2026-09-09 17:20:23.119447 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:23.119455 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:20:23.119462 [info] 6253: 192.168.31.248:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208351
+2026-09-09 17:20:23.119465 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208366
+2026-09-09 17:20:23.119700 [info] util::log_network_state: TCP connections
+2026-09-09 17:20:23.119702 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:23.119709 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 06 00000000:00000000 03:000015CE 00000000 0 0 0
+2026-09-09 17:20:23.119712 [info] 13: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:00077ED7 00000000 0 0 31857
+2026-09-09 17:20:23.119715 [info] 14: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008C5D0 00000000 0 0 74815
+2026-09-09 17:20:23.119718 [info] 15: 192.168.31.248:35816 192.168.31.85:7890 01 00000000:00000000 02:00000AE0 00000000 0 0 206425
+2026-09-09 17:20:23.119721 [info] 17: 192.168.31.248:22 192.168.31.85:63728 01 00000000:00000000 02:000AF49A 00000000 0 0 202585
+2026-09-09 17:20:23.119724 [info] 18: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008C5C2 00000000 0 0 74811
+2026-09-09 17:20:23.119727 [info] 19: 192.168.31.248:57918 91.189.91.60:80 06 00000000:00000000 03:00000E0D 00000000 0 0 0
+2026-09-09 17:20:24.033055 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:24.033090 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:24.033111 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:24.033144 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:24.033406 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:24.033411 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:24.033594 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:25.133292 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:25.133333 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:25.133371 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:25.133414 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:25.134310 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:25.134326 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:25.134898 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:26.233819 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:26.233859 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:26.233897 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:26.233931 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:26.234829 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:26.234849 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:26.236289 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:27.334264 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:27.334303 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:27.334335 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:27.334393 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:27.335005 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:27.335014 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:27.335774 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:27.652924 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:27.652963 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:27.652997 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:27.653046 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:27.653728 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:27.653736 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:27.654354 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:28.753070 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:28.753113 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:28.753149 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:28.753202 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:28.753929 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:28.753956 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:28.754566 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:29.853249 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:29.853286 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:29.853310 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:29.853343 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:29.853624 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:29.853629 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:29.853819 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:30.953704 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:30.953744 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:30.953785 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:30.953842 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:30.955040 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:30.955064 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:30.955685 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:32.053954 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:32.053996 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:32.054035 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:32.054107 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:32.054768 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:32.054780 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:32.055416 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:32.338534 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:20:32.338704 [info] util::log_network_state: UDP connections
+2026-09-09 17:20:32.338709 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:32.338715 [info] 392: 127.0.0.53:53 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 101 0 20771
+2026-09-09 17:20:32.338719 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:20:32.338722 [info] 407: 192.168.50.128:68 192.168.50.254:67 01 00000000:00000000 00:00000000 00000000 0 0 24695
+2026-09-09 17:20:32.338725 [info] 450: 0.0.0.0:111 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 8228
+2026-09-09 17:20:32.338728 [info] 506: 0.0.0.0:57511 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23625
+2026-09-09 17:20:32.338731 [info] 1193: 127.0.0.1:854 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 22216
+2026-09-09 17:20:32.338734 [info] 1634: 0.0.0.0:42255 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23741
+2026-09-09 17:20:32.338736 [info] 4051: 0.0.0.0:36480 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23725
+2026-09-09 17:20:32.338739 [info] 5496: 0.0.0.0:46117 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 20075
+2026-09-09 17:20:32.338742 [info] 5692: 0.0.0.0:5353 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23623
+2026-09-09 17:20:32.338745 [info] 6253: 0.0.0.0:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208991
+2026-09-09 17:20:32.338747 [info] 6253: 192.168.31.248:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208351
+2026-09-09 17:20:32.338764 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208366
+2026-09-09 17:20:32.338767 [info] 7715: 0.0.0.0:48336 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 131 0 22224
+2026-09-09 17:20:32.338770 [info] 7898: 0.0.0.0:40327 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23733
+2026-09-09 17:20:32.339007 [info] util::log_network_state: TCP connections
+2026-09-09 17:20:32.339010 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:32.339012 [info] 0: 0.0.0.0:22 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 10837
+2026-09-09 17:20:32.339015 [info] 1: 0.0.0.0:111 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 8227
+2026-09-09 17:20:32.339018 [info] 2: 127.0.0.1:631 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22727
+2026-09-09 17:20:32.339021 [info] 3: 0.0.0.0:2049 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22248
+2026-09-09 17:20:32.339023 [info] 4: 0.0.0.0:44195 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23735
+2026-09-09 17:20:32.339026 [info] 5: 0.0.0.0:52479 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23727
+2026-09-09 17:20:32.339029 [info] 6: 0.0.0.0:36997 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 20076
+2026-09-09 17:20:32.339032 [info] 7: 127.0.0.53:53 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 101 0 20772
+2026-09-09 17:20:32.339034 [info] 8: 0.0.0.0:39325 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23743
+2026-09-09 17:20:32.339037 [info] 9: 0.0.0.0:47245 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 131 0 22227
+2026-09-09 17:20:32.339040 [info] 10: 127.0.0.1:6010 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 67032
+2026-09-09 17:20:32.339043 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 06 00000000:00000000 03:000011E5 00000000 0 0 0
+2026-09-09 17:20:32.339045 [info] 12: 192.168.31.248:49806 192.168.31.85:7890 01 00000000:00000000 02:000008ED 00000000 0 0 206693
+2026-09-09 17:20:32.339048 [info] 13: 192.168.50.128:55418 198.18.1.96:80 06 00000000:00000000 03:000006F6 00000000 0 0 0
+2026-09-09 17:20:32.339051 [info] 14: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:00077AEF 00000000 0 0 31857
+2026-09-09 17:20:32.339054 [info] 15: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008C1E8 00000000 0 0 74815
+2026-09-09 17:20:32.339057 [info] 16: 192.168.31.248:35816 192.168.31.85:7890 01 00000000:00000000 02:000006F8 00000000 0 0 206425
+2026-09-09 17:20:32.339060 [info] 17: 192.100.0.1:48542 199.59.149.202:443 06 00000000:00000000 03:00000DFB 00000000 0 0 0
+2026-09-09 17:20:32.339063 [info] 18: 192.168.31.248:22 192.168.31.85:63728 01 00000000:00000000 02:000AF0B2 00000000 0 0 202585
+2026-09-09 17:20:32.339065 [info] 19: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008C1DA 00000000 0 0 74811
+2026-09-09 17:20:32.339068 [info] 20: 192.168.31.248:57918 91.189.91.60:80 06 00000000:00000000 03:00000A25 00000000 0 0 0
+2026-09-09 17:20:33.160737 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:33.160776 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:33.160809 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:33.161715 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:33.163450 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:33.163472 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:33.164093 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:34.260922 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:34.261298 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:34.261374 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:34.261471 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:34.262194 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:34.262208 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:34.262839 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:35.362689 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:35.362727 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:35.362763 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:35.362799 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:35.363495 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:35.363570 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:35.364241 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:36.462884 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:36.462923 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:36.462963 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:36.462987 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:36.463748 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:36.463766 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:36.464325 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:37.563589 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:37.563629 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:37.563664 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:37.563727 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:37.564356 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:37.564364 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:37.565075 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:38.665941 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:38.665981 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:38.666016 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:38.666982 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:38.667860 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:38.667872 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:38.668509 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:39.769383 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:39.769428 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:39.769467 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:39.769618 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:39.770262 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:39.770273 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:39.770906 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:40.870610 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:40.870651 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:40.870705 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:40.871050 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:40.871961 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:40.871986 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:40.872639 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:41.970922 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:41.970964 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:41.971003 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:41.971066 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:41.972015 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:41.972035 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:41.972819 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:42.348132 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:20:42.348260 [info] util::log_network_state: UDP connections
+2026-09-09 17:20:42.348307 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:42.348320 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:20:42.348331 [info] 6253: 192.168.31.248:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208351
+2026-09-09 17:20:42.348336 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208366
+2026-09-09 17:20:42.348685 [info] util::log_network_state: TCP connections
+2026-09-09 17:20:42.348692 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:42.348704 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 06 00000000:00000000 03:00000DFD 00000000 0 0 0
+2026-09-09 17:20:42.348710 [info] 12: 192.168.31.248:49806 192.168.31.85:7890 01 00000000:00000000 02:00000504 00000000 0 0 206693
+2026-09-09 17:20:42.348715 [info] 14: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:00077706 00000000 0 0 31857
+2026-09-09 17:20:42.348720 [info] 15: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008BDFF 00000000 0 0 74815
+2026-09-09 17:20:42.348725 [info] 16: 192.168.31.248:35816 192.168.31.85:7890 01 00000000:00000000 02:0000030F 00000000 0 0 206425
+2026-09-09 17:20:42.348730 [info] 18: 192.168.31.248:22 192.168.31.85:63728 01 00000000:00000000 02:000AECC9 00000000 0 0 202585
+2026-09-09 17:20:42.348734 [info] 19: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008BDF1 00000000 0 0 74811
+2026-09-09 17:20:42.348739 [info] 20: 192.168.31.248:57918 91.189.91.60:80 06 00000000:00000000 03:0000063C 00000000 0 0 0
+2026-09-09 17:20:43.071374 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:43.071433 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:43.071470 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:43.071698 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:43.072485 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:43.072495 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:43.073265 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:44.171650 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:44.171689 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:44.171725 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:44.171747 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:44.172345 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:44.172357 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:44.172985 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:45.271806 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:45.271840 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:45.271865 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:45.271918 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:45.272588 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:45.272599 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:45.273138 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:46.371973 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:46.372014 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:46.372054 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:46.372120 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:46.372842 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:46.372856 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:46.373433 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:47.472148 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:47.472188 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:47.472227 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:47.472294 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:47.472957 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:47.472971 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:47.473539 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:48.572587 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:48.572650 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:48.572715 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:48.572823 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:48.573625 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:48.573678 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:48.574287 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:49.673549 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:49.673606 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:49.673670 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:49.673887 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:49.674873 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:49.674898 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:49.675491 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:50.775521 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:50.775655 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:50.776031 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:50.776173 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:50.777658 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:50.777681 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:50.778314 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:51.876203 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:51.876241 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:51.876268 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:51.876294 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:51.876633 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:51.876638 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:51.876833 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:52.350582 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:20:52.350733 [info] util::log_network_state: UDP connections
+2026-09-09 17:20:52.350743 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:52.350755 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:20:52.350766 [info] 6253: 192.168.31.248:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208351
+2026-09-09 17:20:52.350771 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208366
+2026-09-09 17:20:52.351215 [info] util::log_network_state: TCP connections
+2026-09-09 17:20:52.351270 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:20:52.351350 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 06 00000000:00000000 03:00000A14 00000000 0 0 0
+2026-09-09 17:20:52.351388 [info] 12: 192.168.31.248:49806 192.168.31.85:7890 01 00000000:00000000 02:0000011C 00000000 0 0 206693
+2026-09-09 17:20:52.351401 [info] 13: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:0007731E 00000000 0 0 31857
+2026-09-09 17:20:52.351457 [info] 14: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008BA17 00000000 0 0 74815
+2026-09-09 17:20:52.351469 [info] 15: 192.168.31.248:35816 192.168.31.85:7890 01 00000000:00000000 02:00000ADD 00000000 0 0 206425
+2026-09-09 17:20:52.351521 [info] 17: 192.168.31.248:22 192.168.31.85:63728 01 00000000:00000000 02:000AE8E1 00000000 0 0 202585
+2026-09-09 17:20:52.351649 [info] 18: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008BA09 00000000 0 0 74811
+2026-09-09 17:20:52.351678 [info] 19: 192.168.31.248:57918 91.189.91.60:80 06 00000000:00000000 03:00000254 00000000 0 0 0
+2026-09-09 17:20:52.976416 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:52.976446 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:52.976469 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:52.976492 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:52.976758 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:52.976766 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:52.976950 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:54.076658 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:54.076720 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:54.076760 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:54.076842 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:54.077515 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:54.077524 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:54.078158 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:55.189307 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:55.189347 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:55.189387 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:55.194036 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:55.194729 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:55.194742 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:55.195361 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:56.289458 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:56.289500 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:56.289610 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:56.289627 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:56.290814 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:56.290835 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:56.291420 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:57.396072 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:57.396112 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:57.396151 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:57.396663 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:57.397389 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:57.397409 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:57.398068 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:58.496564 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:58.496603 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:58.496639 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:58.496711 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:58.497367 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:58.497387 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:58.498150 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:20:59.596765 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:20:59.596796 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:59.596822 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:20:59.596844 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:59.597071 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:20:59.597075 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:20:59.597256 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:21:00.696876 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:21:00.696911 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:21:00.696946 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:21:00.696996 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:21:00.697719 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:21:00.697748 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:21:00.698305 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:21:02.240676 [warning] Didn't receive a multicast SD message for 1100ms.
+2026-09-09 17:21:02.240722 [info] usei::leave: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:21:02.240768 [info] usei::join: #1::192.168.31.248:30490:: 224.244.224.245
+2026-09-09 17:21:02.240810 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:21:02.241539 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Leave successful
+2026-09-09 17:21:02.241557 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+2026-09-09 17:21:02.242120 [info] usei::set_multicast_option: #1::192.168.31.248:30490:: Join successful
+2026-09-09 17:21:02.795859 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-09 17:21:02.795961 [info] util::log_network_state: UDP connections
+2026-09-09 17:21:02.795964 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:21:02.795971 [info] 392: 127.0.0.53:53 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 101 0 20771
+2026-09-09 17:21:02.795975 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 24699
+2026-09-09 17:21:02.795978 [info] 407: 192.168.50.128:68 192.168.50.254:67 01 00000000:00000000 00:00000000 00000000 0 0 24695
+2026-09-09 17:21:02.795981 [info] 450: 0.0.0.0:111 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 8228
+2026-09-09 17:21:02.795991 [info] 506: 0.0.0.0:57511 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23625
+2026-09-09 17:21:02.795994 [info] 1193: 127.0.0.1:854 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 22216
+2026-09-09 17:21:02.795997 [info] 1634: 0.0.0.0:42255 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23741
+2026-09-09 17:21:02.795999 [info] 4051: 0.0.0.0:36480 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23725
+2026-09-09 17:21:02.796002 [info] 5496: 0.0.0.0:46117 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 20075
+2026-09-09 17:21:02.796005 [info] 5692: 0.0.0.0:5353 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23623
+2026-09-09 17:21:02.796007 [info] 6253: 0.0.0.0:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208991
+2026-09-09 17:21:02.796010 [info] 6253: 192.168.31.248:30490 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208351
+2026-09-09 17:21:02.796013 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 208366
+2026-09-09 17:21:02.796016 [info] 7715: 0.0.0.0:48336 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 131 0 22224
+2026-09-09 17:21:02.796018 [info] 7898: 0.0.0.0:40327 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23733
+2026-09-09 17:21:02.796298 [info] util::log_network_state: TCP connections
+2026-09-09 17:21:02.796311 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-09 17:21:02.796316 [info] 0: 0.0.0.0:22 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 10837
+2026-09-09 17:21:02.796320 [info] 1: 0.0.0.0:111 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 8227
+2026-09-09 17:21:02.796323 [info] 2: 127.0.0.1:631 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22727
+2026-09-09 17:21:02.796326 [info] 3: 0.0.0.0:2049 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22248
+2026-09-09 17:21:02.796328 [info] 4: 0.0.0.0:44195 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23735
+2026-09-09 17:21:02.796331 [info] 5: 0.0.0.0:52479 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23727
+2026-09-09 17:21:02.796334 [info] 6: 0.0.0.0:36997 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 20076
+2026-09-09 17:21:02.796337 [info] 7: 127.0.0.53:53 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 101 0 20772
+2026-09-09 17:21:02.796339 [info] 8: 0.0.0.0:39325 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23743
+2026-09-09 17:21:02.796342 [info] 9: 0.0.0.0:47245 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 131 0 22227
+2026-09-09 17:21:02.796345 [info] 10: 127.0.0.1:6010 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 67032
+2026-09-09 17:21:02.796348 [info] 11: 192.168.31.248:45210 192.168.31.85:7890 06 00000000:00000000 03:0000062C 00000000 0 0 0
+2026-09-09 17:21:02.796351 [info] 12: 192.168.31.248:49806 192.168.31.85:7890 01 00000000:00000000 02:000008EC 00000000 0 0 206693
+2026-09-09 17:21:02.796354 [info] 13: 192.168.31.248:22 192.168.31.85:64109 01 00000000:00000000 02:00076F36 00000000 0 0 31857
+2026-09-09 17:21:02.796357 [info] 14: 192.168.31.248:22 192.168.31.85:52798 01 00000000:00000000 02:0008B62F 00000000 0 0 74815
+2026-09-09 17:21:02.796360 [info] 15: 192.168.31.248:43152 192.168.31.85:7890 01 00000000:00000000 02:00000A7C 00000000 0 0 211168
+2026-09-09 17:21:02.796363 [info] 16: 192.168.31.248:35816 192.168.31.85:7890 06 00000000:00000000 03:000013C8 00000000 0 0 0
+2026-09-09 17:21:02.796365 [info] 17: 192.100.0.1:48542 199.59.149.202:443 06 00000000:00000000 03:00000242 00000000 0 0 0
+2026-09-09 17:21:02.796368 [info] 18: 192.168.31.248:22 192.168.31.85:63728 01 00000000:00000000 02:000AE4F9 00000000 0 0 202585
+2026-09-09 17:21:02.796371 [info] 19: 192.168.31.248:22 192.168.31.85:52797 01 00000000:00000000 02:0008B620 00000000 0 0 74811
+2026-09-09 17:21:02.798584 [info] app::stop: Stopping vsomeip application "vehicle-probe-service" (4444).
+2026-09-09 17:21:02.798624 [info] Client 0x4444, state ST_REGISTERED -> ST_DEREGISTERED
+2026-09-09 17:21:02.798633 [info] rmc::stop: starting to flush the sender
+2026-09-09 17:21:02.798635 [info] emb::stop: Start endpoint flushing for client 0x4444
+2026-09-09 17:21:02.798639 [info] laui::close: Closing the acceptor: /tmp/vsomeip-4444, mem: 0x780a7c008130
+2026-09-09 17:21:02.798638 [info] Stopped thread 4444_m_dispatch, application 'vehicle-probe-service', id 780a833fe640, tid 14764
+2026-09-09 17:21:02.798664 [info] ON_STOP_OFFER_SERVICE(4444): [1111.2222:0.0]
+2026-09-09 17:21:02.798671 [info] usei::stop: #2::192.168.31.248:30509:: lifecycle_idx=1
+2026-09-09 17:21:02.798673 [info] usei::stop: #2::192.168.31.248:30509:: Done, lifecycle_idx=2
+2026-09-09 17:21:02.798697 [info] ON_STOP_OFFER_SERVICE(4444): [1111.2222:0.0]
+2026-09-09 17:21:02.798700 [info] STOP OFFER(4444): [1111.2222:0.0] (true)
+2026-09-09 17:21:02.798706 [info] lsui::stop: role: client, own: , peer: /tmp/vsomeip-0, mem: 0x780a7c005e90
+2026-09-09 17:21:02.798711 [info] le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x780a7c005e90, fd: -1, 0x780a7c005e90, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+2026-09-09 17:21:02.798716 [info] rmc::cleanup_client: self 0x4444 handles shutdown. Not reconnecting to host 0x0000
+2026-09-09 17:21:02.798724 [warning] le::receive_cbk: Escalating the error: End of file socket > Client: 4444 (0), connection : role: server, own: /tmp/vsomeip-0, peer: , mem: 0x780a7c0082d0, fd: 10, 0x780a7c0082d0, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+2026-09-09 17:21:02.798727 [info] le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 4444 (0), connection : role: server, own: /tmp/vsomeip-0, peer: , mem: 0x780a7c0082d0, fd: 10, 0x780a7c0082d0, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+2026-09-09 17:21:02.798730 [info] rmi::cleanup_client: self 0x0000 handles cleanup of client 0x4444
+2026-09-09 17:21:02.798733 [info] Application/Client 4444 is deregistering
+2026-09-09 17:21:02.798736 [info] emi::remove_routing_endpoint: client 0x4444
+2026-09-09 17:21:02.798739 [info] lsui::stop: role: server, own: /tmp/vsomeip-0, peer: , mem: 0x780a7c0082d0
+2026-09-09 17:21:02.798744 [info] le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 4444 (0), connection : role: server, own: /tmp/vsomeip-0, peer: , mem: 0x780a7c0082d0, fd: -1, 0x780a7c0082d0, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+2026-09-09 17:21:02.798747 [info] emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x4444 endpoint > role: server, own: /tmp/vsomeip-0, peer: , mem: 0x780a7c0082d0, fd: -1
+2026-09-09 17:21:02.798753 [info] rmc::stop: All endpoints cleared. Finishing the shutdown
+2026-09-09 17:21:02.798765 [info] laui::close: Closing the acceptor: /tmp/vsomeip-0, mem: 0x5f6d41ec2160
+2026-09-09 17:21:02.798772 [info] emi::stop: called
+2026-09-09 17:21:02.798774 [info] emi::clear_routing_endpoints:  
+2026-09-09 17:21:02.798776 [info] usei::stop: #1::192.168.31.248:30490:: lifecycle_idx=1
+2026-09-09 17:21:02.798779 [info] usei::stop: #1::192.168.31.248:30490:: Done, lifecycle_idx=2
+2026-09-09 17:21:02.798802 [info] Stopped thread m_multicast 780a82bfd640, tid 14765
+2026-09-09 17:21:02.798927 [info] emi::stop: Joined thread m_multicast 780a83bff640
+2026-09-09 17:21:02.798957 [info] Stopped thread m_auxiliary, id 780a823fc640, tid 14766
+2026-09-09 17:21:02.798985 [info] Joined thread m_auxiliary, id 780a823fc640
+2026-09-09 17:21:02.798997 [info] app::start: : io_.run() end for app(vehicle-probe-service, 4444); Join Dispatcher threads for app(vehicle-probe-service, 4444)
+2026-09-09 17:21:02.799001 [info] Join IO threads for app(vehicle-probe-service, 4444)
+2026-09-09 17:21:02.799008 [info] Stopped thread 4444_io00, application 'vehicle-probe-service', id 780a83bff640, tid 14763
+2026-09-09 17:21:02.799053 [info] usei::~udp_server_endpoint_impl: #2::192.168.31.248:30509:: lifecycle_idx=2
+2026-09-09 17:21:02.799464 [info] usei::~udp_server_endpoint_impl: #1::192.168.31.248:30490:: lifecycle_idx=2

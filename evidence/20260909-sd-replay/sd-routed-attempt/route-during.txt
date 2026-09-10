@@ -1,0 +1,2 @@
+multicast 224.244.224.245 dev ens33 src 192.168.31.248 rt_offload_failed uid 0 
+    cache <mc> 

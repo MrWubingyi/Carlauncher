@@ -1,0 +1,27 @@
+INSTRUMENTATION_STATUS: class=com.example.carlauncher.someip.VsomeipNativeProbeTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.example.carlauncher.someip.VsomeipNativeProbeTest:
+INSTRUMENTATION_STATUS: test=nativeRegistrationAndRepeatedStopAreSafe
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.example.carlauncher.someip.VsomeipNativeProbeTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=nativeRegistrationAndRepeatedStopAreSafe
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: coverageFilePath=/data/data/com.example.carlauncher/coverage.ec
+INSTRUMENTATION_RESULT: stream=
+
+Time: 0.125
+
+OK (1 test)
+
+
+Error: Failed to generate Emma/JaCoCo coverage.
+Generated code coverage data to /data/data/com.example.carlauncher/coverage.ec
+INSTRUMENTATION_CODE: -1
+

@@ -1,0 +1,9 @@
+
+Algorithm : SHA256
+Hash      : 9895F01D89C8773D332BDEBD881D801FEB09780E73E58230B9DD141A2F108E50
+Path      : D:\Android\AndroidStudioProjects\CarLauncher\app\build\outputs\apk\debug\app-debug.apk
+
+Algorithm : SHA256
+Hash      : C8A60094EB953F28E845E9A4AC393D0AF3AB02CAB89ACA689E917C1D37062196
+Path      : D:\Android\AndroidStudioProjects\CarLauncher\evidence\20260909-sd-replay\processor-test.exe
+

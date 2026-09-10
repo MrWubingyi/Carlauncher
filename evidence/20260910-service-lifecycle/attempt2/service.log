@@ -1,0 +1,221 @@
+2026-09-10 14:14:13.191191 [info] Using configuration file: "/root/develop/carlauncher-probe-20260909/service.json".
+2026-09-10 14:14:13.191490 [info] Parsed vsomeip configuration in 0ms
+2026-09-10 14:14:13.191634 [info] Configuration module loaded.
+2026-09-10 14:14:13.191948 [info] Security disabled!
+2026-09-10 14:14:13.192000 [info] Initializing vsomeip (3.7.5) application "vehicle-probe-service".
+2026-09-10 14:14:13.192136 [info] Instantiating routing manager [Host].
+2026-09-10 14:14:13.192228 [info] Starting Routing Manager [Host] with state RS_UNKNOWN
+2026-09-10 14:14:13.192308 [info] Creating routing root with transport protocol: UDS
+2026-09-10 14:14:13.192343 [info] Routing root @ /tmp/vsomeip-0
+2026-09-10 14:14:13.193238 [info] Instantiating routing manager [Proxy].
+2026-09-10 14:14:13.193380 [info] vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+2026-09-10 14:14:13.193416 [info] Application(vehicle-probe-service, 4444) is initialized (11, 100).
+2026-09-10 14:14:13.193453 [info] app::init: End of init, application "vehicle-probe-service" (4444)
+2026-09-10 14:14:13.194317 [info] Starting vsomeip application "vehicle-probe-service" (4444) using 1 threads I/O nice 0
+2026-09-10 14:14:13.195180 [info] Client [0000] routes unicast:192.168.31.248, netmask:255.255.255.0
+2026-09-10 14:14:13.195372 [info] netlink: from 0 to 1, if=0, mc=0, count=0
+2026-09-10 14:14:13.195769 [info] Started thread m_multicast 7dde66bfd640, tid 94657
+2026-09-10 14:14:13.195934 [info] vSomeIP routing ready.
+2026-09-10 14:14:13.195989 [info] Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+2026-09-10 14:14:13.195979 [info] Started thread m_auxiliary, id 7dde663fc640, tid 94658
+2026-09-10 14:14:13.196465 [info] Client [ffff] is connecting to [0000] at /tmp/vsomeip-0 endpoint > 0x7dde60006fb0
+2026-09-10 14:14:13.196611 [info] le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x7dde60005e30, fd: -1, 0x7dde60005e30, send_queue: 101, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+2026-09-10 14:14:13.196762 [info] Started thread 4444_io00, application 'vehicle-probe-service', id 7dde67bff640, tid 94655
+2026-09-10 14:14:13.196916 [info] netlink: from 1 to 2, if=2, mc=0, count=0
+2026-09-10 14:14:13.196973 [info] Started thread 4444_m_dispatch, application 'vehicle-probe-service', id 7dde673fe640, tid 94656
+2026-09-10 14:14:13.197045 [info] le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x7dde60005e30, fd: 9, 0x7dde60005e30, send_queue: 101, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+2026-09-10 14:14:13.197332 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-10 14:14:13.197723 [info] util::log_network_state: UDP connections
+2026-09-10 14:14:13.197795 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:13.197835 [info] 392: 127.0.0.53:53 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 101 0 20771
+2026-09-10 14:14:13.197874 [info] 407: 192.168.50.128:68 192.168.50.254:67 01 00000000:00000000 00:00000000 00000000 0 0 351005
+2026-09-10 14:14:13.197912 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 367650
+2026-09-10 14:14:13.197949 [info] 450: 0.0.0.0:111 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 8228
+2026-09-10 14:14:13.197987 [info] 506: 0.0.0.0:57511 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23625
+2026-09-10 14:14:13.198028 [info] 1193: 127.0.0.1:854 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 22216
+2026-09-10 14:14:13.198066 [info] 1634: 0.0.0.0:42255 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23741
+2026-09-10 14:14:13.198103 [info] 4051: 0.0.0.0:36480 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23725
+2026-09-10 14:14:13.198152 [info] 5496: 0.0.0.0:46117 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 20075
+2026-09-10 14:14:13.198190 [info] 5692: 0.0.0.0:5353 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23623
+2026-09-10 14:14:13.198228 [info] 7715: 0.0.0.0:48336 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 131 0 22224
+2026-09-10 14:14:13.198266 [info] 7898: 0.0.0.0:40327 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23733
+2026-09-10 14:14:13.199241 [info] util::log_network_state: TCP connections
+2026-09-10 14:14:13.199335 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:13.199374 [info] 0: 127.0.0.1:43339 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 404969
+2026-09-10 14:14:13.199411 [info] 1: 0.0.0.0:22 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 10837
+2026-09-10 14:14:13.199448 [info] 2: 0.0.0.0:111 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 8227
+2026-09-10 14:14:13.199485 [info] 3: 127.0.0.1:631 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 351797
+2026-09-10 14:14:13.199588 [info] 4: 0.0.0.0:2049 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22248
+2026-09-10 14:14:13.199624 [info] 5: 0.0.0.0:44195 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23735
+2026-09-10 14:14:13.199664 [info] 6: 0.0.0.0:52479 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23727
+2026-09-10 14:14:13.199701 [info] 7: 0.0.0.0:36997 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 20076
+2026-09-10 14:14:13.199738 [info] 8: 127.0.0.53:53 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 101 0 20772
+2026-09-10 14:14:13.199775 [info] 9: 0.0.0.0:39325 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23743
+2026-09-10 14:14:13.199812 [info] 10: 0.0.0.0:47245 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 131 0 22227
+2026-09-10 14:14:13.199849 [info] 11: 127.0.0.1:46291 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 436390
+2026-09-10 14:14:13.199886 [info] 12: 192.168.31.248:22 192.168.31.85:60367 01 00000000:00000000 02:000AFC5A 00000000 0 0 468681
+2026-09-10 14:14:13.199923 [info] 13: 192.168.31.248:40392 192.168.31.85:7890 01 00000000:00000000 00:00000000 00000000 0 0 419842
+2026-09-10 14:14:13.199960 [info] 14: 127.0.0.1:51424 127.0.0.1:46291 01 00000000:00000000 00:00000000 00000000 0 0 432778
+2026-09-10 14:14:13.199997 [info] 15: 127.0.0.1:46291 127.0.0.1:51424 01 00000000:00000000 00:00000000 00000000 0 0 436392
+2026-09-10 14:14:13.200033 [info] 16: 192.168.31.248:22 192.168.31.85:55529 01 00000000:00000000 02:00094017 00000000 0 0 429944
+2026-09-10 14:14:13.200070 [info] 17: 192.168.31.248:22 192.168.31.85:59611 01 00000000:00000000 02:000A75BC 00000000 0 0 436372
+2026-09-10 14:14:13.200495 [info] Assigned client ID 0x4444 to "vehicle-probe-service" ("wuby-virtual-machine") @ 0/0
+2026-09-10 14:14:13.201249 [info] emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x4444, connection > role: server, own: /tmp/vsomeip-0, peer: , mem: 0x7dde60008230, fd: 10
+2026-09-10 14:14:13.201330 [info] Application/Client 4444 is registering
+2026-09-10 14:14:13.201383 [info] netlink: from 2 to 3, if=2, mc=0, count=1
+2026-09-10 14:14:13.201633 [warning] Network interface "ens33" state changed: up
+2026-09-10 14:14:13.201690 [info] Service Discovery disabled. Using static routing information.
+2026-09-10 14:14:13.201726 [info] SOME/IP routing ready.
+2026-09-10 14:14:13.202718 [info] Creating local server endpoint for client 0x4444 with transport type UDS.
+2026-09-10 14:14:13.202999 [info] Listening @ /tmp/vsomeip-4444
+2026-09-10 14:14:13.203150 [info] rmc::on_client_assign_ack: Client 0x4444 (vehicle-probe-service) successfully connected to routing via UDS ~> registering...
+2026-09-10 14:14:13.203230 [info] rmc::register_application: Client 0x4444 Registering to routing manager @ vsomeip-0
+2026-09-10 14:14:13.203267 [info] rcsm::registered: Former client id: 0xffff, new 0x4444
+2026-09-10 14:14:13.203300 [info] Client 0x4444, state ST_REGISTERING -> ST_REGISTERED
+2026-09-10 14:14:13.203345 [info] Application/Client 4444 (vehicle-probe-service) is registered.
+2026-09-10 14:14:13.203776 [info] usei::udp_server_endpoint_impl: #1::
+2026-09-10 14:14:13.203845 [info] usei::init: #1::192.168.31.248:30509, lifecycle_idx=0
+2026-09-10 14:14:13.204012 [info] usei::init: #1::192.168.31.248:30509:: lifecycle_idx=0, Success
+2026-09-10 14:14:13.204049 [info] usei::start: #1::192.168.31.248:30509:: lifecycle_idx=0
+2026-09-10 14:14:13.204082 [info] usei::start_unlocked: #1::192.168.31.248:30509:: Start unicast data handler, lifecycle_idx=1, fd: 12
+2026-09-10 14:14:13.204142 [info] usei::start_unlocked: #1::192.168.31.248:30509:: Join 0 groups
+2026-09-10 14:14:13.204176 [info] usei::start: #1::192.168.31.248:30509:: Done, lifecycle_idx=1
+2026-09-10 14:14:13.204210 [info] ON_OFFER_SERVICE(4444): [1111.2222:0.0]
+2026-09-10 14:14:13.204245 [info] OFFER(4444): [1111.2222:0.0] (true)
+2026-09-10 14:14:23.200697 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-10 14:14:23.200949 [info] util::log_network_state: UDP connections
+2026-09-10 14:14:23.200989 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:23.201032 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 367650
+2026-09-10 14:14:23.201074 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 482505
+2026-09-10 14:14:23.201459 [info] util::log_network_state: TCP connections
+2026-09-10 14:14:23.201711 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:23.201762 [info] 12: 192.168.31.248:22 192.168.31.85:60367 01 00000000:00000000 02:000AF872 00000000 0 0 468681
+2026-09-10 14:14:23.201802 [info] 13: 192.168.31.248:40392 192.168.31.85:7890 01 00000000:00000000 00:00000000 00000000 0 0 419842
+2026-09-10 14:14:23.201842 [info] 16: 192.168.31.248:22 192.168.31.85:55529 01 00000000:00000000 02:00093C2E 00000000 0 0 429944
+2026-09-10 14:14:23.201881 [info] 17: 192.168.31.248:22 192.168.31.85:59611 01 00000000:00000000 02:000A71D3 00000000 0 0 436372
+PROBE_RX client=5566 session=1 rc=00 result=OK len=16 duplicate=0 applied=1 seq=2 timestampMs=1789020864669 speed=4 gear=3 dataStatus=0 hex=0100000002000001a089f4009d040300
+PROBE_RX client=5566 session=1 rc=00 result=OK len=16 duplicate=1 applied=1 seq=2 timestampMs=1789020864669 speed=4 gear=3 dataStatus=0 hex=0100000002000001a089f4009d040300
+PROBE_RX client=5566 session=2 rc=00 result=OK len=16 duplicate=0 applied=2 seq=3 timestampMs=1789020864772 speed=6 gear=3 dataStatus=0 hex=0100000003000001a089f40104060300
+PROBE_RX client=5566 session=2 rc=00 result=OK len=16 duplicate=1 applied=2 seq=3 timestampMs=1789020864772 speed=6 gear=3 dataStatus=0 hex=0100000003000001a089f40104060300
+PROBE_RX client=5566 session=3 rc=00 result=OK len=16 duplicate=0 applied=3 seq=4 timestampMs=1789020864874 speed=8 gear=3 dataStatus=0 hex=0100000004000001a089f4016a080300
+PROBE_RX client=5566 session=3 rc=00 result=OK len=16 duplicate=1 applied=3 seq=4 timestampMs=1789020864874 speed=8 gear=3 dataStatus=0 hex=0100000004000001a089f4016a080300
+PROBE_RX client=5566 session=4 rc=00 result=OK len=16 duplicate=0 applied=4 seq=5 timestampMs=1789020864975 speed=10 gear=3 dataStatus=0 hex=0100000005000001a089f401cf0a0300
+PROBE_RX client=5566 session=4 rc=00 result=OK len=16 duplicate=1 applied=4 seq=5 timestampMs=1789020864975 speed=10 gear=3 dataStatus=0 hex=0100000005000001a089f401cf0a0300
+PROBE_RX client=5566 session=5 rc=00 result=OK len=16 duplicate=0 applied=5 seq=6 timestampMs=1789020865076 speed=12 gear=3 dataStatus=0 hex=0100000006000001a089f402340c0300
+PROBE_RX client=5566 session=5 rc=00 result=OK len=16 duplicate=1 applied=5 seq=6 timestampMs=1789020865076 speed=12 gear=3 dataStatus=0 hex=0100000006000001a089f402340c0300
+PROBE_RX client=5566 session=6 rc=00 result=OK len=16 duplicate=0 applied=6 seq=7 timestampMs=1789020865182 speed=14 gear=3 dataStatus=0 hex=0100000007000001a089f4029e0e0300
+PROBE_RX client=5566 session=6 rc=00 result=OK len=16 duplicate=1 applied=6 seq=7 timestampMs=1789020865182 speed=14 gear=3 dataStatus=0 hex=0100000007000001a089f4029e0e0300
+PROBE_RX client=5566 session=7 rc=00 result=OK len=16 duplicate=0 applied=7 seq=8 timestampMs=1789020865283 speed=16 gear=3 dataStatus=0 hex=0100000008000001a089f40303100300
+PROBE_RX client=5566 session=7 rc=00 result=OK len=16 duplicate=1 applied=7 seq=8 timestampMs=1789020865283 speed=16 gear=3 dataStatus=0 hex=0100000008000001a089f40303100300
+PROBE_RX client=5566 session=8 rc=00 result=OK len=16 duplicate=0 applied=8 seq=9 timestampMs=1789020865385 speed=18 gear=3 dataStatus=0 hex=0100000009000001a089f40369120300
+PROBE_RX client=5566 session=8 rc=00 result=OK len=16 duplicate=1 applied=8 seq=9 timestampMs=1789020865385 speed=18 gear=3 dataStatus=0 hex=0100000009000001a089f40369120300
+PROBE_RX client=5566 session=9 rc=00 result=OK len=16 duplicate=0 applied=9 seq=10 timestampMs=1789020865485 speed=20 gear=3 dataStatus=0 hex=010000000a000001a089f403cd140300
+PROBE_RX client=5566 session=9 rc=00 result=OK len=16 duplicate=1 applied=9 seq=10 timestampMs=1789020865485 speed=20 gear=3 dataStatus=0 hex=010000000a000001a089f403cd140300
+PROBE_RX client=5566 session=a rc=00 result=OK len=16 duplicate=0 applied=10 seq=11 timestampMs=1789020865586 speed=22 gear=3 dataStatus=0 hex=010000000b000001a089f40432160300
+PROBE_RX client=5566 session=a rc=00 result=OK len=16 duplicate=1 applied=10 seq=11 timestampMs=1789020865586 speed=22 gear=3 dataStatus=0 hex=010000000b000001a089f40432160300
+PROBE_RX client=5566 session=b rc=00 result=OK len=16 duplicate=0 applied=11 seq=12 timestampMs=1789020865687 speed=24 gear=3 dataStatus=0 hex=010000000c000001a089f40497180300
+PROBE_RX client=5566 session=b rc=00 result=OK len=16 duplicate=1 applied=11 seq=12 timestampMs=1789020865687 speed=24 gear=3 dataStatus=0 hex=010000000c000001a089f40497180300
+PROBE_RX client=5566 session=c rc=00 result=OK len=16 duplicate=0 applied=12 seq=13 timestampMs=1789020865789 speed=26 gear=3 dataStatus=0 hex=010000000d000001a089f404fd1a0300
+2026-09-10 14:14:33.203017 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-10 14:14:33.203321 [info] util::log_network_state: UDP connections
+2026-09-10 14:14:33.203408 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:33.203458 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 367650
+2026-09-10 14:14:33.203502 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 482505
+2026-09-10 14:14:33.204011 [info] util::log_network_state: TCP connections
+2026-09-10 14:14:33.204075 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:33.204120 [info] 12: 192.168.31.248:22 192.168.31.85:60367 01 00000000:00000000 02:000AF48A 00000000 0 0 468681
+2026-09-10 14:14:33.204181 [info] 13: 192.168.31.248:40392 192.168.31.85:7890 01 00000000:00000000 00:00000000 00000000 0 0 419842
+2026-09-10 14:14:33.204222 [info] 16: 192.168.31.248:22 192.168.31.85:55529 01 00000000:00000000 02:00093846 00000000 0 0 429944
+2026-09-10 14:14:33.204261 [info] 17: 192.168.31.248:22 192.168.31.85:59611 01 00000000:00000000 02:000A6DEB 00000000 0 0 436372
+2026-09-10 14:14:43.205332 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-10 14:14:43.205673 [info] util::log_network_state: UDP connections
+2026-09-10 14:14:43.205711 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:43.205752 [info] 392: 127.0.0.53:53 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 101 0 20771
+2026-09-10 14:14:43.205790 [info] 407: 192.168.50.128:68 192.168.50.254:67 01 00000000:00000000 00:00000000 00000000 0 0 351005
+2026-09-10 14:14:43.205828 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 367650
+2026-09-10 14:14:43.205866 [info] 450: 0.0.0.0:111 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 8228
+2026-09-10 14:14:43.205915 [info] 506: 0.0.0.0:57511 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23625
+2026-09-10 14:14:43.205951 [info] 1193: 127.0.0.1:854 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 22216
+2026-09-10 14:14:43.205988 [info] 1634: 0.0.0.0:42255 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23741
+2026-09-10 14:14:43.206024 [info] 4051: 0.0.0.0:36480 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23725
+2026-09-10 14:14:43.206060 [info] 5496: 0.0.0.0:46117 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 20075
+2026-09-10 14:14:43.206097 [info] 5692: 0.0.0.0:5353 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 114 0 23623
+2026-09-10 14:14:43.206133 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 482505
+2026-09-10 14:14:43.206169 [info] 7715: 0.0.0.0:48336 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 131 0 22224
+2026-09-10 14:14:43.206205 [info] 7898: 0.0.0.0:40327 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 23733
+2026-09-10 14:14:43.207248 [info] util::log_network_state: TCP connections
+2026-09-10 14:14:43.207366 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:43.207421 [info] 0: 127.0.0.1:43339 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 404969
+2026-09-10 14:14:43.207458 [info] 1: 0.0.0.0:22 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 10837
+2026-09-10 14:14:43.207495 [info] 2: 0.0.0.0:111 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 8227
+2026-09-10 14:14:43.207597 [info] 3: 127.0.0.1:631 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 351797
+2026-09-10 14:14:43.207634 [info] 4: 0.0.0.0:2049 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 22248
+2026-09-10 14:14:43.207671 [info] 5: 0.0.0.0:44195 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23735
+2026-09-10 14:14:43.207707 [info] 6: 0.0.0.0:52479 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23727
+2026-09-10 14:14:43.207744 [info] 7: 0.0.0.0:36997 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 20076
+2026-09-10 14:14:43.207781 [info] 8: 127.0.0.53:53 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 101 0 20772
+2026-09-10 14:14:43.208097 [info] 9: 0.0.0.0:39325 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 23743
+2026-09-10 14:14:43.208140 [info] 10: 0.0.0.0:47245 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 131 0 22227
+2026-09-10 14:14:43.208178 [info] 11: 127.0.0.1:46291 0.0.0.0:0 0A 00000000:00000000 00:00000000 00000000 0 0 436390
+2026-09-10 14:14:43.208215 [info] 12: 192.168.31.248:22 192.168.31.85:60367 01 00000000:00000000 02:000AF0A2 00000000 0 0 468681
+2026-09-10 14:14:43.208252 [info] 13: 192.168.31.248:40392 192.168.31.85:7890 01 00000000:00000000 00:00000000 00000000 0 0 419842
+2026-09-10 14:14:43.208290 [info] 14: 127.0.0.1:51424 127.0.0.1:46291 01 00000000:00000000 00:00000000 00000000 0 0 432778
+2026-09-10 14:14:43.208328 [info] 15: 127.0.0.1:46291 127.0.0.1:51424 01 00000000:00000000 00:00000000 00000000 0 0 436392
+2026-09-10 14:14:43.208365 [info] 16: 192.168.31.248:22 192.168.31.85:55529 01 00000000:00000000 02:0009345E 00000000 0 0 429944
+2026-09-10 14:14:43.208403 [info] 17: 192.168.31.248:22 192.168.31.85:59611 01 00000000:00000000 02:000A6A03 00000000 0 0 436372
+2026-09-10 14:14:53.209370 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-10 14:14:53.210006 [info] util::log_network_state: UDP connections
+2026-09-10 14:14:53.210057 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:53.210102 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 367650
+2026-09-10 14:14:53.210145 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 482505
+2026-09-10 14:14:53.210689 [info] util::log_network_state: TCP connections
+2026-09-10 14:14:53.210778 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:14:53.210889 [info] 12: 192.168.31.248:22 192.168.31.85:60367 01 00000000:00000000 02:000AECB9 00000000 0 0 468681
+2026-09-10 14:14:53.210927 [info] 13: 192.168.31.248:40392 192.168.31.85:7890 01 00000000:00000000 00:00000000 00000000 0 0 419842
+2026-09-10 14:14:53.210965 [info] 16: 192.168.31.248:22 192.168.31.85:55529 01 00000000:00000000 02:00093075 00000000 0 0 429944
+2026-09-10 14:14:53.211002 [info] 17: 192.168.31.248:22 192.168.31.85:59611 01 00000000:00000000 02:000A661A 00000000 0 0 436372
+2026-09-10 14:15:03.212727 [info] vSomeIP 3.7.5 (7875a1cb@master) 
+2026-09-10 14:15:03.212963 [info] util::log_network_state: UDP connections
+2026-09-10 14:15:03.213000 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:15:03.213044 [info] 407: 192.168.31.248:68 192.168.31.1:67 01 00000000:00000000 00:00000000 00000000 0 0 367650
+2026-09-10 14:15:03.213087 [info] 6272: 192.168.31.248:30509 0.0.0.0:0 07 00000000:00000000 00:00000000 00000000 0 0 482505
+2026-09-10 14:15:03.213464 [info] util::log_network_state: TCP connections
+2026-09-10 14:15:03.213500 [info] idx, local_addr, remote_addr, state, tx_queue:rx_queue, timer_active:tm_when, retrnsmt, uid, unanswered, inode
+2026-09-10 14:15:03.213679 [info] 12: 192.168.31.248:22 192.168.31.85:60367 01 00000000:00000000 02:000AE8D1 00000000 0 0 468681
+2026-09-10 14:15:03.213741 [info] 13: 192.168.31.248:40392 192.168.31.85:7890 01 00000000:00000000 00:00000000 00000000 0 0 419842
+2026-09-10 14:15:03.213782 [info] 16: 192.168.31.248:22 192.168.31.85:55529 01 00000000:00000000 02:00092C8D 00000000 0 0 429944
+2026-09-10 14:15:03.213820 [info] 17: 192.168.31.248:22 192.168.31.85:59611 01 00000000:00000000 02:000A6232 00000000 0 0 436372
+2026-09-10 14:15:13.199525 [info] app::stop: Stopping vsomeip application "vehicle-probe-service" (4444).
+2026-09-10 14:15:13.199651 [info] ON_STOP_OFFER_SERVICE(4444): [1111.2222:0.0]
+2026-09-10 14:15:13.200054 [info] usei::stop: #1::192.168.31.248:30509:: lifecycle_idx=1
+2026-09-10 14:15:13.200091 [info] usei::stop: #1::192.168.31.248:30509:: Done, lifecycle_idx=2
+2026-09-10 14:15:13.200130 [info] ON_STOP_OFFER_SERVICE(4444): [1111.2222:0.0]
+2026-09-10 14:15:13.200165 [info] STOP OFFER(4444): [1111.2222:0.0] (true)
+2026-09-10 14:15:13.200255 [info] Client 0x4444, state ST_REGISTERED -> ST_DEREGISTERED
+2026-09-10 14:15:13.200290 [info] rmc::stop: starting to flush the sender
+2026-09-10 14:15:13.200324 [info] emb::stop: Start endpoint flushing for client 0x4444
+2026-09-10 14:15:13.200360 [info] laui::close: Closing the acceptor: /tmp/vsomeip-4444, mem: 0x7dde60008090
+2026-09-10 14:15:13.200453 [info] lsui::stop: role: client, own: , peer: /tmp/vsomeip-0, mem: 0x7dde60005e30
+2026-09-10 14:15:13.200531 [info] le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x7dde60005e30, fd: -1, 0x7dde60005e30, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+2026-09-10 14:15:13.200642 [info] rmc::cleanup_client: self 0x4444 handles shutdown. Not reconnecting to host 0x0000
+2026-09-10 14:15:13.200708 [warning] le::receive_cbk: Escalating the error: End of file socket > Client: 4444 (0), connection : role: server, own: /tmp/vsomeip-0, peer: , mem: 0x7dde60008230, fd: 10, 0x7dde60008230, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+2026-09-10 14:15:13.200744 [info] le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 4444 (0), connection : role: server, own: /tmp/vsomeip-0, peer: , mem: 0x7dde60008230, fd: 10, 0x7dde60008230, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+2026-09-10 14:15:13.200790 [info] rmi::cleanup_client: self 0x0000 handles cleanup of client 0x4444
+2026-09-10 14:15:13.200825 [info] Application/Client 4444 is deregistering
+2026-09-10 14:15:13.200934 [info] emi::remove_routing_endpoint: client 0x4444
+2026-09-10 14:15:13.200968 [info] lsui::stop: role: server, own: /tmp/vsomeip-0, peer: , mem: 0x7dde60008230
+2026-09-10 14:15:13.201031 [info] le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 4444 (0), connection : role: server, own: /tmp/vsomeip-0, peer: , mem: 0x7dde60008230, fd: -1, 0x7dde60008230, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+2026-09-10 14:15:13.201066 [info] emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x4444 endpoint > role: server, own: /tmp/vsomeip-0, peer: , mem: 0x7dde60008230, fd: -1
+2026-09-10 14:15:13.201129 [info] rmc::stop: All endpoints cleared. Finishing the shutdown
+2026-09-10 14:15:13.201208 [info] laui::close: Closing the acceptor: /tmp/vsomeip-0, mem: 0x6235fb418270
+2026-09-10 14:15:13.201276 [info] emi::stop: called
+2026-09-10 14:15:13.201308 [info] emi::clear_routing_endpoints:  
+2026-09-10 14:15:13.201712 [info] Stopped thread m_multicast 7dde66bfd640, tid 94657
+2026-09-10 14:15:13.201720 [info] Stopped thread 4444_m_dispatch, application 'vehicle-probe-service', id 7dde673fe640, tid 94656
+2026-09-10 14:15:13.202087 [info] emi::stop: Joined thread m_multicast 7dde67bff640
+2026-09-10 14:15:13.202501 [info] Stopped thread m_auxiliary, id 7dde663fc640, tid 94658
+2026-09-10 14:15:13.202984 [info] Joined thread m_auxiliary, id 7dde663fc640
+2026-09-10 14:15:13.203027 [info] app::start: : io_.run() end for app(vehicle-probe-service, 4444); Join Dispatcher threads for app(vehicle-probe-service, 4444)
+2026-09-10 14:15:13.203063 [info] Join IO threads for app(vehicle-probe-service, 4444)
+2026-09-10 14:15:13.203097 [info] Stopped thread 4444_io00, application 'vehicle-probe-service', id 7dde67bff640, tid 94655
+2026-09-10 14:15:13.203492 [info] usei::~udp_server_endpoint_impl: #1::192.168.31.248:30509:: lifecycle_idx=2

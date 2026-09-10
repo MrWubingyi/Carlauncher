@@ -1,0 +1,3 @@
+fb83db7e83210fca89bd515e08086faa4bf05a79c77b0bed354ca85c689473c9  app/build/outputs/apk/debug/app-debug.apk
+59b0c6fe99fa4a3159d427837d35fb1f5aa9945ca01d1fee30d37ee33e325a78  app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+f9410574de60a44dc3e293d328688e5abb751e96128d025d8625861b578cfe19  E:/Src/vsomeip/build-android-x86_64-mono/libvsomeip3.so

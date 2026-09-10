@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.model.VehicleStateTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-09-10T06:19:32.391Z" hostname="DESKTOP-H9SISPA" time="0.015">
+  <properties/>
+  <testcase name="toJson_omitsNullFields" classname="com.example.carlauncher.model.VehicleStateTest" time="0.012"/>
+  <testcase name="build_gearStringOverloadMapsValue" classname="com.example.carlauncher.model.VehicleStateTest" time="0.001"/>
+  <testcase name="build_defaultsAreApplied" classname="com.example.carlauncher.model.VehicleStateTest" time="0.0"/>
+  <testcase name="toJson_containsAllPopulatedFields" classname="com.example.carlauncher.model.VehicleStateTest" time="0.001"/>
+  <testcase name="build_nullEnumInputsFallbackToDefaults" classname="com.example.carlauncher.model.VehicleStateTest" time="0.0"/>
+  <testcase name="build_allFieldsAreRoundTrippedThroughGetters" classname="com.example.carlauncher.model.VehicleStateTest" time="0.0"/>
+  <testcase name="build_socIsClampedToValidRange" classname="com.example.carlauncher.model.VehicleStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

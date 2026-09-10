@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="1" errors="0" skipped="0" time="4.892" timestamp="2026-09-10T06:14:28" hostname="localhost">
+  <testsuite name="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" tests="1" failures="1" errors="0" skipped="0" time="2.895" timestamp="2026-09-10T06:14:28" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="backgroundRebindAndRestartReleaseEachNativeClientOnce" classname="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" time="2.895">
+      <failure>java.lang.NullPointerException: Current state was null unexpectedly. Last stage = STARTED
+at androidx.test.internal.util.Checks.checkNotNull(Checks.java:50)
+at androidx.test.core.app.ActivityScenario.moveToState(ActivityScenario.java:657)
+at androidx.test.core.app.ActivityScenario.close(ActivityScenario.java:421)
+at com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest.backgroundRebindAndRestartReleaseEachNativeClientOnce(VehicleServiceLifecycleProbeTest.java:125)
+</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

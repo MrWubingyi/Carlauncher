@@ -44,3 +44,8 @@ JVM 测试使用显式时间覆盖 2999/3000 ms 边界、错误、恢复及迟�
 后续真实 native/Method 探针见 `tools/someip-probe/README.md`。发送接口现在返回
 提交结果；JNI 在初始化前使用应用私有目录保存本地路由 socket。2026-09-09
 真实注册和三轮启停已通过，Method 尚受 Android NETLINK_ROUTE 权限阻塞。
+
+2026-09-10 更新（取代上段旧阻塞状态）：Android 网络适配后静态 Method 已通过，
+服务端有界去重已通过；SD 双端组播仍未互通。本轮新增真实 Service 的 Home 后台、
+解绑重绑和两轮单次释放验证，详见 [Service 生命周期记录](2026-09-10-SOMEIP-Service生命周期.md)。
+下一增量为 Ubuntu Adapter → 线程安全快照 → LVGL UI Timer。

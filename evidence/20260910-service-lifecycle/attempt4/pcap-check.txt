@@ -1,0 +1,163 @@
+
+Seq        : 2
+Client     : 5566
+Session    : 0001
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 3
+Client     : 5566
+Session    : 0002
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 4
+Client     : 5566
+Session    : 0003
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 5
+Client     : 5566
+Session    : 0004
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 6
+Client     : 5566
+Session    : 0005
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 7
+Client     : 5566
+Session    : 0006
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 8
+Client     : 5566
+Session    : 0007
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 9
+Client     : 5566
+Session    : 0008
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 10
+Client     : 5566
+Session    : 0009
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 11
+Client     : 5566
+Session    : 000a
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 12
+Client     : 5566
+Session    : 000b
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 13
+Client     : 5566
+Session    : 000c
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 2
+Client     : 5566
+Session    : 0001
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 3
+Client     : 5566
+Session    : 0002
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 4
+Client     : 5566
+Session    : 0003
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 5
+Client     : 5566
+Session    : 0004
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 6
+Client     : 5566
+Session    : 0005
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 7
+Client     : 5566
+Session    : 0006
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 8
+Client     : 5566
+Session    : 0007
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 9
+Client     : 5566
+Session    : 0008
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 10
+Client     : 5566
+Session    : 0009
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 11
+Client     : 5566
+Session    : 000a
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Seq        : 12
+Client     : 5566
+Session    : 000b
+Requests   : 2
+Responses  : 2
+ReturnCode : 00
+
+Packets=92 Requests=46 Responses=46 UniqueRequests=23

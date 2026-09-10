@@ -1,0 +1,7 @@
+
+Cycle ServiceId BackgroundReplies Releases
+----- --------- ----------------- --------
+    0 185194368                 6        1
+    1 130262534                 6        1
+PASS: cycles=2 nativeRequests=23 acceptedResponses=23 wireRequests=46 wireResponses=46 serverApplications=23
+

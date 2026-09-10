@@ -28,6 +28,7 @@ import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.network.VehicleTcpClient;
 
 import java.io.File;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -45,6 +46,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+import org.json.JSONObject;
 
 import com.example.carlauncher.someip.VsomeipClient;
 import com.example.carlauncher.someip.SomeipConnectionMonitor;
@@ -221,7 +223,7 @@ public class VehicleSendService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(TAG, "Service onCreate");
+        Log.i(TAG, "Service onCreate id=" + System.identityHashCode(this));
 
         // 创建通知渠道并启动前台服务
         createNotificationChannel();
@@ -351,27 +353,24 @@ public class VehicleSendService extends Service {
     /**
      * 把配置 JSON 中的 "unicast" 改写为当前设备网卡的 IPv4；无变化则不动文件。
      */
-    private void rewriteUnicast(File config, String ip) {
+    static void rewriteUnicast(File config, String ip) throws Exception {
         final String content;
-        try (FileInputStream in = new FileInputStream(config)) {
-            byte[] buf = new byte[(int) Math.min(config.length(), 64 * 1024)];
-            int n = in.read(buf);
-            content = new String(buf, 0, Math.max(n, 0), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            Log.e(TAG, "read vsomeip config failed", e);
-            return;
+        try (FileInputStream in = new FileInputStream(config);
+             ByteArrayOutputStream bytes = new ByteArrayOutputStream()) {
+            byte[] buf = new byte[4096];
+            int n;
+            while ((n = in.read(buf)) != -1) {
+                bytes.write(buf, 0, n);
+            }
+            content = bytes.toString(StandardCharsets.UTF_8.name());
         }
-        final String rewritten = content.replaceAll(
-                "(?s)(\"unicast\"\\s*:\\s*\")[^\"]*(\")",
-                "$1" + ip + "$2");
-        if (rewritten.equals(content)) {
-            return;
-        }
+        // Nested services[].unicast belongs to the remote endpoint, not this device.
+        JSONObject json = new JSONObject(content);
+        if (ip.equals(json.optString("unicast"))) return;
+        json.put("unicast", ip);
         try (FileOutputStream out = new FileOutputStream(config);
              OutputStreamWriter writer = new OutputStreamWriter(out, StandardCharsets.UTF_8)) {
-            writer.write(rewritten);
-        } catch (Exception e) {
-            Log.e(TAG, "rewrite vsomeip unicast failed", e);
+            writer.write(json.toString(2));
         }
     }
 
@@ -681,19 +680,19 @@ public class VehicleSendService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, "Service onBind");
+        Log.i(TAG, "Service onBind id=" + System.identityHashCode(this));
         return binder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.i(TAG, "Service onUnbind");
+        Log.i(TAG, "Service onUnbind id=" + System.identityHashCode(this));
         return super.onUnbind(intent);
     }
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "Service onDestroy");
+        Log.i(TAG, "Service onDestroy id=" + System.identityHashCode(this));
         stopping = true;
         someipMonitor.stop();
         connecting.set(false);
@@ -727,6 +726,7 @@ public class VehicleSendService extends Service {
                     try {
                         VsomeipClient.clearListener(someipListener);
                         VsomeipClient.stop();
+                        Log.i(TAG, "SOMEIP_RELEASED id=" + System.identityHashCode(this));
                     } catch (Throwable t) {
                         Log.e(TAG, "vsomeip stop failed", t);
                     }

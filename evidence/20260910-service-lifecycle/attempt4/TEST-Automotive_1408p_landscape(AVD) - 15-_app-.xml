@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="0" errors="0" skipped="0" time="6.607" timestamp="2026-09-10T06:19:01" hostname="localhost">
+  <testsuite name="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" tests="1" failures="0" errors="0" skipped="0" time="4.807" timestamp="2026-09-10T06:19:01" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="backgroundRebindAndRestartReleaseEachNativeClientOnce" classname="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" time="4.807" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="1" errors="0" skipped="0" time="52.459" timestamp="2026-09-10T06:12:37" hostname="localhost">
+  <testsuite name="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" tests="1" failures="1" errors="0" skipped="0" time="50.56" timestamp="2026-09-10T06:12:37" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="backgroundRebindAndRestartReleaseEachNativeClientOnce" classname="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" time="50.56">
+      <failure>java.lang.AssertionError: Activity never becomes requested state "[RESUMED]" (last lifecycle transition = "STOPPED")
+at androidx.test.core.app.ActivityScenario.waitForActivityToBecomeAnyOf(ActivityScenario.java:454)
+at androidx.test.core.app.ActivityScenario.moveToState(ActivityScenario.java:689)
+at com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest.backgroundRebindAndRestartReleaseEachNativeClientOnce(VehicleServiceLifecycleProbeTest.java:101)
+</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="1" errors="0" skipped="0" time="49.534" timestamp="2026-09-10T06:17:33" hostname="localhost">
+  <testsuite name="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" tests="1" failures="1" errors="0" skipped="0" time="47.748" timestamp="2026-09-10T06:17:33" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="backgroundRebindAndRestartReleaseEachNativeClientOnce" classname="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" time="47.748">
+      <failure>java.lang.RuntimeException: Could not launch intent Intent { flg=0x10000000 cmp=com.example.carlauncher/.MainActivity } within 45000 milliseconds. Perhaps the main thread has not gone idle within a reasonable amount of time? There could be an animation or something constantly repainting the screen. Or the activity is doing network calls on creation? See the threaddump logs. For your reference the last time the event queue was idle before your activity launch request was 1789021005455 and now the last time the queue went idle was: 1789021008493. If these numbers are the same your activity might be hogging the event queue.
+at androidx.test.runner.MonitoringInstrumentation.startActivitySync(MonitoringInstrumentation.java:537)
+at com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest.backgroundRebindAndRestartReleaseEachNativeClientOnce(VehicleServiceLifecycleProbeTest.java:67)
+</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -14,12 +14,10 @@ import java.net.InetAddress;
 /**
  * W37 WP1 第三步草稿 · vSomeIP Client JNI 桥。
  *
- * 角色：Android = vSomeIP Client + 数据发送方；调用 Ubuntu Service 0x1111/0x2222 的
- * Method 0x1001 SetVehicleState（payload 16 B，见 {@link SomeipPayloadCodec}）。
+ * Android subscribes to Ubuntu Service 0x1111/0x2222 Event 0x8001 (full JSON state).
+ * The legacy Method API remains available only for isolated protocol probes.
  *
- * 生命周期约定（WP1 第三步）：由调用方 Service 管理 —— Service 绑定/启动后
- * {@link #start(String)}，销毁时 {@link #stop()}；10 Hz 发送由现有 DataSource 触发
- * {@link #buildAndSend(int, long, int, int, int)}。回调经主线程 Handler 分发。
+ * The foreground Service owns start/stop. Event callbacks are dispatched on the main thread.
  *
  * 接入前：config json 需从 assets 拷到 filesDir 后传入 start()；插件 .so 随 APK 打包。
  */
@@ -55,6 +53,7 @@ public final class VsomeipClient {
         void onAvailable(boolean available);
         void onResponse(boolean ok, int returnCode);
         default void onStopped() {}
+        default void onVehicleEvent(byte[] payload) {}
     }
 
     private static final Handler UI = new Handler(Looper.getMainLooper());
@@ -154,6 +153,15 @@ public final class VsomeipClient {
 
     public static synchronized void clearListener(Listener listener) {
         if (sListener == listener) sListener = null;
+    }
+
+    /** JNI supplies an owned byte array; delivery is serialized with availability on the UI thread. */
+    @SuppressWarnings("unused")
+    public static void onNativeVehicleEvent(byte[] payload) {
+        final Listener listener = sListener;
+        UI.post(() -> {
+            if (listener != null && listener == sListener) listener.onVehicleEvent(payload);
+        });
     }
 
     /** native 线程回调入口；只做转发，不碰 UI。 */

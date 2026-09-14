@@ -1,0 +1,10 @@
+Internal ctest changing into directory: /root/develop/carlauncher-probe-20260909/build
+Test project /root/develop/carlauncher-probe-20260909/build
+    Start 1: vehicle_mock_timeline
+1/2 Test #1: vehicle_mock_timeline ............   Passed    0.00 sec
+    Start 2: vehicle_processor_behavior
+2/2 Test #2: vehicle_processor_behavior .......   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   0.01 sec

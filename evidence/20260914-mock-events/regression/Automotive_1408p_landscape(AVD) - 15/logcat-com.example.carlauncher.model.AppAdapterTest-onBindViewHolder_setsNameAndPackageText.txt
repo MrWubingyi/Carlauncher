@@ -1,0 +1,2 @@
+09-14 07:53:05.508  3580  3602 I TestRunner: started: onBindViewHolder_setsNameAndPackageText(com.example.carlauncher.model.AppAdapterTest)
+09-14 07:53:05.510  3580  3602 I TestRunner: finished: onBindViewHolder_setsNameAndPackageText(com.example.carlauncher.model.AppAdapterTest)

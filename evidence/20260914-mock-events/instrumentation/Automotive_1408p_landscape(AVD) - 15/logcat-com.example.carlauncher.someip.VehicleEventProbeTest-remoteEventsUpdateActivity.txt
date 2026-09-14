@@ -1,0 +1,561 @@
+09-14 07:43:49.417  3665  3689 I TestRunner: started: remoteEventsUpdateActivity(com.example.carlauncher.someip.VehicleEventProbeTest)
+09-14 07:43:49.430  3665  3689 I UiAutomation: Initialized for user 10 on display 0
+09-14 07:43:49.442  1411  1411 V RotaryController: onDestroy
+09-14 07:43:49.448   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.449  3665  3692 V UiAutomation: Init UiAutomation@28edaa4[id=3, displayId=0, flags=0]
+09-14 07:43:49.449   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.450   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.451   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.451   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.451   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.452   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.452   725   725 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:49.458  1461  1461 I SafetyCenterAccessibilityListener: accessibility event occurred, safety center feature not enabled.
+09-14 07:43:49.458  1461  1461 I SafetyCenterAccessibilityListener: accessibility event occurred, safety center feature not enabled.
+09-14 07:43:49.463  1411  1411 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@e0dbf24
+09-14 07:43:49.489   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:49.500  3665  3689 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+09-14 07:43:49.515   501   501 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 6
+09-14 07:43:49.520   501   501 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 6
+09-14 07:43:49.533   501   501 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 3
+09-14 07:43:49.552   501   501 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 3
+09-14 07:43:49.559   725  1031 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010248, packageName = null, attributionTag = null, token = android.os.Binder@7b2f405, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:43:49.562   725  1031 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 07:43:49.573  1181  1403 E ndroid.systemui: Invalid resource ID 0x00000000.
+09-14 07:43:49.576   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:49.581  1181  1404 D SplashScreenView: Build android.window.SplashScreenView{eebb49d V.E...... ......ID 0,0-0,0}
+09-14 07:43:49.581  1181  1404 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 07:43:49.581  1181  1404 D SplashScreenView: Branding: view: android.view.View{9d1ed12 G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 07:43:49.593   505   505 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:43:49.593   725  2514 D ConnectivityService: requestNetwork for uid/pid:10223/1181 asUid: 1010248 activeRequest: null callbackRequest: 78 [NetworkRequest [ REQUEST id=79, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: ALL
+09-14 07:43:49.608   725   912 D ConnectivityService: NetReassign [79 : null → 100] [c 1] [a 0] [i 6]
+09-14 07:43:49.609   725   905 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=79, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:43:49.609   725   905 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=79, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:43:49.609   725   905 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=79, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:43:49.610   725   905 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=79, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:43:49.648  1181  1181 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher/com.example.carlauncher.MainActivity}
+09-14 07:43:49.649  1181  1181 D DockViewModel: internalItems.size = 4, maxItemsInDock= 4
+09-14 07:43:49.677  1181  1181 D DockViewModel: Updating ComponentInfo{com.example.carlauncher/com.example.carlauncher.MainActivity} at 1
+09-14 07:43:49.677  1181  1181 D DockViewModel: createDockList called
+09-14 07:43:49.687  1181  1181 D class com.android.car.datasubscription.DataSubscriptionController: onAvailable 100
+09-14 07:43:49.687  1181  1181 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 07:43:49.711   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:49.726  1181  1181 D DockAdapter: Binding at position 1 without payloads
+09-14 07:43:49.733  1181  1181 D DockAdapter: Is callback set for 1: false
+09-14 07:43:49.733  1181  1181 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:43:49.743   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:49.802  3665  3665 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+09-14 07:43:49.832  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: PRE_ON_CREATE
+09-14 07:43:49.832  3665  3665 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+09-14 07:43:49.832  3665  3665 I VEHICLE_LAUNCHER: MainActivity onCreate
+09-14 07:43:49.844   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:50.132  3665  3665 E ple.carlauncher: Invalid resource ID 0x00000000.
+09-14 07:43:50.152  1376  1576 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:43:50.211   179  3700 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:43:50.328   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:50.339  1626  1626 D VRI[CarLauncher]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:43:50.340  2491  2491 D VRI[MapsPlaceholderActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:43:50.361  1181  1181 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:43:50.376   505   505 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:43:50.425   725  3701 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:43:50.425   725  3701 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:43:50.433   725  3701 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:43:50.556  3665  3665 D DecorView: package: com.example.carlauncher user: 10 displayCompat: false
+09-14 07:43:50.561  3665  3665 D DesktopModeFlagsUtil: Toggle override initialized to: OVERRIDE_UNSET
+09-14 07:43:50.568  3665  3665 W ple.carlauncher: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+09-14 07:43:50.568  3665  3665 I THEME_PREFERENCES: Loaded welcome enabled=true
+09-14 07:43:50.576  3665  3665 I COCKPIT_VIEW_MODEL: created, id=179728400
+09-14 07:43:50.585  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: CREATED
+09-14 07:43:50.586  3665  3665 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.example.carlauncher.MainActivity@6114972
+09-14 07:43:50.587  3665  3665 I VEHICLE_LAUNCHER: onStart
+09-14 07:43:50.589  3665  3665 I VEHICLE_LAUNCHER: bindService requested: true
+09-14 07:43:50.589  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: STARTED
+09-14 07:43:50.589  3665  3665 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.example.carlauncher.MainActivity@6114972
+09-14 07:43:50.591  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:50.601  3665  3665 I VEHICLE_LAUNCHER: MainActivity onResume
+09-14 07:43:50.601  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: RESUMED
+09-14 07:43:50.601  3665  3665 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.example.carlauncher.MainActivity@6114972
+09-14 07:43:50.619  3665  3665 W HWUI    : Unknown dataspace 0
+09-14 07:43:50.697  1181  1181 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:43:50.699   505   557 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:43:50.699   505   557 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (450 us)
+09-14 07:43:50.699   505   557 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:43:50.699   505   557 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (68 us)
+09-14 07:43:50.700   505   557 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010248 pid=0
+09-14 07:43:50.700   505   557 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010248 => denied (684 us)
+09-14 07:43:50.701   505   519 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=3665
+09-14 07:43:50.701   505   519 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (2633 us)
+09-14 07:43:50.704  3665  3696 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:43:50.706  3665  3696 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:43:50.720  3665  3696 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:43:50.744   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:50.763  3665  3669 I ple.carlauncher: Compiler allocated 4208KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+09-14 07:43:51.160   725   823 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:43:51.160   725   823 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (89 us)
+09-14 07:43:51.160   725   823 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:43:51.160   725   823 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (21 us)
+09-14 07:43:51.160   725   823 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010248 pid=0
+09-14 07:43:51.160   725   823 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010248 => denied (15 us)
+09-14 07:43:51.160   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.170   725   760 W ziparchive: Unable to open '/data/app/~~Yooi8pSNEY-A9J41S-OSIw==/com.example.carlauncher-HZsEVH9lbvy8AKetlbDrew==/base.dm': No such file or directory
+09-14 07:43:51.171   725   760 I ActivityTaskManager: Displayed com.example.carlauncher/.MainActivity for user 10: +1s604ms
+09-14 07:43:51.184  1376  1576 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:43:51.195   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.221   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.237   179  3708 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:43:51.254  3665  3665 I VEHICLE_LAUNCHER: Welcome Snackbar displayed
+09-14 07:43:51.255  3665  3665 I Choreographer: Skipped 36 frames!  The application may be doing too much work on its main thread.
+09-14 07:43:51.275   725   876 I ImeTracker: com.example.carlauncher:a8bdb3ad: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+09-14 07:43:51.276   725   876 I ImeTracker: com.example.carlauncher:a8bdb3ad: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-14 07:43:51.309   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.314   230   445 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 07:43:51.325  1687  1687 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2113
+09-14 07:43:51.326  1687  1687 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+09-14 07:43:51.327  1687  1687 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1384 onStartInput(EditorInfo{EditorInfo{packageName=com.example.carlauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-14 07:43:51.340   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:51.340   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:51.340   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:51.340   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:51.340   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:51.341  1687  1687 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+09-14 07:43:51.381   419   419 I netd    : tetherGetStats() -> {[]} <28.42ms>
+09-14 07:43:51.469  3665  3669 I ple.carlauncher: Compiler allocated 5200KB to compile void android.view.ViewRootImpl.performTraversals()
+09-14 07:43:51.499  2011  2404 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+09-14 07:43:51.501  2011  2404 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+09-14 07:43:51.743  1181  1181 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:43:51.746  2011  2433 I FontLog : Updating from directory version 0 to 31 from disk [CONTEXT service_id=132 ]
+09-14 07:43:51.750  1181  1403 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@daf243f
+09-14 07:43:51.788   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.793   505   548 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.797  2011  2343 I FontLog : Using directory in FlatBuffer format [CONTEXT service_id=132 ]
+09-14 07:43:51.801   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.841  2011  2404 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+09-14 07:43:51.876  2011  2404 I FontLog : Pulling font file for id = 1, cache size = 1 [CONTEXT service_id=132 ]
+09-14 07:43:51.892  2011  2404 I FontLog : Pulling font file for id = 1, cache size = 1 [CONTEXT service_id=132 ]
+09-14 07:43:51.945   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:51.994   505   548 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:52.053   725   823 D WifiNl80211Manager: Scan result ready event
+09-14 07:43:52.053   725   823 D WifiNative: Scan result ready event
+09-14 07:43:52.061   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:52.061   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:52.073   725   905 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+09-14 07:43:52.077   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:52.137  3665  3665 I VEHICLE_LAUNCHER: Observer owner activity=101796210, viewModel=179728400
+09-14 07:43:52.146  3665  3665 I VEHICLE_SERVICE: Service onCreate id=147685393
+09-14 07:43:52.160  3665  3665 I VEHICLE_SERVICE: Service onBind id=147685393
+09-14 07:43:52.163  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:52.173  3665  3665 I VEHICLE_LAUNCHER: Activity bound to VehicleSendService
+09-14 07:43:52.177  1181  1181 D CarNotificationListener: onNotificationPosted: StatusBarNotification(pkg=com.example.carlauncher user=UserHandle{10} id=1001 tag=null key=10|com.example.carlauncher|1001|null|1010248: Notification(channel=vehicle_send_channel shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE))
+09-14 07:43:52.177  1181  1181 D CarNotificationListener: Is incoming notification a group summary?: false
+09-14 07:43:52.179  1181  1181 D CarHeadsUpNotificationManager: Unable to show as HUN: importance is not sufficient
+09-14 07:43:52.179  1181  1181 D CarHeadsUpNotificationManager: 10|com.example.carlauncher|1001|null|1010248 is not an active heads up notification
+09-14 07:43:52.179  1181  1181 D CarNotificationListener: Is 10|com.example.carlauncher|1001|null|1010248 shown as HUN?: false
+09-14 07:43:52.179  1181  1181 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 importance is insufficient to show in notification center
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 application is neither system privileged nor signed with platform key
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 category: null
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: Filtered notifications: [10|com.example.carlauncher|1001|null|1010248, 10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248=10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]}
+09-14 07:43:52.181  1181  1181 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.181  1181  1181 D NotificationDataManager: Unseen notifications cleared
+09-14 07:43:52.181  1181  1181 D NotificationDataManager: Unseen notification map: {10|com.example.carlauncher|1001|null|1010248=true, 10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 07:43:52.185  1181  1181 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.186  1181  1181 D NotificationViewControl: Unprocessed notification map: {10|com.example.carlauncher|1001|null|1010248=10|com.example.carlauncher|1001|null|1010248, 10|com.android.car.messenger|2147483647|null|1010165=10|com.android.car.messenger|2147483647|null|1010165, 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000=-1|android|55|null|1000}
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 importance is insufficient to show in notification center
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 application is neither system privileged nor signed with platform key
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 category: null
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: Filtered notifications: [10|com.example.carlauncher|1001|null|1010248, 10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248=10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]}
+09-14 07:43:52.186  1181  1181 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.186  1181  1181 D NotificationDataManager: Unseen notifications cleared
+09-14 07:43:52.186  1181  1181 D NotificationDataManager: Unseen notification map: {10|com.example.carlauncher|1001|null|1010248=true, 10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 07:43:52.189  1181  1181 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.189  1181  1181 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.192  1181  1181 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.192  1181  1181 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 07:43:52.192  1181  1181 D NotificationViewControl: Processed notification groups: [10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 07:43:52.192  1181  1181 D CarNotificationAdapter: Seen notifications: []
+09-14 07:43:52.192  1181  1181 D CarNotificationAdapter: Unseen notifications: [10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 07:43:52.192  1181  1181 D CarNotificationAdapter: Updated adapter view holders: [notification_header: [], notification_recents: [], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000], notification_footer: []]
+09-14 07:43:52.195  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:52.217  1376  1576 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:43:52.229  1181  1181 I CarNotificationAdapter: Big text style is not supported as a car notification
+09-14 07:43:52.241   179  3713 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:43:52.261  3665  3712 D nativeloader: Load /data/app/~~Yooi8pSNEY-A9J41S-OSIw==/com.example.carlauncher-HZsEVH9lbvy8AKetlbDrew==/base.apk!/lib/x86_64/libvsomeip3.so using ns clns-7 from class loader (caller=/data/app/~~Yooi8pSNEY-A9J41S-OSIw==/com.example.carlauncher-HZsEVH9lbvy8AKetlbDrew==/base.apk!classes6.dex): ok
+09-14 07:43:52.271  3665  3712 D nativeloader: Load /data/app/~~Yooi8pSNEY-A9J41S-OSIw==/com.example.carlauncher-HZsEVH9lbvy8AKetlbDrew==/base.apk!/lib/x86_64/libcarlauncher.so using ns clns-7 from class loader (caller=/data/app/~~Yooi8pSNEY-A9J41S-OSIw==/com.example.carlauncher-HZsEVH9lbvy8AKetlbDrew==/base.apk!classes6.dex): ok
+09-14 07:43:52.273  3665  3712 I VSOMEIP_JNI: System.loadLibrary ok
+09-14 07:43:52.293   725  2045 I WifiService: acquireMulticastLock uid=1010248 tag=carlauncher-someip-sd
+09-14 07:43:52.295  3665  3712 I VSOMEIP_JNI: SD multicast lock acquired
+09-14 07:43:52.295  1157  1435 D IpClient.wlan0: set max DTIM multiplier to 1
+09-14 07:43:52.296  3665  3712 I VSOMEIP_NETWORK: address=10.203.0.2 interface= available=false multicastRoute=false
+09-14 07:43:52.297   725   905 E WifiStaIfaceAidlImpl: setDtimMultiplier failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+09-14 07:43:52.302  3665  3712 I VSOMEIP_JNI: nativeStart: begin
+09-14 07:43:52.302  3665  3712 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files/vsomeip
+09-14 07:43:52.302   725   912 D ConnectivityService: NetReassign [no changes] [c 0] [a 1] [i 0]
+09-14 07:43:52.302  3665  3712 I VSOMEIP_JNI: create_application ok
+09-14 07:43:52.302  3665  3712 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-14 07:43:52.304  3665  3712 I         : VSIP: Using configuration file: "/data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-client.json".
+09-14 07:43:52.304  3665  3712 I         : VSIP: Parsed vsomeip configuration in 1ms
+09-14 07:43:52.304  3665  3712 I         : VSIP: Configuration loaded with Multiple Routing Managers ENABLED.
+09-14 07:43:52.304  3665  3712 I         : VSIP: Security disabled!
+09-14 07:43:52.304  3665  3712 I         : VSIP: Initializing vsomeip (3.7.5) application "soc-vehicle-client".
+09-14 07:43:52.304  3665  3712 I         : VSIP: Instantiating routing manager [Host].
+09-14 07:43:52.305  3665  3712 I         : VSIP: Starting Routing Manager [Host] with state RS_UNKNOWN
+09-14 07:43:52.305  3665  3712 I         : VSIP: Creating routing root with transport protocol: UDS
+09-14 07:43:52.305  3665  3712 I         : VSIP: Routing root @ /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0
+09-14 07:43:52.307  3665  3712 I         : VSIP: Service Discovery enabled. Trying to load module.
+09-14 07:43:52.308  3665  3715 I VSOMEIP_NETWORK: address=10.203.0.2 interface=wlan0 available=true multicastRoute=true
+09-14 07:43:52.313  3665  3712 E         : VSIP: Could not dlopen "libvsomeip_sd.so" due to err: dlopen failed: library "libvsomeip_sd.so" not found
+09-14 07:43:52.313  3665  3712 I         : VSIP: Service Discovery module not available via plugin; using built-in implementation.
+09-14 07:43:52.313  3665  3712 I         : VSIP: Service Discovery Stop Offer watchdog enabled.
+09-14 07:43:52.313  3665  3712 I         : VSIP: Service Discovery Offer watchdog enabled.
+09-14 07:43:52.313  3665  3712 I         : VSIP: Instantiating routing manager [Proxy].
+09-14 07:43:52.313  3665  3712 I         : VSIP: vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+09-14 07:43:52.313  3665  3712 I         : VSIP: Application(soc-vehicle-client, 5566) is initialized (11, 100).
+09-14 07:43:52.313  3665  3712 I         : VSIP: app::init: End of init, application "soc-vehicle-client" (5566)
+09-14 07:43:52.313  3665  3712 I VSOMEIP_JNI: app_->init() ok
+09-14 07:43:52.313  3665  3712 I VSOMEIP_JNI: vsomeip io thread spawned
+09-14 07:43:52.313  3665  3712 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-14 07:43:52.313  3665  3716 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-14 07:43:52.313  3665  3716 I         : VSIP: Starting vsomeip application "soc-vehicle-client" (5566) using 1 threads I/O nice 0
+09-14 07:43:52.313  3665  3712 I VEHICLE_SERVICE: VsomeipClient.start=true unicast=10.203.0.2 (on executor thread)
+09-14 07:43:52.313  3665  3716 I         : VSIP: Client [0000] routes unicast:10.203.0.2, netmask:255.255.255.0
+09-14 07:43:52.313  3665  3716 I         : VSIP: Android network connector: waiting for ConnectivityManager, address=10.203.0.2
+09-14 07:43:52.313  3665  3716 I         : VSIP: vSomeIP routing ready.
+09-14 07:43:52.313  3665  3716 I         : VSIP: Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+09-14 07:43:52.313  3665  3716 I         : VSIP: Client [ffff] is connecting to [0000] at /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0 endpoint > 0x7f8435086ff0
+09-14 07:43:52.314  3665  3716 I         : VSIP: le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7f842506db08, fd: -1, 0x7f842506db08, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+09-14 07:43:52.314  3665  3716 I         : VSIP: Started thread 5566_io00, application 'soc-vehicle-client', id 140203207362688, tid 3716
+09-14 07:43:52.314  3665  3716 I         : VSIP: le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7f842506db08, fd: 158, 0x7f842506db08, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+09-14 07:43:52.314  3665  3716 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-14 07:43:52.314  3665  3718 I         : VSIP: Started thread m_multicast 140203161131136, tid 3718
+09-14 07:43:52.314  3665  3717 I         : VSIP: Started thread 5566_m_dispatch, application 'soc-vehicle-client', id 140203201104000, tid 3717
+09-14 07:43:52.314  3665  3717 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-14 07:43:52.314  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:52.315  3665  3719 I         : VSIP: Started thread m_auxiliary, id 140203160066176, tid 3719
+09-14 07:43:52.320  3665  3716 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-14 07:43:52.320  3665  3716 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-14 07:43:52.320  3665  3716 I         : VSIP: Assigned client ID 0x5566 to "soc-vehicle-client" ("localhost") @ 1010248/1010248
+09-14 07:43:52.320  3665  3716 I         : VSIP: emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x5566, connection > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7f842506dd48, fd: 159
+09-14 07:43:52.320  3665  3716 I         : VSIP: Application/Client 5566 is registering
+09-14 07:43:52.312  3665  3665 W com.example.carlauncher: type=1400 audit(0.0:59): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 07:43:52.320  3665  3716 I         : VSIP: Creating local server endpoint for client 0x5566 with transport type UDS.
+09-14 07:43:52.321  3665  3716 I         : VSIP: Listening @ /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-5566
+09-14 07:43:52.321  3665  3716 I         : VSIP: rmc::on_client_assign_ack: Client 0x5566 (soc-vehicle-client) successfully connected to routing via UDS ~> registering...
+09-14 07:43:52.321  3665  3716 I         : VSIP: rmc::register_application: Client 0x5566 Registering to routing manager @ vsomeip-0
+09-14 07:43:52.321  3665  3716 I         : VSIP: rcsm::registered: Former client id: 0xffff, new 0x5566
+09-14 07:43:52.321  3665  3716 I         : VSIP: Client 0x5566, state ST_REGISTERING -> ST_REGISTERED
+09-14 07:43:52.321  3665  3716 I         : VSIP: Application/Client 5566 (soc-vehicle-client) is registered.
+09-14 07:43:52.324  3665  3717 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-14 07:43:52.324  3665  3717 I VSOMEIP_JNI: native: registered
+09-14 07:43:52.325  3665  3716 W         : VSIP: Network interface "wlan0" state changed: up
+09-14 07:43:52.325  3665  3716 W         : VSIP: Route "wlan0" state changed: up
+09-14 07:43:52.325  3665  3716 I         : VSIP: usei::udp_server_endpoint_impl: #1::
+09-14 07:43:52.325  3665  3716 I         : VSIP: usei::init: #1::10.203.0.2:30490, lifecycle_idx=0
+09-14 07:43:52.325  3665  3716 I         : VSIP: usei::init_unlocked: #1::Failed to force receive buffer size 1703936, Operation not permitted
+09-14 07:43:52.326  3665  3716 I         : VSIP: usei::init: #1::10.203.0.2:30490:: lifecycle_idx=0, Success
+09-14 07:43:52.326  3665  3716 I         : VSIP: usei::start: #1::10.203.0.2:30490:: lifecycle_idx=0
+09-14 07:43:52.326  3665  3716 I         : VSIP: usei::start_unlocked: #1::10.203.0.2:30490:: Start unicast data handler, lifecycle_idx=1, fd: 161
+09-14 07:43:52.326  3665  3716 I         : VSIP: usei::start_unlocked: #1::10.203.0.2:30490:: Join 0 groups
+09-14 07:43:52.326  3665  3716 I         : VSIP: usei::start: #1::10.203.0.2:30490:: Done, lifecycle_idx=1
+09-14 07:43:52.326  3665  3716 I         : VSIP: usei::join: #1::10.203.0.2:30490:: 224.244.224.245
+09-14 07:43:52.326  3665  3716 I         : VSIP: SOME/IP routing ready.
+09-14 07:43:52.326  3665  3718 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-14 07:43:52.327  3665  3718 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Failed to force received buffer size, Operation not permitted
+09-14 07:43:52.327  3665  3718 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Start multicast data handler, lifecycle_idx=1, fd: 162
+09-14 07:43:52.327  3665  3718 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Join successful
+09-14 07:43:52.327  3665  3716 I         : VSIP: REQUEST(5566): [1111.2222:255.4294967295]
+09-14 07:43:52.320  3665  3665 W com.example.carlauncher: type=1400 audit(0.0:60): avc:  denied  { read } for  comm=353536365F696F2030 name="tcp" dev="proc" ino=4026532053 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 07:43:52.327  3665  3716 I         : VSIP: Avoid trigger SD find-service message for local service/instance/major/minor: 1111/2222/255/4294967295
+09-14 07:43:52.327  3665  3716 I         : VSIP: REGISTER EVENT(5566): [1111.2222.8001:eventtype=0:is_provided=false:reliable=255]
+09-14 07:43:52.336  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:52.355  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:52.860  1157  3722 D TrafficStats: tagSocket(85) with statsTag=0xffffff81, statsUid=-1
+09-14 07:43:52.861  1157  3721 D TrafficStats: tagSocket(131) with statsTag=0xffffff81, statsUid=-1
+09-14 07:43:52.863  1157  3721 D TrafficStats: tagSocket(131) with statsTag=0xffffff81, statsUid=-1
+09-14 07:43:52.864  1157  3722 D TrafficStats: tagSocket(85) with statsTag=0xffffff81, statsUid=-1
+09-14 07:43:52.873   419  3724 I resolv  : ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+09-14 07:43:52.873   419  3723 I resolv  : ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+09-14 07:43:52.874   419  3724 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 07:43:52.874   419  3723 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 07:43:52.877   419  3724 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 07:43:52.877   419  3724 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 07:43:52.879   419  3723 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 07:43:52.880   419  3723 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 07:43:52.880  3665  3716 I         : VSIP: KPI NET4 First SD multicast message from 10.203.0.1
+09-14 07:43:52.880  3665  3716 I         : VSIP: emi::create_remote_client: 10.203.0.1:30509 reliable: 0 using local port: 0
+09-14 07:43:52.880  3665  3716 I         : VSIP: ucei::connect: SO_RCVBUFFORCE failed, Operation not permitted
+09-14 07:43:52.880  3665  3716 I         : VSIP: ucei::connect: SO_RCVBUF is: 262144 (1703936) local port:0 remote:10.203.0.1:30509
+09-14 07:43:52.881   419  3724 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 07:43:52.881   419  3724 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 07:43:52.883  3665  3716 I         : VSIP: ON_OFFER_SERVICE(0000): [1111.2222:0.0]
+09-14 07:43:52.883  1157  1157 W DnsResolver: resNetworkResult:android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 07:43:52.883  3665  3716 I         : VSIP: ON_AVAILABLE(5566): [1111.2222:0.0]
+09-14 07:43:52.883  3665  3716 I         : VSIP: SUBSCRIBE(5566): [1111.2222.0001:ffff:0]
+09-14 07:43:52.884  3665  3717 I VSOMEIP_JNI: availability: ON_AVAILABLE
+09-14 07:43:52.884  1157  3722 D NetworkMonitor/100: PROBE_DNS connectivitycheck.gstatic.com 24ms FAIL in type ADDRCONFIG android.net.DnsResolver$DnsException: android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 07:43:52.885  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:52.887   419  3725 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 07:43:52.888   419  3726 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 07:43:52.888   419  3726 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 07:43:52.892   419  3723 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 07:43:52.892   419  3726 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 07:43:52.893   419  3726 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 07:43:52.894   419  3723 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 07:43:52.895  1157  1157 W DnsResolver: resNetworkResult:android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 07:43:52.895  3665  3716 I         : VSIP: KPI NET4 First SD unicast message from 10.203.0.1
+09-14 07:43:52.895  3665  3716 I         : VSIP: SUBSCRIBE ACK(0000): [1111.2222.0001.ffff]
+09-14 07:43:52.895  1157  3721 D NetworkMonitor/100: PROBE_DNS www.google.com 33ms FAIL in type ADDRCONFIG android.net.DnsResolver$DnsException: android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 07:43:52.896   419  3727 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 07:43:52.897   419  3728 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 07:43:52.897   419  3728 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 07:43:52.901   419  3726 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 07:43:52.901   419  3726 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 07:43:52.901   419  3726 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+09-14 07:43:52.902  1157  3722 D NetworkMonitor/100: PROBE_HTTP http://connectivitycheck.gstatic.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "connectivitycheck.gstatic.com": No address associated with hostname
+09-14 07:43:52.945  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1429 speed=58
+09-14 07:43:52.946  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:52.999  3665  3665 I EVENT_UI_PROBE: UI seq=1429 speed=58 km/h
+09-14 07:43:53.043  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1430 speed=60
+09-14 07:43:53.043  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.076   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:53.101  3665  3665 I EVENT_UI_PROBE: UI seq=1430 speed=60 km/h
+09-14 07:43:53.177  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1431 speed=62
+09-14 07:43:53.177  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.203  3665  3665 I EVENT_UI_PROBE: UI seq=1431 speed=62 km/h
+09-14 07:43:53.234  1376  1576 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:43:53.244  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1432 speed=64
+09-14 07:43:53.244  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.245   179  3729 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:43:53.305  3665  3665 I EVENT_UI_PROBE: UI seq=1432 speed=64 km/h
+09-14 07:43:53.344  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1433 speed=66
+09-14 07:43:53.344  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.407  3665  3665 I EVENT_UI_PROBE: UI seq=1433 speed=66 km/h
+09-14 07:43:53.444  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1434 speed=68
+09-14 07:43:53.445  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.477   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:53.510  3665  3665 I EVENT_UI_PROBE: UI seq=1434 speed=68 km/h
+09-14 07:43:53.545  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1435 speed=70
+09-14 07:43:53.546  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.611  3665  3665 I EVENT_UI_PROBE: UI seq=1435 speed=70 km/h
+09-14 07:43:53.645  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1436 speed=72
+09-14 07:43:53.646  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.713  3665  3665 I EVENT_UI_PROBE: UI seq=1436 speed=72 km/h
+09-14 07:43:53.745  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1437 speed=74
+09-14 07:43:53.746  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.814  3665  3665 I EVENT_UI_PROBE: UI seq=1437 speed=74 km/h
+09-14 07:43:53.846  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1438 speed=76
+09-14 07:43:53.846  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:53.914  3665  3665 I EVENT_UI_PROBE: UI seq=1438 speed=76 km/h
+09-14 07:43:53.946  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1439 speed=78
+09-14 07:43:53.946  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:54.016  3665  3665 I EVENT_UI_PROBE: UI seq=1439 speed=78 km/h
+09-14 07:43:54.046  3665  3665 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1440 speed=80
+09-14 07:43:54.046  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: ONLINE
+09-14 07:43:54.117  3665  3665 D VEHICLE_LAUNCHER: LiveData emitted, activity=101796210, viewModel=179728400, state=Connection: OFFLINE
+09-14 07:43:54.127  1181  1181 D CarNotificationListener: onNotificationRemoved: StatusBarNotification(pkg=com.example.carlauncher user=UserHandle{10} id=1001 tag=null key=10|com.example.carlauncher|1001|null|1010248: Notification(channel=vehicle_send_channel shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE))
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: Filtered notifications: [10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]}
+09-14 07:43:54.127  1181  1181 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.127  1181  1181 D NotificationDataManager: Unseen notifications cleared
+09-14 07:43:54.127  1181  1181 D NotificationDataManager: Unseen notification map: {10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 07:43:54.132  3665  3665 I VEHICLE_SERVICE: Service onUnbind id=147685393
+09-14 07:43:54.132  3665  3665 I VEHICLE_SERVICE: Service onDestroy id=147685393
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.133  1181  1181 D NotificationViewControl: Unprocessed notification map: {10|com.android.car.messenger|2147483647|null|1010165=10|com.android.car.messenger|2147483647|null|1010165, 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000=-1|android|55|null|1000}
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: Filtered notifications: [10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]}
+09-14 07:43:54.133  1181  1181 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.133  1181  1181 D NotificationDataManager: Unseen notifications cleared
+09-14 07:43:54.133  1181  1181 D NotificationDataManager: Unseen notification map: {10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 07:43:54.134  1181  1181 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.134  1181  1181 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.134  1181  1181 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.134  1181  1181 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 07:43:54.134  1181  1181 D NotificationViewControl: Processed notification groups: [10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 07:43:54.135  1181  1181 D CarNotificationAdapter: Seen notifications: []
+09-14 07:43:54.135  1181  1181 D CarNotificationAdapter: Unseen notifications: [10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 07:43:54.135  1181  1181 D CarNotificationAdapter: Updated adapter view holders: [notification_header: [], notification_recents: [], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000], notification_footer: []]
+09-14 07:43:54.141  3665  3712 I VSOMEIP_NETWORK: address=10.203.0.2 interface= available=false multicastRoute=false
+09-14 07:43:54.141  3665  3712 I VSOMEIP_JNI: stopping vsomeip app
+09-14 07:43:54.141  3665  3712 W         : VSIP: rmc::unsubscribe: Could not find endpoint for client 0x5566, sending to the router
+09-14 07:43:54.141  3665  3712 I         : VSIP: app::stop: Stopping vsomeip application "soc-vehicle-client" (5566).
+09-14 07:43:54.142  3665  3716 I         : VSIP: Route "" state changed: down
+09-14 07:43:54.142  3665  3716 I         : VSIP: Network interface "" state changed: down
+09-14 07:43:54.142  3665  3716 I         : VSIP: Client 0x5566, state ST_REGISTERED -> ST_DEREGISTERED
+09-14 07:43:54.142  3665  3716 I         : VSIP: rmc::stop: starting to flush the sender
+09-14 07:43:54.142  3665  3716 I         : VSIP: emb::stop: Start endpoint flushing for client 0x5566
+09-14 07:43:54.142  3665  3716 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-5566, mem: 0x7f8425070268
+09-14 07:43:54.143  3665  3717 I         : VSIP: Stopped thread 5566_m_dispatch, application 'soc-vehicle-client', id 140203201104000, tid 3717
+09-14 07:43:54.143  3665  3716 I         : VSIP: UNSUBSCRIBE(5566): [1111.2222.0001.ffff]
+09-14 07:43:54.143  3665  3716 I         : VSIP: rmi::unset_all_eventpayloads: Unsetting payload for [1111.2222.8001]
+09-14 07:43:54.143  3665  3716 I         : VSIP: UNREGISTER EVENT(5566): [1111.2222.8001:is_provider=false]
+09-14 07:43:54.143  3665  3716 I         : VSIP: RELEASE(5566): [1111.2222]
+09-14 07:43:54.143  3665  3716 I         : VSIP: cei::close_socket_unlocked: Not recreating socket, remote: 10.203.0.1:30509, endpoint > 0x7f85d50a1ed8 socket state > CLOSED
+09-14 07:43:54.143  3665  3716 I         : VSIP: lsui::stop: role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7f842506db08
+09-14 07:43:54.144  3665  3716 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7f842506db08, fd: -1, 0x7f842506db08, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+09-14 07:43:54.144  3665  3716 I         : VSIP: rmc::cleanup_client: self 0x5566 handles shutdown. Not reconnecting to host 0x0000
+09-14 07:43:54.144  3665  3716 W         : VSIP: le::receive_cbk: Escalating the error: End of file socket > Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7f842506dd48, fd: 159, 0x7f842506dd48, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-14 07:43:54.144  3665  3716 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7f842506dd48, fd: 159, 0x7f842506dd48, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-14 07:43:54.144  3665  3716 I         : VSIP: rmi::cleanup_client: self 0x0000 handles cleanup of client 0x5566
+09-14 07:43:54.144  3665  3716 I         : VSIP: Application/Client 5566 is deregistering
+09-14 07:43:54.144  3665  3716 I         : VSIP: emi::remove_routing_endpoint: client 0x5566
+09-14 07:43:54.144  3665  3716 I         : VSIP: lsui::stop: role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7f842506dd48
+09-14 07:43:54.144  3665  3716 I         : VSIP: le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7f842506dd48, fd: -1, 0x7f842506dd48, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+09-14 07:43:54.144  3665  3716 I         : VSIP: emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x5566 endpoint > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7f842506dd48, fd: -1
+09-14 07:43:54.144  3665  3716 I         : VSIP: rmc::stop: All endpoints cleared. Finishing the shutdown
+09-14 07:43:54.144  3665  3716 I         : VSIP: ON_UNAVAILABLE(5566): [1111.2222:0.0] forwarded=true
+09-14 07:43:54.144  3665  3716 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7f8425068d68
+09-14 07:43:54.144   725  1031 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@7b2f405, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:43:54.144  3665  3716 I         : VSIP: emi::stop: called
+09-14 07:43:54.144  3665  3716 I         : VSIP: emi::clear_routing_endpoints:
+09-14 07:43:54.144  3665  3716 I         : VSIP: usei::stop: #1::10.203.0.2:30490:: lifecycle_idx=1
+09-14 07:43:54.144  3665  3716 I         : VSIP: usei::stop: #1::10.203.0.2:30490:: Done, lifecycle_idx=2
+09-14 07:43:54.145  3665  3718 I         : VSIP: Stopped thread m_multicast 140203161131136, tid 3718
+09-14 07:43:54.145  3665  3716 I         : VSIP: emi::stop: Joined thread m_multicast 140203207362688
+09-14 07:43:54.146  3665  3719 I         : VSIP: Stopped thread m_auxiliary, id 140203160066176, tid 3719
+09-14 07:43:54.148  3665  3716 I         : VSIP: Joined thread m_auxiliary, id 140203160066176
+09-14 07:43:54.148  3665  3716 I         : VSIP: app::start: : io_.run() end for app(soc-vehicle-client, 5566); Join Dispatcher threads for app(soc-vehicle-client, 5566)
+09-14 07:43:54.148  3665  3716 I         : VSIP: Join IO threads for app(soc-vehicle-client, 5566)
+09-14 07:43:54.148  3665  3716 I         : VSIP: Stopped thread 5566_io00, application 'soc-vehicle-client', id 140203207362688, tid 3716
+09-14 07:43:54.148  3665  3716 I VSOMEIP_JNI: vsomeip io thread exited
+09-14 07:43:54.148  3665  3712 I VSOMEIP_JNI: vsomeip app stopped
+09-14 07:43:54.148  3665  3712 I VSOMEIP_JNI: native: stopped
+09-14 07:43:54.148  1181  1181 I CarNotificationAdapter: Big text style is not supported as a car notification
+09-14 07:43:54.149  3665  3712 I         : VSIP: usei::~udp_server_endpoint_impl: #1::10.203.0.2:30490:: lifecycle_idx=2
+09-14 07:43:54.151   725   823 I WifiService: releaseMulticastLock uid=1010248 tag=carlauncher-someip-sd
+09-14 07:43:54.156  1157  1435 D IpClient.wlan0: set max DTIM multiplier to 9
+09-14 07:43:54.157   725  1031 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 07:43:54.158  3665  3712 I VSOMEIP_JNI: SD multicast lock released
+09-14 07:43:54.159  3665  3712 I VEHICLE_SERVICE: SOMEIP_RELEASED id=147685393
+09-14 07:43:54.168   725   905 E WifiStaIfaceAidlImpl: setDtimMultiplier failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+09-14 07:43:54.176  1181  1404 D SplashScreenView: Build android.window.SplashScreenView{a1671c1 V.E...... ......ID 0,0-0,0}
+09-14 07:43:54.176  1181  1404 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 07:43:54.176  1181  1404 D SplashScreenView: Branding: view: android.view.View{e7d6d66 G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 07:43:54.176   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:54.179  3665  3665 I VEHICLE_LAUNCHER: onPause
+09-14 07:43:54.179  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: PAUSED
+09-14 07:43:54.179  3665  3665 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.example.carlauncher.MainActivity@6114972
+09-14 07:43:54.191  1181  1181 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+09-14 07:43:54.191  1181  1181 D DockViewModel: internalItems.size = 4, maxItemsInDock= 4
+09-14 07:43:54.194   505   505 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:43:54.196   725   763 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@7b2f405, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:43:54.198  1181  1181 D DockViewModel: Updating ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity} at 2
+09-14 07:43:54.198  1181  1181 D DockViewModel: createDockList called
+09-14 07:43:54.205   422   422 W Zygote  : forkRepeatedly terminated due to non-simple command
+09-14 07:43:54.205   422   422 D Zygote  : mbuffer starts with 18, nice name is , mEnd = 1337, mNext = 35, mLinesLeft = 16, mFd = 6
+09-14 07:43:54.209   422   422 I Zygote  : Entering forkRepeatedly native zygote loop
+09-14 07:43:54.215   419   419 I netd    : tetherGetStats() -> {[]} <0.25ms>
+09-14 07:43:54.217  1181  1181 D DockAdapter: Binding at position 2 without payloads
+09-14 07:43:54.217  1181  1181 D DockAdapter: Is callback set for 2: false
+09-14 07:43:54.217  1181  1181 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:43:54.221   422   422 D Zygote  : Forked child process 3735
+09-14 07:43:54.226   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:54.242  1376  1576 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:43:54.243   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:54.252  3735  3735 I arlauncher.test: Late-enabling -Xcheck:jni
+09-14 07:43:54.273  2241  2241 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.credential.manager.service.firstparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+09-14 07:43:54.273   179  3737 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:43:54.277  3735  3735 I arlauncher.test: Using CollectorTypeCMC GC.
+09-14 07:43:54.277  3735  3735 W arlauncher.test: Unexpected CPU variant for x86: x86_64.
+09-14 07:43:54.277  3735  3735 W arlauncher.test: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+09-14 07:43:54.291   530   541 I adbd    : jdwp connection from 3735
+09-14 07:43:54.318   230   445 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 07:43:54.325  1181  1181 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:43:54.330  3735  3735 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+09-14 07:43:54.360   725  2045 W com.android.internal.protolog.LogcatOnlyProtoLogImpl: ProtoLog message not processed. Failed to log it to proto. Logging it below to logcat instead.
+09-14 07:43:54.360   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:54.360   725  2045 V WindowManager: Binding proc com.example.carlauncher.test with config {1.0 310mcc260mnc [en_US] ldltr sw792dp w1408dp h792dp 160dpi xlrg long land car finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1408, 792) mAppBounds=Rect(0, 0 - 1408, 792) mMaxBounds=Rect(0, 0 - 1408, 792) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.12 fontWeightAdjustment=0}
+09-14 07:43:54.365   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:54.365   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:54.365   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:54.365   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:54.365   725   905 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 07:43:54.384   725   912 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:54.384   725   912 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 07:43:54.386  3109  3151 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.203.0.2, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 5Mbps, Tx Link speed: 5Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+09-14 07:43:54.392  1994  2649 D WM-WorkConstraintsTrack: NetworkRequestConstraintController onCapabilitiesChanged callback
+09-14 07:43:54.409  3735  3735 I ActivityThread: Relaunch all activities: onCoreSettingsChange
+09-14 07:43:54.457  2241  2241 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.chromesync.service.zeroparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+09-14 07:43:54.490  3735  3735 W ziparchive: Unable to open '/data/app/~~qWGXg3_TlqCrvAg3OTOyNw==/com.example.carlauncher.test-m-So7Dbag4LQ-3-k1VlmzA==/base.dm': No such file or directory
+09-14 07:43:54.490  3735  3735 W ziparchive: Unable to open '/data/app/~~qWGXg3_TlqCrvAg3OTOyNw==/com.example.carlauncher.test-m-So7Dbag4LQ-3-k1VlmzA==/base.dm': No such file or directory
+09-14 07:43:54.539  3735  3735 D nativeloader: Configuring clns-7 for other apk /data/app/~~qWGXg3_TlqCrvAg3OTOyNw==/com.example.carlauncher.test-m-So7Dbag4LQ-3-k1VlmzA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~qWGXg3_TlqCrvAg3OTOyNw==/com.example.carlauncher.test-m-So7Dbag4LQ-3-k1VlmzA==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/10/com.example.carlauncher.test
+09-14 07:43:54.561  3735  3735 V GraphicsEnvironment: Currently set values for:
+09-14 07:43:54.561  3735  3735 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+09-14 07:43:54.561  3735  3735 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+09-14 07:43:54.561  3735  3735 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+09-14 07:43:54.561  3735  3735 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+09-14 07:43:54.628  2384  2384 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.credential.manager.service.firstparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+09-14 07:43:54.692  3735  3735 E arlauncher.test: Invalid resource ID 0x00000000.
+09-14 07:43:54.709  3735  3735 D DecorView: package: com.example.carlauncher.test user: 10 displayCompat: true
+09-14 07:43:54.711  3735  3735 D DesktopModeFlagsUtil: Toggle override initialized to: OVERRIDE_UNSET
+09-14 07:43:54.778  2384  2384 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.chromesync.service.zeroparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+09-14 07:43:54.806  3735  3735 W HWUI    : Unknown dataspace 0
+09-14 07:43:54.843   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:54.855  3665  3665 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:43:54.876   505   505 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:43:54.888   505   625 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:43:54.888   505   625 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (1132 us)
+09-14 07:43:54.888   505   517 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=3735
+09-14 07:43:54.888   505   625 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:43:54.888   505   517 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (860 us)
+09-14 07:43:54.888   505   625 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (576 us)
+09-14 07:43:54.889   505   517 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=3735
+09-14 07:43:54.889   505   517 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (496 us)
+09-14 07:43:54.889   505   517 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=3735
+09-14 07:43:54.889   505   517 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (195 us)
+09-14 07:43:54.889   505   625 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=0
+09-14 07:43:54.889   505   625 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (1167 us)
+09-14 07:43:54.894  3735  3751 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:43:54.909  3735  3751 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:43:54.916  1181  1181 D DockViewModel: Add dynamic item, component: ComponentInfo{com.android.car.carlauncher/com.android.car.carlauncher.CarLauncher}
+09-14 07:43:54.916  1181  1181 D DockViewModel: Dynamic item is excluded
+09-14 07:43:54.919  3735  3751 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:43:54.972   505   505 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:43:55.107  3665  3759 D ProfileInstaller: Installing profile for com.example.carlauncher
+09-14 07:43:55.257  1376  1576 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:43:55.301   179  3760 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:43:55.310   725  2505 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:43:55.311   725  2505 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (223 us)
+09-14 07:43:55.311   725  2505 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:43:55.311   725  2505 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (35 us)
+09-14 07:43:55.311   725  2505 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=0
+09-14 07:43:55.311   725  2505 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (16 us)
+09-14 07:43:55.321  3665  3665 I VEHICLE_LAUNCHER: onStop
+09-14 07:43:55.322  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: STOPPED
+09-14 07:43:55.323  3665  3665 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.example.carlauncher.MainActivity@6114972
+09-14 07:43:55.324  3665  3665 I COCKPIT_VIEW_MODEL: onCleared, id=179728400
+09-14 07:43:55.325  3665  3665 I VEHICLE_LAUNCHER: onDestroy
+09-14 07:43:55.326  3665  3665 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@6114972 in: DESTROYED
+09-14 07:43:55.326  3665  3665 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+09-14 07:43:55.326  3665  3665 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@7b623d2
+09-14 07:43:55.327  3665  3689 I TestRunner: finished: remoteEventsUpdateActivity(com.example.carlauncher.someip.VehicleEventProbeTest)

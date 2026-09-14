@@ -1,0 +1,7 @@
+09-14 07:53:05.012  3580  3602 I TestRunner: started: saveAndApply_appliesNightModeToAppCompat(com.example.carlauncher.ThemePreferencesContextTest)
+09-14 07:53:05.015  3580  3602 I THEME_PREFERENCES: Settings reset: colorTheme=system, welcomeEnabled=true
+09-14 07:53:05.015  3580  3602 I THEME_PREFERENCES: Saved theme=light
+09-14 07:53:05.015  3580  3602 I THEME_PREFERENCES: Apply theme=light, nightMode=1
+09-14 07:53:05.015  3580  3602 I THEME_PREFERENCES: Saved theme=dark
+09-14 07:53:05.015  3580  3602 I THEME_PREFERENCES: Apply theme=dark, nightMode=2
+09-14 07:53:05.015  3580  3602 I TestRunner: finished: saveAndApply_appliesNightModeToAppCompat(com.example.carlauncher.ThemePreferencesContextTest)

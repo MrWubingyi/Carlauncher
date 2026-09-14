@@ -1,5 +1,14 @@
 # SOME/IP Method 与 native 生命周期探针
 
+2026-09-14：新增远端统一 mock Event 服务，Android 和 LVGL 直接订阅。
+当前运行方式见 [MOCK_EVENTS.md](MOCK_EVENTS.md)。以下 Method 说明仅适用于历史独立探针。
+
+关闭模拟器、前台启动模拟器和 Android Studio Run 步骤见
+[项目 README](../../README.md)。
+前台双界面联调必须使用 `socket-tap-event-probe.py --network-only`，
+然后用同一运行目录的生成配置启动唯一 mock 和可见 LVGL。
+不带此参数的旧模式会启动隔离 mock/无头 LVGL，仅用于自动测试。
+
 这是一套显式启用的实验工具，不接入 LVGL，也不修改已有 Ubuntu 服务。
 身份固定为 Service `0x1111` / Instance `0x2222` / Method `0x1001`，UDP `30509`。
 16 B payload 与 `SomeipPayloadCodec` 的 schema v1 一致。服务校验版本、长度、

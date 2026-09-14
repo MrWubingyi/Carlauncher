@@ -1,0 +1,3 @@
+09-14 07:53:05.648  3580  3602 I TestRunner: started: refresh_withoutAttachedService_staysInitial(com.example.carlauncher.ui.CockpitViewModelTest)
+09-14 07:53:05.651  3580  3602 I COCKPIT_VIEW_MODEL: created, id=244022133
+09-14 07:53:05.652  3580  3602 I TestRunner: finished: refresh_withoutAttachedService_staysInitial(com.example.carlauncher.ui.CockpitViewModelTest)

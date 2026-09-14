@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="0" errors="0" skipped="0" time="9.202" timestamp="2026-09-14T07:44:00" hostname="localhost">
+  <testsuite name="com.example.carlauncher.someip.VehicleEventProbeTest" tests="1" failures="0" errors="0" skipped="0" time="5.926" timestamp="2026-09-14T07:44:00" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="remoteEventsUpdateActivity" classname="com.example.carlauncher.someip.VehicleEventProbeTest" time="5.926" />
+  </testsuite>
+</testsuites>

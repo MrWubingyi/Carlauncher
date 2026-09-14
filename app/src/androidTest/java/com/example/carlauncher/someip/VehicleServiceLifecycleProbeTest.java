@@ -65,7 +65,7 @@ public class VehicleServiceLifecycleProbeTest {
                 .put("routing", "soc-vehicle-client")
                 .put("services", new JSONArray().put(new JSONObject().put("service", "0x1111")
                         .put("instance", "0x2222").put("unicast", peer).put("unreliable", "30509")))
-                .put("service-discovery", new JSONObject().put("enable", "false"));
+                .put("service-discovery", new JSONObject().put("enable", "true").put("multicast", "224.244.224.245").put("port", "30490").put("protocol", "udp").put("ttl", "3"));
         Files.write(config.toPath(), json.toString(2).getBytes(StandardCharsets.UTF_8));
         int releaseBaseline = occurrences(logcat(), "SOMEIP_RELEASED id=");
         int nativeStopBaseline = occurrences(logcat(), "vsomeip app stopped");
@@ -85,7 +85,7 @@ public class VehicleServiceLifecycleProbeTest {
                     previous = service;
                     int id = System.identityHashCode(service);
                     Log.i("SERVICE_PROBE", "cycle=" + cycle + " phase=foreground id=" + id);
-                    onActivity(activity, value -> assertEquals("STOP SEND",
+                    onActivity(activity, value -> assertEquals("STOP RECEIVE",
                             ((TextView) value.findViewById(R.id.connectButton)).getText().toString()));
 
                     shell("input keyevent KEYCODE_HOME");
@@ -96,11 +96,11 @@ public class VehicleServiceLifecycleProbeTest {
                         return background.get() && boundService(activity) == null;
                     });
                     long sequence = service.getLatestVehicleState().getSequence();
-                    int responsesBefore = occurrences(logcat(), "SOMEIP_RX service=");
+                    int responsesBefore = occurrences(logcat(), "VEHICLE_EVENT seq=");
                     Log.i("SERVICE_PROBE", "cycle=" + cycle + " phase=background id=" + id);
-                    await("real Method replies continue after Activity unbind", () ->
+                    await("remote vehicle Events continue after Activity unbind", () ->
                             service.getLatestVehicleState().getSequence() >= sequence + 5
-                                    && occurrences(logcat(), "SOMEIP_RX service=") >= responsesBefore + 5);
+                                    && occurrences(logcat(), "VEHICLE_EVENT seq=") >= responsesBefore + 5);
                     assertEquals(SomeipConnectionMonitor.State.ONLINE, service.getSomeipStatus().getState());
 
                     // Bring the real task forward after Home; ActivityScenario's internal
@@ -111,7 +111,7 @@ public class VehicleServiceLifecycleProbeTest {
                     await("foreground rebind must retain Service identity", () -> boundService(activity) == service);
                     Log.i("SERVICE_PROBE", "cycle=" + cycle + " phase=rebound id=" + id);
                     onActivity(activity, value -> {
-                        assertEquals("STOP SEND", ((TextView) value.findViewById(R.id.connectButton)).getText().toString());
+                        assertEquals("STOP RECEIVE", ((TextView) value.findViewById(R.id.connectButton)).getText().toString());
                         value.findViewById(R.id.connectButton).performClick();
                     });
                     await("native release completes", () -> logcat().contains("SOMEIP_RELEASED id=" + id));

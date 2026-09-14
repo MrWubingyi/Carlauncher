@@ -1,0 +1,11 @@
+09-14 07:53:05.029  3580  3602 I TestRunner: started: applySavedTheme_appliesStoredTheme(com.example.carlauncher.ThemePreferencesContextTest)
+09-14 07:53:05.030  1744  1744 D FocusParkingView: The window of Activity [null] gained focus
+09-14 07:53:05.030  1744  1744 D FocusParkingView: The window of Activity [com.android.car.carlauncher.CarLauncher@67a796c] gained focus
+09-14 07:53:05.030  1744  1744 D FocusAreaHelper: The window of Activity [com.android.car.carlauncher.CarLauncher@67a796c] gained focus
+09-14 07:53:05.031  3580  3602 I THEME_PREFERENCES: Settings reset: colorTheme=system, welcomeEnabled=true
+09-14 07:53:05.031  3580  3602 I THEME_PREFERENCES: Saved theme=dark
+09-14 07:53:05.031  1744  1744 D FocusAreaHelper: The window of Activity [com.android.car.carlauncher.CarLauncher@67a796c] gained focus
+09-14 07:53:05.031  3580  3602 I THEME_PREFERENCES: Apply theme=dark, nightMode=2
+09-14 07:53:05.031  3580  3602 I THEME_PREFERENCES: Loaded theme=dark
+09-14 07:53:05.031  3580  3602 I THEME_PREFERENCES: Apply theme=dark, nightMode=2
+09-14 07:53:05.033  3580  3602 I TestRunner: finished: applySavedTheme_appliesStoredTheme(com.example.carlauncher.ThemePreferencesContextTest)

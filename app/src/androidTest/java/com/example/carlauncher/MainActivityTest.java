@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * MainActivity 的 Instrumentation 集成测试：初始无数据 UI、服务快照驱动的
- * 仪表渲染，以及快捷入口按钮的跳转目标。不点击“START SEND”，避免触发
+ * 仪表渲染，以及快捷入口按钮的跳转目标。不点击“START RECEIVE”，避免触发
  * 真实前台 Service / TCP 副作用。
  */
 @RunWith(AndroidJUnit4.class)
@@ -52,7 +52,7 @@ public class MainActivityTest {
                 assertEquals("Seq --", text(activity, R.id.sequenceText));
                 assertEquals("Waiting for vehicle data", text(activity, R.id.lastUpdateText));
                 assertEquals("SERVICE UNBOUND", text(activity, R.id.connectionStatusText));
-                assertEquals("START SEND", text(activity, R.id.connectButton));
+                assertEquals("START RECEIVE", text(activity, R.id.connectButton));
                 Button connectButton = activity.findViewById(R.id.connectButton);
                 assertTrue(connectButton.isEnabled());
                 assertEquals("SOME/IP: STOPPED", text(activity, R.id.transportStatusText));
@@ -103,9 +103,9 @@ public class MainActivityTest {
                 assertEquals("Seq 12", text(activity, R.id.sequenceText));
                 assertEquals("Updated · Seq 12", text(activity, R.id.lastUpdateText));
                 assertEquals("SOME/IP ONLINE", text(activity, R.id.connectionStatusText));
-                assertEquals("STOP SEND", text(activity, R.id.connectButton));
+                assertEquals("STOP RECEIVE", text(activity, R.id.connectButton));
                 assertEquals("CONNECTED", text(activity, R.id.sourceStatusText));
-                assertEquals("SOME/IP: AVAILABLE | ONLINE | Last RC: 0x00", text(activity, R.id.transportStatusText));
+                assertEquals("SOME/IP: AVAILABLE | ONLINE | EVENT 0x8001", text(activity, R.id.transportStatusText));
             });
         }
     }
@@ -142,19 +142,19 @@ public class MainActivityTest {
             scenario.onActivity(activity -> {
                 CockpitViewModel model = new ViewModelProvider(activity).get(CockpitViewModel.class);
                 model.attachService(service);
-                assertEquals("SOME/IP WAITING_RESPONSE", text(activity, R.id.connectionStatusText));
-                assertEquals("STOP SEND", text(activity, R.id.connectButton));
+                assertEquals("SOME/IP WAITING EVENT", text(activity, R.id.connectionStatusText));
+                assertEquals("STOP RECEIVE", text(activity, R.id.connectButton));
                 assertTrue(activity.findViewById(R.id.connectButton).isEnabled());
 
                 service.withSomeipResponse(false, 1, 10);
                 model.refresh();
                 assertEquals("SOME/IP RESPONSE_ERROR", text(activity, R.id.connectionStatusText));
-                assertTrue(text(activity, R.id.transportStatusText).contains("0x01"));
+                assertTrue(text(activity, R.id.transportStatusText).contains("RESPONSE_ERROR"));
 
                 service.checkSomeipTimeout(3010);
                 model.refresh();
-                assertEquals("SOME/IP RESPONSE_TIMEOUT", text(activity, R.id.connectionStatusText));
-                assertEquals("STOP SEND", text(activity, R.id.connectButton));
+                assertEquals("SOME/IP EVENT TIMEOUT", text(activity, R.id.connectionStatusText));
+                assertEquals("STOP RECEIVE", text(activity, R.id.connectButton));
 
                 service.withTcpState(TcpConnectionState.DISCONNECTED).withSomeipResponse(true, 0, 3020);
                 model.refresh();

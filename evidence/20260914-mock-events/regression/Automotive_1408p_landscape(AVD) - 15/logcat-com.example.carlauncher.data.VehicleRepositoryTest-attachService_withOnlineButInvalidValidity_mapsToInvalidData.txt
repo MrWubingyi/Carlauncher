@@ -1,0 +1,2 @@
+09-14 07:53:05.176  3580  3602 I TestRunner: started: attachService_withOnlineButInvalidValidity_mapsToInvalidData(com.example.carlauncher.data.VehicleRepositoryTest)
+09-14 07:53:05.182  3580  3602 I TestRunner: finished: attachService_withOnlineButInvalidValidity_mapsToInvalidData(com.example.carlauncher.data.VehicleRepositoryTest)

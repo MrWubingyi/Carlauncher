@@ -1,0 +1,348 @@
+[Warn]	(0.000, +0)	 lv_init: Memory integrity checks are enabled via LV_USE_ASSERT_MEM_INTEGRITY which makes LVGL much slower lv_init.c:305
+[Warn]	(0.000, +0)	 lv_init: Object sanity checks are enabled via LV_USE_ASSERT_OBJ which makes LVGL much slower lv_init.c:309
+[Warn]	(0.000, +0)	 lv_init: Style sanity checks are enabled that uses more RAM lv_init.c:313
+[Warn]	(0.021, +21)	 lv_obj_remove_flag: Deprecated: use the dedicated lv_obj_set_<flag>() setters instead, e.g. lv_obj_set_hidden(obj, false). lv_obj.c:432
+[Warn]	(0.022, +1)	 lv_obj_add_flag: Deprecated: use the dedicated lv_obj_set_<flag>() setters instead, e.g. lv_obj_set_hidden(obj, true). lv_obj.c:380
+[Warn]	(0.022, +0)	 lv_obj_has_flag: Deprecated: use the dedicated lv_obj_is_<flag>() getters instead, e.g. lv_obj_is_hidden(obj). lv_obj.c:769
+2026-09-14 15:45:45.747294 [info] Using configuration file: "/root/develop/carlauncher-probe-20260909/socket-tap-sd-events-20260914-b/lvgl-ui-client.json".
+2026-09-14 15:45:45.747357 [info] Parsed vsomeip configuration in 0ms
+2026-09-14 15:45:45.747370 [info] Configuration module loaded.
+2026-09-14 15:45:45.747376 [info] Security disabled!
+2026-09-14 15:45:45.747379 [info] Initializing vsomeip (3.7.5) application "lvgl-vehicle-client".
+2026-09-14 15:45:45.747383 [info] Instantiating routing manager [Proxy].
+2026-09-14 15:45:45.747406 [info] vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+2026-09-14 15:45:45.747412 [info] Application(lvgl-vehicle-client, 5578) is initialized (11, 100).
+2026-09-14 15:45:45.747418 [info] app::init: End of init, application "lvgl-vehicle-client" (5578)
+2026-09-14 15:45:45.748712 [info] Starting vsomeip application "lvgl-vehicle-client" (5578) using 1 threads I/O nice 0
+2026-09-14 15:45:45.748853 [info] Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+2026-09-14 15:45:45.748885 [info] Client [ffff] is connecting to [0000] at /tmp/vsomeip-0 endpoint > 0x767c600023e0
+2026-09-14 15:45:45.748896 [info] le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x767c600011a0, fd: -1, 0x767c600011a0, send_queue: 99, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+2026-09-14 15:45:45.748981 [info] Started thread 5578_io00, application 'lvgl-vehicle-client', id 767c658d7640, tid 19414
+2026-09-14 15:45:45.748999 [info] le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x767c600011a0, fd: 8, 0x767c600011a0, send_queue: 99, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+2026-09-14 15:45:45.750839 [info] Started thread 5578_m_dispatch, application 'lvgl-vehicle-client', id 767c650d6640, tid 19415
+2026-09-14 15:45:45.754289 [info] Creating local server endpoint for client 0x5578 with transport type UDS.
+2026-09-14 15:45:45.754425 [info] Listening @ /tmp/vsomeip-5578
+2026-09-14 15:45:45.754445 [info] rmc::on_client_assign_ack: Client 0x5578 (lvgl-vehicle-client) successfully connected to routing via UDS ~> registering...
+2026-09-14 15:45:45.754452 [info] rmc::register_application: Client 0x5578 Registering to routing manager @ vsomeip-0
+2026-09-14 15:45:45.754457 [info] rcsm::registered: Former client id: 0xffff, new 0x5578
+2026-09-14 15:45:45.754461 [info] Client 0x5578, state ST_REGISTERING -> ST_REGISTERED
+2026-09-14 15:45:45.754465 [info] Application/Client 5578 (lvgl-vehicle-client) is registered.
+2026-09-14 15:45:45.757217 [info] ON_AVAILABLE(5578): [1111.2222:0.0]
+2026-09-14 15:45:45.757284 [info] Client [5578] is connecting to [4444] at /tmp/vsomeip-4444 endpoint > 0x767c60005190
+2026-09-14 15:45:45.757297 [info] le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 4444 (0), connection : role: client, own: , peer: /tmp/vsomeip-4444, mem: 0x767c60003f80, fd: -1, 0x767c60003f80, send_queue: 66, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+2026-09-14 15:45:45.757352 [info] le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 4444 (0), connection : role: client, own: , peer: /tmp/vsomeip-4444, mem: 0x767c60003f80, fd: 10, 0x767c60003f80, send_queue: 86, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+2026-09-14 15:45:45.758617 [info] SUBSCRIBE ACK(4444): [1111.2222.0001.ffff]
+[VehicleData] Stream active, vehicle online (seq=2517)
+LVGL_EVENT seq=2517 speed=34 status=0
+LVGL_UI seq=2517 speed=34
+LVGL_EVENT seq=2518 speed=36 status=0
+LVGL_UI seq=2518 speed=36
+LVGL_EVENT seq=2519 speed=38 status=0
+LVGL_UI seq=2519 speed=38
+LVGL_EVENT seq=2520 speed=40 status=0
+LVGL_UI seq=2520 speed=40
+LVGL_EVENT seq=2521 speed=42 status=0
+LVGL_UI seq=2521 speed=42
+LVGL_EVENT seq=2522 speed=44 status=0
+LVGL_UI seq=2522 speed=44
+LVGL_EVENT seq=2523 speed=46 status=0
+LVGL_UI seq=2523 speed=46
+LVGL_EVENT seq=2524 speed=48 status=0
+LVGL_UI seq=2524 speed=48
+LVGL_EVENT seq=2525 speed=50 status=0
+LVGL_UI seq=2525 speed=50
+LVGL_EVENT seq=2526 speed=52 status=0
+LVGL_UI seq=2526 speed=52
+LVGL_EVENT seq=2527 speed=54 status=0
+LVGL_UI seq=2527 speed=54
+LVGL_UI seq=2527 speed=54
+LVGL_EVENT seq=2528 speed=56 status=0
+LVGL_UI seq=2528 speed=56
+LVGL_EVENT seq=2529 speed=58 status=0
+LVGL_UI seq=2529 speed=58
+LVGL_EVENT seq=2530 speed=60 status=0
+LVGL_UI seq=2530 speed=60
+LVGL_EVENT seq=2531 speed=62 status=0
+LVGL_UI seq=2531 speed=62
+LVGL_EVENT seq=2532 speed=64 status=0
+LVGL_UI seq=2532 speed=64
+LVGL_EVENT seq=2533 speed=66 status=0
+LVGL_UI seq=2533 speed=66
+LVGL_EVENT seq=2534 speed=68 status=0
+LVGL_UI seq=2534 speed=68
+LVGL_EVENT seq=2535 speed=70 status=0
+LVGL_UI seq=2535 speed=70
+LVGL_EVENT seq=2536 speed=72 status=0
+LVGL_UI seq=2536 speed=72
+LVGL_EVENT seq=2537 speed=74 status=0
+LVGL_UI seq=2537 speed=74
+LVGL_EVENT seq=2538 speed=76 status=0
+LVGL_UI seq=2538 speed=76
+LVGL_EVENT seq=2539 speed=78 status=0
+LVGL_UI seq=2539 speed=78
+LVGL_EVENT seq=2540 speed=80 status=0
+LVGL_UI seq=2540 speed=80
+LVGL_EVENT seq=2541 speed=82 status=0
+LVGL_UI seq=2541 speed=82
+LVGL_EVENT seq=2542 speed=84 status=0
+LVGL_UI seq=2542 speed=84
+LVGL_EVENT seq=2543 speed=86 status=0
+LVGL_UI seq=2543 speed=86
+LVGL_EVENT seq=2544 speed=88 status=0
+LVGL_UI seq=2544 speed=88
+LVGL_EVENT seq=2545 speed=90 status=0
+LVGL_UI seq=2545 speed=90
+LVGL_EVENT seq=2546 speed=92 status=0
+LVGL_UI seq=2546 speed=92
+LVGL_EVENT seq=2547 speed=94 status=0
+LVGL_UI seq=2547 speed=94
+LVGL_EVENT seq=2548 speed=96 status=0
+LVGL_UI seq=2548 speed=96
+LVGL_EVENT seq=2549 speed=98 status=0
+LVGL_UI seq=2549 speed=98
+LVGL_EVENT seq=2550 speed=100 status=0
+LVGL_UI seq=2550 speed=100
+LVGL_EVENT seq=2551 speed=98 status=0
+LVGL_UI seq=2551 speed=98
+LVGL_EVENT seq=2552 speed=96 status=0
+LVGL_UI seq=2552 speed=96
+LVGL_EVENT seq=2553 speed=94 status=0
+LVGL_UI seq=2553 speed=94
+LVGL_EVENT seq=2554 speed=92 status=0
+LVGL_UI seq=2554 speed=92
+LVGL_EVENT seq=2555 speed=90 status=0
+LVGL_UI seq=2555 speed=90
+LVGL_EVENT seq=2556 speed=88 status=0
+LVGL_UI seq=2556 speed=88
+LVGL_EVENT seq=2557 speed=86 status=0
+LVGL_UI seq=2557 speed=86
+LVGL_EVENT seq=2558 speed=84 status=0
+LVGL_UI seq=2558 speed=84
+LVGL_EVENT seq=2559 speed=82 status=0
+LVGL_UI seq=2559 speed=82
+LVGL_EVENT seq=2560 speed=80 status=0
+LVGL_UI seq=2560 speed=80
+LVGL_EVENT seq=2561 speed=78 status=0
+LVGL_UI seq=2561 speed=78
+LVGL_EVENT seq=2562 speed=76 status=0
+LVGL_UI seq=2562 speed=76
+LVGL_EVENT seq=2563 speed=74 status=0
+LVGL_UI seq=2563 speed=74
+LVGL_EVENT seq=2564 speed=72 status=0
+LVGL_UI seq=2564 speed=72
+LVGL_EVENT seq=2565 speed=70 status=0
+LVGL_UI seq=2565 speed=70
+LVGL_EVENT seq=2566 speed=68 status=0
+LVGL_UI seq=2566 speed=68
+LVGL_EVENT seq=2567 speed=66 status=0
+LVGL_UI seq=2567 speed=66
+LVGL_EVENT seq=2568 speed=64 status=0
+LVGL_UI seq=2568 speed=64
+LVGL_EVENT seq=2569 speed=62 status=0
+LVGL_UI seq=2569 speed=62
+LVGL_EVENT seq=2570 speed=60 status=0
+LVGL_UI seq=2570 speed=60
+LVGL_EVENT seq=2571 speed=58 status=0
+LVGL_UI seq=2571 speed=58
+LVGL_EVENT seq=2572 speed=56 status=0
+LVGL_UI seq=2572 speed=56
+LVGL_EVENT seq=2573 speed=54 status=0
+LVGL_UI seq=2573 speed=54
+LVGL_EVENT seq=2574 speed=52 status=0
+LVGL_UI seq=2574 speed=52
+LVGL_EVENT seq=2575 speed=50 status=0
+LVGL_UI seq=2575 speed=50
+LVGL_EVENT seq=2576 speed=48 status=0
+LVGL_UI seq=2576 speed=48
+LVGL_EVENT seq=2577 speed=46 status=0
+LVGL_UI seq=2577 speed=46
+LVGL_EVENT seq=2578 speed=44 status=0
+LVGL_UI seq=2578 speed=44
+LVGL_EVENT seq=2579 speed=42 status=0
+LVGL_UI seq=2579 speed=42
+LVGL_EVENT seq=2580 speed=40 status=0
+LVGL_UI seq=2580 speed=40
+LVGL_EVENT seq=2581 speed=38 status=0
+LVGL_UI seq=2581 speed=38
+LVGL_EVENT seq=2582 speed=36 status=0
+LVGL_UI seq=2582 speed=36
+LVGL_EVENT seq=2583 speed=34 status=0
+LVGL_UI seq=2583 speed=34
+LVGL_EVENT seq=2584 speed=32 status=0
+LVGL_UI seq=2584 speed=32
+LVGL_EVENT seq=2585 speed=30 status=0
+LVGL_UI seq=2585 speed=30
+LVGL_EVENT seq=2586 speed=28 status=0
+LVGL_UI seq=2586 speed=28
+LVGL_EVENT seq=2587 speed=26 status=0
+LVGL_UI seq=2587 speed=26
+LVGL_EVENT seq=2588 speed=24 status=0
+LVGL_UI seq=2588 speed=24
+LVGL_EVENT seq=2589 speed=22 status=0
+LVGL_UI seq=2589 speed=22
+LVGL_EVENT seq=2590 speed=20 status=0
+LVGL_UI seq=2590 speed=20
+LVGL_EVENT seq=2591 speed=18 status=0
+LVGL_UI seq=2591 speed=18
+LVGL_EVENT seq=2592 speed=16 status=0
+LVGL_UI seq=2592 speed=16
+LVGL_EVENT seq=2593 speed=14 status=0
+LVGL_UI seq=2593 speed=14
+LVGL_EVENT seq=2594 speed=12 status=0
+LVGL_UI seq=2594 speed=12
+LVGL_EVENT seq=2595 speed=10 status=0
+LVGL_UI seq=2595 speed=10
+LVGL_EVENT seq=2596 speed=8 status=0
+LVGL_UI seq=2596 speed=8
+LVGL_EVENT seq=2597 speed=6 status=0
+LVGL_UI seq=2597 speed=6
+LVGL_EVENT seq=2598 speed=4 status=0
+LVGL_UI seq=2598 speed=4
+LVGL_EVENT seq=2599 speed=2 status=0
+LVGL_UI seq=2599 speed=2
+LVGL_EVENT seq=2600 speed=0 status=0
+LVGL_UI seq=2600 speed=0
+LVGL_EVENT seq=2601 speed=2 status=0
+LVGL_UI seq=2601 speed=2
+LVGL_EVENT seq=2602 speed=4 status=0
+LVGL_UI seq=2602 speed=4
+LVGL_EVENT seq=2603 speed=6 status=0
+LVGL_UI seq=2603 speed=6
+LVGL_EVENT seq=2604 speed=8 status=0
+LVGL_UI seq=2604 speed=8
+LVGL_EVENT seq=2605 speed=10 status=0
+LVGL_UI seq=2605 speed=10
+LVGL_EVENT seq=2606 speed=12 status=0
+LVGL_UI seq=2606 speed=12
+LVGL_EVENT seq=2607 speed=14 status=0
+LVGL_UI seq=2607 speed=14
+LVGL_EVENT seq=2608 speed=16 status=0
+LVGL_UI seq=2608 speed=16
+LVGL_EVENT seq=2609 speed=18 status=0
+LVGL_UI seq=2609 speed=18
+LVGL_EVENT seq=2610 speed=20 status=0
+LVGL_UI seq=2610 speed=20
+LVGL_EVENT seq=2611 speed=22 status=0
+LVGL_UI seq=2611 speed=22
+LVGL_EVENT seq=2612 speed=24 status=0
+LVGL_UI seq=2612 speed=24
+LVGL_EVENT seq=2613 speed=26 status=0
+LVGL_UI seq=2613 speed=26
+LVGL_EVENT seq=2614 speed=28 status=0
+LVGL_UI seq=2614 speed=28
+LVGL_EVENT seq=2615 speed=30 status=0
+LVGL_UI seq=2615 speed=30
+LVGL_EVENT seq=2616 speed=32 status=0
+LVGL_UI seq=2616 speed=32
+LVGL_EVENT seq=2617 speed=34 status=0
+LVGL_UI seq=2617 speed=34
+LVGL_EVENT seq=2618 speed=36 status=0
+LVGL_UI seq=2618 speed=36
+LVGL_EVENT seq=2619 speed=38 status=0
+LVGL_UI seq=2619 speed=38
+LVGL_EVENT seq=2620 speed=40 status=0
+LVGL_UI seq=2620 speed=40
+LVGL_EVENT seq=2621 speed=42 status=0
+LVGL_UI seq=2621 speed=42
+LVGL_EVENT seq=2622 speed=44 status=0
+LVGL_UI seq=2622 speed=44
+LVGL_EVENT seq=2623 speed=46 status=0
+LVGL_UI seq=2623 speed=46
+LVGL_EVENT seq=2624 speed=48 status=0
+LVGL_UI seq=2624 speed=48
+LVGL_EVENT seq=2625 speed=50 status=0
+LVGL_UI seq=2625 speed=50
+LVGL_EVENT seq=2626 speed=52 status=0
+LVGL_UI seq=2626 speed=52
+LVGL_EVENT seq=2627 speed=54 status=0
+LVGL_UI seq=2627 speed=54
+LVGL_EVENT seq=2628 speed=56 status=0
+LVGL_UI seq=2628 speed=56
+LVGL_EVENT seq=2629 speed=58 status=0
+LVGL_UI seq=2629 speed=58
+LVGL_EVENT seq=2630 speed=60 status=0
+LVGL_UI seq=2630 speed=60
+LVGL_EVENT seq=2631 speed=62 status=0
+LVGL_UI seq=2631 speed=62
+LVGL_EVENT seq=2632 speed=64 status=0
+LVGL_UI seq=2632 speed=64
+LVGL_EVENT seq=2633 speed=66 status=0
+LVGL_UI seq=2633 speed=66
+LVGL_EVENT seq=2634 speed=68 status=0
+LVGL_UI seq=2634 speed=68
+LVGL_EVENT seq=2635 speed=70 status=0
+LVGL_UI seq=2635 speed=70
+LVGL_EVENT seq=2636 speed=72 status=0
+LVGL_UI seq=2636 speed=72
+LVGL_EVENT seq=2637 speed=74 status=0
+LVGL_UI seq=2637 speed=74
+LVGL_EVENT seq=2638 speed=76 status=0
+LVGL_UI seq=2638 speed=76
+LVGL_EVENT seq=2639 speed=78 status=0
+LVGL_UI seq=2639 speed=78
+LVGL_EVENT seq=2640 speed=80 status=0
+LVGL_UI seq=2640 speed=80
+LVGL_EVENT seq=2641 speed=82 status=0
+LVGL_UI seq=2641 speed=82
+LVGL_EVENT seq=2642 speed=84 status=0
+LVGL_UI seq=2642 speed=84
+LVGL_EVENT seq=2643 speed=86 status=0
+LVGL_UI seq=2643 speed=86
+LVGL_EVENT seq=2644 speed=88 status=0
+LVGL_UI seq=2644 speed=88
+LVGL_EVENT seq=2645 speed=90 status=0
+LVGL_UI seq=2645 speed=90
+LVGL_EVENT seq=2646 speed=92 status=0
+LVGL_UI seq=2646 speed=92
+LVGL_EVENT seq=2647 speed=94 status=0
+LVGL_UI seq=2647 speed=94
+LVGL_EVENT seq=2648 speed=96 status=0
+LVGL_UI seq=2648 speed=96
+LVGL_EVENT seq=2649 speed=98 status=0
+LVGL_UI seq=2649 speed=98
+LVGL_EVENT seq=2650 speed=100 status=0
+LVGL_UI seq=2650 speed=100
+LVGL_EVENT seq=2651 speed=98 status=0
+LVGL_UI seq=2651 speed=98
+LVGL_EVENT seq=2652 speed=96 status=0
+LVGL_UI seq=2652 speed=96
+LVGL_EVENT seq=2653 speed=94 status=0
+LVGL_UI seq=2653 speed=94
+LVGL_EVENT seq=2654 speed=92 status=0
+LVGL_UI seq=2654 speed=92
+LVGL_EVENT seq=2655 speed=90 status=0
+LVGL_UI seq=2655 speed=90
+LVGL_EVENT seq=2656 speed=88 status=0
+LVGL_UI seq=2656 speed=88
+LVGL_EVENT seq=2657 speed=86 status=0
+LVGL_UI seq=2657 speed=86
+LVGL_EVENT seq=2658 speed=84 status=0
+LVGL_UI seq=2658 speed=84
+LVGL_EVENT seq=2659 speed=82 status=0
+LVGL_UI seq=2659 speed=82
+LVGL_EVENT seq=2660 speed=80 status=0
+LVGL_UI seq=2660 speed=80
+LVGL_EVENT seq=2661 speed=78 status=0
+LVGL_UI seq=2661 speed=78
+LVGL_EVENT seq=2662 speed=76 status=0
+LVGL_UI seq=2662 speed=76
+LVGL_EVENT seq=2663 speed=74 status=0
+2026-09-14 15:46:00.695283 [info] app::stop: Stopping vsomeip application "lvgl-vehicle-client" (5578).
+2026-09-14 15:46:00.695610 [info] Client 0x5578, state ST_REGISTERED -> ST_DEREGISTERED
+2026-09-14 15:46:00.695623 [info] rmc::stop: starting to flush the sender
+2026-09-14 15:46:00.695629 [info] emb::stop: Start endpoint flushing for client 0x5578
+2026-09-14 15:46:00.695635 [info] laui::close: Closing the acceptor: /tmp/vsomeip-5578, mem: 0x767c60003380
+2026-09-14 15:46:00.695693 [info] rmc::cleanup_client: self 0x5578 handles cleanup of client 0x4444 (consumer), not reconnecting
+2026-09-14 15:46:00.695704 [info] ON_UNAVAILABLE(5578): [1111.2222:0.0] forwarded=true
+2026-09-14 15:46:00.695709 [info] rmc::remove_consumer: self 0x5578, client 0x4444, error 0
+2026-09-14 15:46:00.695714 [info] lsui::stop: role: client, own: , peer: /tmp/vsomeip-4444, mem: 0x767c60003f80
+2026-09-14 15:46:00.695723 [info] le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 4444 (0), connection : role: client, own: , peer: /tmp/vsomeip-4444, mem: 0x767c60003f80, fd: -1, 0x767c60003f80, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+2026-09-14 15:46:00.695797 [info] lsui::stop: role: client, own: , peer: /tmp/vsomeip-0, mem: 0x767c600011a0
+2026-09-14 15:46:00.695818 [info] le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /tmp/vsomeip-0, mem: 0x767c600011a0, fd: -1, 0x767c600011a0, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+2026-09-14 15:46:00.695821 [info] Stopped thread 5578_m_dispatch, application 'lvgl-vehicle-client', id 767c650d6640, tid 19415
+2026-09-14 15:46:00.695829 [info] rmc::cleanup_client: self 0x5578 handles shutdown. Not reconnecting to host 0x0000
+2026-09-14 15:46:00.695855 [info] rmc::stop: All endpoints cleared. Finishing the shutdown
+2026-09-14 15:46:00.695864 [info] app::start: : io_.run() end for app(lvgl-vehicle-client, 5578); Join Dispatcher threads for app(lvgl-vehicle-client, 5578)
+2026-09-14 15:46:00.696891 [info] Join IO threads for app(lvgl-vehicle-client, 5578)
+2026-09-14 15:46:00.696921 [info] Stopped thread 5578_io00, application 'lvgl-vehicle-client', id 767c658d7640, tid 19414
+[VehicleData] TCP disconnected, vehicle state offline

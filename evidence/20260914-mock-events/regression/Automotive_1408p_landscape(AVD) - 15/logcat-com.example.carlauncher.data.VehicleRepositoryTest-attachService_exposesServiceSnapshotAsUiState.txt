@@ -1,0 +1,3 @@
+09-14 07:53:05.134  3580  3602 I TestRunner: started: attachService_exposesServiceSnapshotAsUiState(com.example.carlauncher.data.VehicleRepositoryTest)
+09-14 07:53:05.143  1234  1237 W ndroid.systemui: Missing inline cache for void com.android.wm.shell.transition.Transitions.onFinish(android.os.IBinder, android.window.WindowContainerTransaction)
+09-14 07:53:05.168  3580  3602 I TestRunner: finished: attachService_exposesServiceSnapshotAsUiState(com.example.carlauncher.data.VehicleRepositoryTest)

@@ -61,6 +61,17 @@
 - `3`: SOURCE_DISCONNECTED (数据源连接断开)
 - `4`: TRANSPORT_DISCONNECTED (传输通道断开)
 
+### (连接状态枚举)
+- `0`: ONLINE(已连接且收到有效数据):连接断开或超过3秒无有效数据
+- `1`: INVALID_DATA(已连接但当前帧存在越界/缺失字段):收到有效帧，或超过3秒无有效数据
+- `2`: DISCONNECTED(TCP断开，或连续3秒没有有效数据):重新连接且收到首帧有效数据
+- `3`: RECOVERING(连接重新建立但尚未收到有效帧):收到首帧有效数据进入 ONLINE；再次断开进入 DISCONNECTED
+    [超时阈值：3000 ms
+      非法帧不刷新 lastValidDataTime
+      仅收到首帧完整有效数据后才进入 ONLINE
+      单纯 TCP 重连只能进入 RECOVERING
+      DISCONNECTED 不展示陈旧数据]
+
 ## 4. 示例 JSON
 
 ```json
@@ -85,18 +96,54 @@
 }
 ```
 
-## 5. 测试场景模拟 (Mock Testing Scenarios)
+## 5. 运行时图片资源接口
 
-为了验证接收端的健壮性，模拟数据源包含以下自动化测试场景（120秒为一个循环周期）：
+图片接口与车辆数据共用同一个 TCP 连接，仍采用“一行一个 JSON”的帧格式。
+运行时替换仅在以 `-DUI_USE_PNG_ASSETS=ON` 构建时可用。为避免通过 TCP
+访问任意系统文件，传入的图片必须已经上传到项目 `assets` 目录（可以位于其
+子目录），并且必须是具有有效 PNG 文件头的常规文件。
 
-1.  **正常模拟 (0-60s)**：速度、档位、灯光等数据按逻辑正常规律变化。
-2.  **非法数据测试 (61-70s)**：
-    *   `speedKph`: 发送 `255` (超出文档范围 0-200)。
-    *   `rpm`: 发送 `9999` (超出文档范围 1-8000)。
-    *   `soc`: 发送 `150` (超出文档范围 0-100)。
-    *   `dataStatus`: 显式设置为 `1` (`INVALID`)。
-    *   **目的**：验证接收端是否具备基本的边界检查和非法数据过滤能力。
-3.  **静默/断连测试 (70-100s)**：
-    *   数据源将持续 **30秒** 不发送任何数据包。
-    *   **目的**：验证接收端的超时检测机制（Watchdog）是否正常工作，以及是否能正确触发“无信号”或“连接断开”的 UI 状态。
-4.  **恢复模拟 (100-120s)**：数据包恢复正常发送，序列号继续递增，用于验证系统在异常后的自动恢复能力。
+### 5.1 替换图片
+
+请求：
+
+```json
+{"type":"image.set","name":"dashboard_background","path":"uploads/new-background.png"}
+```
+
+`path` 可以是相对 `assets` 的路径、`assets` 内的绝对路径，或 LVGL 的
+`A:/absolute/path.png` 路径。成功返回表示请求已进入 UI 线程队列；图片通常
+会在下一个 100 ms UI 刷新周期内切换：
+
+```json
+{"type":"image.set.result","ok":true,"status":"queued","name":"dashboard_background","path":"A:/absolute/assets/uploads/new-background.png"}
+```
+
+名称不存在、文件越界、文件不存在或不是 PNG 时会返回：
+
+```json
+{"type":"image.set.result","ok":false,"error":"unknown image name"}
+```
+
+### 5.2 获取全部图片路径
+
+请求：
+
+```json
+{"type":"image.list"}
+```
+
+返回：
+
+```json
+{"type":"image.list.result","ok":true,"images":[{"name":"dashboard_background","path":"A:/absolute/assets/lvgl-cluster-blue-gradient-800-480.png"}]}
+```
+
+如果变更尚未由 UI 线程应用，资源项还包含 `pendingPath`；如果 LVGL 解码失败，
+则保留原路径并在资源项中返回 `lastError`。可通过下面的命令直接测试：
+
+```bash
+printf '%s\n' '{"type":"image.list"}' | nc 127.0.0.1 19090
+printf '%s\n' '{"type":"image.set","name":"vehicle_truck","path":"uploads/truck.png"}' | nc 127.0.0.1 19090
+```
+

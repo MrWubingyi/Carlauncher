@@ -1,0 +1,2 @@
+09-14 07:53:05.123  3580  3602 I TestRunner: started: refresh_withoutService_keepsInitialState(com.example.carlauncher.data.VehicleRepositoryTest)
+09-14 07:53:05.131  3580  3602 I TestRunner: finished: refresh_withoutService_keepsInitialState(com.example.carlauncher.data.VehicleRepositoryTest)

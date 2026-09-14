@@ -1,0 +1,67 @@
+
+Seq        : 16909070
+Client     : 5566
+Session    : 0001
+Requests   : 1
+Responses  : 1
+ReturnCode : 00
+
+Seq        : 16909071
+Client     : 5566
+Session    : 0002
+Requests   : 1
+Responses  : 1
+ReturnCode : 01
+
+Seq        : 16909072
+Client     : 5566
+Session    : 0003
+Requests   : 1
+Responses  : 1
+ReturnCode : 01
+
+Seq        : 16909073
+Client     : 5566
+Session    : 0004
+Requests   : 1
+Responses  : 1
+ReturnCode : 00
+
+Seq        : 16909060
+Client     : 5566
+Session    : 0001
+Requests   : 1
+Responses  : 1
+ReturnCode : 00
+
+Seq        : 16909061
+Client     : 5566
+Session    : 0002
+Requests   : 1
+Responses  : 1
+ReturnCode : 01
+
+Seq        : 16909062
+Client     : 5566
+Session    : 0003
+Requests   : 1
+Responses  : 1
+ReturnCode : 01
+
+Seq        : 16909063
+Client     : 5566
+Session    : 0004
+Requests   : 1
+Responses  : 1
+ReturnCode : 00
+
+Packets=170 Requests=8 Responses=8 UniqueRequests=8
+Count : 2
+Name  : 10.203.0.1, 10.203.0.2, Offer:1111/2222:ttl=3, 10.203.0.1:30509/proto=17
+
+Count : 150
+Name  : 10.203.0.1, 224.244.224.245, Offer:1111/2222:ttl=3, 10.203.0.1:30509/proto=17
+
+Count : 2
+Name  : 10.203.0.2, 224.244.224.245, Find:1111/2222:ttl=16777215, 
+

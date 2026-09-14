@@ -1,0 +1,5 @@
+09-14 07:53:05.361  3580  3602 I TestRunner: started: getWritableDatabase_createsSchemaWithVersionTwo(com.example.carlauncher.data.local.LabDatabaseHelperTest)
+09-14 07:53:05.381  3580  3602 I LAB_DATABASE: Database onCreate, version=2
+09-14 07:53:05.382  3580  3602 I LAB_DATABASE: Table created: lab_record
+09-14 07:53:05.391  3580  3602 I LAB_DATABASE: Database opened, version=2
+09-14 07:53:05.395  3580  3602 I TestRunner: finished: getWritableDatabase_createsSchemaWithVersionTwo(com.example.carlauncher.data.local.LabDatabaseHelperTest)

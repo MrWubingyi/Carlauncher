@@ -1,0 +1,2 @@
+09-14 07:53:05.517  3580  3602 I TestRunner: started: onStartCommand_returnsStartSticky(com.example.carlauncher.service.VehicleSendServiceTest)
+09-14 07:53:05.518  3580  3602 I TestRunner: finished: onStartCommand_returnsStartSticky(com.example.carlauncher.service.VehicleSendServiceTest)

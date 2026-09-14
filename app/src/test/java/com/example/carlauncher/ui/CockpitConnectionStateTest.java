@@ -11,7 +11,7 @@ public class CockpitConnectionStateTest {
     @Test
     public void testOnline() {
         CockpitConnectionState state = CockpitConnectionState.ONLINE;
-        assertEquals("按钮文字应为 STOP SEND", "STOP SEND", state.getActionLabel());
+        assertEquals("按钮文字应为 STOP RECEIVE", "STOP RECEIVE", state.getActionLabel());
         assertTrue("在线状态按钮应启用", state.isActionEnabled());
         assertTrue("在线状态应为停止动作", state.isStopAction());
     }
@@ -27,7 +27,7 @@ public class CockpitConnectionStateTest {
     @Test
     public void testInvalidData() {
         CockpitConnectionState state = CockpitConnectionState.INVALID_DATA;
-        assertEquals("按钮文字应为 STOP SEND", "STOP SEND", state.getActionLabel());
+        assertEquals("按钮文字应为 STOP RECEIVE", "STOP RECEIVE", state.getActionLabel());
         assertTrue("异常数据状态按钮应启用", state.isActionEnabled());
         assertTrue("异常数据状态应为停止动作", state.isStopAction());
     }
@@ -35,7 +35,7 @@ public class CockpitConnectionStateTest {
     @Test
     public void testDisconnected() {
         CockpitConnectionState state = CockpitConnectionState.DISCONNECTED;
-        assertEquals("按钮文字应为 START SEND", "START SEND", state.getActionLabel());
+        assertEquals("按钮文字应为 START RECEIVE", "START RECEIVE", state.getActionLabel());
         assertTrue("断开状态按钮应启用", state.isActionEnabled());
         assertFalse("断开状态不应为停止动作", state.isStopAction());
     }

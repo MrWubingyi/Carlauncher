@@ -1,0 +1,11 @@
+default dev tun0 scope link 
+default via 192.168.31.1 dev ens33 proto dhcp metric 100 
+default via 192.168.50.2 dev ens37 proto dhcp metric 101 
+169.254.0.0/16 dev tun0 scope link metric 1000 
+192.100.0.0/16 dev tun0 proto kernel scope link src 192.100.0.1 
+192.168.31.0/24 dev ens33 proto kernel scope link src 192.168.31.248 metric 100 
+192.168.50.0/24 dev ens37 proto kernel scope link src 192.168.50.128 metric 101 
+lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> 
+ens33            UP             00:0c:29:9e:90:1e <BROADCAST,MULTICAST,UP,LOWER_UP> 
+ens37            UP             00:0c:29:9e:90:28 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+tun0             UP             <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> 

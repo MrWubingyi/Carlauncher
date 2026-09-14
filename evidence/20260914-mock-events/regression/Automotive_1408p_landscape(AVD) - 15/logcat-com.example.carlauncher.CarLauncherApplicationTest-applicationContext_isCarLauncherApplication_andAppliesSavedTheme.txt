@@ -1,0 +1,7 @@
+09-14 07:52:40.353  3580  3602 I TestRunner: started: applicationContext_isCarLauncherApplication_andAppliesSavedTheme(com.example.carlauncher.CarLauncherApplicationTest)
+09-14 07:52:40.356  3580  3602 I THEME_PREFERENCES: Settings reset: colorTheme=system, welcomeEnabled=true
+09-14 07:52:40.356  3580  3602 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:52:40.356  3580  3602 I THEME_PREFERENCES: Apply theme=system, nightMode=-1
+09-14 07:52:40.357  3580  3602 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:52:40.357  3580  3602 I THEME_PREFERENCES: Loaded welcome enabled=true
+09-14 07:52:40.357  3580  3602 I TestRunner: finished: applicationContext_isCarLauncherApplication_andAppliesSavedTheme(com.example.carlauncher.CarLauncherApplicationTest)

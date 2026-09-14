@@ -1,0 +1,2 @@
+09-14 07:53:05.543  3580  3602 I TestRunner: started: localAddressRewritePreservesRemoteEndpointAndDiscoveryMode(com.example.carlauncher.service.VehicleServiceConfigTest)
+09-14 07:53:05.549  3580  3602 I TestRunner: finished: localAddressRewritePreservesRemoteEndpointAndDiscoveryMode(com.example.carlauncher.service.VehicleServiceConfigTest)

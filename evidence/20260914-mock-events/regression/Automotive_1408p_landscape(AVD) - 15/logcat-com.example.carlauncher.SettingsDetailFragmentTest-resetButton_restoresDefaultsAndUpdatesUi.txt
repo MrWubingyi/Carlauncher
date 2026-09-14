@@ -1,0 +1,257 @@
+09-14 07:53:01.700  3580  3602 I TestRunner: started: resetButton_restoresDefaultsAndUpdatesUi(com.example.carlauncher.SettingsDetailFragmentTest)
+09-14 07:53:01.703  3580  3602 I THEME_PREFERENCES: Saved theme=dark
+09-14 07:53:01.703  3580  3602 I THEME_PREFERENCES: Apply theme=dark, nightMode=2
+09-14 07:53:01.703  3580  3602 I THEME_PREFERENCES: Saved welcome enabled=false
+09-14 07:53:01.703  2363  2417 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:53:01.704  3580  3602 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+09-14 07:53:01.707   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:01.713  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:01.729  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:01.732  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity}
+09-14 07:53:01.732   767   839 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010248, packageName = null, attributionTag = null, token = android.os.Binder@129f454, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:53:01.734   767   839 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 07:53:01.741   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:01.751  1234  1234 D DockViewModel: Updating ComponentInfo{com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity} at 0
+09-14 07:53:01.751  1234  1234 D DockViewModel: createDockList called
+09-14 07:53:01.759   767  2015 D ConnectivityService: requestNetwork for uid/pid:10223/1234 asUid: 1010248 activeRequest: null callbackRequest: 155 [NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: ALL
+09-14 07:53:01.762  1234  1367 D SplashScreenView: Build android.window.SplashScreenView{a40c167 V.E...... ......ID 0,0-0,0}
+09-14 07:53:01.762  1234  1367 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 07:53:01.762  1234  1367 D SplashScreenView: Branding: view: android.view.View{529eb14 G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 07:53:01.763   767   929 D ConnectivityService: NetReassign [156 : null → 100] [c 0] [a 0] [i 0]
+09-14 07:53:01.764   767   922 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:53:01.764   767   922 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:53:01.764   767   922 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:53:01.764   767   922 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:53:01.777  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 130633; PackageName: com.android.car.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: com.android.car.carlauncher.CarLauncher; Text: [Car Launcher]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.780  1234  1234 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@26c506d
+09-14 07:53:01.782  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@80006cc9; boundsInParent: Rect(0, 0 - 1408, 792); boundsInScreen: Rect(0, 0 - 1408, 792); boundsInWindow: Rect(0, 0 - 1408, 792); packageName: com.android.car.carlauncher; className: android.widget.FrameLayout; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:53:01.782  1466  1466 V RotaryController: event window ID: b
+09-14 07:53:01.787  1466  1466 D RotaryController: Task ID of app window: 1000004
+09-14 07:53:01.793  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130764; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.793  1466  1466 V RotaryController: event window ID: 7
+09-14 07:53:01.793  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130764; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.793  1466  1466 V RotaryController: event window ID: 6
+09-14 07:53:01.793  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130764; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.793  1466  1466 V RotaryController: event window ID: 7f
+09-14 07:53:01.793  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130765; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_ADDED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.793  1466  1466 V RotaryController: event window ID: b
+09-14 07:53:01.799  1379  1555 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:53:01.808   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:01.812   178  4154 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:53:01.850  1861  1861 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-14 07:53:01.855  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher/com.example.carlauncher.FragmentLabActivity}
+09-14 07:53:01.880  1234  1234 D DockViewModel: Updating ComponentInfo{com.example.carlauncher/com.example.carlauncher.FragmentLabActivity} at 1
+09-14 07:53:01.880  1234  1234 D DockViewModel: createDockList called
+09-14 07:53:01.895  1234  1234 D class com.android.car.datasubscription.DataSubscriptionController: onAvailable 100
+09-14 07:53:01.901  1234  1234 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 07:53:01.906  1234  1234 D DockAdapter: Binding at position 0 without payloads
+09-14 07:53:01.906  1234  1234 D DockAdapter: Is callback set for 0: false
+09-14 07:53:01.910  1234  1234 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:53:01.912  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: PRE_ON_CREATE
+09-14 07:53:01.913  3580  3580 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+09-14 07:53:01.913   403   467 I netd    : tetherGetStats() -> {[]} <0.29ms>
+09-14 07:53:01.914  3580  3580 I FRAGMENT_LAB: Activity onCreate, restored=false
+09-14 07:53:01.914  3580  3580 E ple.carlauncher: Invalid resource ID 0x00000000.
+09-14 07:53:01.917  3580  3580 D DecorView: package: com.example.carlauncher user: 10 displayCompat: false
+09-14 07:53:01.919  3629  3629 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:53:01.924   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:01.926  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: CREATED
+09-14 07:53:01.926  3580  3580 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.example.carlauncher.FragmentLabActivity@5401658
+09-14 07:53:01.926  3580  3580 I SETTINGS_MENU: onCreate
+09-14 07:53:01.927  3580  3580 I SETTINGS_MENU: onCreateView
+09-14 07:53:01.939  3580  3580 I SETTINGS_MENU: onViewCreated
+09-14 07:53:01.940  3580  3580 I SETTINGS_DETAIL: onCreate, title=Display
+09-14 07:53:01.940  3580  3580 I SETTINGS_DETAIL: onCreateView, title=Display
+09-14 07:53:01.943  1234  1366 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@69f2478
+09-14 07:53:01.948  1234  1234 D DockAdapter: Binding at position 1 without payloads
+09-14 07:53:01.948  1234  1234 D DockAdapter: Is callback set for 1: false
+09-14 07:53:01.948  1234  1234 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:53:01.949  3580  3580 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+09-14 07:53:01.954  3580  3580 I SETTINGS_DETAIL: onViewCreated, title=Display
+09-14 07:53:01.954  3580  3580 I THEME_PREFERENCES: Loaded theme=dark
+09-14 07:53:01.955  3580  3580 I THEME_PREFERENCES: Loaded welcome enabled=false
+09-14 07:53:01.955  3580  3580 I SETTINGS_MENU: onStart
+09-14 07:53:01.955  3580  3580 I SETTINGS_DETAIL: onStart
+09-14 07:53:01.956  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: STARTED
+09-14 07:53:01.956  3580  3580 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.example.carlauncher.FragmentLabActivity@5401658
+09-14 07:53:01.958  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: RESUMED
+09-14 07:53:01.960  3580  3580 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.example.carlauncher.FragmentLabActivity@5401658
+09-14 07:53:01.961  3580  3580 I SETTINGS_MENU: onResume
+09-14 07:53:01.961  3580  3580 I SETTINGS_DETAIL: onResume
+09-14 07:53:01.964  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 130460; PackageName: com.example.carlauncher.test; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.FrameLayout; Text: [Application icon]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.965  1466  1466 V RotaryController: event window ID: 7d
+09-14 07:53:01.966  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:01.970   415  2501 W audio_hw_generic_caremu: pcm_read failed cannot read stream data: I/O error
+09-14 07:53:01.981  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130980; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.981  1466  1466 V RotaryController: event window ID: 7f
+09-14 07:53:01.982  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130980; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.982  1466  1466 V RotaryController: event window ID: b
+09-14 07:53:01.982  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130980; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.982  1466  1466 V RotaryController: event window ID: 7
+09-14 07:53:01.982  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 130980; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:01.982  1466  1466 V RotaryController: event window ID: 6
+09-14 07:53:01.982  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:01.983  3580  3580 D AutofillManager: notifyViewReadyInner:1073741824
+09-14 07:53:01.983  3580  3580 D AutofillManager: notifyViewReadyInner:1073741825
+09-14 07:53:01.991   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.001  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 130498; PackageName: com.example.carlauncher.test; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity; Text: [androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.001  1466  1466 V RotaryController: event window ID: 7e
+09-14 07:53:02.004  3580  3580 I THEME_PREFERENCES: Loaded theme=dark
+09-14 07:53:02.013   767   791 W ziparchive: Unable to open '/data/app/~~I9HGoh1jl3xOGWOsT941zA==/com.example.carlauncher-6S0B1peBnGnFNcGhlCUegQ==/base.dm': No such file or directory
+09-14 07:53:02.016   767   791 I ActivityTaskManager: Displayed com.example.carlauncher/.FragmentLabActivity for user 10: +280ms
+09-14 07:53:02.023   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.031   767   890 I ImeTracker: com.example.carlauncher:8b9f52a9: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+09-14 07:53:02.032   767   890 I ImeTracker: com.example.carlauncher:8b9f52a9: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-14 07:53:02.035  1587  1587 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2113
+09-14 07:53:02.035  3629  3629 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@fd08f13
+09-14 07:53:02.037  1587  1587 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+09-14 07:53:02.037  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 130983; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: com.example.carlauncher.FragmentLabActivity; Text: [CarLauncher]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.038  1587  1587 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1384 onStartInput(EditorInfo{EditorInfo{packageName=com.example.carlauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-14 07:53:02.039  1587  1587 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+09-14 07:53:02.058   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.064  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@80006d3f; boundsInParent: Rect(0, 0 - 1408, 792); boundsInScreen: Rect(0, 0 - 1408, 792); boundsInWindow: Rect(0, 0 - 1408, 792); packageName: com.example.carlauncher; className: android.widget.FrameLayout; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:53:02.064  1466  1466 V RotaryController: event window ID: 81
+09-14 07:53:02.065  1466  1466 D RotaryController: Task ID of app window: 1000044
+09-14 07:53:02.065  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 131031; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: com.example.carlauncher.FragmentLabActivity; Text: [CarLauncher]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.069  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@80006d3f; boundsInParent: Rect(0, 0 - 1408, 792); boundsInScreen: Rect(0, 0 - 1408, 792); boundsInWindow: Rect(0, 0 - 1408, 792); packageName: com.example.carlauncher; className: android.widget.FrameLayout; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:53:02.069  1466  1466 V RotaryController: event window ID: 81
+09-14 07:53:02.070  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131032; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.070  1466  1466 V RotaryController: event window ID: 7
+09-14 07:53:02.070  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131032; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.070  1466  1466 V RotaryController: event window ID: 6
+09-14 07:53:02.071  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131033; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_ADDED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.071  1466  1466 V RotaryController: event window ID: 81
+09-14 07:53:02.119   767   782 I system_server: NativeAlloc concurrent mark compact GC freed 19MB AllocSpace bytes, 24(512KB) LOS objects, 43% free, 30MB/54MB, paused 2.408ms,1.942ms total 457.566ms
+09-14 07:53:02.126   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.127   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.128   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.129   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.130   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.131   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.132   767   783 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.198  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 130697; PackageName: com.android.car.mapsplaceholder; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: com.android.car.mapsplaceholder.MapsPlaceholderActivity; Text: [Maps]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.198  1466  1466 V RotaryController: event window ID: d
+09-14 07:53:02.289  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 130786; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.FrameLayout; Text: [Application icon]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.289  1466  1466 V RotaryController: event window ID: 80
+09-14 07:53:02.299  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:02.299  1234  1366 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@f0e0d03
+09-14 07:53:02.307   488   539 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.461  1744  1744 D VRI[CarLauncher]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:53:02.473   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.473  3580  3602 W SurfaceComposerClient: Sync transaction timed out waiting for commit callback.
+09-14 07:53:02.474  3580  3580 I FRAGMENT_LAB: Ignore duplicate selection: Display
+09-14 07:53:02.476  3580  3580 I THEME_PREFERENCES: Settings reset: colorTheme=system, welcomeEnabled=true
+09-14 07:53:02.477  3580  3580 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:53:02.477  3580  3580 I THEME_PREFERENCES: Loaded welcome enabled=true
+09-14 07:53:02.479  3580  3580 I SETTINGS_DETAIL: Reset UI applied, theme=system, welcomeEnabled=true
+09-14 07:53:02.486  3580  3580 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:53:02.486  3580  3580 I THEME_PREFERENCES: Apply theme=system, nightMode=-1
+09-14 07:53:02.488  3580  3580 I ActivityThread: Schedule relaunch activity: com.example.carlauncher.FragmentLabActivity
+09-14 07:53:02.488  3580  3580 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:53:02.488  3580  3580 I THEME_PREFERENCES: Loaded welcome enabled=true
+09-14 07:53:02.491  3580  3580 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:53:02.493  3580  3580 I SETTINGS_MENU: onPause
+09-14 07:53:02.493  3580  3580 I SETTINGS_DETAIL: onPause
+09-14 07:53:02.493  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: PAUSED
+09-14 07:53:02.493  3580  3580 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.example.carlauncher.FragmentLabActivity@5401658
+09-14 07:53:02.493  3580  3580 I SETTINGS_MENU: onStop
+09-14 07:53:02.494  3580  3580 I SETTINGS_DETAIL: onStop
+09-14 07:53:02.494  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: STOPPED
+09-14 07:53:02.494  3580  3580 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.example.carlauncher.FragmentLabActivity@5401658
+09-14 07:53:02.498  3580  3580 I SETTINGS_DETAIL: onDestroyView
+09-14 07:53:02.499  3580  3580 I SETTINGS_MENU: onDestroyView
+09-14 07:53:02.499  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@5401658 in: DESTROYED
+09-14 07:53:02.499  3580  3580 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+09-14 07:53:02.507  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_VIEW_CLICKED; EventTime: 131488; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.Button; Text: [恢复默认设置]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.509   488   539 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.511   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.512  3580  3580 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@e1aa580
+09-14 07:53:02.514  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: PRE_ON_CREATE
+09-14 07:53:02.514  3580  3580 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was DESTROYED
+09-14 07:53:02.517  3580  3580 I SETTINGS_MENU: onCreate
+09-14 07:53:02.518  3580  3580 I SETTINGS_DETAIL: onCreate, title=Display
+09-14 07:53:02.518  3580  3580 I FRAGMENT_LAB: Activity onCreate, restored=true
+09-14 07:53:02.522  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: CREATED
+09-14 07:53:02.522  3580  3580 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.example.carlauncher.FragmentLabActivity@2620304
+09-14 07:53:02.523  3580  3580 I SETTINGS_MENU: onCreateView
+09-14 07:53:02.529  3580  3580 I SETTINGS_MENU: onViewCreated
+09-14 07:53:02.529  3580  3580 I SETTINGS_DETAIL: onCreateView, title=Display
+09-14 07:53:02.533  3580  3580 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+09-14 07:53:02.535  3580  3580 I SETTINGS_DETAIL: onViewCreated, title=Display
+09-14 07:53:02.535  3580  3580 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:53:02.537  3580  3580 I THEME_PREFERENCES: Loaded welcome enabled=true
+09-14 07:53:02.538  3580  3580 I SETTINGS_MENU: onStart
+09-14 07:53:02.538  3580  3580 I SETTINGS_DETAIL: onStart
+09-14 07:53:02.540  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: STARTED
+09-14 07:53:02.541  3580  3580 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.example.carlauncher.FragmentLabActivity@2620304
+09-14 07:53:02.543  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: RESUMED
+09-14 07:53:02.543  3580  3580 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.example.carlauncher.FragmentLabActivity@2620304
+09-14 07:53:02.543  3580  3580 I SETTINGS_MENU: onResume
+09-14 07:53:02.543  3580  3580 I SETTINGS_DETAIL: onResume
+09-14 07:53:02.557  3580  3580 D AutofillManager: notifyViewReadyInner:1073741824
+09-14 07:53:02.558  3580  3580 D AutofillManager: notifyViewReadyInner:1073741825
+09-14 07:53:02.568  3580  3580 I THEME_PREFERENCES: Loaded theme=system
+09-14 07:53:02.568  1466  1466 V RotaryController: event window ID: 81
+09-14 07:53:02.577   767   786 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@129f454, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:53:02.579   767   786 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 07:53:02.585  1234  1367 D SplashScreenView: Build android.window.SplashScreenView{4e00b09 V.E...... ......ID 0,0-0,0}
+09-14 07:53:02.585  1234  1367 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 07:53:02.585  1234  1367 D SplashScreenView: Branding: view: android.view.View{8b7a10e G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 07:53:02.589  3580  3580 I SETTINGS_MENU: onPause
+09-14 07:53:02.589  3580  3580 I SETTINGS_DETAIL: onPause
+09-14 07:53:02.591  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: PAUSED
+09-14 07:53:02.592  3580  3580 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.example.carlauncher.FragmentLabActivity@2620304
+09-14 07:53:02.597  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+09-14 07:53:02.599  1234  1234 D DockViewModel: Updating ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity} at 2
+09-14 07:53:02.599  1234  1234 D DockViewModel: createDockList called
+09-14 07:53:02.607   488   488 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:53:02.619  3629  3629 D DecorView: package: com.example.carlauncher.test user: 10 displayCompat: true
+09-14 07:53:02.624   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.627  1234  1234 D DockAdapter: Binding at position 2 without payloads
+09-14 07:53:02.627  1234  1234 D DockAdapter: Is callback set for 2: false
+09-14 07:53:02.627  3629  3629 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+09-14 07:53:02.627  1234  1234 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:53:02.649  3629  3643 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:53:02.649  3629  3643 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:53:02.653  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131650; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.653  1466  1466 V RotaryController: event window ID: 81
+09-14 07:53:02.653  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131650; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.653  1466  1466 V RotaryController: event window ID: 7
+09-14 07:53:02.653  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131650; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.653  1466  1466 V RotaryController: event window ID: 6
+09-14 07:53:02.659  3629  3643 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:53:02.668  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:02.670  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:02.674   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.690   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.701  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 131662; PackageName: com.android.systemui; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.LinearLayout; Text: [Back Button, Long press to close the app]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.713  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@435c4; boundsInParent: Rect(0, 0 - 439, 60); boundsInScreen: Rect(0, 340 - 439, 400); boundsInWindow: Rect(0, 340 - 439, 400); packageName: com.android.systemui; className: android.widget.LinearLayout; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:53:02.713  1466  1466 V RotaryController: event window ID: 84
+09-14 07:53:02.716  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131698; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.717  1466  1466 V RotaryController: event window ID: 7
+09-14 07:53:02.717  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131698; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.717  1466  1466 V RotaryController: event window ID: 6
+09-14 07:53:02.717  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 131699; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_ADDED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:53:02.717  1466  1466 V RotaryController: event window ID: 84
+09-14 07:53:02.770  2395  2395 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-14 07:53:02.773   767   791 W ziparchive: Unable to open '/data/app/~~d0OtPBgR4RDl0yaBIOZhwg==/com.example.carlauncher.test-ruhuV7NdoKM9lnq9cqjoMA==/base.dm': No such file or directory
+09-14 07:53:02.777   767   791 I ActivityTaskManager: Displayed com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 10: +195ms
+09-14 07:53:02.797  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.android.car.carlauncher/com.android.car.carlauncher.CarLauncher}
+09-14 07:53:02.797  1234  1234 D DockViewModel: Dynamic item is excluded
+09-14 07:53:02.798  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:02.804  1379  1555 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:53:02.813   178  4166 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:53:02.820  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:53:02.822  1234  1234 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@154cb07
+09-14 07:53:02.837  3580  3580 D VRI[FragmentLabActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:53:02.841   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.844  3580  3580 I SETTINGS_MENU: onStop
+09-14 07:53:02.844  3580  3580 I SETTINGS_DETAIL: onStop
+09-14 07:53:02.845  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: STOPPED
+09-14 07:53:02.845  3580  3580 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.example.carlauncher.FragmentLabActivity@2620304
+09-14 07:53:02.849  3580  3580 I SETTINGS_MENU: onDestroyView
+09-14 07:53:02.849  3580  3580 I SETTINGS_DETAIL: onDestroyView
+09-14 07:53:02.849  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.FragmentLabActivity@2620304 in: DESTROYED
+09-14 07:53:02.850  3580  3580 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+09-14 07:53:02.858   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:02.861  3580  3602 I TestRunner: finished: resetButton_restoresDefaultsAndUpdatesUi(com.example.carlauncher.SettingsDetailFragmentTest)

@@ -1,0 +1,2 @@
+09-14 07:53:05.534  3580  3602 I TestRunner: started: getDataValidity_withoutVehicleState_returnsIncomplete(com.example.carlauncher.service.VehicleSendServiceTest)
+09-14 07:53:05.535  3580  3602 I TestRunner: finished: getDataValidity_withoutVehicleState_returnsIncomplete(com.example.carlauncher.service.VehicleSendServiceTest)

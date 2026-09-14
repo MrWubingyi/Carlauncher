@@ -1,0 +1,3 @@
+09-14 07:53:05.639  3580  3602 I TestRunner: started: detachService_returnsToInitialState(com.example.carlauncher.ui.CockpitViewModelTest)
+09-14 07:53:05.644  3580  3602 I COCKPIT_VIEW_MODEL: created, id=152353022
+09-14 07:53:05.646  3580  3602 I TestRunner: finished: detachService_returnsToInitialState(com.example.carlauncher.ui.CockpitViewModelTest)

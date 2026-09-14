@@ -1,0 +1,2 @@
+09-14 07:53:05.503  3580  3602 I TestRunner: started: itemClick_rootClickListenerIsPerItem(com.example.carlauncher.model.AppAdapterTest)
+09-14 07:53:05.505  3580  3602 I TestRunner: finished: itemClick_rootClickListenerIsPerItem(com.example.carlauncher.model.AppAdapterTest)

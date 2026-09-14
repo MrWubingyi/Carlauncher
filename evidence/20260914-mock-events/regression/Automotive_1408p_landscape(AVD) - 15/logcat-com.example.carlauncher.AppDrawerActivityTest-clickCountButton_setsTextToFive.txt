@@ -1,0 +1,308 @@
+09-14 07:51:48.531  3580  3602 I TestRunner: started: clickCountButton_setsTextToFive(com.example.carlauncher.AppDrawerActivityTest)
+09-14 07:51:48.539  3580  3602 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+09-14 07:51:48.552   767  1320 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010248, packageName = null, attributionTag = null, token = android.os.Binder@129f454, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:51:48.556   767  1320 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 07:51:48.566  1234  1366 E ndroid.systemui: Invalid resource ID 0x00000000.
+09-14 07:51:48.573   488   488 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:51:48.575   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:48.575   767   787 D ConnectivityService: requestNetwork for uid/pid:10223/1234 asUid: 1010248 activeRequest: null callbackRequest: 79 [NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: ALL
+09-14 07:51:48.581  1234  1367 D SplashScreenView: Build android.window.SplashScreenView{fd22d17 V.E...... ......ID 0,0-0,0}
+09-14 07:51:48.581  1234  1367 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 07:51:48.581  1234  1367 D SplashScreenView: Branding: view: android.view.View{d046504 G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 07:51:48.585   767   929 D ConnectivityService: NetReassign [80 : null → 100] [c 1] [a 0] [i 0]
+09-14 07:51:48.586   767   922 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:51:48.586   767   922 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:51:48.587   767   922 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:51:48.588   767   922 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 07:51:48.592  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher/com.example.carlauncher.AppDrawerActivity}
+09-14 07:51:48.593  1234  1234 D DockViewModel: internalItems.size = 4, maxItemsInDock= 4
+09-14 07:51:48.599  1234  1234 D DockViewModel: Updating ComponentInfo{com.example.carlauncher/com.example.carlauncher.AppDrawerActivity} at 1
+09-14 07:51:48.600  1234  1234 D DockViewModel: createDockList called
+09-14 07:51:48.603  1234  1234 D class com.android.car.datasubscription.DataSubscriptionController: onAvailable 100
+09-14 07:51:48.603  1234  1234 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 07:51:48.623   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:48.629  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:48.629  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:48.630  1883  2101 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:48.636  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:48.641   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:48.641  1234  1234 D DockAdapter: Binding at position 1 without payloads
+09-14 07:51:48.642  1234  1234 D DockAdapter: Is callback set for 1: false
+09-14 07:51:48.642  1234  1234 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:51:48.708   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:48.732  3580  3580 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+09-14 07:51:48.744  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: PRE_ON_CREATE
+09-14 07:51:48.745  3580  3580 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+09-14 07:51:48.746  3580  3580 I APP_COMPACT: on Create
+09-14 07:51:48.751  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:48.751  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:48.754  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:48.756  1883  2101 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:48.883  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:48.884  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:48.887  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:48.887  1883  2101 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:48.901  3580  3580 E ple.carlauncher: Invalid resource ID 0x00000000.
+09-14 07:51:49.002   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 07:51:49.002   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 07:51:49.002   767   929 D InetDiagMessage: Destroyed live tcp sockets for uids={10157} in 0ms
+09-14 07:51:49.004   225   421 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 07:51:49.006  3580  3584 I ple.carlauncher: Compiler allocated 4208KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+09-14 07:51:49.019  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.022  1883  1977 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.024  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.030  1883  1977 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.111  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 57603; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.FrameLayout; Text: [Application icon]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.114  1466  1466 V RotaryController: event window ID: e
+09-14 07:51:49.155   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 07:51:49.156   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 07:51:49.158   767   929 D InetDiagMessage: Destroyed live tcp sockets for uids={1010157} in 4ms
+09-14 07:51:49.164  3580  3580 D DecorView: package: com.example.carlauncher user: 10 displayCompat: false
+09-14 07:51:49.170  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.171  1883  1977 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.173  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.174  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.174  3580  3580 D DesktopModeFlagsUtil: Toggle override initialized to: OVERRIDE_UNSET
+09-14 07:51:49.190  2363  2363 D VRI[MapsPlaceholderActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:51:49.190   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:49.191  1744  1744 D VRI[CarLauncher]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:51:49.200  3580  3580 W ple.carlauncher: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+09-14 07:51:49.223  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:51:49.249  3580  3580 I APP_COMPACT: Found app: Settings, package=com.android.car.settings, activity=com.android.car.settings.Settings_Launcher_Homepage
+09-14 07:51:49.255  3580  3580 I APP_COMPACT: Found app: Network Preference App, package=com.google.android.car.networking.preferenceupdater, activity=com.google.android.car.networking.preferenceupdater.MainActivity
+09-14 07:51:49.258   488   488 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:51:49.268   767  3614 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:51:49.269   767  3614 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:51:49.283   767  3614 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:51:49.306  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.309  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.314  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: CREATED
+09-14 07:51:49.314  3580  3580 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.example.carlauncher.AppDrawerActivity@ad248d3
+09-14 07:51:49.315  3580  3580 I APP_COMPACT: onStart
+09-14 07:51:49.317  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: STARTED
+09-14 07:51:49.317  3580  3580 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.example.carlauncher.AppDrawerActivity@ad248d3
+09-14 07:51:49.327  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.328  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.331  3580  3580 I APP_COMPACT: AppDrawerActivity  onResume
+09-14 07:51:49.331  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: RESUMED
+09-14 07:51:49.331  3580  3580 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.example.carlauncher.AppDrawerActivity@ad248d3
+09-14 07:51:49.348  3580  3580 W HWUI    : Unknown dataspace 0
+09-14 07:51:49.352   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 07:51:49.357   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 07:51:49.360   767   929 D InetDiagMessage: Destroyed live tcp sockets for uids={10242} in 9ms
+09-14 07:51:49.373   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 07:51:49.385   767   929 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 07:51:49.385   767   929 D InetDiagMessage: Destroyed live tcp sockets for uids={1010242} in 13ms
+09-14 07:51:49.438  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58436; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.438  1466  1466 V RotaryController: event window ID: b
+09-14 07:51:49.439  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58436; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.439  1466  1466 V RotaryController: event window ID: d
+09-14 07:51:49.439  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58436; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.439  1466  1466 V RotaryController: event window ID: 7
+09-14 07:51:49.439  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58436; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.439  1466  1466 V RotaryController: event window ID: 6
+09-14 07:51:49.442   488   502 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:51:49.442   488   881 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=3580
+09-14 07:51:49.442   488   502 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (2939 us)
+09-14 07:51:49.442   488   881 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (1527 us)
+09-14 07:51:49.443   488   502 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:51:49.443   488   502 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (910 us)
+09-14 07:51:49.444   488   502 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010248 pid=0
+09-14 07:51:49.444   488   502 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010248 => denied (354 us)
+09-14 07:51:49.444   488   881 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=3580
+09-14 07:51:49.444   488   881 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (1246 us)
+09-14 07:51:49.448  3580  3611 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:51:49.451  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.451  3580  3611 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:51:49.451  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.458  3580  3611 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:51:49.465  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.465  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.489  1379  1555 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:51:49.496   178  3615 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:51:49.586  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.586  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.595  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.597  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.655  3580  3584 I ple.carlauncher: Compiler allocated 5200KB to compile void android.view.ViewRootImpl.performTraversals()
+09-14 07:51:49.709  1861  1861 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.cast.firstparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+09-14 07:51:49.709  1234  1234 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 07:51:49.718  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.718  1883  2101 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.732  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.733  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.794   767  2020 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:51:49.794   767  2020 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (126 us)
+09-14 07:51:49.794   767  2020 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 07:51:49.794   767  2020 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (73 us)
+09-14 07:51:49.794   767  2020 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010248 pid=0
+09-14 07:51:49.794   767  2020 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010248 => denied (79 us)
+09-14 07:51:49.797   767   791 W ziparchive: Unable to open '/data/app/~~I9HGoh1jl3xOGWOsT941zA==/com.example.carlauncher-6S0B1peBnGnFNcGhlCUegQ==/base.dm': No such file or directory
+09-14 07:51:49.800   767   791 I ActivityTaskManager: Displayed com.example.carlauncher/.AppDrawerActivity for user 10: +1s249ms
+09-14 07:51:49.802  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_VIEW_SCROLLED; EventTime: 58801; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: androidx.recyclerview.widget.RecyclerView; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: 0; ScrollDeltaY: 0; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.824   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:49.837   403   467 I netd    : tetherGetStats() -> {[]} <0.79ms>
+09-14 07:51:49.866  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.866  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.867  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:49.869  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:49.874   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:49.886  1861  1861 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.clearcut.bootcount.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentBoundBrokerService }
+09-14 07:51:49.899  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@9d9a; boundsInParent: Rect(0, 0 - 1408, 570); boundsInScreen: Rect(0, 126 - 1408, 696); boundsInWindow: Rect(0, 126 - 1408, 696); packageName: com.example.carlauncher; className: androidx.recyclerview.widget.RecyclerView; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:51:49.899  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:49.899  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 58491; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: com.example.carlauncher.AppDrawerActivity; Text: [CarLauncher]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.911   767   890 I ImeTracker: com.example.carlauncher:943e48c3: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+09-14 07:51:49.911   767   890 I ImeTracker: com.example.carlauncher:943e48c3: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-14 07:51:49.946  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@80006ccd; boundsInParent: Rect(0, 0 - 1408, 792); boundsInScreen: Rect(0, 0 - 1408, 792); boundsInWindow: Rect(0, 0 - 1408, 792); packageName: com.example.carlauncher; className: android.widget.FrameLayout; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:51:49.948  1587  1587 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2113
+09-14 07:51:49.951  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:49.955  1587  1587 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+09-14 07:51:49.957  1587  1587 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1384 onStartInput(EditorInfo{EditorInfo{packageName=com.example.carlauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-14 07:51:49.961  1587  1587 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+09-14 07:51:49.973  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58831; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.973  1466  1466 V RotaryController: event window ID: 7
+09-14 07:51:49.975  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58831; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.976  1466  1466 V RotaryController: event window ID: 6
+09-14 07:51:49.976  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58831; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_ADDED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.976  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:49.983  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 58920; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: com.example.carlauncher.AppDrawerActivity; Text: [CarLauncher]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: true; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:49.987  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@80006ccd; boundsInParent: Rect(0, 0 - 1408, 792); boundsInScreen: Rect(0, 10 - 1408, 802); boundsInWindow: Rect(0, 10 - 1408, 802); packageName: com.example.carlauncher; className: android.widget.FrameLayout; text: null; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: false; focused: false; selected: false; clickable: false; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:51:49.987   767  2020 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@129f454, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:51:49.989  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:50.003   767  2020 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 07:51:50.013  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.015  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.024  3580  3580 I APP_COMPACT: onPause
+09-14 07:51:50.025  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: PAUSED
+09-14 07:51:50.028  3580  3580 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.example.carlauncher.AppDrawerActivity@ad248d3
+09-14 07:51:50.041  1861  2436 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+09-14 07:51:50.042  1861  2436 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+09-14 07:51:50.046  1234  1367 D SplashScreenView: Build android.window.SplashScreenView{44106a9 V.E...... ......ID 0,0-0,0}
+09-14 07:51:50.046  1234  1367 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 07:51:50.046  1234  1367 D SplashScreenView: Branding: view: android.view.View{f6d842e G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 07:51:50.053  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+09-14 07:51:50.053  1234  1234 D DockViewModel: internalItems.size = 4, maxItemsInDock= 4
+09-14 07:51:50.058   767   794 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@129f454, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 07:51:50.068   406   406 W Zygote  : forkRepeatedly terminated due to non-simple command
+09-14 07:51:50.068   406   406 D Zygote  : mbuffer starts with 18, nice name is , mEnd = 1347, mNext = 35, mLinesLeft = 16, mFd = 6
+09-14 07:51:50.073   488   488 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 07:51:50.082  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.085   406   406 I Zygote  : Entering forkRepeatedly native zygote loop
+09-14 07:51:50.085  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.088  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 58922; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_BOUNDS] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.088  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:50.088  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_VIEW_CLICKED; EventTime: 58959; PackageName: com.example.carlauncher; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.Button; Text: [SET TIME TO 5]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.095   406   406 D Zygote  : Forked child process 3629
+09-14 07:51:50.098  1234  1234 D DockViewModel: Updating ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity} at 2
+09-14 07:51:50.098  1234  1234 D DockViewModel: createDockList called
+09-14 07:51:50.117  1466  1466 V RotaryController: event source: android.view.accessibility.AccessibilityNodeInfo@9618; boundsInParent: Rect(0, 0 - 100, 50); boundsInScreen: Rect(240, 76 - 340, 126); boundsInWindow: Rect(240, 76 - 340, 126); packageName: com.example.carlauncher; className: android.widget.Button; text: SET TIME TO 5; error: null; maxTextLength: -1; stateDescription: null; contentDescription: null; tooltipText: null; containerTitle: null; viewIdResName: null; uniqueId: null; checkable: false; checked: false; focusable: true; focused: false; selected: false; clickable: true; longClickable: false; contextClickable: false; enabled: true; password: false; scrollable: false; granularScrollingSupported: false; importantForAccessibility: true; visible: true; actions: [AccessibilityAction: ACTION_FOCUS - null, AccessibilityAction: ACTION_SELECT - null, AccessibilityAction: ACTION_CLEAR_SELECTION - null, AccessibilityAction: ACTION_CLICK - null, AccessibilityAction: ACTION_ACCESSIBILITY_FOCUS - null, AccessibilityAction: ACTION_NEXT_AT_MOVEMENT_GRANULARITY - null, AccessibilityAction: ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY - null, AccessibilityAction: ACTION_SET_SELECTION - null, AccessibilityAction: ACTION_SHOW_ON_SCREEN - null]; isTextSelectable: false
+09-14 07:51:50.117  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:50.120  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 59082; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_BOUNDS] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.120  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:50.120  1883  1977 I otr     : parsing language pack metadata file
+09-14 07:51:50.124   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.126  1883  1977 I otr     : Locale en-US languagepack (/metadata) version:
+09-14 07:51:50.127  1861  2445 I FontLog : Updating from directory version 0 to 31 from disk [CONTEXT service_id=132 ]
+09-14 07:51:50.129  1861  2436 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+09-14 07:51:50.132   488   539 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.134  3629  3629 I arlauncher.test: Late-enabling -Xcheck:jni
+09-14 07:51:50.137  1861  2436 I FontLog : Pulling font file for id = 1, cache size = 1 [CONTEXT service_id=132 ]
+09-14 07:51:50.141   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.149  1234  1366 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@dbbfe7a
+09-14 07:51:50.168  3629  3629 I arlauncher.test: Using CollectorTypeCMC GC.
+09-14 07:51:50.169  3629  3629 W arlauncher.test: Unexpected CPU variant for x86: x86_64.
+09-14 07:51:50.169  3629  3629 W arlauncher.test: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+09-14 07:51:50.172  1861  2514 I FontLog : Using directory in FlatBuffer format [CONTEXT service_id=132 ]
+09-14 07:51:50.175   506   520 I adbd    : jdwp connection from 3629
+09-14 07:51:50.176   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.180  1883  1977 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.181  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.191  3629  3629 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+09-14 07:51:50.197  1861  2436 I FontLog : Pulling font file for id = 1, cache size = 1 [CONTEXT service_id=132 ]
+09-14 07:51:50.203  1234  1234 D DockAdapter: Binding at position 2 without payloads
+09-14 07:51:50.203  1234  1234 D DockAdapter: Is callback set for 2: false
+09-14 07:51:50.204  1234  1234 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:51:50.216  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.220   767  2016 W com.android.internal.protolog.LogcatOnlyProtoLogImpl: ProtoLog message not processed. Failed to log it to proto. Logging it below to logcat instead.
+09-14 07:51:50.220   767  2016 V WindowManager: Binding proc com.example.carlauncher.test with config {1.0 310mcc260mnc [en_US] ldltr sw792dp w1408dp h792dp 160dpi xlrg long land car finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1408, 792) mAppBounds=Rect(0, 0 - 1408, 792) mMaxBounds=Rect(0, 0 - 1408, 792) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.11 fontWeightAdjustment=0}
+09-14 07:51:50.220  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.226   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.242  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:51:50.270  3629  3629 I ActivityThread: Relaunch all activities: onCoreSettingsChange
+09-14 07:51:50.290   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.303  3629  3629 W ziparchive: Unable to open '/data/app/~~d0OtPBgR4RDl0yaBIOZhwg==/com.example.carlauncher.test-ruhuV7NdoKM9lnq9cqjoMA==/base.dm': No such file or directory
+09-14 07:51:50.303  3629  3629 W ziparchive: Unable to open '/data/app/~~d0OtPBgR4RDl0yaBIOZhwg==/com.example.carlauncher.test-ruhuV7NdoKM9lnq9cqjoMA==/base.dm': No such file or directory
+09-14 07:51:50.319  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.319  1883  1977 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.329  3629  3629 D nativeloader: Configuring clns-7 for other apk /data/app/~~d0OtPBgR4RDl0yaBIOZhwg==/com.example.carlauncher.test-ruhuV7NdoKM9lnq9cqjoMA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~d0OtPBgR4RDl0yaBIOZhwg==/com.example.carlauncher.test-ruhuV7NdoKM9lnq9cqjoMA==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/10/com.example.carlauncher.test
+09-14 07:51:50.334   488   539 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.342  3629  3629 V GraphicsEnvironment: Currently set values for:
+09-14 07:51:50.342  3629  3629 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+09-14 07:51:50.342  3629  3629 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+09-14 07:51:50.345  3629  3629 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+09-14 07:51:50.345  3629  3629 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+09-14 07:51:50.351  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.412  1883  1976 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.421  3629  3629 E arlauncher.test: Invalid resource ID 0x00000000.
+09-14 07:51:50.431  3629  3629 D DecorView: package: com.example.carlauncher.test user: 10 displayCompat: true
+09-14 07:51:50.438  3629  3629 D DesktopModeFlagsUtil: Toggle override initialized to: OVERRIDE_UNSET
+09-14 07:51:50.459  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.459  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.489  3629  3629 W HWUI    : Unknown dataspace 0
+09-14 07:51:50.493  1379  1555 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 07:51:50.505   178  3647 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 07:51:50.550  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.552  1883  2101 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.559   488   501 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:51:50.559   488   501 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (940 us)
+09-14 07:51:50.561   488   502 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=3629
+09-14 07:51:50.561   488   502 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (2003 us)
+09-14 07:51:50.561   488   502 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=3629
+09-14 07:51:50.561   488   502 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (174 us)
+09-14 07:51:50.561   488   502 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=3629
+09-14 07:51:50.561   488   502 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (125 us)
+09-14 07:51:50.563  3629  3643 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:51:50.564  3629  3643 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:51:50.565   488   501 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:51:50.565   488   501 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (6064 us)
+09-14 07:51:50.570  3629  3643 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 07:51:50.592  1883  2101 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.593  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.600  1234  1234 D DockViewModel: Add dynamic item, component: ComponentInfo{com.android.car.carlauncher/com.android.car.carlauncher.CarLauncher}
+09-14 07:51:50.600  1234  1234 D DockViewModel: Dynamic item is excluded
+09-14 07:51:50.614  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 59109; PackageName: com.example.carlauncher.test; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.FrameLayout; Text: [Application icon]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.614  1466  1466 V RotaryController: event window ID: 10
+09-14 07:51:50.624   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.666  3580  3580 D VRI[AppDrawerActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 07:51:50.675   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.713   767  2020 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:51:50.713   767  2020 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (375 us)
+09-14 07:51:50.713   767  2020 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 07:51:50.714   767  2020 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (159 us)
+09-14 07:51:50.714   767  2020 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=0
+09-14 07:51:50.714   767  2020 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (82 us)
+09-14 07:51:50.717  2484  2484 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.setupservices.TosAcceptanceStatusApiChimeraService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsSingleUserInternalApiService }
+09-14 07:51:50.719  1883  2072 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.722  1883  1978 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.750  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOW_STATE_CHANGED; EventTime: 59467; PackageName: com.android.systemui; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [] [ ClassName: android.widget.LinearLayout; Text: [Back Button, Long press to close the app]; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: true; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.764  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:51:50.774  3580  3580 I APP_COMPACT: onStop
+09-14 07:51:50.780  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: STOPPED
+09-14 07:51:50.780  3580  3580 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.example.carlauncher.AppDrawerActivity@ad248d3
+09-14 07:51:50.789  1883  2069 I ProjectInfo: got stored project id: car-automation-dogfood
+09-14 07:51:50.796  3580  3580 I APP_COMPACT: on Destroy
+09-14 07:51:50.798  1466  1466 V RotaryController: event window ID: 11
+09-14 07:51:50.799  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 59747; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.799  1466  1466 V RotaryController: event window ID: f
+09-14 07:51:50.799  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 59747; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_ADDED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.799  1466  1466 V RotaryController: event window ID: 11
+09-14 07:51:50.800  1234  1234 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 07:51:50.800  1234  1234 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@9349a3e
+09-14 07:51:50.805  1883  1977 I AutoClassSetData: No settings key found for assistant-preferred-languages
+09-14 07:51:50.821  3580  3580 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.AppDrawerActivity@ad248d3 in: DESTROYED
+09-14 07:51:50.822  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 59818; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_REMOVED] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.822  1466  1466 V RotaryController: event window ID: 11
+09-14 07:51:50.822  3580  3580 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+09-14 07:51:50.822  1466  1466 V RotaryController: onAccessibilityEvent: EventType: TYPE_WINDOWS_CHANGED; EventTime: 59818; PackageName: null; MovementGranularity: 0; Action: 0; ContentChangeTypes: []; WindowChangeTypes: [WINDOWS_CHANGE_LAYER] [ ClassName: null; Text: []; ContentDescription: null; ItemCount: -1; CurrentItemIndex: -1; Enabled: false; Password: false; Checked: false; FullScreen: false; Scrollable: false; ImportantForAccessibility: true; AccessibilityDataSensitive: false; BeforeText: null; FromIndex: -1; ToIndex: -1; ScrollX: 0; ScrollY: 0; MaxScrollX: 0; MaxScrollY: 0; ScrollDeltaX: -1; ScrollDeltaY: -1; AddedCount: -1; RemovedCount: -1; ParcelableData: null; DisplayId: 0 ]; recordCount: 0
+09-14 07:51:50.823   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:51:50.826  3580  3602 I TestRunner: finished: clickCountButton_setsTextToFive(com.example.carlauncher.AppDrawerActivityTest)

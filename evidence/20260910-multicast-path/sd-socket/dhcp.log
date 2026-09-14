@@ -1,0 +1,114 @@
+dnsmasq[96006]: started, version 2.90 DNS disabled
+dnsmasq[96006]: compile time options: IPv6 GNU-getopt DBus no-UBus i18n IDN2 DHCP DHCPv6 no-Lua TFTP conntrack ipset no-nftset auth cryptohash DNSSEC loop-detect inotify dumpfile
+dnsmasq-dhcp[96006]: DHCP, IP range 10.203.0.2 -- 10.203.0.2, lease time 10m
+dnsmasq-dhcp[96006]: DHCP, sockets bound exclusively to interface cl-sd-tap
+dnsmasq-dhcp[96006]: 1981756369 available DHCP range: 10.203.0.2 -- 10.203.0.2
+dnsmasq-dhcp[96006]: 1981756369 vendor class: android-dhcp-15
+dnsmasq-dhcp[96006]: 1981756369 client provides name: Car-on-x86-64-emulator
+dnsmasq-dhcp[96006]: 1981756369 DHCPDISCOVER(cl-sd-tap) 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 tags: cl-sd-tap
+dnsmasq-dhcp[96006]: 1981756369 DHCPOFFER(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 1:netmask, 3:router, 6:dns-server, 15:domain-name, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 26:mtu, 28:broadcast, 51:lease-time, 58:T1, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 59:T2, 43:vendor-encap, 114, 108:ipv6-only
+dnsmasq-dhcp[96006]: 1981756369 next server: 10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  1 option: 53 message-type  2
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 54 server-identifier  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 51 lease-time  10m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 58 T1  5m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 59 T2  8m45s
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  1 netmask  255.255.255.0
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 28 broadcast  10.203.0.255
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  6 dns-server  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  3 router  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 available DHCP range: 10.203.0.2 -- 10.203.0.2
+dnsmasq-dhcp[96006]: 1981756369 vendor class: android-dhcp-15
+dnsmasq-dhcp[96006]: 1981756369 client provides name: Car-on-x86-64-emulator
+dnsmasq-dhcp[96006]: 1981756369 DHCPDISCOVER(cl-sd-tap) 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 tags: cl-sd-tap
+dnsmasq-dhcp[96006]: 1981756369 DHCPOFFER(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 1:netmask, 3:router, 6:dns-server, 15:domain-name, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 26:mtu, 28:broadcast, 51:lease-time, 58:T1, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 59:T2, 43:vendor-encap, 114, 108:ipv6-only
+dnsmasq-dhcp[96006]: 1981756369 next server: 10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  1 option: 53 message-type  2
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 54 server-identifier  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 51 lease-time  10m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 58 T1  5m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 59 T2  8m45s
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  1 netmask  255.255.255.0
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 28 broadcast  10.203.0.255
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  6 dns-server  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  3 router  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 available DHCP range: 10.203.0.2 -- 10.203.0.2
+dnsmasq-dhcp[96006]: 1981756369 vendor class: android-dhcp-15
+dnsmasq-dhcp[96006]: 1981756369 client provides name: Car-on-x86-64-emulator
+dnsmasq-dhcp[96006]: 1981756369 DHCPDISCOVER(cl-sd-tap) 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 tags: cl-sd-tap
+dnsmasq-dhcp[96006]: 1981756369 DHCPOFFER(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 1:netmask, 3:router, 6:dns-server, 15:domain-name, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 26:mtu, 28:broadcast, 51:lease-time, 58:T1, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 59:T2, 43:vendor-encap, 114, 108:ipv6-only
+dnsmasq-dhcp[96006]: 1981756369 next server: 10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  1 option: 53 message-type  2
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 54 server-identifier  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 51 lease-time  10m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 58 T1  5m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 59 T2  8m45s
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  1 netmask  255.255.255.0
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 28 broadcast  10.203.0.255
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  6 dns-server  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  3 router  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 available DHCP range: 10.203.0.2 -- 10.203.0.2
+dnsmasq-dhcp[96006]: 1981756369 vendor class: android-dhcp-15
+dnsmasq-dhcp[96006]: 1981756369 client provides name: Car-on-x86-64-emulator
+dnsmasq-dhcp[96006]: 1981756369 DHCPREQUEST(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 1981756369 tags: cl-sd-tap
+dnsmasq-dhcp[96006]: 1981756369 DHCPACK(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 Car-on-x86-64-emulator
+dnsmasq-dhcp[96006]: 1981756369 requested options: 1:netmask, 3:router, 6:dns-server, 15:domain-name, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 26:mtu, 28:broadcast, 51:lease-time, 58:T1, 
+dnsmasq-dhcp[96006]: 1981756369 requested options: 59:T2, 43:vendor-encap, 114, 108:ipv6-only
+dnsmasq-dhcp[96006]: 1981756369 next server: 10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  1 option: 53 message-type  5
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 54 server-identifier  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 51 lease-time  10m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 58 T1  5m
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 59 T2  8m45s
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  1 netmask  255.255.255.0
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option: 28 broadcast  10.203.0.255
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  6 dns-server  10.203.0.1
+dnsmasq-dhcp[96006]: 1981756369 sent size:  4 option:  3 router  10.203.0.1
+dnsmasq-dhcp[96006]: 4 available DHCP range: 10.203.0.2 -- 10.203.0.2
+dnsmasq-dhcp[96006]: 4 DHCPDISCOVER(cl-sd-tap) 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 4 tags: cl-sd-tap
+dnsmasq-dhcp[96006]: 4 DHCPOFFER(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 4 requested options: 1:netmask, 3:router, 6:dns-server, 28:broadcast, 
+dnsmasq-dhcp[96006]: 4 requested options: 51:lease-time, 58:T1, 59:T2, 26:mtu
+dnsmasq-dhcp[96006]: 4 next server: 10.203.0.1
+dnsmasq-dhcp[96006]: 4 broadcast response
+dnsmasq-dhcp[96006]: 4 sent size:  1 option: 53 message-type  2
+dnsmasq-dhcp[96006]: 4 sent size:  4 option: 54 server-identifier  10.203.0.1
+dnsmasq-dhcp[96006]: 4 sent size:  4 option: 51 lease-time  10m
+dnsmasq-dhcp[96006]: 4 sent size:  4 option: 58 T1  5m
+dnsmasq-dhcp[96006]: 4 sent size:  4 option: 59 T2  8m45s
+dnsmasq-dhcp[96006]: 4 sent size:  4 option:  1 netmask  255.255.255.0
+dnsmasq-dhcp[96006]: 4 sent size:  4 option: 28 broadcast  10.203.0.255
+dnsmasq-dhcp[96006]: 4 sent size:  4 option:  6 dns-server  10.203.0.1
+dnsmasq-dhcp[96006]: 4 sent size:  4 option:  3 router  10.203.0.1
+dnsmasq-dhcp[96006]: 5 available DHCP range: 10.203.0.2 -- 10.203.0.2
+dnsmasq-dhcp[96006]: 5 DHCPREQUEST(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 5 tags: cl-sd-tap
+dnsmasq-dhcp[96006]: 5 DHCPACK(cl-sd-tap) 10.203.0.2 02:15:b2:00:00:00 
+dnsmasq-dhcp[96006]: 5 requested options: 1:netmask, 3:router, 6:dns-server, 28:broadcast, 
+dnsmasq-dhcp[96006]: 5 requested options: 51:lease-time, 58:T1, 59:T2, 26:mtu
+dnsmasq-dhcp[96006]: 5 next server: 10.203.0.1
+dnsmasq-dhcp[96006]: 5 broadcast response
+dnsmasq-dhcp[96006]: 5 sent size:  1 option: 53 message-type  5
+dnsmasq-dhcp[96006]: 5 sent size:  4 option: 54 server-identifier  10.203.0.1
+dnsmasq-dhcp[96006]: 5 sent size:  4 option: 51 lease-time  10m
+dnsmasq-dhcp[96006]: 5 sent size:  4 option: 58 T1  5m
+dnsmasq-dhcp[96006]: 5 sent size:  4 option: 59 T2  8m45s
+dnsmasq-dhcp[96006]: 5 sent size:  4 option:  1 netmask  255.255.255.0
+dnsmasq-dhcp[96006]: 5 sent size:  4 option: 28 broadcast  10.203.0.255
+dnsmasq-dhcp[96006]: 5 sent size:  4 option:  6 dns-server  10.203.0.1
+dnsmasq-dhcp[96006]: 5 sent size:  4 option:  3 router  10.203.0.1

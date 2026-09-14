@@ -1,0 +1,2 @@
+09-14 07:53:05.513  3580  3602 I TestRunner: started: clearStateListener_stopsNotifications(com.example.carlauncher.service.VehicleSendServiceTest)
+09-14 07:53:05.515  3580  3602 I TestRunner: finished: clearStateListener_stopsNotifications(com.example.carlauncher.service.VehicleSendServiceTest)

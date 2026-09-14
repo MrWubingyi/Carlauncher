@@ -1,0 +1,5 @@
+09-14 07:53:05.099  3580  3602 I TestRunner: started: refresh_afterAttach_reflectsUpdatedSnapshot(com.example.carlauncher.data.VehicleRepositoryTest)
+09-14 07:53:05.099  1234  1234 D DockAdapter: Binding at position 0 without payloads
+09-14 07:53:05.100  1234  1234 D DockAdapter: Is callback set for 0: false
+09-14 07:53:05.104  1234  1234 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 07:53:05.104  3580  3602 I TestRunner: finished: refresh_afterAttach_reflectsUpdatedSnapshot(com.example.carlauncher.data.VehicleRepositoryTest)

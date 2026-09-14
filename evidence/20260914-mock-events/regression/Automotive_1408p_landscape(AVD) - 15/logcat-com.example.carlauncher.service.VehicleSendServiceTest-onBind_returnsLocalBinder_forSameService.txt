@@ -1,0 +1,3 @@
+09-14 07:53:05.528  3580  3602 I TestRunner: started: onBind_returnsLocalBinder_forSameService(com.example.carlauncher.service.VehicleSendServiceTest)
+09-14 07:53:05.530  3580  3602 I VEHICLE_SERVICE: Service onBind id=212977413
+09-14 07:53:05.530  3580  3602 I TestRunner: finished: onBind_returnsLocalBinder_forSameService(com.example.carlauncher.service.VehicleSendServiceTest)

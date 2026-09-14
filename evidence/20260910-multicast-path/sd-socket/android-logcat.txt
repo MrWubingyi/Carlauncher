@@ -1,0 +1,73 @@
+--------- beginning of main
+09-10 07:43:57.187  3540  3563 I VSOMEIP_JNI: System.loadLibrary ok
+09-10 07:43:57.192  3540  3563 I VSOMEIP_JNI: SD multicast lock acquired
+09-10 07:43:57.196  3540  3563 I VSOMEIP_JNI: nativeStart: begin
+09-10 07:43:57.196  3540  3563 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files
+09-10 07:43:57.197  3540  3563 I VSOMEIP_JNI: create_application ok
+09-10 07:43:57.197  3540  3563 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-10 07:43:57.203  3540  3563 I VSOMEIP_JNI: app_->init() ok
+09-10 07:43:57.203  3540  3563 I VSOMEIP_JNI: vsomeip io thread spawned
+09-10 07:43:57.203  3540  3563 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-10 07:43:57.204  3540  3563 I VSOMEIP_JNI: nativeStart: begin
+09-10 07:43:57.204  3540  3563 I VSOMEIP_JNI: start_io: io thread already running
+09-10 07:43:57.204  3540  3563 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-10 07:43:57.204  3540  3568 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-10 07:43:57.204  3540  3569 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-10 07:43:57.205  3540  3569 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-10 07:43:57.207  3540  3569 I VSOMEIP_JNI: native: registered
+09-10 07:43:57.248  3540  3569 I VSOMEIP_JNI: availability: ON_AVAILABLE
+09-10 07:43:57.250  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0001 seq=16909060 hex=01010203040102030405060708640300
+09-10 07:43:57.266  3540  3569 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0001 type=80 rc=00
+09-10 07:43:57.266  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0002 seq=16909061 hex=01010203050000000000000001ff0300
+09-10 07:43:57.281  3540  3569 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0002 type=80 rc=01
+09-10 07:43:57.282  3540  3569 W VSOMEIP_JNI: native: response error code=1
+09-10 07:43:57.282  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0003 seq=16909062 hex=02010203060000000000000001000000
+09-10 07:43:57.296  3540  3569 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0003 type=80 rc=01
+09-10 07:43:57.296  3540  3569 W VSOMEIP_JNI: native: response error code=1
+09-10 07:43:57.297  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0004 seq=16909063 hex=01010203070000000000000001000000
+09-10 07:43:57.312  3540  3569 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0004 type=80 rc=00
+09-10 07:43:57.313  3540  3563 E VSOMEIP_JNI: nativeSendState: expect 16 bytes, got 15
+09-10 07:43:57.314  3540  3563 I VSOMEIP_JNI: stopping vsomeip app
+09-10 07:43:57.314  3540  3568 I VSOMEIP_JNI: vsomeip io thread exited
+09-10 07:43:57.314  3540  3563 I VSOMEIP_JNI: vsomeip app stopped
+09-10 07:43:57.315  3540  3563 I VSOMEIP_JNI: native: stopped
+09-10 07:43:57.317  3540  3563 I VSOMEIP_JNI: SD multicast lock released
+09-10 07:43:57.317  3540  3563 I VSOMEIP_JNI: SD multicast lock released
+09-10 07:43:57.317  3540  3563 E VSOMEIP_JNI: send_state: not started
+09-10 07:43:57.317  3540  3563 I VSOMEIP_PROBE: cycle=0 passed
+09-10 07:43:57.318  3540  3563 I VSOMEIP_JNI: SD multicast lock acquired
+09-10 07:43:57.319  3540  3563 I VSOMEIP_JNI: nativeStart: begin
+09-10 07:43:57.319  3540  3563 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files
+09-10 07:43:57.319  3540  3563 I VSOMEIP_JNI: create_application ok
+09-10 07:43:57.319  3540  3563 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-10 07:43:57.320  3540  3563 I VSOMEIP_JNI: app_->init() ok
+09-10 07:43:57.320  3540  3563 I VSOMEIP_JNI: vsomeip io thread spawned
+09-10 07:43:57.320  3540  3563 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-10 07:43:57.320  3540  3563 I VSOMEIP_JNI: nativeStart: begin
+09-10 07:43:57.320  3540  3563 I VSOMEIP_JNI: start_io: io thread already running
+09-10 07:43:57.320  3540  3563 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-10 07:43:57.320  3540  3573 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-10 07:43:57.323  3540  3574 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-10 07:43:57.325  3540  3574 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-10 07:43:57.326  3540  3574 I VSOMEIP_JNI: native: registered
+09-10 07:43:57.415  3540  3574 I VSOMEIP_JNI: availability: ON_AVAILABLE
+09-10 07:43:57.416  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0001 seq=16909070 hex=010102030e0102030405060708640300
+09-10 07:43:57.430  3540  3574 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0001 type=80 rc=00
+09-10 07:43:57.430  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0002 seq=16909071 hex=010102030f0000000000000001ff0300
+09-10 07:43:57.447  3540  3574 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0002 type=80 rc=01
+09-10 07:43:57.447  3540  3574 W VSOMEIP_JNI: native: response error code=1
+09-10 07:43:57.448  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0003 seq=16909072 hex=02010203100000000000000001000000
+09-10 07:43:57.463  3540  3574 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0003 type=80 rc=01
+09-10 07:43:57.463  3540  3574 W VSOMEIP_JNI: native: response error code=1
+09-10 07:43:57.464  3540  3563 I VSOMEIP_JNI: SOMEIP_TX submitted service=1111 method=1001 client=5566 session=0004 seq=16909073 hex=01010203110000000000000001000000
+09-10 07:43:57.479  3540  3574 I VSOMEIP_JNI: SOMEIP_RX service=1111 method=1001 client=5566 session=0004 type=80 rc=00
+09-10 07:43:57.480  3540  3563 E VSOMEIP_JNI: nativeSendState: expect 16 bytes, got 15
+09-10 07:43:57.480  3540  3563 I VSOMEIP_JNI: stopping vsomeip app
+09-10 07:43:57.482  3540  3573 I VSOMEIP_JNI: vsomeip io thread exited
+09-10 07:43:57.482  3540  3563 I VSOMEIP_JNI: vsomeip app stopped
+09-10 07:43:57.482  3540  3563 I VSOMEIP_JNI: native: stopped
+09-10 07:43:57.484  3540  3563 I VSOMEIP_JNI: SD multicast lock released
+09-10 07:43:57.484  3540  3563 I VSOMEIP_JNI: SD multicast lock released
+09-10 07:43:57.484  3540  3563 E VSOMEIP_JNI: send_state: not started
+09-10 07:43:57.484  3540  3563 I VSOMEIP_PROBE: cycle=1 passed
+09-10 07:43:57.485  3540  3563 I VSOMEIP_JNI: SD multicast lock released

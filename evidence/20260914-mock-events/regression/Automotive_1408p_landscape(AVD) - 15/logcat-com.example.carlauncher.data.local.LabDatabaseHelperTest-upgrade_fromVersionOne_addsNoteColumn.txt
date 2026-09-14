@@ -1,0 +1,5 @@
+09-14 07:53:05.294  3580  3602 I TestRunner: started: upgrade_fromVersionOne_addsNoteColumn(com.example.carlauncher.data.local.LabDatabaseHelperTest)
+09-14 07:53:05.338  3580  3602 I LAB_DATABASE: Database onUpgrade, oldVersion=1, newVersion=2
+09-14 07:53:05.338  3580  3602 I LAB_DATABASE: Upgrade v1 to v2: note column added
+09-14 07:53:05.349  3580  3602 I LAB_DATABASE: Database opened, version=2
+09-14 07:53:05.358  3580  3602 I TestRunner: finished: upgrade_fromVersionOne_addsNoteColumn(com.example.carlauncher.data.local.LabDatabaseHelperTest)

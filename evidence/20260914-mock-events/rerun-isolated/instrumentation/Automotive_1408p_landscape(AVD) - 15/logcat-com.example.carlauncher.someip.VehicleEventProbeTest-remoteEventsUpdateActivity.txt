@@ -1,0 +1,918 @@
+09-14 08:05:36.715  3593  3616 I TestRunner: started: remoteEventsUpdateActivity(com.example.carlauncher.someip.VehicleEventProbeTest)
+09-14 08:05:36.727  3593  3616 I UiAutomation: Initialized for user 10 on display 0
+09-14 08:05:36.738  1414  1414 V RotaryController: onDestroy
+09-14 08:05:36.756  2544  2544 I SafetyCenterAccessibilityListener: accessibility event occurred, safety center feature not enabled.
+09-14 08:05:36.759  2544  2544 I SafetyCenterAccessibilityListener: accessibility event occurred, safety center feature not enabled.
+09-14 08:05:36.761  3593  3619 V UiAutomation: Init UiAutomation@5b5a9c0[id=3, displayId=0, flags=0]
+09-14 08:05:36.763  3447  3447 I SafetyCenterAccessibilityListener: accessibility event occurred, safety center feature not enabled.
+09-14 08:05:36.764  3447  3447 I SafetyCenterAccessibilityListener: accessibility event occurred, safety center feature not enabled.
+09-14 08:05:36.767  1414  1414 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@f750979
+09-14 08:05:36.795   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:36.806  3593  3616 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+09-14 08:05:36.806   491   855 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 6
+09-14 08:05:36.811   491   855 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 6
+09-14 08:05:36.812   491   855 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 3
+09-14 08:05:36.814   491   855 I APM::AudioPolicyEngine: getDevicesForStrategyInt no device found for strategy 3
+09-14 08:05:36.830   771  1865 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010248, packageName = null, attributionTag = null, token = android.os.Binder@fda7007, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 08:05:36.834   771  1865 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 08:05:36.845  1221  1341 E ndroid.systemui: Invalid resource ID 0x00000000.
+09-14 08:05:36.852   495   495 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 08:05:36.860   771  1465 D ConnectivityService: requestNetwork for uid/pid:10223/1221 asUid: 1010248 activeRequest: null callbackRequest: 76 [NetworkRequest [ REQUEST id=77, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: ALL
+09-14 08:05:36.863  1221  1342 D SplashScreenView: Build android.window.SplashScreenView{50b7487 V.E...... ......ID 0,0-0,0}
+09-14 08:05:36.863  1221  1342 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 08:05:36.863  1221  1342 D SplashScreenView: Branding: view: android.view.View{acbefb4 G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 08:05:36.863  1221  1221 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher/com.example.carlauncher.MainActivity}
+09-14 08:05:36.863  1221  1221 D DockViewModel: internalItems.size = 4, maxItemsInDock= 4
+09-14 08:05:36.867   771   924 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=77, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 08:05:36.867   771   931 D ConnectivityService: NetReassign [77 : null → 100] [c 0] [a 0] [i 4]
+09-14 08:05:36.867   771   924 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=77, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 08:05:36.868   771   924 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=77, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 08:05:36.868   771   924 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=77, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 1010248 RequestorUid: 10223 RequestorPkg: com.android.systemui UnderlyingNetworks: Null] ]
+09-14 08:05:36.879  1221  1221 D DockViewModel: Updating ComponentInfo{com.example.carlauncher/com.example.carlauncher.MainActivity} at 1
+09-14 08:05:36.879  1221  1221 D DockViewModel: createDockList called
+09-14 08:05:36.947  1221  1221 D class com.android.car.datasubscription.DataSubscriptionController: onAvailable 100
+09-14 08:05:36.947  1221  1221 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 08:05:36.952   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:36.954  1221  1221 D DockAdapter: Binding at position 1 without payloads
+09-14 08:05:36.954  1221  1221 D DockAdapter: Is callback set for 1: false
+09-14 08:05:36.956  1221  1221 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 08:05:36.969   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:36.985   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:37.018  3593  3593 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+09-14 08:05:37.031  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: PRE_ON_CREATE
+09-14 08:05:37.032  3593  3593 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+09-14 08:05:37.033  3593  3593 I VEHICLE_LAUNCHER: MainActivity onCreate
+09-14 08:05:37.217  3593  3593 E ple.carlauncher: Invalid resource ID 0x00000000.
+09-14 08:05:37.312  3593  3597 I ple.carlauncher: Compiler allocated 4208KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+09-14 08:05:37.387  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:37.393   174  3628 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:37.412  3593  3593 D DecorView: package: com.example.carlauncher user: 10 displayCompat: false
+09-14 08:05:37.416  3593  3593 D DesktopModeFlagsUtil: Toggle override initialized to: OVERRIDE_UNSET
+09-14 08:05:37.427  3593  3593 W ple.carlauncher: Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+09-14 08:05:37.428  3593  3593 I THEME_PREFERENCES: Loaded welcome enabled=true
+09-14 08:05:37.442  3593  3593 I COCKPIT_VIEW_MODEL: created, id=90454943
+09-14 08:05:37.456  2266  2266 D VRI[MapsPlaceholderActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 08:05:37.456  1556  1556 D VRI[CarLauncher]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 08:05:37.462  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: CREATED
+09-14 08:05:37.462  3593  3593 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.example.carlauncher.MainActivity@cc0aaee
+09-14 08:05:37.463  3593  3593 I VEHICLE_LAUNCHER: onStart
+09-14 08:05:37.465  3593  3593 I VEHICLE_LAUNCHER: bindService requested: true
+09-14 08:05:37.465  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: STARTED
+09-14 08:05:37.465  3593  3593 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.example.carlauncher.MainActivity@cc0aaee
+09-14 08:05:37.467  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:37.469   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:37.478  1221  1221 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 08:05:37.479  3593  3593 I VEHICLE_LAUNCHER: MainActivity onResume
+09-14 08:05:37.479  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: RESUMED
+09-14 08:05:37.479  3593  3593 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.example.carlauncher.MainActivity@cc0aaee
+09-14 08:05:37.486   495   495 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 08:05:37.499   771  3629 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 08:05:37.499   771  3629 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 08:05:37.503  3593  3593 W HWUI    : Unknown dataspace 0
+09-14 08:05:37.507   771  3629 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 08:05:37.567  1221  1221 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 08:05:37.570   495   609 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 08:05:37.570   495   609 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (1620 us)
+09-14 08:05:37.570   495  1469 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=3593
+09-14 08:05:37.570   495   609 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 08:05:37.570   495  1469 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (817 us)
+09-14 08:05:37.570   495   609 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (363 us)
+09-14 08:05:37.571   495   609 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010248 pid=0
+09-14 08:05:37.571   495   609 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010248 => denied (442 us)
+09-14 08:05:37.573   495  1469 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=3593
+09-14 08:05:37.573   495  1469 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (2591 us)
+09-14 08:05:37.581  3593  3624 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 08:05:37.582  3593  3624 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 08:05:37.594  3593  3624 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 08:05:37.634  1987  1987 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.scheduler.ACTION_PROXY_SCHEDULE dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-14 08:05:37.651   407  3634 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 10212 0}
+09-14 08:05:37.651   407  3635 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:05:37.651   407  3635 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:37.653   407  3635 I resolv  : retrying_poll: 48 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:37.653   407  3635 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:37.655   407  3635 I resolv  : retrying_poll: 48 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:37.655   407  3635 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:37.655   407  3635 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+09-14 08:05:37.661  1987  2167 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-14 08:05:37.661  1987  2167 W WakeLock: GCM_HB_ALARM counter does not exist
+09-14 08:05:37.669  1441  2467 I native  : I0000 00:00:1789373137.669001    2467 soda_async_impl.cc:1424] Current audio timestamp: 1789373138055514
+09-14 08:05:37.669   407  3636 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 10212 0}
+09-14 08:05:37.670   407  3637 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:05:37.670   407  3637 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:37.682  3593  3597 I ple.carlauncher: Compiler allocated 5200KB to compile void android.view.ViewRootImpl.performTraversals()
+09-14 08:05:37.854   771  1098 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 08:05:37.854   771  1098 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010248 => denied (157 us)
+09-14 08:05:37.854   771  1098 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010248 pid=0
+09-14 08:05:37.854   771  1098 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010248 => denied (83 us)
+09-14 08:05:37.854   771  1098 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010248 pid=0
+09-14 08:05:37.854   771  1098 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010248 => denied (202 us)
+09-14 08:05:37.857   771   796 W ziparchive: Unable to open '/data/app/~~R_7P0A3WkdoZ4FdKTUSbzg==/com.example.carlauncher-HROakk7NBuoITCvBPFQa4w==/base.dm': No such file or directory
+09-14 08:05:37.858   771   796 I ActivityTaskManager: Displayed com.example.carlauncher/.MainActivity for user 10: +1s36ms
+09-14 08:05:37.885   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:37.888  3593  3593 I VEHICLE_LAUNCHER: Welcome Snackbar displayed
+09-14 08:05:37.897   771   894 I ImeTracker: com.example.carlauncher:35624cca: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+09-14 08:05:37.898   771   894 I ImeTracker: com.example.carlauncher:35624cca: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-14 08:05:37.903  1607  1607 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2113
+09-14 08:05:37.909  1607  1607 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+09-14 08:05:37.909  1607  1607 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1384 onStartInput(EditorInfo{EditorInfo{packageName=com.example.carlauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-14 08:05:37.911  1607  1607 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+09-14 08:05:37.935   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:38.001   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:38.138   407   472 I netd    : tetherGetStats() -> {[]} <0.27ms>
+09-14 08:05:38.144  1820  1831 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+09-14 08:05:38.146  1820  1831 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+09-14 08:05:38.147  1221  1341 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@4548d77
+09-14 08:05:38.151  1221  1221 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 08:05:38.156   495   580 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:38.169   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:38.183  1820  2355 I FontLog : Updating from directory version 0 to 31 from disk [CONTEXT service_id=132 ]
+09-14 08:05:38.197  1820  2362 I FontLog : Using directory in FlatBuffer format [CONTEXT service_id=132 ]
+09-14 08:05:38.203  1820  1831 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+09-14 08:05:38.214  1820  1831 I FontLog : Pulling font file for id = 1, cache size = 1 [CONTEXT service_id=132 ]
+09-14 08:05:38.222  1820  1831 I FontLog : Pulling font file for id = 1, cache size = 1 [CONTEXT service_id=132 ]
+09-14 08:05:38.229  1820  1827 W .gms.persistent: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk' with 1 weak references
+09-14 08:05:38.231  1820  1827 W System  : A resource failed to call close.
+09-14 08:05:38.319   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:38.326  3593  3593 I VEHICLE_LAUNCHER: Observer owner activity=213953262, viewModel=90454943
+09-14 08:05:38.342  3593  3593 I VEHICLE_SERVICE: Service onCreate id=67417149
+09-14 08:05:38.357  3593  3593 I VEHICLE_SERVICE: Service onBind id=67417149
+09-14 08:05:38.358   495   580 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:38.360  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:38.366  3593  3593 I VEHICLE_LAUNCHER: Activity bound to VehicleSendService
+09-14 08:05:38.367  1221  1221 D CarNotificationListener: onNotificationPosted: StatusBarNotification(pkg=com.example.carlauncher user=UserHandle{10} id=1001 tag=null key=10|com.example.carlauncher|1001|null|1010248: Notification(channel=vehicle_send_channel shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE))
+09-14 08:05:38.367  1221  1221 D CarNotificationListener: Is incoming notification a group summary?: false
+09-14 08:05:38.369  1221  1221 D CarHeadsUpNotificationManager: Unable to show as HUN: importance is not sufficient
+09-14 08:05:38.370  1221  1221 D CarHeadsUpNotificationManager: 10|com.example.carlauncher|1001|null|1010248 is not an active heads up notification
+09-14 08:05:38.370  1221  1221 D CarNotificationListener: Is 10|com.example.carlauncher|1001|null|1010248 shown as HUN?: false
+09-14 08:05:38.370  1221  1221 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 importance is insufficient to show in notification center
+09-14 08:05:38.370  1221  1221 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 application is neither system privileged nor signed with platform key
+09-14 08:05:38.370  1221  1221 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 category: null
+09-14 08:05:38.370  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 08:05:38.370  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: Filtered notifications: [10|com.example.carlauncher|1001|null|1010248, 10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248=10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]}
+09-14 08:05:38.371  1221  1221 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.371  1221  1221 D NotificationDataManager: Unseen notifications cleared
+09-14 08:05:38.371  1221  1221 D NotificationDataManager: Unseen notification map: {10|com.example.carlauncher|1001|null|1010248=true, 10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 08:05:38.373  1221  1221 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.374  1221  1221 D NotificationViewControl: Unprocessed notification map: {10|com.example.carlauncher|1001|null|1010248=10|com.example.carlauncher|1001|null|1010248, 10|com.android.car.messenger|2147483647|null|1010165=10|com.android.car.messenger|2147483647|null|1010165, 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000=-1|android|55|null|1000}
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 importance is insufficient to show in notification center
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 application is neither system privileged nor signed with platform key
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: 10|com.example.carlauncher|1001|null|1010248 category: null
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 08:05:38.374  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 08:05:38.375  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 08:05:38.375  1221  1221 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 08:05:38.375  1221  1221 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 08:05:38.375  1221  1221 D PreprocessingManager: Filtered notifications: [10|com.example.carlauncher|1001|null|1010248, 10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 08:05:38.375  1221  1221 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248=10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]}
+09-14 08:05:38.375  1221  1221 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.375  1221  1221 D NotificationDataManager: Unseen notifications cleared
+09-14 08:05:38.375  1221  1221 D NotificationDataManager: Unseen notification map: {10|com.example.carlauncher|1001|null|1010248=true, 10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 08:05:38.375  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:38.376  1221  1221 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.376  1221  1221 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.376  1221  1221 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.376  1221  1221 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248]]
+09-14 08:05:38.376  1221  1221 D NotificationViewControl: Processed notification groups: [10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 08:05:38.376  1221  1221 D CarNotificationAdapter: Seen notifications: []
+09-14 08:05:38.376  1221  1221 D CarNotificationAdapter: Unseen notifications: [10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 08:05:38.377  1221  1221 D CarNotificationAdapter: Updated adapter view holders: [notification_header: [], notification_recents: [], 10|com.example.carlauncher|1001|null|1010248: [10|com.example.carlauncher|1001|null|1010248], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000], notification_footer: []]
+09-14 08:05:38.380  3593  3646 D nativeloader: Load /data/app/~~R_7P0A3WkdoZ4FdKTUSbzg==/com.example.carlauncher-HROakk7NBuoITCvBPFQa4w==/base.apk!/lib/x86_64/libvsomeip3.so using ns clns-7 from class loader (caller=/data/app/~~R_7P0A3WkdoZ4FdKTUSbzg==/com.example.carlauncher-HROakk7NBuoITCvBPFQa4w==/base.apk!classes6.dex): ok
+09-14 08:05:38.383  3593  3646 D nativeloader: Load /data/app/~~R_7P0A3WkdoZ4FdKTUSbzg==/com.example.carlauncher-HROakk7NBuoITCvBPFQa4w==/base.apk!/lib/x86_64/libcarlauncher.so using ns clns-7 from class loader (caller=/data/app/~~R_7P0A3WkdoZ4FdKTUSbzg==/com.example.carlauncher-HROakk7NBuoITCvBPFQa4w==/base.apk!classes6.dex): ok
+09-14 08:05:38.384  3593  3646 I VSOMEIP_JNI: System.loadLibrary ok
+09-14 08:05:38.391  1221  1221 I CarNotificationAdapter: Big text style is not supported as a car notification
+09-14 08:05:38.392  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:38.399   174  3647 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:38.405   771  1322 I WifiService: acquireMulticastLock uid=1010248 tag=carlauncher-someip-sd
+09-14 08:05:38.406  3593  3646 I VSOMEIP_JNI: SD multicast lock acquired
+09-14 08:05:38.407  3593  3646 I VSOMEIP_NETWORK: address=10.203.0.2 interface= available=false multicastRoute=false
+09-14 08:05:38.407  1186  1453 D IpClient.wlan0: set max DTIM multiplier to 1
+09-14 08:05:38.410   771   924 E WifiStaIfaceAidlImpl: setDtimMultiplier failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+09-14 08:05:38.411   771   931 D ConnectivityService: NetReassign [no changes] [c 0] [a 1] [i 0]
+09-14 08:05:38.412  3593  3646 I VSOMEIP_JNI: nativeStart: begin
+09-14 08:05:38.412  3593  3646 I VSOMEIP_JNI: routing base path: /data/user/10/com.example.carlauncher/files/vsomeip
+09-14 08:05:38.412  3593  3646 I VSOMEIP_JNI: create_application ok
+09-14 08:05:38.413  3593  3646 I VSOMEIP_JNI: handlers registered; calling app_->init()
+09-14 08:05:38.415  3593  3646 I         : VSIP: Using configuration file: "/data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-client.json".
+09-14 08:05:38.415  3593  3649 I VSOMEIP_NETWORK: address=10.203.0.2 interface=wlan0 available=true multicastRoute=true
+09-14 08:05:38.415  3593  3646 I         : VSIP: Parsed vsomeip configuration in 1ms
+09-14 08:05:38.415  3593  3646 I         : VSIP: Configuration loaded with Multiple Routing Managers ENABLED.
+09-14 08:05:38.416  3593  3646 I         : VSIP: Security disabled!
+09-14 08:05:38.416  3593  3646 I         : VSIP: Initializing vsomeip (3.7.5) application "soc-vehicle-client".
+09-14 08:05:38.416  3593  3646 I         : VSIP: Instantiating routing manager [Host].
+09-14 08:05:38.416  3593  3646 I         : VSIP: Starting Routing Manager [Host] with state RS_UNKNOWN
+09-14 08:05:38.417  3593  3646 I         : VSIP: Creating routing root with transport protocol: UDS
+09-14 08:05:38.417  3593  3646 I         : VSIP: Routing root @ /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0
+09-14 08:05:38.418  3593  3646 I         : VSIP: Service Discovery enabled. Trying to load module.
+09-14 08:05:38.418  3593  3646 E         : VSIP: Could not dlopen "libvsomeip_sd.so" due to err: dlopen failed: library "libvsomeip_sd.so" not found
+09-14 08:05:38.419  3593  3646 I         : VSIP: Service Discovery module not available via plugin; using built-in implementation.
+09-14 08:05:38.419  3593  3646 I         : VSIP: Service Discovery Stop Offer watchdog enabled.
+09-14 08:05:38.419  3593  3646 I         : VSIP: Service Discovery Offer watchdog enabled.
+09-14 08:05:38.419  3593  3646 I         : VSIP: Instantiating routing manager [Proxy].
+09-14 08:05:38.420  3593  3646 I         : VSIP: vsomeip tracing not enabled. vsomeip service discovery tracing not enabled.
+09-14 08:05:38.420  3593  3646 I         : VSIP: Application(soc-vehicle-client, 5566) is initialized (11, 100).
+09-14 08:05:38.420  3593  3646 I         : VSIP: app::init: End of init, application "soc-vehicle-client" (5566)
+09-14 08:05:38.420  3593  3646 I VSOMEIP_JNI: app_->init() ok
+09-14 08:05:38.420  3593  3646 I VSOMEIP_JNI: vsomeip io thread spawned
+09-14 08:05:38.421  3593  3650 I VSOMEIP_JNI: vsomeip io thread enter (blocking start)
+09-14 08:05:38.421  3593  3650 I         : VSIP: Starting vsomeip application "soc-vehicle-client" (5566) using 1 threads I/O nice 0
+09-14 08:05:38.421  3593  3650 I         : VSIP: Client [0000] routes unicast:10.203.0.2, netmask:255.255.255.0
+09-14 08:05:38.421  3593  3650 I         : VSIP: Android network connector: waiting for ConnectivityManager, address=10.203.0.2
+09-14 08:05:38.422  3593  3650 I         : VSIP: vSomeIP routing ready.
+09-14 08:05:38.422  3593  3650 I         : VSIP: Client 0xffff, state ST_DEREGISTERED -> ST_REGISTERING
+09-14 08:05:38.422  3593  3653 I         : VSIP: Started thread m_auxiliary, id 138578961696896, tid 3653
+09-14 08:05:38.422  3593  3650 I         : VSIP: Client [ffff] is connecting to [0000] at /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0 endpoint > 0x7e0bf48d98b0
+09-14 08:05:38.422  3593  3652 I         : VSIP: Started thread m_multicast 138578962761856, tid 3652
+09-14 08:05:38.422  3593  3651 I         : VSIP: Started thread 5566_m_dispatch, application 'soc-vehicle-client', id 138578963826816, tid 3651
+09-14 08:05:38.423  3593  3651 I VSOMEIP_JNI: availability: ON_UNAVAILABLE
+09-14 08:05:38.423  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:38.423  3593  3650 I         : VSIP: le::set_state_unlocked: change state: INIT -> CONNECTING, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7e0a748b39a8, fd: -1, 0x7e0a748b39a8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: INIT
+09-14 08:05:38.424  3593  3646 I VSOMEIP_JNI: nativeStart: ok (non-blocking; io loop on dedicated thread)
+09-14 08:05:38.424  3593  3646 I VEHICLE_SERVICE: VsomeipClient.start=true unicast=10.203.0.2 (on executor thread)
+09-14 08:05:38.425  3593  3650 I         : VSIP: Started thread 5566_io00, application 'soc-vehicle-client', id 138579013503104, tid 3650
+09-14 08:05:38.425  3593  3650 I         : VSIP: le::set_state_unlocked: change state: CONNECTING -> CONNECTED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7e0a748b39a8, fd: 158, 0x7e0a748b39a8, send_queue: 87, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTING
+09-14 08:05:38.425  3593  3650 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-14 08:05:38.427  3593  3650 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-14 08:05:38.424  3593  3593 W com.example.carlauncher: type=1400 audit(0.0:67): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 08:05:38.427  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:38.431  3593  3650 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-14 08:05:38.432  3593  3650 W         : VSIP: Network interface "wlan0" state changed: up
+09-14 08:05:38.432  3593  3650 W         : VSIP: Route "wlan0" state changed: up
+09-14 08:05:38.432  3593  3650 I         : VSIP: usei::udp_server_endpoint_impl: #1::
+09-14 08:05:38.432  3593  3650 I         : VSIP: usei::init: #1::10.203.0.2:30490, lifecycle_idx=0
+09-14 08:05:38.432  3593  3650 I         : VSIP: usei::init_unlocked: #1::Failed to force receive buffer size 1703936, Operation not permitted
+09-14 08:05:38.432  3593  3650 I         : VSIP: usei::init: #1::10.203.0.2:30490:: lifecycle_idx=0, Success
+09-14 08:05:38.432  3593  3650 I         : VSIP: usei::start: #1::10.203.0.2:30490:: lifecycle_idx=0
+09-14 08:05:38.433  3593  3650 I         : VSIP: usei::start_unlocked: #1::10.203.0.2:30490:: Start unicast data handler, lifecycle_idx=1, fd: 160
+09-14 08:05:38.433  3593  3650 I         : VSIP: usei::start_unlocked: #1::10.203.0.2:30490:: Join 0 groups
+09-14 08:05:38.433  3593  3650 I         : VSIP: usei::start: #1::10.203.0.2:30490:: Done, lifecycle_idx=1
+09-14 08:05:38.433  3593  3650 I         : VSIP: usei::join: #1::10.203.0.2:30490:: 224.244.224.245
+09-14 08:05:38.433  3593  3650 I         : VSIP: SOME/IP routing ready.
+09-14 08:05:38.433  3593  3650 I         : VSIP: Assigned client ID 0x5566 to "soc-vehicle-client" ("localhost") @ 1010248/1010248
+09-14 08:05:38.433  3593  3650 I         : VSIP: emi::add_local_routing_endpoint_unlocked: self 0x0000, client 0x5566, connection > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7e0a748b4de8, fd: 159
+09-14 08:05:38.434  3593  3650 I         : VSIP: Application/Client 5566 is registering
+09-14 08:05:38.434  3593  3650 I         : VSIP: Creating local server endpoint for client 0x5566 with transport type UDS.
+09-14 08:05:38.434  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-14 08:05:38.436  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Failed to force received buffer size, Operation not permitted
+09-14 08:05:38.436  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Start multicast data handler, lifecycle_idx=1, fd: 162
+09-14 08:05:38.437  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Join successful
+09-14 08:05:38.437  3593  3650 I         : VSIP: Listening @ /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-5566
+09-14 08:05:38.437  3593  3650 I         : VSIP: rmc::on_client_assign_ack: Client 0x5566 (soc-vehicle-client) successfully connected to routing via UDS ~> registering...
+09-14 08:05:38.437  3593  3650 I         : VSIP: rmc::register_application: Client 0x5566 Registering to routing manager @ vsomeip-0
+09-14 08:05:38.437  3593  3650 I         : VSIP: rcsm::registered: Former client id: 0xffff, new 0x5566
+09-14 08:05:38.437  3593  3650 I         : VSIP: Client 0x5566, state ST_REGISTERING -> ST_REGISTERED
+09-14 08:05:38.438  3593  3650 I         : VSIP: Application/Client 5566 (soc-vehicle-client) is registered.
+09-14 08:05:38.438  3593  3651 I VSOMEIP_JNI: registered; request_service 1111/2222
+09-14 08:05:38.438  3593  3650 I         : VSIP: REQUEST(5566): [1111.2222:255.4294967295]
+09-14 08:05:38.438  3593  3650 I         : VSIP: Avoid trigger SD find-service message for local service/instance/major/minor: 1111/2222/255/4294967295
+09-14 08:05:38.439  3593  3651 I VSOMEIP_JNI: native: registered
+09-14 08:05:38.441  3593  3650 I         : VSIP: REGISTER EVENT(5566): [1111.2222.8001:eventtype=0:is_provided=false:reliable=255]
+09-14 08:05:38.441  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:38.498   407  3654 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:05:38.499   407  3655 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:05:38.499   407  3655 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:38.505  3593  3650 I         : VSIP: KPI NET4 First SD multicast message from 10.203.0.1
+09-14 08:05:38.505  3593  3650 I         : VSIP: emi::create_remote_client: 10.203.0.1:30509 reliable: 0 using local port: 0
+09-14 08:05:38.505  3593  3650 I         : VSIP: ucei::connect: SO_RCVBUFFORCE failed, Operation not permitted
+09-14 08:05:38.505  3593  3650 I         : VSIP: ucei::connect: SO_RCVBUF is: 262144 (1703936) local port:0 remote:10.203.0.1:30509
+09-14 08:05:38.506  3593  3650 I         : VSIP: ON_OFFER_SERVICE(0000): [1111.2222:0.0]
+09-14 08:05:38.506  3593  3650 I         : VSIP: ON_AVAILABLE(5566): [1111.2222:0.0]
+09-14 08:05:38.507  3593  3651 I VSOMEIP_JNI: availability: ON_AVAILABLE
+09-14 08:05:38.507  3593  3650 I         : VSIP: SUBSCRIBE(5566): [1111.2222.0001:ffff:0]
+09-14 08:05:38.508  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:38.512  3593  3650 I         : VSIP: KPI NET4 First SD unicast message from 10.203.0.1
+09-14 08:05:38.512  3593  3650 I         : VSIP: SUBSCRIBE ACK(0000): [1111.2222.0001.ffff]
+09-14 08:05:38.650  1987  1987 D BoundBrokerSvc: onRebind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-14 08:05:38.692   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:38.692   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:38.692   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:38.692   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:38.693   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:39.103   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:39.396  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:39.400   174  3656 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:39.739   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:39.739   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:39.740   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={10226} in 1ms
+09-14 08:05:39.967   771   924 E WifiHealthMonitor:  Hit PackageManager exception
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: android.content.pm.PackageManager$NameNotFoundException: No module info for package: com.android.wifi
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.app.ApplicationPackageManager.getModuleInfo(ApplicationPackageManager.java:1219)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.WifiHealthMonitor.getWifiStackVersion(WifiHealthMonitor.java:369)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.WifiHealthMonitor.extractCurrentSoftwareBuildInfo(WifiHealthMonitor.java:590)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.WifiHealthMonitor.postBootSwBuildCheck(WifiHealthMonitor.java:525)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.WifiHealthMonitor.postBootDetectionHandler(WifiHealthMonitor.java:516)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.WifiHealthMonitor.-$$Nest$mpostBootDetectionHandler(WifiHealthMonitor.java:0)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.WifiHealthMonitor$2.onAlarm(WifiHealthMonitor.java:192)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.app.AlarmManager$ListenerWrapper.run(AlarmManager.java:375)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.os.Handler.handleCallback(Handler.java:991)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.os.Handler.dispatchMessage(Handler.java:102)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at com.android.server.wifi.RunnerHandler.dispatchMessage(RunnerHandler.java:124)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.os.Looper.loopOnce(Looper.java:232)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.os.Looper.loop(Looper.java:317)
+09-14 08:05:39.967   771   924 E WifiHealthMonitor: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+09-14 08:05:39.978   771   924 D WifiConfigStore: Writing to stores completed in 8 ms.
+09-14 08:05:40.400  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:40.404   174  3657 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:40.493   407   472 I netd    : tetherGetStats() -> {[]} <0.53ms>
+09-14 08:05:40.535   407  3541 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:05:40.577   407  3541 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:40.577   407  3541 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:40.577   407  3541 I resolv  : doQuery: rcode=0, ancount=0, return value=-110
+09-14 08:05:40.577  1186  3527 D NetworkMonitor/100: PROBE_HTTP http://connectivitycheck.gstatic.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "connectivitycheck.gstatic.com": No address associated with hostname
+09-14 08:05:40.806   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:40.806   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:40.806   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={10169} in 1ms
+09-14 08:05:40.868   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:41.119   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:05:41.403  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:41.407   174  3658 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:41.525  3593  3593 W VEHICLE_SERVICE: SOMEIP_STATE EVENT_TIMEOUT (3000 ms without vehicle event)
+09-14 08:05:41.525  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:05:41.695   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:41.695   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:41.695   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:41.695   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:41.695   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:42.106   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:42.222  3593  3659 D ProfileInstaller: Installing profile for com.example.carlauncher
+09-14 08:05:42.405  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:42.411   174  3660 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:42.606  3593  3650 W         : VSIP: Didn't receive a multicast SD message for 1100ms.
+09-14 08:05:42.606  3593  3650 I         : VSIP: usei::leave: #1::10.203.0.2:30490:: 224.244.224.245
+09-14 08:05:42.606  3593  3650 I         : VSIP: usei::join: #1::10.203.0.2:30490:: 224.244.224.245
+09-14 08:05:42.606  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Leave 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-14 08:05:42.606  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Leave successful
+09-14 08:05:42.606  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Join 224.244.224.245, multicast_lifecycle_idx=1, stopped=0
+09-14 08:05:42.607  3593  3652 I         : VSIP: usei::set_multicast_option: #1::10.203.0.2:30490:: Join successful
+09-14 08:05:42.670  1987  2313 E WakeLock: GCM_CONN_ALARM ** IS FORCE-RELEASED ON TIMEOUT ** [CONTEXT service_id=259 ]
+09-14 08:05:42.677   407  3637 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:05:42.679   407  3637 I resolv  : retrying_poll: 48 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:42.679   407  3637 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:42.679   407  3637 I resolv  : doQuery: rcode=0, ancount=0, return value=-110
+09-14 08:05:42.681  1987  2327 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-14 08:05:42.681  1987  2327 W WakeLock: GCM_HB_ALARM counter does not exist
+09-14 08:05:42.683  1987  2327 W WakeLock: GCM_CONN_ALARM counter does not exist
+09-14 08:05:42.848   407   472 I netd    : setProcSysNet(4, 2, wlan0, retrans_time_ms, 750) <0.10ms>
+09-14 08:05:42.848   407   407 I netd    : setProcSysNet(4, 2, wlan0, ucast_solicit, 10) <0.04ms>
+09-14 08:05:42.849   407   407 I netd    : setProcSysNet(6, 2, wlan0, retrans_time_ms, 750) <0.28ms>
+09-14 08:05:42.849   407   407 I netd    : setProcSysNet(6, 2, wlan0, ucast_solicit, 10) <0.03ms>
+09-14 08:05:42.923   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:42.924   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:42.924   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={10234} in 1ms
+09-14 08:05:43.315  2311  2584 I ChimeraPrvdrProxy: Shutting down chimera ContentProvider com.google.android.gms.reminders.provider.RemindersChimeraProvider
+09-14 08:05:43.409  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:43.415   174  3661 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:43.505   407  3655 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:05:43.507  3593  3650 W         : VSIP: SD messages lost from 10.203.0.1 to 224.244.224.245 - session_id[80]
+09-14 08:05:43.508   407  3655 I resolv  : retrying_poll: 52 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:43.509   407  3655 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:43.509   407  3655 I resolv  : doQuery: rcode=0, ancount=0, return value=-110
+09-14 08:05:43.509  1186  3525 D NetworkMonitor/100: PROBE_FALLBACK http://play.googleapis.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "play.googleapis.com": No address associated with hostname
+09-14 08:05:43.510  1186  3525 D NetworkMonitor/100: isCaptivePortal: isSuccessful()=false isPortal()=false RedirectUrl=null isPartialConnectivity()=false Time=8014ms
+09-14 08:05:43.511   771   931 D ConnectivityService: [100 WIFI] validation failed
+09-14 08:05:43.803   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:43.804   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:43.804   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={1010210} in 1ms
+09-14 08:05:44.080  2221  2392 I ChimeraPrvdrProxy: Shutting down chimera ContentProvider com.google.android.gms.reminders.provider.RemindersChimeraProvider
+09-14 08:05:44.265   407   407 I netd    : tetherGetStats() -> {[]} <0.20ms>
+09-14 08:05:44.382   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:44.382   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:44.382   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={10153} in 0ms
+09-14 08:05:44.413  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:44.418   174  3662 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:44.698   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:44.698   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:44.699   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:44.699   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:44.699   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:44.703   771   931 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 08:05:44.703  3039  3088 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.203.0.2, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 2Mbps, Tx Link speed: 2Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+09-14 08:05:44.705  1221  1221 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 08:05:45.108   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:45.288   407   407 I netd    : tetherGetStats() -> {[]} <0.24ms>
+09-14 08:05:45.305   771  1465 D WifiNl80211Manager: Scan result ready event
+09-14 08:05:45.305   771  1465 D WifiNative: Scan result ready event
+09-14 08:05:45.308   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:45.308   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:45.310   771   924 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+09-14 08:05:45.416  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:45.420   174  3663 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:46.420  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:46.424   174  3664 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:46.803   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:46.803   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:46.803   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={1010160} in 0ms
+09-14 08:05:47.422  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:47.429   174  3665 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:47.516  1186  3667 D TrafficStats: tagSocket(128) with statsTag=0xffffff81, statsUid=-1
+09-14 08:05:47.516  1186  3668 D TrafficStats: tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+09-14 08:05:47.517  1186  3667 D TrafficStats: tagSocket(129) with statsTag=0xffffff81, statsUid=-1
+09-14 08:05:47.517  1186  3668 D TrafficStats: tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+09-14 08:05:47.520   407  3669 I resolv  : ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+09-14 08:05:47.520   407  3669 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:47.521   407  3670 I resolv  : ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+09-14 08:05:47.521   407  3670 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:47.522   407  3669 I resolv  : retrying_poll: 48 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:47.523   407  3669 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:47.524   407  3670 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:47.524   407  3670 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:47.525   407  3669 I resolv  : retrying_poll: 48 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:47.525   407  3669 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:47.526  1186  1186 W DnsResolver: resNetworkResult:android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:05:47.527  1186  3667 D NetworkMonitor/100: PROBE_DNS www.google.com 11ms FAIL in type ADDRCONFIG android.net.DnsResolver$DnsException: android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:05:47.529   407  3671 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:05:47.529   407  3672 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:05:47.529   407  3672 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:47.530   407  3670 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:47.531   407  3670 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:47.531  1186  1186 W DnsResolver: resNetworkResult:android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:05:47.531  1186  3668 D NetworkMonitor/100: PROBE_DNS connectivitycheck.gstatic.com 15ms FAIL in type ADDRCONFIG android.net.DnsResolver$DnsException: android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:05:47.533   407  3673 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:05:47.534   407  3674 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:05:47.534   407  3674 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:47.535   407  3672 I resolv  : retrying_poll: 48 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:47.536   407  3672 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:47.537   407  3674 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:47.537   407  3674 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:47.702   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:47.703   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:47.703   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:47.703   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:47.703   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:48.110   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:48.427  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:48.432  3593  3650 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-14 08:05:48.433   174  3675 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:48.433  3593  3650 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-14 08:05:48.433  3593  3650 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-14 08:05:48.432  3593  3593 W com.example.carlauncher: type=1400 audit(0.0:69): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 08:05:48.432  3593  3593 W com.example.carlauncher: type=1400 audit(0.0:70): avc:  denied  { read } for  comm=353536365F696F2030 name="tcp" dev="proc" ino=4026532053 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 08:05:49.431  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:49.435   174  3676 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:50.434  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:50.438   174  3677 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:50.474   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:50.474   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:50.474   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={1010151} in 1ms
+09-14 08:05:50.517   407  3678 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:05:50.518   407  3679 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:05:50.518   407  3679 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:05:50.519   407  3679 I resolv  : retrying_poll: 52 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:50.520   407  3679 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:50.521   407  3679 I resolv  : retrying_poll: 52 retrying_poll getsockopt failed: Connection refused
+09-14 08:05:50.522   407  3679 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:05:50.522   407  3679 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+09-14 08:05:50.522  1186  3666 D NetworkMonitor/100: PROBE_FALLBACK http://play.googleapis.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "play.googleapis.com": No address associated with hostname
+09-14 08:05:50.698  2311  2311 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+09-14 08:05:50.708   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:50.709   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:50.709   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:50.709   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:50.709   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:50.723  1820  1820 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.auth.account.data.service.START pkg=com.google.android.gms }
+09-14 08:05:50.725  1820  1820 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.auth.aang.events.services.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+09-14 08:05:50.727  2311  2311 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.mobstore.service.START pkg=com.google.android.gms }
+09-14 08:05:50.752  2311  2330 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk' with 1 weak references
+09-14 08:05:50.752  2311  2330 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '/product/overlay/googlecarui-com-google-android-gsf.apk' with 1 weak references
+09-14 08:05:50.752  2311  2330 W gle.android.gms: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~R_7P0A3WkdoZ4FdKTUSbzg==/com.example.carlauncher-HROakk7NBuoITCvBPFQa4w==/base.apk' with 1 weak references
+09-14 08:05:51.112   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:51.162   493   500 W GpuWork : Failed to attach bpf program to power/gpu_work_period tracepoint [2(No such file or directory)]
+09-14 08:05:51.438  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:51.443   174  3681 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:52.442  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:52.449   174  3682 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:52.543   407  3672 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:05:52.543   407  3672 I resolv  : doQuery: rcode=255, ancount=0, return value=-110
+09-14 08:05:52.543  1186  3667 D NetworkMonitor/100: PROBE_HTTPS https://www.google.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "www.google.com": No address associated with hostname
+09-14 08:05:52.543   407  3674 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:05:52.544   407  3674 I resolv  : doQuery: rcode=255, ancount=0, return value=-110
+09-14 08:05:52.544  1186  3668 D NetworkMonitor/100: PROBE_HTTP http://connectivitycheck.gstatic.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "connectivitycheck.gstatic.com": No address associated with hostname
+09-14 08:05:52.546  1186  3666 D NetworkMonitor/100: isCaptivePortal: isSuccessful()=false isPortal()=false RedirectUrl=null isPartialConnectivity()=false Time=5031ms
+09-14 08:05:52.547   771   931 D ConnectivityService: [100 WIFI] validation failed
+09-14 08:05:53.445  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:53.453   174  3683 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:53.704  1987  1987 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-14 08:05:53.713   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:53.713   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:53.713   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:53.713   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:53.713   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:53.717   771   931 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 08:05:53.717  3039  3088 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.203.0.2, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+09-14 08:05:53.717  1221  1221 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 08:05:54.114   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:54.451  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:54.455   174  3684 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:55.287   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+09-14 08:05:55.287   771   931 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+09-14 08:05:55.287   771   931 D InetDiagMessage: Destroyed live tcp sockets for uids={1010234} in 1ms
+09-14 08:05:55.454  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:55.460   174  3685 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:55.651  1820  1820 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.clearcut.service.START pkg=com.google.android.gms }
+09-14 08:05:56.459  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:56.466   174  3686 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:56.720   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:56.720   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:56.720   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:56.721   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:56.721   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:57.117   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:05:57.463  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:57.467   174  3687 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:57.556  2544  3362 I PermissionControllerServiceImpl: Updating user sensitive for user 0
+09-14 08:05:57.565   771  1920 W ParceledListSlice: Element #42 is 139368 bytes.
+09-14 08:05:57.565   771  1920 W ParceledListSlice: Overly large reply size: 166636
+09-14 08:05:57.567   771  1322 W ParceledListSlice: Element #97 is 52188 bytes.
+09-14 08:05:57.567   771  1322 W ParceledListSlice: Overly large reply size: 85492
+09-14 08:05:57.568   771  1322 W ParceledListSlice: Element #98 is 16804 bytes.
+09-14 08:05:57.569   771  1322 W ParceledListSlice: Element #139 is 36044 bytes.
+09-14 08:05:57.569   771  1322 W ParceledListSlice: Element #148 is 24676 bytes.
+09-14 08:05:57.577   407   407 I netd    : tetherGetStats() -> {[]} <0.34ms>
+09-14 08:05:58.434  3593  3650 I         : VSIP: vSomeIP 3.7.5 (unknown@vsomeip)
+09-14 08:05:58.435  3593  3650 E         : VSIP: util::log_network_state: Could not open /proc/net/udp for reading
+09-14 08:05:58.435  3593  3650 E         : VSIP: util::log_network_state: Could not open /proc/net/tcp for reading
+09-14 08:05:58.432  3593  3593 W com.example.carlauncher: type=1400 audit(0.0:71): avc:  denied  { read } for  comm=353536365F696F2030 name="udp" dev="proc" ino=4026532054 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 08:05:58.432  3593  3593 W com.example.carlauncher: type=1400 audit(0.0:72): avc:  denied  { read } for  comm=353536365F696F2030 name="tcp" dev="proc" ino=4026532053 scontext=u:r:untrusted_app:s0:c248,c256,c522,c768 tcontext=u:object_r:proc_net_tcp_udp:s0 tclass=file permissive=0
+09-14 08:05:58.466  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:58.471   174  3688 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:59.469  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:05:59.474   174  3689 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:05:59.726   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:59.726   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:59.726   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:59.726   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:05:59.727   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:00.036   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:00.118   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:06:00.473  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:00.478   174  3690 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:00.553  1186  3693 D TrafficStats: tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+09-14 08:06:00.553  1186  3692 D TrafficStats: tagSocket(129) with statsTag=0xffffff81, statsUid=-1
+09-14 08:06:00.554  1186  3693 D TrafficStats: tagSocket(128) with statsTag=0xffffff81, statsUid=-1
+09-14 08:06:00.555  1186  3692 D TrafficStats: tagSocket(6) with statsTag=0xffffff81, statsUid=-1
+09-14 08:06:00.560   407  3694 I resolv  : ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+09-14 08:06:00.560   407  3695 I resolv  : ResNSendHandler::run: 0 / {100 983140 100 983140 1073 1}
+09-14 08:06:00.560   407  3694 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:00.560   407  3695 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:00.563   407  3695 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:00.563   407  3695 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:00.564   407  3694 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:00.564   407  3694 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:00.566   407  3695 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:00.567   407  3695 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:00.567  1186  1186 W DnsResolver: resNetworkResult:android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:06:00.568  1186  3693 D NetworkMonitor/100: PROBE_DNS connectivitycheck.gstatic.com 15ms FAIL in type ADDRCONFIG android.net.DnsResolver$DnsException: android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:06:00.570   407  3696 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:06:00.571   407  3697 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:06:00.571   407  3697 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:00.572   407  3694 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:00.572   407  3694 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:00.573  1186  1186 W DnsResolver: resNetworkResult:android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:06:00.574  1186  3692 D NetworkMonitor/100: PROBE_DNS www.google.com 20ms FAIL in type ADDRCONFIG android.net.DnsResolver$DnsException: android.system.ErrnoException: resNetworkResult failed: ECONNREFUSED (Connection refused)
+09-14 08:06:00.576   407  3698 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:06:00.576   407  3699 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:06:00.577   407  3699 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:00.578   407  3697 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:00.578   407  3697 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:00.580   407  3699 I resolv  : retrying_poll: 50 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:00.580   407  3699 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:01.477  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:01.481   174  3700 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:02.480  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:02.484   174  3701 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:02.687   407  3702 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 10212 0}
+09-14 08:06:02.687   407  3703 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:06:02.687   407  3703 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:02.689   407  3703 I resolv  : retrying_poll: 52 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:02.689   407  3703 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:02.692   407  3703 I resolv  : retrying_poll: 52 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:02.692   407  3703 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:02.692   407  3703 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+09-14 08:06:02.694  1987  2167 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-14 08:06:02.694  1987  2167 W WakeLock: GCM_HB_ALARM counter does not exist
+09-14 08:06:02.695   407  3704 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 10212 0}
+09-14 08:06:02.696   407  3705 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:06:02.696   407  3705 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:02.733   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:02.733   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:02.734   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:02.734   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:02.734   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:03.120   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:06:03.206  1441  1849 I HotwordHeartbeatLoggerI: Hotword heartbeat:
+09-14 08:06:03.206  1441  1849 I HotwordHeartbeatLoggerI: AUDIO_RECEIVER:
+09-14 08:06:03.206  1441  1849 I HotwordHeartbeatLoggerI: Audio bytes captured in current session: 3470KB
+09-14 08:06:03.206  1441  1849 I HotwordHeartbeatLoggerI: HOTWORD_MODE:
+09-14 08:06:03.206  1441  1849 I HotwordHeartbeatLoggerI: HotwordMode=NORMAL-Concurrent
+09-14 08:06:03.483  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:03.487   174  3706 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:03.554   407  3707 I resolv  : GetAddrInfoHandler::run: {100 983140 100 983140 1073 1}
+09-14 08:06:03.555   407  3708 I resolv  : res_nmkquery: (QUERY, IN, A)
+09-14 08:06:03.555   407  3708 I resolv  : resolv_cache_lookup: Waiting for previous request
+09-14 08:06:03.687  1987  1987 D BoundBrokerSvc: onRebind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-14 08:06:04.486  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:04.490   174  3709 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:05.488  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:05.493   174  3710 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:05.584   407  3697 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:06:05.584   407  3699 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:06:05.584   407  3697 I resolv  : doQuery: rcode=255, ancount=0, return value=-110
+09-14 08:06:05.584   407  3699 I resolv  : doQuery: rcode=255, ancount=0, return value=-110
+09-14 08:06:05.584   407  3708 I resolv  : res_stats_usable_server: too many resolution errors, ignoring server
+09-14 08:06:05.585  1186  3693 D NetworkMonitor/100: PROBE_HTTP http://connectivitycheck.gstatic.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "connectivitycheck.gstatic.com": No address associated with hostname
+09-14 08:06:05.585  1186  3692 D NetworkMonitor/100: PROBE_HTTPS https://www.google.com/generate_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "www.google.com": No address associated with hostname
+09-14 08:06:05.586   407  3708 I resolv  : retrying_poll: 49 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:05.586   407  3708 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:05.588   407  3708 I resolv  : retrying_poll: 46 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:05.588   407  3708 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:05.588   407  3708 I resolv  : doQuery: rcode=0, ancount=0, return value=-111
+09-14 08:06:05.589  1186  3691 D NetworkMonitor/100: PROBE_FALLBACK http://www.google.com/gen_204 Probe failed with exception java.net.UnknownHostException: Unable to resolve host "www.google.com": No address associated with hostname
+09-14 08:06:05.590  1186  3691 D NetworkMonitor/100: isCaptivePortal: isSuccessful()=false isPortal()=false RedirectUrl=null isPartialConnectivity()=false Time=5038ms
+09-14 08:06:05.591   771   931 D ConnectivityService: [100 WIFI] validation failed
+09-14 08:06:05.736   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:05.736   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:05.736   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:05.736   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:05.737   771   924 W BestClock: java.time.DateTimeException: Missing network time fix
+09-14 08:06:05.741  3039  3088 D WM-NetworkStateTracker: Network capabilities changed: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=30000Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /10.203.0.2, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 2Mbps, Tx Link speed: 2Mbps, Max Supported Tx Link speed: 11Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 11Mbps, Frequency: 2447MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: -1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -50 UnderlyingNetworks: Null]
+09-14 08:06:05.741   771   931 W IPCThreadState: Sending oneway calls to frozen process.
+09-14 08:06:05.742  1221  1221 D class com.android.car.datasubscription.DataSubscriptionController: onCapabilitiesChanged 100
+09-14 08:06:06.105   771   771 D SdkSandboxManager: Property sdksandbox_next_activity_allowlist is empty.
+09-14 08:06:06.105   771   771 D SdkSandboxManager: Property sdksandbox_next_contentprovider_allowlist is empty.
+09-14 08:06:06.105   771   771 D SdkSandboxManager: Property sdksandbox_activity_allowlist_per_targetSdkVersion is empty.
+09-14 08:06:06.105   771   771 D SdkSandboxManager: Property contentprovider_allowlist_per_targetSdkVersion is empty.
+09-14 08:06:06.105   771   771 D SdkSandboxManager: Property services_allowlist_per_targetSdkVersion is empty.
+09-14 08:06:06.121   223   240 D EmulatedVehicleHardware: Set value for property ID: 290459441
+09-14 08:06:06.174   172   172 I lowmemorykiller: lmkd data connection established
+09-14 08:06:06.216   172   172 I lowmemorykiller: Using psi monitors for memory pressure detection
+09-14 08:06:06.216   172   172 I lowmemorykiller: Properties reinitilized
+09-14 08:06:06.216  3719  3719 I lowmemorykiller: lmkd updated properties successfully
+09-14 08:06:06.216   172   172 I lowmemorykiller: lmkd data connection dropped
+09-14 08:06:06.216   172   172 I lowmemorykiller: closing lmkd data connection
+09-14 08:06:06.232   410   410 W Zygote  : forkRepeatedly terminated due to non-simple command
+09-14 08:06:06.232   410   410 D Zygote  : mbuffer starts with 1 , nice name is , mEnd = 35, mNext = 35, mLinesLeft = 0, mFd = 6
+09-14 08:06:06.328  1987  3711 I PlatformConfigurator: updateFromConfigurations using legacy put method [CONTEXT service_id=204 ]
+09-14 08:06:06.406   771   771 E DeviceConfig: Parsing int failed for location_mode
+09-14 08:06:06.470   771   787 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 08:06:06.473   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /apex/com.android.permission/priv-app/PermissionController@AAI5.260516.001.A1/PermissionController.apk' with 1 weak references
+09-14 08:06:06.473   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '/system/app/CarPermissionControllerRRO/CarPermissionControllerRRO.apk' with 1 weak references
+09-14 08:06:06.473   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GoogleSearchCarPrebuilt/GoogleSearchCarPrebuilt.apk' with 1 weak references
+09-14 08:06:06.474   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /system/app/oem-token-shared-lib-vendor/oem-token-shared-lib-vendor.apk' with 2 weak references
+09-14 08:06:06.474   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '/product/overlay/googlecarui-com-google-android-carassistant.apk' with 1 weak references
+09-14 08:06:06.474   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '<empty> and /product/priv-app/GmsCoreAuto/GmsCoreAuto.apk' with 1 weak references
+09-14 08:06:06.475   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '/system/app/GASOtaConfigRRO/GASOtaConfigRRO.apk' with 1 weak references
+09-14 08:06:06.475   771   788 W system_server: ApkAssets: Deleting an ApkAssets object '/product/overlay/googlecarui-com-google-android-gms.apk' with 1 weak references
+09-14 08:06:06.493  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:06.496   174  3726 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:06.997  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1000 speed=0
+09-14 08:06:06.998  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.010  3593  3593 I EVENT_UI_PROBE: UI seq=1000 speed=0 km/h
+09-14 08:06:07.019   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:07.093  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1001 speed=2
+09-14 08:06:07.093  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.111  3593  3593 I EVENT_UI_PROBE: UI seq=1001 speed=2 km/h
+09-14 08:06:07.193  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1002 speed=4
+09-14 08:06:07.193  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.213  3593  3593 I EVENT_UI_PROBE: UI seq=1002 speed=4 km/h
+09-14 08:06:07.294  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1003 speed=6
+09-14 08:06:07.294  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.315  3593  3593 I EVENT_UI_PROBE: UI seq=1003 speed=6 km/h
+09-14 08:06:07.394  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1004 speed=8
+09-14 08:06:07.394  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.417  3593  3593 I EVENT_UI_PROBE: UI seq=1004 speed=8 km/h
+09-14 08:06:07.494  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1005 speed=10
+09-14 08:06:07.494  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.495  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:07.499   174  3727 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:07.518  3593  3593 I EVENT_UI_PROBE: UI seq=1005 speed=10 km/h
+09-14 08:06:07.595  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1006 speed=12
+09-14 08:06:07.595  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.604  1987  2313 I NetworkScheduler: Using standalone scheduling engine [CONTEXT service_id=218 ]
+09-14 08:06:07.619  3593  3593 I EVENT_UI_PROBE: UI seq=1006 speed=12 km/h
+09-14 08:06:07.646   771  1322 D ConnectivityService: requestNetwork for uid/pid:10212/1987 activeRequest: null callbackRequest: 79 [NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10212 RequestorUid: 10212 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: ALL
+09-14 08:06:07.647   771   924 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10212 RequestorUid: 10212 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+09-14 08:06:07.647   771   924 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10212 RequestorUid: 10212 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+09-14 08:06:07.648   771   924 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10212 RequestorUid: 10212 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+09-14 08:06:07.649   771   924 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=80, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10212 RequestorUid: 10212 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+09-14 08:06:07.650   771   931 D ConnectivityService: NetReassign [80 : null → 100] [c 0] [a 0] [i 1]
+09-14 08:06:07.651  1987  1996 I .gms.persistent: Compiler allocated 5241KB to compile void cpvw.run()
+09-14 08:06:07.668  1441  2467 I native  : I0000 00:00:1789373167.668540    2467 soda_async_impl.cc:1424] Current audio timestamp: 1789373168055514
+09-14 08:06:07.695  1987  2313 E WakeLock: GCM_CONN_ALARM ** IS FORCE-RELEASED ON TIMEOUT ** [CONTEXT service_id=259 ]
+09-14 08:06:07.697  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1007 speed=14
+09-14 08:06:07.697  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.702   407  3705 I resolv  : res_nsend: used send_dg 0 terrno: 110
+09-14 08:06:07.709   407  3705 I resolv  : retrying_poll: 52 retrying_poll getsockopt failed: Connection refused
+09-14 08:06:07.709   407  3705 I resolv  : res_nsend: used send_dg 0 terrno: 111
+09-14 08:06:07.709   407  3705 I resolv  : doQuery: rcode=0, ancount=0, return value=-110
+09-14 08:06:07.711  1987  2332 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+09-14 08:06:07.711  1987  2332 W WakeLock: GCM_HB_ALARM counter does not exist
+09-14 08:06:07.713  1987  2332 W WakeLock: GCM_CONN_ALARM counter does not exist
+09-14 08:06:07.721  3593  3593 I EVENT_UI_PROBE: UI seq=1007 speed=14 km/h
+09-14 08:06:07.795  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1008 speed=16
+09-14 08:06:07.795  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.822  3593  3593 I EVENT_UI_PROBE: UI seq=1008 speed=16 km/h
+09-14 08:06:07.846  1987  2167 W NetworkScheduler: Failed to register content observer for ContentUriTrigger{uri=content://com.android.contacts, flags=1}: java.lang.SecurityException: Failed to find provider com.android.contacts for user 0; expected to find a valid ContentProvider for this authority
+09-14 08:06:07.889   407   407 I netd    : tetherGetStats() -> {[]} <0.83ms>
+09-14 08:06:07.895  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1009 speed=18
+09-14 08:06:07.896  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:07.923  3593  3593 I EVENT_UI_PROBE: UI seq=1009 speed=18 km/h
+09-14 08:06:07.937  3432  3432 I AidlLazyServiceRegistrar: Process has 0 (of 1 available) client(s) in use after notification artd has clients: 0
+09-14 08:06:07.938  3432  3432 I AidlLazyServiceRegistrar: Trying to shut down the service. No clients in use for any service in process.
+09-14 08:06:07.939  3432  3432 I AidlLazyServiceRegistrar: Unregistered all clients and exiting
+09-14 08:06:07.996  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1010 speed=20
+09-14 08:06:07.996  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:08.025  3593  3593 I EVENT_UI_PROBE: UI seq=1010 speed=20 km/h
+09-14 08:06:08.097  3593  3593 D VEHICLE_SERVICE: VEHICLE_EVENT seq=1011 speed=22
+09-14 08:06:08.097  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: ONLINE
+09-14 08:06:08.126  3593  3593 D VEHICLE_LAUNCHER: LiveData emitted, activity=213953262, viewModel=90454943, state=Connection: OFFLINE
+09-14 08:06:08.132  1221  1221 D CarNotificationListener: onNotificationRemoved: StatusBarNotification(pkg=com.example.carlauncher user=UserHandle{10} id=1001 tag=null key=10|com.example.carlauncher|1001|null|1010248: Notification(channel=vehicle_send_channel shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE))
+09-14 08:06:08.133  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 08:06:08.134  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 08:06:08.134  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 08:06:08.135  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 08:06:08.135  1221  1221 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 08:06:08.135  1221  1221 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 08:06:08.135  1221  1221 D PreprocessingManager: Filtered notifications: [10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 08:06:08.136  1221  1221 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]}
+09-14 08:06:08.136  1221  1221 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.136  1221  1221 D NotificationDataManager: Unseen notifications cleared
+09-14 08:06:08.136  1221  1221 D NotificationDataManager: Unseen notification map: {10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 08:06:08.138  1221  1221 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.138  1221  1221 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.138  1221  1221 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.139  3593  3593 I VEHICLE_SERVICE: Service onUnbind id=67417149
+09-14 08:06:08.139  1221  1221 D NotificationViewControl: Unprocessed notification map: {10|com.android.car.messenger|2147483647|null|1010165=10|com.android.car.messenger|2147483647|null|1010165, 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000=-1|android|55|null|1000}
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 importance is insufficient to show in notification center
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: 10|com.android.car.messenger|2147483647|null|1010165 application is system privileged or signed with platform key
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 is not a foreground notification.
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: 10|com.android.systemui|1397773634|public:253,80|10223 category: sys
+09-14 08:06:08.139  3593  3593 I VEHICLE_SERVICE: Service onDestroy id=67417149
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: -1|android|55|null|1000 is not a foreground notification.
+09-14 08:06:08.139  1221  1221 D PreprocessingManager: -1|android|55|null|1000 category: null
+09-14 08:06:08.140  1221  1221 D PreprocessingManager: Filtered notifications: [10|com.android.systemui|1397773634|public:253,80|10223, -1|android|55|null|1000]
+09-14 08:06:08.140  1221  1221 D PreprocessingManager: (First pass) Grouped notifications according to groupKey: {-1|android|55|null|1000=-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223=10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]}
+09-14 08:06:08.140  1221  1221 D PreprocessingManager: (Second pass) Remove automatically generated group summaries: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.141  1221  1221 D NotificationDataManager: Unseen notifications cleared
+09-14 08:06:08.141  1221  1221 D NotificationDataManager: Unseen notification map: {10|com.android.systemui|1397773634|public:253,80|10223=true, -1|android|55|null|1000=true}
+09-14 08:06:08.141  1221  1221 D PreprocessingManager: (Third pass) Split notification groups by seen and unseen: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.141  1221  1221 D PreprocessingManager: (Fourth pass) Split notification groups that do not meet minimum grouping threshold of 4 : [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.141  1221  1221 D PreprocessingManager: (Fifth pass) Group notifications without child notifications are removed: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.141  1221  1221 D PreprocessingManager: Grouped notifications: [-1|android|55|null|1000: [-1|android|55|null|1000], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223]]
+09-14 08:06:08.141  1221  1221 D NotificationViewControl: Processed notification groups: [10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 08:06:08.141  1221  1221 D CarNotificationAdapter: Seen notifications: []
+09-14 08:06:08.141  1221  1221 D CarNotificationAdapter: Unseen notifications: [10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000]]
+09-14 08:06:08.141  1221  1221 D CarNotificationAdapter: Updated adapter view holders: [notification_header: [], notification_recents: [], 10|com.android.systemui|1397773634|public:253,80|10223: [10|com.android.systemui|1397773634|public:253,80|10223], -1|android|55|null|1000: [-1|android|55|null|1000], notification_footer: []]
+09-14 08:06:08.143  3593  3646 I VSOMEIP_NETWORK: address=10.203.0.2 interface= available=false multicastRoute=false
+09-14 08:06:08.144  3593  3646 I VSOMEIP_JNI: stopping vsomeip app
+09-14 08:06:08.144  3593  3646 W         : VSIP: rmc::unsubscribe: Could not find endpoint for client 0x5566, sending to the router
+09-14 08:06:08.144  3593  3646 I         : VSIP: app::stop: Stopping vsomeip application "soc-vehicle-client" (5566).
+09-14 08:06:08.145  3593  3650 I         : VSIP: Route "" state changed: down
+09-14 08:06:08.145  3593  3650 I         : VSIP: Network interface "" state changed: down
+09-14 08:06:08.145  3593  3650 I         : VSIP: Client 0x5566, state ST_REGISTERED -> ST_DEREGISTERED
+09-14 08:06:08.145  3593  3650 I         : VSIP: rmc::stop: starting to flush the sender
+09-14 08:06:08.145  3593  3650 I         : VSIP: emb::stop: Start endpoint flushing for client 0x5566
+09-14 08:06:08.145  3593  3650 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-5566, mem: 0x7e0a748b5388
+09-14 08:06:08.146  3593  3650 I         : VSIP: UNSUBSCRIBE(5566): [1111.2222.0001.ffff]
+09-14 08:06:08.146  3593  3650 I         : VSIP: rmi::unset_all_eventpayloads: Unsetting payload for [1111.2222.8001]
+09-14 08:06:08.147  3593  3650 I         : VSIP: UNREGISTER EVENT(5566): [1111.2222.8001:is_provider=false]
+09-14 08:06:08.147  3593  3650 I         : VSIP: RELEASE(5566): [1111.2222]
+09-14 08:06:08.147  3593  3650 I         : VSIP: cei::close_socket_unlocked: Not recreating socket, remote: 10.203.0.1:30509, endpoint > 0x7e0b648ed1c8 socket state > CLOSED
+09-14 08:06:08.147  3593  3650 I         : VSIP: lsui::stop: role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7e0a748b39a8
+09-14 08:06:08.147  3593  3650 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> STOPPED, Client: 0000 (0), connection : role: client, own: , peer: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7e0a748b39a8, fd: -1, 0x7e0a748b39a8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: true, state: CONNECTED
+09-14 08:06:08.148  3593  3650 I         : VSIP: rmc::cleanup_client: self 0x5566 handles shutdown. Not reconnecting to host 0x0000
+09-14 08:06:08.148  3593  3650 W         : VSIP: le::receive_cbk: Escalating the error: End of file socket > Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7e0a748b4de8, fd: 159, 0x7e0a748b4de8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-14 08:06:08.148  3593  3650 I         : VSIP: le::set_state_unlocked: change state: CONNECTED -> FAILED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7e0a748b4de8, fd: 159, 0x7e0a748b4de8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: CONNECTED
+09-14 08:06:08.148  3593  3650 I         : VSIP: rmi::cleanup_client: self 0x0000 handles cleanup of client 0x5566
+09-14 08:06:08.149  3593  3650 I         : VSIP: Application/Client 5566 is deregistering
+09-14 08:06:08.149  3593  3650 I         : VSIP: emi::remove_routing_endpoint: client 0x5566
+09-14 08:06:08.149  3593  3650 I         : VSIP: lsui::stop: role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7e0a748b4de8
+09-14 08:06:08.149  3593  3650 I         : VSIP: le::set_state_unlocked: change state: FAILED -> STOPPED, Client: 5566 (0), connection : role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7e0a748b4de8, fd: -1, 0x7e0a748b4de8, send_queue: 0, receive_buffer: {mem_size: 4096, first_used: 0, last_used: 0, shrink: [0, 5]}, is_sending: false, is_flushing: false, state: FAILED
+09-14 08:06:08.149  3593  3650 I         : VSIP: emi::remove_routing_endpoint: self 0x0000 is closing connection to client 0x5566 endpoint > role: server, own: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, peer: , mem: 0x7e0a748b4de8, fd: -1
+09-14 08:06:08.149  3593  3651 I         : VSIP: Stopped thread 5566_m_dispatch, application 'soc-vehicle-client', id 138578963826816, tid 3651
+09-14 08:06:08.149  3593  3650 I         : VSIP: rmc::stop: All endpoints cleared. Finishing the shutdown
+09-14 08:06:08.150  3593  3650 I         : VSIP: ON_UNAVAILABLE(5566): [1111.2222:0.0] forwarded=true
+09-14 08:06:08.150  3593  3650 I         : VSIP: laui::close: Closing the acceptor: /data/user/10/com.example.carlauncher/files/vsomeip/vsomeip-0, mem: 0x7e0a748af508
+09-14 08:06:08.150  3593  3650 I         : VSIP: emi::stop: called
+09-14 08:06:08.150  3593  3650 I         : VSIP: emi::clear_routing_endpoints:
+09-14 08:06:08.151  3593  3650 I         : VSIP: usei::stop: #1::10.203.0.2:30490:: lifecycle_idx=1
+09-14 08:06:08.151  3593  3650 I         : VSIP: usei::stop: #1::10.203.0.2:30490:: Done, lifecycle_idx=2
+09-14 08:06:08.151  3593  3652 I         : VSIP: Stopped thread m_multicast 138578962761856, tid 3652
+09-14 08:06:08.151  3593  3650 I         : VSIP: emi::stop: Joined thread m_multicast 138579013503104
+09-14 08:06:08.151  3593  3653 I         : VSIP: Stopped thread m_auxiliary, id 138578961696896, tid 3653
+09-14 08:06:08.151  3593  3650 I         : VSIP: Joined thread m_auxiliary, id 138578961696896
+09-14 08:06:08.151   771  1322 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@fda7007, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 08:06:08.151  3593  3650 I         : VSIP: app::start: : io_.run() end for app(soc-vehicle-client, 5566); Join Dispatcher threads for app(soc-vehicle-client, 5566)
+09-14 08:06:08.152  3593  3650 I         : VSIP: Join IO threads for app(soc-vehicle-client, 5566)
+09-14 08:06:08.152  3593  3650 I         : VSIP: Stopped thread 5566_io00, application 'soc-vehicle-client', id 138579013503104, tid 3650
+09-14 08:06:08.152  3593  3650 I VSOMEIP_JNI: vsomeip io thread exited
+09-14 08:06:08.152  3593  3646 I VSOMEIP_JNI: vsomeip app stopped
+09-14 08:06:08.152  3593  3646 I VSOMEIP_JNI: native: stopped
+09-14 08:06:08.155  3593  3646 I         : VSIP: usei::~udp_server_endpoint_impl: #1::10.203.0.2:30490:: lifecycle_idx=2
+09-14 08:06:08.155  1221  1221 I CarNotificationAdapter: Big text style is not supported as a car notification
+09-14 08:06:08.156   771  1098 I WifiService: releaseMulticastLock uid=1010248 tag=carlauncher-someip-sd
+09-14 08:06:08.158   771  1322 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found
+09-14 08:06:08.158  3593  3646 I VSOMEIP_JNI: SD multicast lock released
+09-14 08:06:08.158  3593  3646 I VEHICLE_SERVICE: SOMEIP_RELEASED id=67417149
+09-14 08:06:08.159  1186  1453 D IpClient.wlan0: set max DTIM multiplier to 9
+09-14 08:06:08.161   771   924 E WifiStaIfaceAidlImpl: setDtimMultiplier failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+09-14 08:06:08.165  1221  1342 D SplashScreenView: Build android.window.SplashScreenView{1ef05c3 V.E...... ......ID 0,0-0,0}
+09-14 08:06:08.165  1221  1342 D SplashScreenView: Icon: view: null drawable: null size: 0
+09-14 08:06:08.165  1221  1342 D SplashScreenView: Branding: view: android.view.View{e590e40 G.ED..... ......I. 0,0-0,0 #1020519 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+09-14 08:06:08.168   495   495 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+09-14 08:06:08.168   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.174  3593  3593 I VEHICLE_LAUNCHER: onPause
+09-14 08:06:08.175  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: PAUSED
+09-14 08:06:08.175  1221  1221 D DockViewModel: Add dynamic item, component: ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+09-14 08:06:08.175  1221  1221 D DockViewModel: internalItems.size = 4, maxItemsInDock= 4
+09-14 08:06:08.175  3593  3593 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.example.carlauncher.MainActivity@cc0aaee
+09-14 08:06:08.176   771   799 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 1010250, packageName = null, attributionTag = null, token = android.os.Binder@fda7007, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+09-14 08:06:08.180  1221  1221 D DockViewModel: Updating ComponentInfo{com.example.carlauncher.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity} at 2
+09-14 08:06:08.180  1221  1221 D DockViewModel: createDockList called
+09-14 08:06:08.185   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.186  1221  1221 D DockAdapter: Binding at position 2 without payloads
+09-14 08:06:08.186  1221  1221 D DockAdapter: Is callback set for 2: false
+09-14 08:06:08.186  1221  1221 D DockItemViewController: updateViewBasedOnState, typeState: DYNAMIC, optionalState: []
+09-14 08:06:08.188   410   410 I Zygote  : Entering forkRepeatedly native zygote loop
+09-14 08:06:08.193   410   410 D Zygote  : Forked child process 3731
+09-14 08:06:08.213  3731  3731 I arlauncher.test: Late-enabling -Xcheck:jni
+09-14 08:06:08.218   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.226  1221  1221 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 08:06:08.230  3731  3731 I arlauncher.test: Using CollectorTypeCMC GC.
+09-14 08:06:08.231  3731  3731 W arlauncher.test: Unexpected CPU variant for x86: x86_64.
+09-14 08:06:08.231  3731  3731 W arlauncher.test: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+09-14 08:06:08.233   514   528 I adbd    : jdwp connection from 3731
+09-14 08:06:08.243  3731  3731 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+09-14 08:06:08.251   771  1322 W com.android.internal.protolog.LogcatOnlyProtoLogImpl: ProtoLog message not processed. Failed to log it to proto. Logging it below to logcat instead.
+09-14 08:06:08.251   771  1322 V WindowManager: Binding proc com.example.carlauncher.test with config {1.0 310mcc260mnc [en_US] ldltr sw792dp w1408dp h792dp 160dpi xlrg long land car finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1408, 792) mAppBounds=Rect(0, 0 - 1408, 792) mMaxBounds=Rect(0, 0 - 1408, 792) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.11 fontWeightAdjustment=0}
+09-14 08:06:08.252   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.262  3731  3731 I ActivityThread: Relaunch all activities: onCoreSettingsChange
+09-14 08:06:08.271  3731  3731 W ziparchive: Unable to open '/data/app/~~zlRgPFwhzksKMjAzqmw6RA==/com.example.carlauncher.test-htMKrQtb9A9t1FU9S8C6fg==/base.dm': No such file or directory
+09-14 08:06:08.271  3731  3731 W ziparchive: Unable to open '/data/app/~~zlRgPFwhzksKMjAzqmw6RA==/com.example.carlauncher.test-htMKrQtb9A9t1FU9S8C6fg==/base.dm': No such file or directory
+09-14 08:06:08.284  3731  3731 D nativeloader: Configuring clns-7 for other apk /data/app/~~zlRgPFwhzksKMjAzqmw6RA==/com.example.carlauncher.test-htMKrQtb9A9t1FU9S8C6fg==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~zlRgPFwhzksKMjAzqmw6RA==/com.example.carlauncher.test-htMKrQtb9A9t1FU9S8C6fg==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/10/com.example.carlauncher.test
+09-14 08:06:08.295  3731  3731 V GraphicsEnvironment: Currently set values for:
+09-14 08:06:08.295  3731  3731 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+09-14 08:06:08.295  3731  3731 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+09-14 08:06:08.296  3731  3731 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+09-14 08:06:08.296  3731  3731 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+09-14 08:06:08.302   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.339  3731  3731 E arlauncher.test: Invalid resource ID 0x00000000.
+09-14 08:06:08.349  3731  3731 D DecorView: package: com.example.carlauncher.test user: 10 displayCompat: true
+09-14 08:06:08.355  3731  3731 D DesktopModeFlagsUtil: Toggle override initialized to: OVERRIDE_UNSET
+09-14 08:06:08.382  3731  3731 W HWUI    : Unknown dataspace 0
+09-14 08:06:08.413   495   609 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 08:06:08.413   495   610 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=3731
+09-14 08:06:08.413   495   610 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (225 us)
+09-14 08:06:08.413   495   609 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (736 us)
+09-14 08:06:08.413   495   609 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 08:06:08.413   495   610 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=3731
+09-14 08:06:08.413   495   609 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (250 us)
+09-14 08:06:08.413   495   610 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (242 us)
+09-14 08:06:08.414   495   609 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=0
+09-14 08:06:08.414   495   609 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (513 us)
+09-14 08:06:08.414   495   610 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=3731
+09-14 08:06:08.414   495   610 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (900 us)
+09-14 08:06:08.415  3731  3746 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 08:06:08.416  3731  3746 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 08:06:08.421  1221  1221 D DockViewModel: Add dynamic item, component: ComponentInfo{com.android.car.carlauncher/com.android.car.carlauncher.CarLauncher}
+09-14 08:06:08.421  1221  1221 D DockViewModel: Dynamic item is excluded
+09-14 08:06:08.426  3731  3746 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-14 08:06:08.436   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.499  1364  1574 W ServiceManagerCppClient: Waited one second for android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)
+09-14 08:06:08.504   174  3754 W libc    : Unable to set property "ctl.interface_start" to "aidl/android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default": PROP_ERROR_HANDLE_CONTROL_MESSAGE (0x20)
+09-14 08:06:08.535   771  1098 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 08:06:08.535   771  1098 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=1010250 => denied (527 us)
+09-14 08:06:08.535   771  1098 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=1010250 pid=0
+09-14 08:06:08.535   771  1098 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=1010250 => denied (220 us)
+09-14 08:06:08.536   771  1098 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=1010250 pid=0
+09-14 08:06:08.536   771  1098 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=1010250 => denied (149 us)
+09-14 08:06:08.548  1556  1556 D VRI[CarLauncher]: visibilityChanged oldVisibility=false newVisibility=true
+09-14 08:06:08.560  1221  1221 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 08:06:08.560  1221  1221 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@797f5cd
+09-14 08:06:08.586   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.589  1221  1221 D CarSystemBarController: refreshSystemBar: locked?: false homeDisabled: false notificationDisabled: false qcDisabled: false systemIconsDisabled: false
+09-14 08:06:08.591  3593  3593 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 08:06:08.615  1221  1221 D DockViewModel: Add dynamic item, component: ComponentInfo{com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity}
+09-14 08:06:08.619   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.627  3593  3593 I VEHICLE_LAUNCHER: onStop
+09-14 08:06:08.627  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: STOPPED
+09-14 08:06:08.628  3593  3593 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.example.carlauncher.MainActivity@cc0aaee
+09-14 08:06:08.630  3731  3731 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+09-14 08:06:08.632  3593  3593 I COCKPIT_VIEW_MODEL: onCleared, id=90454943
+09-14 08:06:08.632  1221  1221 D DockViewModel: Updating ComponentInfo{com.android.car.mapsplaceholder/com.android.car.mapsplaceholder.MapsPlaceholderActivity} at 0
+09-14 08:06:08.632  1221  1221 D DockViewModel: createDockList called
+09-14 08:06:08.634  3593  3593 I VEHICLE_LAUNCHER: onDestroy
+09-14 08:06:08.635   495   495 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 08:06:08.643  3593  3593 D LifecycleMonitor: Lifecycle status change: com.example.carlauncher.MainActivity@cc0aaee in: DESTROYED
+09-14 08:06:08.643  3593  3593 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+09-14 08:06:08.643  3593  3593 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@dcb634e
+09-14 08:06:08.644  3593  3616 I TestRunner: finished: remoteEventsUpdateActivity(com.example.carlauncher.someip.VehicleEventProbeTest)

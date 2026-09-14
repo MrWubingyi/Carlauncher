@@ -1,0 +1,8 @@
+09-14 07:53:05.597  3580  3602 I TestRunner: started: callbacksUseMainThreadAndClearedListenersReceiveNoQueuedEvents(com.example.carlauncher.someip.VsomeipClientTest)
+09-14 07:53:05.611  3580  3602 D nativeloader: Load /data/app/~~I9HGoh1jl3xOGWOsT941zA==/com.example.carlauncher-6S0B1peBnGnFNcGhlCUegQ==/base.apk!/lib/x86_64/libvsomeip3.so using ns clns-7 from class loader (caller=/data/app/~~I9HGoh1jl3xOGWOsT941zA==/com.example.carlauncher-6S0B1peBnGnFNcGhlCUegQ==/base.apk!classes6.dex): ok
+09-14 07:53:05.613  3580  3602 D nativeloader: Load /data/app/~~I9HGoh1jl3xOGWOsT941zA==/com.example.carlauncher-6S0B1peBnGnFNcGhlCUegQ==/base.apk!/lib/x86_64/libcarlauncher.so using ns clns-7 from class loader (caller=/data/app/~~I9HGoh1jl3xOGWOsT941zA==/com.example.carlauncher-6S0B1peBnGnFNcGhlCUegQ==/base.apk!classes6.dex): ok
+09-14 07:53:05.613  3580  3602 I VSOMEIP_JNI: System.loadLibrary ok
+09-14 07:53:05.614  3580  3602 I VSOMEIP_JNI: native: registered
+09-14 07:53:05.614  3580  3602 W VSOMEIP_JNI: native: response error code=1
+09-14 07:53:05.615  3580  3602 I VSOMEIP_JNI: native: stopped
+09-14 07:53:05.617  3580  3602 I TestRunner: finished: callbacksUseMainThreadAndClearedListenersReceiveNoQueuedEvents(com.example.carlauncher.someip.VsomeipClientTest)

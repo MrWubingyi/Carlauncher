@@ -1,0 +1,2 @@
+09-14 07:53:05.538  3580  3602 I TestRunner: started: newInstance_hasStoppedDefaults(com.example.carlauncher.service.VehicleSendServiceTest)
+09-14 07:53:05.539  3580  3602 I TestRunner: finished: newInstance_hasStoppedDefaults(com.example.carlauncher.service.VehicleSendServiceTest)

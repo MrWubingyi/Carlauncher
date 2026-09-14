@@ -1,0 +1,70 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6db88e8..f7284c7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -286,3 +286,8 @@ else()
+     message(STATUS "AddressSanitizer disabled")
+ endif()
+ endif()
++
++# Vehicle event subscriber; UI timer consumes the existing protected snapshot.
++find_package(vsomeip3 REQUIRED)
++target_sources(main PRIVATE app/network/vehicle_someip_client.cpp)
++target_link_libraries(main vsomeip3)
+diff --git a/app/ui_bridge.c b/app/ui_bridge.c
+index a310f06..f5dc373 100644
+--- a/app/ui_bridge.c
++++ b/app/ui_bridge.c
+@@ -6,6 +6,8 @@
+ #include "ui/ui_image_runtime.h"
+ 
+ #include <stdio.h>
++#include <stdlib.h>
++#include <inttypes.h>
+ #include <time.h>
+ 
+ #define UI_REFRESH_PERIOD_MS 100
+@@ -286,6 +288,11 @@ static void refresh_cb(lv_timer_t *timer) {
+     } else {
+         lv_label_set_text_fmt(objects.lbl_speed, "%d", speed);
+     }
++    if (getenv("VEHICLE_EVENT_UI_TRACE")) {
++        printf("LVGL_UI seq=%" PRIu64 " speed=%s\n", state.sequence,
++               lv_label_get_text(objects.lbl_speed));
++        fflush(stdout);
++    }
+     lv_label_set_text(objects.lbl_gear, gear_str);
+     lv_bar_set_value(objects.bar_fuel, soc, LV_ANIM_ON);
+     lv_label_set_text_fmt(objects.lbl_range, "%d km", state.range_km);
+diff --git a/src/main.c b/src/main.c
+index d39e1a8..b808070 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -15,6 +15,7 @@
+ #include "ui_bridge.h"
+ #include "vehicle_data.h"
+ #include "vehicle_tcp_server.h"
++#include "vehicle_someip_client.h"
+ 
+ #include <stdlib.h>
+ #include <stdio.h>
+@@ -108,8 +109,8 @@ int main(int argc, char **argv)
+   ui_init();
+   ui_bridge_init(vehicle_data);
+ 
+-  if (!vehicle_tcp_server_start(19090, vehicle_data)) {
+-    fprintf(stderr, "Failed to start TCP server\n");
++  if (!vehicle_someip_client_start(vehicle_data)) {
++    fprintf(stderr, "Failed to start SOME/IP event subscriber\n");
+   }
+   while(application_running) {
+     ui_tick();
+@@ -126,7 +127,7 @@ int main(int argc, char **argv)
+ #endif
+   }
+ 
+-  vehicle_tcp_server_stop();
++  vehicle_someip_client_stop();
+   vehicle_data_destroy(vehicle_data);
+ 
+   return 0;

@@ -1,0 +1,2 @@
+09-14 07:53:05.521  3580  3602 I TestRunner: started: setStateListener_notifiesListenerOnMainLooper(com.example.carlauncher.service.VehicleSendServiceTest)
+09-14 07:53:05.525  3580  3602 I TestRunner: finished: setStateListener_notifiesListenerOnMainLooper(com.example.carlauncher.service.VehicleSendServiceTest)

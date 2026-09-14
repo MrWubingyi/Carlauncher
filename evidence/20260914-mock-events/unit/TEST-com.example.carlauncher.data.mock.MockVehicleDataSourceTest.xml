@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-09-14T07:42:08.881Z" hostname="DESKTOP-H9SISPA" time="0.011">
+  <properties/>
+  <testcase name="ticks_driveSpeedCycle_betweenZeroAndHundred" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.006"/>
+  <testcase name="start_whileAlreadyRunning_ignoresSecondListener" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.0"/>
+  <testcase name="factory_mockSourceType_createsMockDataSource" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.001"/>
+  <testcase name="stop_reportsStopped_andClearsRunningState" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.001"/>
+  <testcase name="invalidWindow_emitsInvalidSpeedFrames" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.001"/>
+  <testcase name="silentWindow_reportsNoData_thenResumesConnected" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.001"/>
+  <testcase name="start_reportsConnected_andGeneratesNormalFrames" classname="com.example.carlauncher.data.mock.MockVehicleDataSourceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

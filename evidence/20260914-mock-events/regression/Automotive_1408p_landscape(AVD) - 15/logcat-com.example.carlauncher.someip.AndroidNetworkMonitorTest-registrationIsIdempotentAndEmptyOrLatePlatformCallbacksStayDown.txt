@@ -1,0 +1,3 @@
+09-14 07:53:05.552  3580  3602 I TestRunner: started: registrationIsIdempotentAndEmptyOrLatePlatformCallbacksStayDown(com.example.carlauncher.someip.AndroidNetworkMonitorTest)
+09-14 07:53:05.558  3580  3602 I VSOMEIP_NETWORK: address=10.0.2.16 interface= available=false multicastRoute=false
+09-14 07:53:05.559  3580  3602 I TestRunner: finished: registrationIsIdempotentAndEmptyOrLatePlatformCallbacksStayDown(com.example.carlauncher.someip.AndroidNetworkMonitorTest)

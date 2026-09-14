@@ -1,0 +1,5 @@
+09-14 07:53:05.434  3580  3602 I TestRunner: started: updateAndDelete_affectMatchingRows(com.example.carlauncher.data.local.LabDatabaseHelperTest)
+09-14 07:53:05.451  3580  3602 I LAB_DATABASE: Database onCreate, version=2
+09-14 07:53:05.451  3580  3602 I LAB_DATABASE: Table created: lab_record
+09-14 07:53:05.458  3580  3602 I LAB_DATABASE: Database opened, version=2
+09-14 07:53:05.487  3580  3602 I TestRunner: finished: updateAndDelete_affectMatchingRows(com.example.carlauncher.data.local.LabDatabaseHelperTest)

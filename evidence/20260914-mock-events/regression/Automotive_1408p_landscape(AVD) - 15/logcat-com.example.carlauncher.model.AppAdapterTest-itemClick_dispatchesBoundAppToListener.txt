@@ -1,0 +1,3 @@
+09-14 07:53:05.489  3580  3602 I TestRunner: started: itemClick_dispatchesBoundAppToListener(com.example.carlauncher.model.AppAdapterTest)
+09-14 07:53:05.493  3580  3602 E ple.carlauncher: Invalid resource ID 0x00000000.
+09-14 07:53:05.496  3580  3602 I TestRunner: finished: itemClick_dispatchesBoundAppToListener(com.example.carlauncher.model.AppAdapterTest)

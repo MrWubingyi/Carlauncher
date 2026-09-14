@@ -1,0 +1,10 @@
+{
+  "Find": 2,
+  "MulticastOffer": 150,
+  "UnicastOffer": 2,
+  "Requests": 8,
+  "Responses": 8,
+  "NativeTx": 8,
+  "NativeRx": 8,
+  "Codes": "00,01,01,00,00,01,01,00"
+}

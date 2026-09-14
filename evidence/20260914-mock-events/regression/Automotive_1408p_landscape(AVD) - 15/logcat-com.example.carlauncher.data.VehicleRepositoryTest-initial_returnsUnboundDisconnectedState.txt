@@ -1,0 +1,2 @@
+09-14 07:53:05.186  3580  3602 I TestRunner: started: initial_returnsUnboundDisconnectedState(com.example.carlauncher.data.VehicleRepositoryTest)
+09-14 07:53:05.188  3580  3602 I TestRunner: finished: initial_returnsUnboundDisconnectedState(com.example.carlauncher.data.VehicleRepositoryTest)

@@ -1,0 +1,12 @@
+09-14 07:53:05.019  3580  3602 I TestRunner: started: saveAndApply_persistsLightAndDarkThemes(com.example.carlauncher.ThemePreferencesContextTest)
+09-14 07:53:05.021  2363  2417 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-14 07:53:05.023  3580  3602 I THEME_PREFERENCES: Settings reset: colorTheme=system, welcomeEnabled=true
+09-14 07:53:05.023  3580  3602 I THEME_PREFERENCES: Saved theme=light
+09-14 07:53:05.023  3580  3602 I THEME_PREFERENCES: Apply theme=light, nightMode=1
+09-14 07:53:05.023  3580  3602 I THEME_PREFERENCES: Loaded theme=light
+09-14 07:53:05.024   488   488 W RefreshRateSelector: Can't find max refresh rate by policy with the same mode group as the mode group 0
+09-14 07:53:05.024  3580  3602 I THEME_PREFERENCES: Saved theme=dark
+09-14 07:53:05.024  3580  3602 I THEME_PREFERENCES: Apply theme=dark, nightMode=2
+09-14 07:53:05.024  2363  2417 I EGL_emulation: Opening libGLESv2_emulation.so
+09-14 07:53:05.024  3580  3602 I THEME_PREFERENCES: Loaded theme=dark
+09-14 07:53:05.024  3580  3602 I TestRunner: finished: saveAndApply_persistsLightAndDarkThemes(com.example.carlauncher.ThemePreferencesContextTest)

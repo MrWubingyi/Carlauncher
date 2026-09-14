@@ -1,0 +1,5 @@
+09-14 07:53:04.999  3580  3602 I TestRunner: started: getColorTheme_withInvalidStoredValue_fallsBackAndClearsKey(com.example.carlauncher.ThemePreferencesContextTest)
+09-14 07:53:05.001  3580  3602 I THEME_PREFERENCES: Settings reset: colorTheme=system, welcomeEnabled=true
+09-14 07:53:05.007  3580  3602 I THEME_PREFERENCES: Loaded theme=not-a-theme
+09-14 07:53:05.007  3580  3602 W THEME_PREFERENCES: Invalid stored theme, fallback to system: not-a-theme
+09-14 07:53:05.007  3580  3602 I TestRunner: finished: getColorTheme_withInvalidStoredValue_fallsBackAndClearsKey(com.example.carlauncher.ThemePreferencesContextTest)

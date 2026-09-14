@@ -1,0 +1,2 @@
+09-14 07:52:44.845  3580  3602 I TestRunner: started: useAppContext(com.example.carlauncher.ExampleInstrumentedTest)
+09-14 07:52:44.846  3580  3602 I TestRunner: finished: useAppContext(com.example.carlauncher.ExampleInstrumentedTest)

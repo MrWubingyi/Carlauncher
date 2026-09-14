@@ -52,11 +52,8 @@ import com.example.carlauncher.someip.VsomeipClient;
 import com.example.carlauncher.someip.SomeipConnectionMonitor;
 
 /**
- * 前台服务，负责管理车辆数据源和 LVGL TCP 传输。
- * 数据源的生命周期与 TCP 连接的生命周期是独立的。
- * <p>
- * Foreground service that owns the vehicle data source and LVGL TCP transport.
- * The data source lifecycle is independent from the TCP connection lifecycle.
+ * Foreground owner of the remote vehicle Event subscription and latest UI snapshot.
+ * Historical class name and TCP inspection methods are retained for compatibility.
  */
 public class VehicleSendService extends Service {
     private static final String TAG = "VEHICLE_SERVICE";
@@ -87,18 +84,47 @@ public class VehicleSendService extends Service {
         @Override public void onAvailable(boolean available) {
             if (stopping) return;
             someipMonitor.onAvailability(available, SystemClock.elapsedRealtime());
+            if (!available) {
+                latestVehicleState = null;
+                lastEventTimestamp = 0;
+                lastEventSequence = -1;
+                sourceStatus = DataSourceStatus.DISCONNECTED;
+            } else if (latestVehicleState == null) sourceStatus = DataSourceStatus.CONNECTING;
+            notifyStateChanged();
+        }
+
+        @Override public void onVehicleEvent(byte[] payload) {
+            if (stopping || !someipMonitor.snapshot().isAvailable()) return;
+            try {
+                VehicleState state = com.example.carlauncher.someip.VehicleEventCodec.decode(payload);
+                // Timestamp separates provider restarts; duplicates/reordered datagrams cannot rewind UI.
+                if (state.getTimestampMs() < lastEventTimestamp
+                        || (state.getTimestampMs() == lastEventTimestamp
+                            && state.getSequence() <= lastEventSequence)) return;
+                lastEventTimestamp = state.getTimestampMs();
+                lastEventSequence = state.getSequence();
+                latestVehicleState = state;
+                someipMonitor.onEvent(SystemClock.elapsedRealtime());
+                sourceStatus = state.getDataStatus() == com.example.carlauncher.data.DataStatus.NO_DATA
+                        ? DataSourceStatus.NO_DATA : DataSourceStatus.CONNECTED;
+                Log.d(TAG, "VEHICLE_EVENT seq=" + state.getSequence() + " speed=" + state.getVehSpeedKph());
+            } catch (org.json.JSONException exception) {
+                latestVehicleState = null;
+                sourceStatus = DataSourceStatus.ERROR;
+                Log.w(TAG, "Invalid vehicle event", exception);
+            }
             notifyStateChanged();
         }
 
         @Override public void onResponse(boolean ok, int returnCode) {
-            if (stopping) return;
-            someipMonitor.onResponse(ok, returnCode, SystemClock.elapsedRealtime());
-            notifyStateChanged();
+            // Legacy Method probes have their own listener. Only Events prove this stream online.
         }
 
         @Override public void onStopped() {
             if (stopping) return;
             vsomeipStarted = false;
+            latestVehicleState = null;
+            sourceStatus = DataSourceStatus.STOPPED;
             someipMonitor.stop();
             notifyStateChanged();
         }
@@ -107,7 +133,9 @@ public class VehicleSendService extends Service {
         @Override public void run() {
             if (stopping) return;
             if (someipMonitor.checkTimeout(SystemClock.elapsedRealtime())) {
-                Log.w(TAG, "SOMEIP_STATE RESPONSE_TIMEOUT (3000 ms without response)");
+                latestVehicleState = null;
+                sourceStatus = DataSourceStatus.NO_DATA;
+                Log.w(TAG, "SOMEIP_STATE EVENT_TIMEOUT (3000 ms without vehicle event)");
                 notifyStateChanged();
             }
             mainHandler.postDelayed(this, 100);
@@ -124,6 +152,8 @@ public class VehicleSendService extends Service {
     // vSomeIP 是否已启动成功（native 不可用时跳过 10 Hz 发送，避免空转 JNI 调用）
     private volatile boolean vsomeipStarted;
     private volatile VehicleState latestVehicleState;
+    private long lastEventTimestamp;
+    private long lastEventSequence = -1;
     private volatile DataSourceStatus sourceStatus = DataSourceStatus.STOPPED;
     private StateListener stateListener;
 
@@ -233,18 +263,8 @@ public class VehicleSendService extends Service {
         reconnectScheduler =
                 Executors.newSingleThreadScheduledExecutor();
         vsomeipExecutor = SomeipLifecycle.EXECUTOR;
-        tcpClient = new VehicleTcpClient(
-                "192.168.31.248",
-                19090
-        );
-        vehicleDataSource = VehicleDataSourceFactory.create(
-                this,
-                SourceType.MOCK
-        );
-
-        // 启动数据源并连接 TCP
-        startVehicleDataSource();
-        connectTcp();
+        // The remote mock service is the sole live source for both UI subscribers.
+        sourceStatus = DataSourceStatus.CONNECTING;
         startVsomeipClient();
     }
 
@@ -767,7 +787,7 @@ public class VehicleSendService extends Service {
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Vehicle data service")
-                .setContentText("Sending vehicle state to LVGL")
+                .setContentText("Subscribing to vehicle state events")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentIntent(contentIntent)
                 .setOngoing(true)

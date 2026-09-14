@@ -3,5 +3,6 @@ evidence/20260909-someip-method/** -text
 evidence/20260909-android-network/** -text
 evidence/20260909-sd-replay/** -text
 evidence/20260910-service-lifecycle/** -text
+evidence/20260910-multicast-path/** -text
 *.pcap binary
 *.pb binary

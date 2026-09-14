@@ -1,0 +1,6 @@
+09-14 07:53:05.397  3580  3602 I TestRunner: started: insert_thenQuery_roundTripsRecord(com.example.carlauncher.data.local.LabDatabaseHelperTest)
+09-14 07:53:05.415  3580  3602 I LAB_DATABASE: Database onCreate, version=2
+09-14 07:53:05.415  3580  3602 I LAB_DATABASE: Table created: lab_record
+09-14 07:53:05.425  3580  3602 I LAB_DATABASE: Database opened, version=2
+09-14 07:53:05.430  1234  1366 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@e032db5
+09-14 07:53:05.433  3580  3602 I TestRunner: finished: insert_thenQuery_roundTripsRecord(com.example.carlauncher.data.local.LabDatabaseHelperTest)

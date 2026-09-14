@@ -1,10 +1,10 @@
 package com.example.carlauncher.ui;
 
 public enum CockpitConnectionState {
-    ONLINE("STOP SEND", true, true),
+    ONLINE("STOP RECEIVE", true, true),
     CONNECTING("PLEASE WAIT", false, false),
-    INVALID_DATA("STOP SEND", true, true),
-    DISCONNECTED("START SEND", true, false),
+    INVALID_DATA("STOP RECEIVE", true, true),
+    DISCONNECTED("START RECEIVE", true, false),
     RECOVERING("PLEASE WAIT", false, false);
 
     private final String actionLabel;

@@ -37,6 +37,7 @@
 #include <map>
 #include <memory>
 #include <mutex>
+#include <set>
 #include <string>
 #include <thread>
 #include <unistd.h>
@@ -65,6 +66,28 @@ namespace {
 JavaVM* g_jvm = nullptr;
 jclass g_client_cls = nullptr;          // global ref
 jmethodID g_on_native_event = nullptr;  // static void onNativeEvent(int kind, int arg)
+jmethodID g_on_vehicle_event = nullptr;
+
+void notify_vehicle(const std::shared_ptr<vsomeip::payload>& payload) {
+    if (!payload || payload->get_length() == 0 || payload->get_length() > 4096
+            || !g_jvm || !g_client_cls || !g_on_vehicle_event) return;
+    JNIEnv* env = nullptr;
+    bool attached = false;
+    if (g_jvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) == JNI_EDETACHED) {
+        if (g_jvm->AttachCurrentThread(&env, nullptr) != JNI_OK) return;
+        attached = true;
+    }
+    if (!env) return;
+    auto bytes = env->NewByteArray(static_cast<jsize>(payload->get_length()));
+    if (bytes) {
+        env->SetByteArrayRegion(bytes, 0, payload->get_length(),
+                              reinterpret_cast<const jbyte*>(payload->get_data()));
+        if (!env->ExceptionCheck()) env->CallStaticVoidMethod(g_client_cls, g_on_vehicle_event, bytes);
+        env->DeleteLocalRef(bytes);
+    }
+    if (env->ExceptionCheck()) env->ExceptionClear();
+    if (attached) g_jvm->DetachCurrentThread();
+}
 
 // 从 vsomeip 内部线程安全回调 Java；回调里不碰 UI，由 Java 侧转主线程。
 void notify_java(int kind, int arg) {
@@ -131,6 +154,11 @@ public:
                      vehicle_someip::kServiceId, vehicle_someip::kInstanceId);
                 app->request_service(vehicle_someip::kServiceId,
                                      vehicle_someip::kInstanceId);
+                app->request_event(vehicle_someip::kServiceId, vehicle_someip::kInstanceId,
+                    vehicle_someip::kStateEventId, {vehicle_someip::kStateEventGroupId},
+                    vsomeip::event_type_e::ET_EVENT);
+                app->subscribe(vehicle_someip::kServiceId, vehicle_someip::kInstanceId,
+                    vehicle_someip::kStateEventGroupId);
                 notify_java(kEvtRegistered, 0);
             }
         });
@@ -151,6 +179,12 @@ public:
                 vehicle_someip::kServiceId, vehicle_someip::kInstanceId,
                 vsomeip::ANY_METHOD,
                 [this](const std::shared_ptr<vsomeip::message>& msg) {
+                    if (msg->get_method() == vehicle_someip::kStateEventId
+                            && msg->get_message_type() == vsomeip::message_type_e::MT_NOTIFICATION
+                            && msg->get_return_code() == vsomeip::return_code_e::E_OK) {
+                        if (!stopping_.load() && available()) notify_vehicle(msg->get_payload());
+                        return;
+                    }
                     if (msg->get_method() != vehicle_someip::kSetVehicleStateMethodId) return;
                     const auto type = msg->get_message_type();
                     if (type != vsomeip::message_type_e::MT_RESPONSE
@@ -227,6 +261,10 @@ public:
         LOGI("stopping vsomeip app");
         try {
             app->clear_all_handler();
+            app->unsubscribe(vehicle_someip::kServiceId, vehicle_someip::kInstanceId,
+                             vehicle_someip::kStateEventGroupId);
+            app->release_event(vehicle_someip::kServiceId, vehicle_someip::kInstanceId,
+                               vehicle_someip::kStateEventId);
             app->release_service(vehicle_someip::kServiceId,
                                  vehicle_someip::kInstanceId);
             app->stop();
@@ -343,6 +381,9 @@ Java_com_example_carlauncher_someip_VsomeipClient_nativeStart(
         }
         if (g_client_cls && !g_on_native_event) {
             g_on_native_event = env->GetStaticMethodID(g_client_cls, "onNativeEvent", "(II)V");
+        }
+        if (g_client_cls && !g_on_vehicle_event) {
+            g_on_vehicle_event = env->GetStaticMethodID(g_client_cls, "onNativeVehicleEvent", "([B)V");
         }
 
         const char* path = config_path ? env->GetStringUTFChars(config_path, nullptr) : nullptr;

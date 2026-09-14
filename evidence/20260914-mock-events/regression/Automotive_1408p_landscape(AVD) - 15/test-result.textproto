@@ -1,0 +1,3730 @@
+# proto-message: google.testing.platform.proto.api.core.TestSuiteResult
+# 2026-09-14T07:53:09.156966400Z:
+test_suite_meta_data {
+  scheduled_test_case_count: 69
+  device {
+    id: "emulator-5554"
+    friendly_name: "primary"
+  }
+}
+test_status: PASSED
+test_result {
+  test_case {
+    test_class: "AppDrawerActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "clickCountButton_setsTextToFive"
+    start_time {
+      seconds: 1789372309
+      nanos: 972000000
+    }
+    end_time {
+      seconds: 1789372312
+      nanos: 270000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.AppDrawerActivityTest-clickCountButton_setsTextToFive.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AppDrawerActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "launch_countMatchesVisibleLauncherItems"
+    start_time {
+      seconds: 1789372312
+      nanos: 287000000
+    }
+    end_time {
+      seconds: 1789372313
+      nanos: 368000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.AppDrawerActivityTest-launch_countMatchesVisibleLauncherItems.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AppDrawerActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "countSurvivesRecreation_throughSavedInstanceState"
+    start_time {
+      seconds: 1789372313
+      nanos: 379000000
+    }
+    end_time {
+      seconds: 1789372314
+      nanos: 437000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.AppDrawerActivityTest-countSurvivesRecreation_throughSavedInstanceState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "BroadcastLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "receiver_isUnregisteredAfterStop"
+    start_time {
+      seconds: 1789372314
+      nanos: 439000000
+    }
+    end_time {
+      seconds: 1789372360
+      nanos: 776000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.BroadcastLabActivityTest-receiver_isUnregisteredAfterStop.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "BroadcastLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "powerBroadcasts_updateStatusText"
+    start_time {
+      seconds: 1789372360
+      nanos: 777000000
+    }
+    end_time {
+      seconds: 1789372361
+      nanos: 776000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.BroadcastLabActivityTest-powerBroadcasts_updateStatusText.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "CarLauncherApplicationTest"
+    test_package: "com.example.carlauncher"
+    test_method: "applicationContext_isCarLauncherApplication_andAppliesSavedTheme"
+    start_time {
+      seconds: 1789372361
+      nanos: 779000000
+    }
+    end_time {
+      seconds: 1789372361
+      nanos: 815000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.CarLauncherApplicationTest-applicationContext_isCarLauncherApplication_andAppliesSavedTheme.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "DatabaseLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "launch_opensDatabaseAndShowsStatus"
+    start_time {
+      seconds: 1789372361
+      nanos: 816000000
+    }
+    end_time {
+      seconds: 1789372362
+      nanos: 866000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.DatabaseLabActivityTest-launch_opensDatabaseAndShowsStatus.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "DatabaseLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "insertButton_withEmptyInputs_showsValidationMessage"
+    start_time {
+      seconds: 1789372362
+      nanos: 875000000
+    }
+    end_time {
+      seconds: 1789372364
+      nanos: 70000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.DatabaseLabActivityTest-insertButton_withEmptyInputs_showsValidationMessage.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "DatabaseLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "updateButton_withEmptyInputs_showsValidationMessage"
+    start_time {
+      seconds: 1789372364
+      nanos: 71000000
+    }
+    end_time {
+      seconds: 1789372365
+      nanos: 177000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.DatabaseLabActivityTest-updateButton_withEmptyInputs_showsValidationMessage.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "DatabaseLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "deleteButton_withEmptyName_showsValidationMessage"
+    start_time {
+      seconds: 1789372365
+      nanos: 180000000
+    }
+    end_time {
+      seconds: 1789372366
+      nanos: 270000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.DatabaseLabActivityTest-deleteButton_withEmptyName_showsValidationMessage.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ExampleInstrumentedTest"
+    test_package: "com.example.carlauncher"
+    test_method: "useAppContext"
+    start_time {
+      seconds: 1789372366
+      nanos: 272000000
+    }
+    end_time {
+      seconds: 1789372366
+      nanos: 277000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ExampleInstrumentedTest-useAppContext.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "rapidSecondSelection_isDebounced"
+    start_time {
+      seconds: 1789372366
+      nanos: 279000000
+    }
+    end_time {
+      seconds: 1789372371
+      nanos: 988000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTest-rapidSecondSelection_isDebounced.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "menuButton_navigatesToDetailWithBackButton"
+    start_time {
+      seconds: 1789372371
+      nanos: 990000000
+    }
+    end_time {
+      seconds: 1789372372
+      nanos: 945000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTest-menuButton_navigatesToDetailWithBackButton.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "launch_showsMenuFragment_inSinglePane"
+    start_time {
+      seconds: 1789372372
+      nanos: 950000000
+    }
+    end_time {
+      seconds: 1789372373
+      nanos: 978000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTest-launch_showsMenuFragment_inSinglePane.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "detailBackButton_popsBackToMenu"
+    start_time {
+      seconds: 1789372374
+      nanos: 5000000
+    }
+    end_time {
+      seconds: 1789372375
+      nanos: 32000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTest-detailBackButton_popsBackToMenu.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "duplicateSelection_isIgnored"
+    start_time {
+      seconds: 1789372375
+      nanos: 33000000
+    }
+    end_time {
+      seconds: 1789372376
+      nanos: 40000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTest-duplicateSelection_isIgnored.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTwoPaneTest"
+    test_package: "com.example.carlauncher"
+    test_method: "launch_showsMenuAndInitialDisplayDetail_inTwoPane"
+    start_time {
+      seconds: 1789372376
+      nanos: 42000000
+    }
+    end_time {
+      seconds: 1789372377
+      nanos: 16000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTwoPaneTest-launch_showsMenuAndInitialDisplayDetail_inTwoPane.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "FragmentLabActivityTwoPaneTest"
+    test_package: "com.example.carlauncher"
+    test_method: "menuNetworkSelection_replacesDetailPane"
+    start_time {
+      seconds: 1789372377
+      nanos: 17000000
+    }
+    end_time {
+      seconds: 1789372377
+      nanos: 956000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.FragmentLabActivityTwoPaneTest-menuNetworkSelection_replacesDetailPane.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "MainActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "someipFaultsRemainVisibleWhileTcpIsOnline"
+    start_time {
+      seconds: 1789372377
+      nanos: 958000000
+    }
+    end_time {
+      seconds: 1789372379
+      nanos: 226000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.MainActivityTest-someipFaultsRemainVisibleWhileTcpIsOnline.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "MainActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "attachedServiceWithNullState_rendersNoDataPlaceholders"
+    start_time {
+      seconds: 1789372379
+      nanos: 228000000
+    }
+    end_time {
+      seconds: 1789372380
+      nanos: 189000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.MainActivityTest-attachedServiceWithNullState_rendersNoDataPlaceholders.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "MainActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "attachedServiceWithVehicleState_rendersFullDashboard"
+    start_time {
+      seconds: 1789372380
+      nanos: 191000000
+    }
+    end_time {
+      seconds: 1789372381
+      nanos: 169000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.MainActivityTest-attachedServiceWithVehicleState_rendersFullDashboard.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "MainActivityTest"
+    test_package: "com.example.carlauncher"
+    test_method: "launch_showsInitialNoDataUi"
+    start_time {
+      seconds: 1789372381
+      nanos: 172000000
+    }
+    end_time {
+      seconds: 1789372381
+      nanos: 936000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.MainActivityTest-launch_showsInitialNoDataUi.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "SettingsDetailFragmentTest"
+    test_package: "com.example.carlauncher"
+    test_method: "networkDetail_showsTitle_andHidesThemeControls"
+    start_time {
+      seconds: 1789372381
+      nanos: 939000000
+    }
+    end_time {
+      seconds: 1789372383
+      nanos: 129000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.SettingsDetailFragmentTest-networkDetail_showsTitle_andHidesThemeControls.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "SettingsDetailFragmentTest"
+    test_package: "com.example.carlauncher"
+    test_method: "resetButton_restoresDefaultsAndUpdatesUi"
+    start_time {
+      seconds: 1789372383
+      nanos: 131000000
+    }
+    end_time {
+      seconds: 1789372384
+      nanos: 294000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.SettingsDetailFragmentTest-resetButton_restoresDefaultsAndUpdatesUi.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "SettingsDetailFragmentTest"
+    test_package: "com.example.carlauncher"
+    test_method: "welcomeSwitchToggle_persistsDisabledState"
+    start_time {
+      seconds: 1789372384
+      nanos: 297000000
+    }
+    end_time {
+      seconds: 1789372385
+      nanos: 335000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.SettingsDetailFragmentTest-welcomeSwitchToggle_persistsDisabledState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "SettingsDetailFragmentTest"
+    test_package: "com.example.carlauncher"
+    test_method: "displayDetail_showsTitleAndDisplayControls"
+    start_time {
+      seconds: 1789372385
+      nanos: 336000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 413000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.SettingsDetailFragmentTest-displayDetail_showsTitleAndDisplayControls.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "resetToDefaults_clearsThemeAndWelcome"
+    start_time {
+      seconds: 1789372386
+      nanos: 415000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 419000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-resetToDefaults_clearsThemeAndWelcome.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "getColorTheme_withInvalidStoredValue_fallsBackAndClearsKey"
+    start_time {
+      seconds: 1789372386
+      nanos: 421000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 451000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-getColorTheme_withInvalidStoredValue_fallsBackAndClearsKey.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "saveAndApply_appliesNightModeToAppCompat"
+    start_time {
+      seconds: 1789372386
+      nanos: 452000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 457000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-saveAndApply_appliesNightModeToAppCompat.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "saveAndApply_persistsLightAndDarkThemes"
+    start_time {
+      seconds: 1789372386
+      nanos: 458000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 465000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-saveAndApply_persistsLightAndDarkThemes.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "applySavedTheme_appliesStoredTheme"
+    start_time {
+      seconds: 1789372386
+      nanos: 466000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 471000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-applySavedTheme_appliesStoredTheme.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "getColorTheme_withoutStoredValue_returnsSystemDefault"
+    start_time {
+      seconds: 1789372386
+      nanos: 472000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 477000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-getColorTheme_withoutStoredValue_returnsSystemDefault.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "saveAndApply_withInvalidTheme_persistsSystemFallback"
+    start_time {
+      seconds: 1789372386
+      nanos: 480000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 512000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-saveAndApply_withInvalidTheme_persistsSystemFallback.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "ThemePreferencesContextTest"
+    test_package: "com.example.carlauncher"
+    test_method: "welcomeEnabled_roundTripsPersistedValue"
+    start_time {
+      seconds: 1789372386
+      nanos: 516000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 520000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ThemePreferencesContextTest-welcomeEnabled_roundTripsPersistedValue.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "refresh_afterAttach_reflectsUpdatedSnapshot"
+    start_time {
+      seconds: 1789372386
+      nanos: 521000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 526000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-refresh_afterAttach_reflectsUpdatedSnapshot.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "detachService_returnsToInitialState"
+    start_time {
+      seconds: 1789372386
+      nanos: 527000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 558000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-detachService_returnsToInitialState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "refresh_withoutService_keepsInitialState"
+    start_time {
+      seconds: 1789372386
+      nanos: 559000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 563000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-refresh_withoutService_keepsInitialState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "attachService_exposesServiceSnapshotAsUiState"
+    start_time {
+      seconds: 1789372386
+      nanos: 564000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 594000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-attachService_exposesServiceSnapshotAsUiState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "attachService_withOnlineButInvalidValidity_mapsToInvalidData"
+    start_time {
+      seconds: 1789372386
+      nanos: 621000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 626000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-attachService_withOnlineButInvalidValidity_mapsToInvalidData.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "initial_returnsUnboundDisconnectedState"
+    start_time {
+      seconds: 1789372386
+      nanos: 629000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 633000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-initial_returnsUnboundDisconnectedState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleRepositoryTest"
+    test_package: "com.example.carlauncher.data"
+    test_method: "tcpSuccessCannotHideSomeipWaitingErrorOrTimeout"
+    start_time {
+      seconds: 1789372386
+      nanos: 634000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 639000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.VehicleRepositoryTest-tcpSuccessCannotHideSomeipWaitingErrorOrTimeout.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "LabDatabaseHelperTest"
+    test_package: "com.example.carlauncher.data.local"
+    test_method: "insert_duplicateUniqueName_throwsConstraintException"
+    start_time {
+      seconds: 1789372386
+      nanos: 641000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 725000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.local.LabDatabaseHelperTest-insert_duplicateUniqueName_throwsConstraintException.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "LabDatabaseHelperTest"
+    test_package: "com.example.carlauncher.data.local"
+    test_method: "upgrade_fromVersionOne_addsNoteColumn"
+    start_time {
+      seconds: 1789372386
+      nanos: 727000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 784000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.local.LabDatabaseHelperTest-upgrade_fromVersionOne_addsNoteColumn.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "LabDatabaseHelperTest"
+    test_package: "com.example.carlauncher.data.local"
+    test_method: "getWritableDatabase_createsSchemaWithVersionTwo"
+    start_time {
+      seconds: 1789372386
+      nanos: 786000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 817000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.local.LabDatabaseHelperTest-getWritableDatabase_createsSchemaWithVersionTwo.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "LabDatabaseHelperTest"
+    test_package: "com.example.carlauncher.data.local"
+    test_method: "insert_thenQuery_roundTripsRecord"
+    start_time {
+      seconds: 1789372386
+      nanos: 819000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 873000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.local.LabDatabaseHelperTest-insert_thenQuery_roundTripsRecord.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "LabDatabaseHelperTest"
+    test_package: "com.example.carlauncher.data.local"
+    test_method: "updateAndDelete_affectMatchingRows"
+    start_time {
+      seconds: 1789372386
+      nanos: 874000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 930000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.data.local.LabDatabaseHelperTest-updateAndDelete_affectMatchingRows.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AppAdapterTest"
+    test_package: "com.example.carlauncher.model"
+    test_method: "itemClick_dispatchesBoundAppToListener"
+    start_time {
+      seconds: 1789372386
+      nanos: 931000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 936000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.model.AppAdapterTest-itemClick_dispatchesBoundAppToListener.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AppAdapterTest"
+    test_package: "com.example.carlauncher.model"
+    test_method: "getItemCount_reflectsItemListSize"
+    start_time {
+      seconds: 1789372386
+      nanos: 937000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 942000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.model.AppAdapterTest-getItemCount_reflectsItemListSize.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AppAdapterTest"
+    test_package: "com.example.carlauncher.model"
+    test_method: "itemClick_rootClickListenerIsPerItem"
+    start_time {
+      seconds: 1789372386
+      nanos: 944000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 948000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.model.AppAdapterTest-itemClick_rootClickListenerIsPerItem.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AppAdapterTest"
+    test_package: "com.example.carlauncher.model"
+    test_method: "onBindViewHolder_setsNameAndPackageText"
+    start_time {
+      seconds: 1789372386
+      nanos: 950000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 954000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.model.AppAdapterTest-onBindViewHolder_setsNameAndPackageText.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleSendServiceTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "clearStateListener_stopsNotifications"
+    start_time {
+      seconds: 1789372386
+      nanos: 955000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 960000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleSendServiceTest-clearStateListener_stopsNotifications.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleSendServiceTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "onStartCommand_returnsStartSticky"
+    start_time {
+      seconds: 1789372386
+      nanos: 961000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 965000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleSendServiceTest-onStartCommand_returnsStartSticky.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleSendServiceTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "setStateListener_notifiesListenerOnMainLooper"
+    start_time {
+      seconds: 1789372386
+      nanos: 967000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 971000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleSendServiceTest-setStateListener_notifiesListenerOnMainLooper.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleSendServiceTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "onBind_returnsLocalBinder_forSameService"
+    start_time {
+      seconds: 1789372386
+      nanos: 972000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 977000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleSendServiceTest-onBind_returnsLocalBinder_forSameService.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleSendServiceTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "getDataValidity_withoutVehicleState_returnsIncomplete"
+    start_time {
+      seconds: 1789372386
+      nanos: 979000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 983000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleSendServiceTest-getDataValidity_withoutVehicleState_returnsIncomplete.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleSendServiceTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "newInstance_hasStoppedDefaults"
+    start_time {
+      seconds: 1789372386
+      nanos: 985000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 988000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleSendServiceTest-newInstance_hasStoppedDefaults.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleServiceConfigTest"
+    test_package: "com.example.carlauncher.service"
+    test_method: "localAddressRewritePreservesRemoteEndpointAndDiscoveryMode"
+    start_time {
+      seconds: 1789372386
+      nanos: 990000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 993000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.service.VehicleServiceConfigTest-localAddressRewritePreservesRemoteEndpointAndDiscoveryMode.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AndroidNetworkMonitorTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "registrationIsIdempotentAndEmptyOrLatePlatformCallbacksStayDown"
+    start_time {
+      seconds: 1789372386
+      nanos: 995000000
+    }
+    end_time {
+      seconds: 1789372386
+      nanos: 999000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.someip.AndroidNetworkMonitorTest-registrationIsIdempotentAndEmptyOrLatePlatformCallbacksStayDown.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "AndroidNetworkMonitorTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "registrationFailureDoesNotLeakOrAcceptCallbacks"
+    start_time {
+      seconds: 1789372387
+      nanos: 1000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 4000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.someip.AndroidNetworkMonitorTest-registrationFailureDoesNotLeakOrAcceptCallbacks.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleEventProbeTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "remoteEventsUpdateActivity"
+    start_time {
+      seconds: 1789372387
+      nanos: 6000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 11000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: IGNORED
+  error {
+    error_message: "org.junit.AssumptionViolatedException: got: <false>, expected: is <true>\nat org.junit.Assume.assumeThat(Assume.java:106)\nat org.junit.Assume.assumeTrue(Assume.java:50)\nat com.example.carlauncher.someip.VehicleEventProbeTest.remoteEventsUpdateActivity(VehicleEventProbeTest.java:22)\n"
+    error_type: "org.junit.AssumptionViolatedException"
+    stack_trace: "org.junit.AssumptionViolatedException: got: <false>, expected: is <true>\nat org.junit.Assume.assumeThat(Assume.java:106)\nat org.junit.Assume.assumeTrue(Assume.java:50)\nat com.example.carlauncher.someip.VehicleEventProbeTest.remoteEventsUpdateActivity(VehicleEventProbeTest.java:22)\n"
+  }
+}
+test_result {
+  test_case {
+    test_class: "VehicleServiceLifecycleProbeTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "backgroundRebindAndRestartReleaseEachNativeClientOnce"
+    start_time {
+      seconds: 1789372387
+      nanos: 13000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 20000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: IGNORED
+  error {
+    error_message: "org.junit.AssumptionViolatedException: Explicit someipServiceLifecycle=true and LAN addresses required\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest.backgroundRebindAndRestartReleaseEachNativeClientOnce(VehicleServiceLifecycleProbeTest.java:41)\n"
+    error_type: "org.junit.AssumptionViolatedException"
+    stack_trace: "org.junit.AssumptionViolatedException: Explicit someipServiceLifecycle=true and LAN addresses required\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest.backgroundRebindAndRestartReleaseEachNativeClientOnce(VehicleServiceLifecycleProbeTest.java:41)\n"
+  }
+}
+test_result {
+  test_case {
+    test_class: "VsomeipClientTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "callbacksUseMainThreadAndClearedListenersReceiveNoQueuedEvents"
+    start_time {
+      seconds: 1789372387
+      nanos: 21000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 50000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.someip.VsomeipClientTest-callbacksUseMainThreadAndClearedListenersReceiveNoQueuedEvents.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "VsomeipNativeProbeTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "requestResponseRejectAndRestart"
+    start_time {
+      seconds: 1789372387
+      nanos: 52000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 58000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: IGNORED
+  error {
+    error_message: "org.junit.AssumptionViolatedException: Requires explicit someipPeer and someipLocal\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.requestResponseRejectAndRestart(VsomeipNativeProbeTest.java:25)\n"
+    error_type: "org.junit.AssumptionViolatedException"
+    stack_trace: "org.junit.AssumptionViolatedException: Requires explicit someipPeer and someipLocal\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.requestResponseRejectAndRestart(VsomeipNativeProbeTest.java:25)\n"
+  }
+}
+test_result {
+  test_case {
+    test_class: "VsomeipNativeProbeTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "nativeRegistrationAndRepeatedStopAreSafe"
+    start_time {
+      seconds: 1789372387
+      nanos: 58000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 64000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: IGNORED
+  error {
+    error_message: "org.junit.AssumptionViolatedException: Requires explicit someipLifecycle and local address\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.nativeRegistrationAndRepeatedStopAreSafe(VsomeipNativeProbeTest.java:115)\n"
+    error_type: "org.junit.AssumptionViolatedException"
+    stack_trace: "org.junit.AssumptionViolatedException: Requires explicit someipLifecycle and local address\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.nativeRegistrationAndRepeatedStopAreSafe(VsomeipNativeProbeTest.java:115)\n"
+  }
+}
+test_result {
+  test_case {
+    test_class: "VsomeipNativeProbeTest"
+    test_package: "com.example.carlauncher.someip"
+    test_method: "discoversServiceAndExchangesMethods"
+    start_time {
+      seconds: 1789372387
+      nanos: 65000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 70000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: IGNORED
+  error {
+    error_message: "org.junit.AssumptionViolatedException: Requires explicit someipSd=true and someipLocal\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.discoversServiceAndExchangesMethods(VsomeipNativeProbeTest.java:32)\n"
+    error_type: "org.junit.AssumptionViolatedException"
+    stack_trace: "org.junit.AssumptionViolatedException: Requires explicit someipSd=true and someipLocal\nat org.junit.Assume.assumeTrue(Assume.java:68)\nat com.example.carlauncher.someip.VsomeipNativeProbeTest.discoversServiceAndExchangesMethods(VsomeipNativeProbeTest.java:32)\n"
+  }
+}
+test_result {
+  test_case {
+    test_class: "CockpitViewModelTest"
+    test_package: "com.example.carlauncher.ui"
+    test_method: "detachService_returnsToInitialState"
+    start_time {
+      seconds: 1789372387
+      nanos: 71000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 75000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ui.CockpitViewModelTest-detachService_returnsToInitialState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "CockpitViewModelTest"
+    test_package: "com.example.carlauncher.ui"
+    test_method: "refresh_withoutAttachedService_staysInitial"
+    start_time {
+      seconds: 1789372387
+      nanos: 77000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 81000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ui.CockpitViewModelTest-refresh_withoutAttachedService_staysInitial.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "CockpitViewModelTest"
+    test_package: "com.example.carlauncher.ui"
+    test_method: "getUiState_neverNull_startsWithInitialState"
+    start_time {
+      seconds: 1789372387
+      nanos: 83000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 86000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ui.CockpitViewModelTest-getUiState_neverNull_startsWithInitialState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "CockpitViewModelTest"
+    test_package: "com.example.carlauncher.ui"
+    test_method: "attachService_emitsBoundState"
+    start_time {
+      seconds: 1789372387
+      nanos: 88000000
+    }
+    end_time {
+      seconds: 1789372387
+      nanos: 91000000
+    }
+    device {
+      id: "emulator-5554"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\logcat-com.example.carlauncher.ui.CockpitViewModelTest-attachService_emitsBoundState.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\cpuinfo"
+    }
+  }
+}
+output_artifact {
+  label {
+    label: "test-results.log"
+    namespace: "com.google.testing.platform.runtime.android.driver.AndroidInstrumentationDriver"
+  }
+  source_path {
+    path: "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\outputs\\androidTest-results\\connected\\debug\\Automotive_1408p_landscape(AVD) - 15\\testlog\\test-results.log"
+  }
+  type: TEST_DATA
+  mime_type: "text/plain"
+}

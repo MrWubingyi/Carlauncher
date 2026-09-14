@@ -1,5 +1,10 @@
 # SOME/IP 状态与界面
 
+2026-09-14 更新：当前生产链路已改为 **远端 mock 发布 Event，Android/LVGL 订阅**。
+运行契约、配置和复现命令见 [MOCK_EVENTS.md](../tools/someip-probe/MOCK_EVENTS.md)。
+Android 不再启动本地 mock 和 TCP 转发；ONLINE 由有效 Event 到达驱动，
+静默 3 秒显示 EVENT TIMEOUT 并清空旧数据。下面保留的是之前 Method 阶段的历史说明。
+
 首页通过 `VehicleSendService.getSomeipStatus()` → `VehicleRepository` →
 `CockpitUiState` 展示 SOME/IP 状态。TCP 继续运行作为基线，TCP 连接结果不会影响
 SOME/IP 状态；本地车辆数据质量仍单独展示。

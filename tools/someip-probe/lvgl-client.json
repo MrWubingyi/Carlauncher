@@ -1,0 +1,8 @@
+{
+  "unicast": "192.168.31.248",
+  "logging": {"level": "info", "console": "true"},
+  "applications": [{"name": "lvgl-vehicle-client", "id": "0x5577"}],
+  "routing": "vehicle-mock-service",
+  "service-discovery": {"enable": "true", "multicast": "224.244.224.245",
+    "port": "30490", "protocol": "udp", "ttl": "3"}
+}

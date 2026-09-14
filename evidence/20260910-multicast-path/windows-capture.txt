@@ -1,0 +1,41 @@
+Capturing on '以太网'
+File: evidence/20260910-multicast-path/windows-ethernet.pcapng
+
+Packets: 4 
+Packets: 12 
+Packets: 18 
+Packets: 29 
+Packets: 40 
+Packets: 47 
+Packets: 59 
+Packets: 71 
+Packets: 83 
+Packets: 95 
+Packets: 106 
+Packets: 118 
+Packets: 130 
+Packets: 137 
+Packets: 149 
+Packets: 161 
+Packets: 173 
+Packets: 179 
+Packets: 190 
+Packets: 202 
+Packets: 214 
+Packets: 225 
+Packets: 237 
+Packets: 249 
+Packets: 256 
+Packets: 268 
+Packets: 280 
+Packets: 292 
+Packets: 304 
+Packets: 315 
+Packets: 327 
+Packets: 339 
+Packets: 346 
+Packets: 357 
+Packets: 366 
+Packets: 371 
+Packets captured: 371
+Packets received/dropped on interface '以太网': 371/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)

@@ -14,8 +14,8 @@ constexpr vsomeip::service_t kServiceId = 0x1111;
 constexpr vsomeip::instance_t kInstanceId = 0x2222;
 constexpr vsomeip::method_t kHelloWorldMethodId = 0x3333;       // 保留（W34 回归用，不动）
 constexpr vsomeip::method_t kSetVehicleStateMethodId = 0x1001;  // 新增（W37，Decision C）
-constexpr vsomeip::event_t kStateEventId = 0x8001;              // 预留（Ubuntu→Android 状态回推）
-constexpr vsomeip::eventgroup_t kStateEventGroupId = 0x0001;    // 预留
+constexpr vsomeip::event_t kStateEventId = 0x8001;              // Full JSON snapshot, schema version 1
+constexpr vsomeip::eventgroup_t kStateEventGroupId = 0x0001;
 
 // ---- Payload schema v0.2：固定 16 B，全大端 BE ----
 constexpr std::size_t kPayloadSize = 16;

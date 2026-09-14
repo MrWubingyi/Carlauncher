@@ -63,7 +63,14 @@ public final class SomeipConnectionMonitor {
                 true, returnCode);
     }
 
-    /** Returns true only on a timeout transition, including when no data callbacks arrive. */
+    /** A decoded Event proves stream liveness without inventing a Method return code. */
+    public synchronized void onEvent(long nowMs) {
+        if (!snapshot.available) return;
+        responseBaselineMs = nowMs;
+        snapshot = new Snapshot(State.ONLINE, true, null);
+    }
+
+    /** Returns true only on a timeout transition, including when no callbacks arrive. */
     public synchronized boolean checkTimeout(long nowMs) {
         if (snapshot.available && snapshot.state != State.RESPONSE_TIMEOUT
                 && nowMs - responseBaselineMs >= RESPONSE_TIMEOUT_MS) {

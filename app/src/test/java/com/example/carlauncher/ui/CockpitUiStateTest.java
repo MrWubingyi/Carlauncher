@@ -21,7 +21,7 @@ public class CockpitUiStateTest {
         assertEquals(CockpitConnectionState.DISCONNECTED, state.getState());
         assertEquals("SERVICE UNBOUND", state.getConnectionLabel());
         assertEquals("SOME/IP: STOPPED", state.getTransportLabel());
-        assertEquals("START SEND", state.getActionLabel());
+        assertEquals("START RECEIVE", state.getActionLabel());
         assertTrue(state.isActionEnabled());
         assertFalse(state.isStopAction());
     }
@@ -33,9 +33,9 @@ public class CockpitUiStateTest {
         monitor.onAvailability(true, 0);
         CockpitUiState state = ui(monitor, DataValidity.VALID);
         assertEquals(CockpitConnectionState.RECOVERING, state.getState());
-        assertEquals("SOME/IP WAITING_RESPONSE", state.getConnectionLabel());
+        assertEquals("SOME/IP WAITING EVENT", state.getConnectionLabel());
         assertEquals("Connection: OFFLINE", state.getConnectionState());
-        assertEquals("STOP SEND", state.getActionLabel());
+        assertEquals("STOP RECEIVE", state.getActionLabel());
         assertTrue(state.isActionEnabled());
         assertTrue(state.isStopAction());
     }
@@ -48,7 +48,7 @@ public class CockpitUiStateTest {
         CockpitUiState state = ui(monitor, DataValidity.VALID);
         assertEquals(CockpitConnectionState.ONLINE, state.getState());
         assertEquals("SOME/IP ONLINE", state.getConnectionLabel());
-        assertEquals("SOME/IP: AVAILABLE | ONLINE | Last RC: 0x00", state.getTransportLabel());
+        assertEquals("SOME/IP: AVAILABLE | ONLINE | EVENT 0x8001", state.getTransportLabel());
         assertEquals("Connection: ONLINE", state.getConnectionState());
         assertTrue(state.hasVehicleData());
         for (DataValidity validity : new DataValidity[]{DataValidity.INVALID_SPEED,
@@ -69,11 +69,11 @@ public class CockpitUiStateTest {
         CockpitUiState error = ui(monitor, DataValidity.VALID);
         assertEquals(CockpitConnectionState.INVALID_DATA, error.getState());
         assertEquals("SOME/IP RESPONSE_ERROR", error.getConnectionLabel());
-        assertTrue(error.getTransportLabel().contains("Last RC: 0x01"));
+        assertTrue(error.getTransportLabel().contains("EVENT 0x8001"));
         assertEquals("Connection: OFFLINE", error.getConnectionState());
         monitor.checkTimeout(3100);
         CockpitUiState timeout = ui(monitor, DataValidity.VALID);
-        assertEquals("SOME/IP RESPONSE_TIMEOUT", timeout.getConnectionLabel());
+        assertEquals("SOME/IP EVENT TIMEOUT", timeout.getConnectionLabel());
         assertEquals(CockpitConnectionState.DISCONNECTED, timeout.getState());
         assertTrue(timeout.isStopAction());
         // Previously emitted snapshots are immutable.

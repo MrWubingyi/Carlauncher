@@ -1,0 +1,2 @@
+09-14 07:53:05.498  3580  3602 I TestRunner: started: getItemCount_reflectsItemListSize(com.example.carlauncher.model.AppAdapterTest)
+09-14 07:53:05.500  3580  3602 I TestRunner: finished: getItemCount_reflectsItemListSize(com.example.carlauncher.model.AppAdapterTest)

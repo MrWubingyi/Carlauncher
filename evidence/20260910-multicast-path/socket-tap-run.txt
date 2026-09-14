@@ -1,0 +1,4 @@
+READY tcp=192.168.31.248:37492 tap=cl-sd-tap
+CONNECTED peer=('192.168.31.85', 63909)
+{"emulator_to_tap": 0, "tap_to_emulator": 11}
+CLEANUP_COMPLETE

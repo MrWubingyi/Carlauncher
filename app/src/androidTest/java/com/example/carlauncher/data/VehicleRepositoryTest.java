@@ -127,7 +127,7 @@ public class VehicleRepositoryTest {
                 .withValidity(DataValidity.VALID)
                 .withSomeipAvailable(true, 0);
         onMain(() -> repository.attachService(service));
-        assertEquals("SOME/IP WAITING_RESPONSE", repository.getUiState().getValue().getConnectionLabel());
+        assertEquals("SOME/IP WAITING EVENT", repository.getUiState().getValue().getConnectionLabel());
 
         service.withSomeipResponse(false, 1, 100);
         onMain(repository::refresh);
@@ -135,7 +135,7 @@ public class VehicleRepositoryTest {
 
         service.checkSomeipTimeout(3100);
         onMain(repository::refresh);
-        assertEquals("SOME/IP RESPONSE_TIMEOUT", repository.getUiState().getValue().getConnectionLabel());
+        assertEquals("SOME/IP EVENT TIMEOUT", repository.getUiState().getValue().getConnectionLabel());
         assertTrue(repository.getUiState().getValue().isStopAction());
 
         service.withTcpState(TcpConnectionState.DISCONNECTED).withSomeipResponse(true, 0, 3200);

@@ -6,7 +6,6 @@ import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.someip.SomeipConnectionMonitor;
 import com.example.carlauncher.someip.SomeipConnectionMonitor.Snapshot;
 
-import java.util.Locale;
 
 /** Immutable cockpit snapshot. Transport health is determined only by SOME/IP. */
 public final class CockpitUiState {
@@ -59,20 +58,26 @@ public final class CockpitUiState {
                 && state == CockpitConnectionState.INVALID_DATA) {
             return "SOME/IP ONLINE / INVALID DATA";
         }
-        return "SOME/IP " + someip.getState().name();
+        return "SOME/IP " + eventStateLabel();
     }
 
     // Service ownership, rather than network health, determines whether STOP is possible.
-    public String getActionLabel() { return serviceBound ? "STOP SEND" : "START SEND"; }
+    public String getActionLabel() { return serviceBound ? "STOP RECEIVE" : "START RECEIVE"; }
     public boolean isActionEnabled() { return true; }
     public boolean isStopAction() { return serviceBound; }
 
     public String getTransportLabel() {
         if (!serviceBound) return "SOME/IP: STOPPED";
-        String code = someip.getReturnCode() == null ? "--"
-                : String.format(Locale.ROOT, "0x%02X", someip.getReturnCode());
         return "SOME/IP: " + (someip.isAvailable() ? "AVAILABLE" : "UNAVAILABLE")
-                + " | " + someip.getState().name() + " | Last RC: " + code;
+                + " | " + eventStateLabel() + " | EVENT 0x8001";
+    }
+
+    private String eventStateLabel() {
+        switch (someip.getState()) {
+            case WAITING_RESPONSE: return "WAITING EVENT";
+            case RESPONSE_TIMEOUT: return "EVENT TIMEOUT";
+            default: return someip.getState().name();
+        }
     }
 
     public String getConnectionState() {

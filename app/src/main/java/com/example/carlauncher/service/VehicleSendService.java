@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -19,26 +18,18 @@ import androidx.core.app.NotificationCompat;
 import com.example.carlauncher.MainActivity;
 import com.example.carlauncher.R;
 import com.example.carlauncher.data.DataSourceStatus;
-import com.example.carlauncher.data.SourceType;
 import com.example.carlauncher.data.VehicleDataSource;
-import com.example.carlauncher.data.VehicleDataSourceFactory;
 import com.example.carlauncher.data.VehicleProtocol;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.network.VehicleTcpClient;
+import com.example.carlauncher.someip.NativeVehicleTransport;
+import com.example.carlauncher.someip.SomeipConnectionMonitor;
 
-import java.io.File;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
-import java.util.Enumeration;
+import com.example.carlauncher.someip.VSomeIpDataSource;
+import com.example.carlauncher.someip.VSomeIpNativeTransport;
+import com.example.carlauncher.someip.VsomeipClient;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -46,10 +37,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
-import org.json.JSONObject;
-
-import com.example.carlauncher.someip.VsomeipClient;
-import com.example.carlauncher.someip.SomeipConnectionMonitor;
 
 /**
  * Foreground owner of the remote vehicle Event subscription and latest UI snapshot.
@@ -80,70 +67,11 @@ public class VehicleSendService extends Service {
         static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
     }
     private final SomeipConnectionMonitor someipMonitor = new SomeipConnectionMonitor();
-    private final VsomeipClient.Listener someipListener = new VsomeipClient.Listener() {
-        @Override public void onAvailable(boolean available) {
-            if (stopping) return;
-            someipMonitor.onAvailability(available, SystemClock.elapsedRealtime());
-            if (!available) {
-                latestVehicleState = null;
-                lastEventTimestamp = 0;
-                lastEventSequence = -1;
-                sourceStatus = DataSourceStatus.DISCONNECTED;
-            } else if (latestVehicleState == null) sourceStatus = DataSourceStatus.CONNECTING;
-            notifyStateChanged();
-        }
-
-        @Override public void onVehicleEvent(byte[] payload) {
-            if (stopping || !someipMonitor.snapshot().isAvailable()) return;
-            try {
-                VehicleState state = com.example.carlauncher.someip.VehicleEventCodec.decode(payload);
-                // Timestamp separates provider restarts; duplicates/reordered datagrams cannot rewind UI.
-                if (state.getTimestampMs() < lastEventTimestamp
-                        || (state.getTimestampMs() == lastEventTimestamp
-                            && state.getSequence() <= lastEventSequence)) return;
-                lastEventTimestamp = state.getTimestampMs();
-                lastEventSequence = state.getSequence();
-                latestVehicleState = state;
-                someipMonitor.onEvent(SystemClock.elapsedRealtime());
-                sourceStatus = state.getDataStatus() == com.example.carlauncher.data.DataStatus.NO_DATA
-                        ? DataSourceStatus.NO_DATA : DataSourceStatus.CONNECTED;
-                Log.d(TAG, "VEHICLE_EVENT seq=" + state.getSequence() + " speed=" + state.getVehSpeedKph());
-            } catch (org.json.JSONException exception) {
-                latestVehicleState = null;
-                sourceStatus = DataSourceStatus.ERROR;
-                Log.w(TAG, "Invalid vehicle event", exception);
-            }
-            notifyStateChanged();
-        }
-
-        @Override public void onResponse(boolean ok, int returnCode) {
-            // Legacy Method probes have their own listener. Only Events prove this stream online.
-        }
-
-        @Override public void onStopped() {
-            if (stopping) return;
-            vsomeipStarted = false;
-            latestVehicleState = null;
-            sourceStatus = DataSourceStatus.STOPPED;
-            someipMonitor.stop();
-            notifyStateChanged();
-        }
-    };
-    private final Runnable someipWatchdog = new Runnable() {
-        @Override public void run() {
-            if (stopping) return;
-            if (someipMonitor.checkTimeout(SystemClock.elapsedRealtime())) {
-                latestVehicleState = null;
-                sourceStatus = DataSourceStatus.NO_DATA;
-                Log.w(TAG, "SOMEIP_STATE EVENT_TIMEOUT (3000 ms without vehicle event)");
-                notifyStateChanged();
-            }
-            mainHandler.postDelayed(this, 100);
-        }
-    };
+    private NativeVehicleTransport nativeTransport;
+    private VSomeIpDataSource vsomeipDataSource;
 
     public SomeipConnectionMonitor.Snapshot getSomeipStatus() {
-        return someipMonitor.snapshot();
+        return vsomeipDataSource != null ? vsomeipDataSource.getConnectionMonitor().snapshot() : someipMonitor.snapshot();
     }
     private VehicleTcpClient tcpClient;
     private VehicleDataSource vehicleDataSource;
@@ -152,8 +80,6 @@ public class VehicleSendService extends Service {
     // vSomeIP 是否已启动成功（native 不可用时跳过 10 Hz 发送，避免空转 JNI 调用）
     private volatile boolean vsomeipStarted;
     private volatile VehicleState latestVehicleState;
-    private long lastEventTimestamp;
-    private long lastEventSequence = -1;
     private volatile DataSourceStatus sourceStatus = DataSourceStatus.STOPPED;
     private StateListener stateListener;
 
@@ -204,7 +130,7 @@ public class VehicleSendService extends Service {
                     // 发送车辆状态到 TCP 客户端
                     sendVehicleState(state);
                     // vSomeIP 路径（TCP 保留作对照；native 侧在 Service 不可用/未 init 时自动跳过）
-                    if (vsomeipStarted) {
+                    if (vsomeipStarted || (nativeTransport != null && nativeTransport.isAvailable())) {
                         try {
                             VsomeipClient.buildAndSend(
                                     (int) state.getSequence(),
@@ -260,11 +186,14 @@ public class VehicleSendService extends Service {
         startForeground(NOTIFICATION_ID, createNotification());
 
         // 初始化重连调度器、TCP 客户端和车辆数据源
-        reconnectScheduler =
-                Executors.newSingleThreadScheduledExecutor();
+        reconnectScheduler = Executors.newSingleThreadScheduledExecutor();
         vsomeipExecutor = SomeipLifecycle.EXECUTOR;
-        // The remote mock service is the sole live source for both UI subscribers.
         sourceStatus = DataSourceStatus.CONNECTING;
+
+        // 固定生命周期所有权：Service 创建时初始化对象，但不重复启动
+        nativeTransport = new VSomeIpNativeTransport(this);
+        vsomeipDataSource = new VSomeIpDataSource(nativeTransport, someipMonitor);
+
         startVsomeipClient();
     }
 
@@ -299,8 +228,6 @@ public class VehicleSendService extends Service {
      * 调度 vSomeIP 启动到专用单线程执行器（不占主线程；native start 内部不再阻塞）。
      */
     private void startVsomeipClient() {
-        someipMonitor.start();
-        mainHandler.post(someipWatchdog);
         notifyStateChanged();
         ExecutorService executor = vsomeipExecutor;
         if (executor == null || executor.isShutdown()) {
@@ -319,118 +246,19 @@ public class VehicleSendService extends Service {
     }
 
     /**
-     * 从 assets 拷贝 vsomeip 配置到 filesDir（unicast 修正为当前设备 IPv4）后启动 Client。
-     * 在 vsomeipExecutor 线程执行；幂等由 native 保证（已启动则直接返回）。
+     * 在 vsomeipExecutor 线程启动 VSomeIpDataSource。
      */
     private void runVsomeipStart() {
-        if (stopping) return;
+        if (stopping || vsomeipDataSource == null) return;
         try {
-            final String configName = "vsomeip-client.json";
-            final File dir = new File(getFilesDir(), "vsomeip");
-            if (!dir.exists() && !dir.mkdirs()) {
-                throw new IllegalStateException("mkdir vsomeip dir failed");
-            }
-            final File config = new File(dir, configName);
-            if (!config.exists()) {
-                copyAssetToFile(configName, config);
-            }
-
-            // 修正 unicast：vsomeip 用它绑定本地收包地址；填服务器 IP（192.168.31.248）
-            // 会在启动 io 时绑定失败并触发 vsomeip 内部 VSOMEIP_TERMINATE -> abort 杀进程。
-            final String localIp = findLocalIpv4();
-            if (localIp == null) {
-                throw new IllegalStateException("no usable IPv4 address");
-            }
-            rewriteUnicast(config, localIp);
-
-            if (stopping) return;
-            VsomeipClient.setListener(someipListener);
-            boolean ok = VsomeipClient.start(this, config.getAbsolutePath());
-            vsomeipStarted = ok && !stopping;
-            if (!ok) someipMonitor.startFailed();
+            vsomeipDataSource.start(dataListener);
+            vsomeipStarted = vsomeipDataSource.isRunning() || vsomeipDataSource.getTransport().isAvailable();
             notifyStateChanged();
-            Log.i(TAG, "VsomeipClient.start=" + ok
-                    + " unicast=" + localIp
-                    + " (on executor thread)");
+            Log.i(TAG, "VsomeipClient.start=true (on executor thread)");
         } catch (Exception | LinkageError e) {
             Log.e(TAG, "start vsomeip failed", e);
             someipMonitor.startFailed();
             notifyStateChanged();
-        }
-    }
-
-    private void copyAssetToFile(String assetName, File target) throws Exception {
-        try (InputStream in = getAssets().open(assetName);
-             FileOutputStream out = new FileOutputStream(target)) {
-            byte[] buf = new byte[4096];
-            int n;
-            while ((n = in.read(buf)) > 0) {
-                out.write(buf, 0, n);
-            }
-        }
-    }
-
-    /**
-     * 把配置 JSON 中的 "unicast" 改写为当前设备网卡的 IPv4；无变化则不动文件。
-     */
-    static void rewriteUnicast(File config, String ip) throws Exception {
-        final String content;
-        try (FileInputStream in = new FileInputStream(config);
-             ByteArrayOutputStream bytes = new ByteArrayOutputStream()) {
-            byte[] buf = new byte[4096];
-            int n;
-            while ((n = in.read(buf)) != -1) {
-                bytes.write(buf, 0, n);
-            }
-            content = bytes.toString(StandardCharsets.UTF_8.name());
-        }
-        // Nested services[].unicast belongs to the remote endpoint, not this device.
-        JSONObject json = new JSONObject(content);
-        if (ip.equals(json.optString("unicast"))) return;
-        json.put("unicast", ip);
-        try (FileOutputStream out = new FileOutputStream(config);
-             OutputStreamWriter writer = new OutputStreamWriter(out, StandardCharsets.UTF_8)) {
-            writer.write(json.toString(2));
-        }
-    }
-
-    /**
-     * 取本机非回环 IPv4；优先 192.168.x（与 Ubuntu 服务同网段），否则取任意非回环地址。
-     */
-    private String findLocalIpv4() {
-        try {
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-            if (interfaces == null) {
-                return null;
-            }
-            String fallback = null;
-            while (interfaces.hasMoreElements()) {
-                NetworkInterface networkInterface = interfaces.nextElement();
-                if (!networkInterface.isUp() || networkInterface.isLoopback()) {
-                    continue;
-                }
-                Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
-                while (addresses.hasMoreElements()) {
-                    InetAddress address = addresses.nextElement();
-                    if (!(address instanceof Inet4Address) || address.isLoopbackAddress()) {
-                        continue;
-                    }
-                    String ip = address.getHostAddress();
-                    if (ip == null) {
-                        continue;
-                    }
-                    if (ip.startsWith("192.168.")) {
-                        return ip;
-                    }
-                    if (fallback == null) {
-                        fallback = ip;
-                    }
-                }
-            }
-            return fallback;
-        } catch (SocketException e) {
-            Log.e(TAG, "findLocalIpv4 failed", e);
-            return null;
         }
     }
 
@@ -446,7 +274,6 @@ public class VehicleSendService extends Service {
             Log.d(TAG, "TCP connection already in progress");
             return;
         }
-
 
         TcpConnectionState current = tcpState.get();
         transitionTo(
@@ -523,8 +350,6 @@ public class VehicleSendService extends Service {
         final String json;
         try {
             json = state.toJson();
-
-//            Log.i(TAG, "json = " + json);
         } catch (Exception exception) {
             Log.e(TAG, "VehicleState JSON failed", exception);
             return;
@@ -648,19 +473,26 @@ public class VehicleSendService extends Service {
      * 获取最新的车辆状态
      */
     public VehicleState getLatestVehicleState() {
-        return latestVehicleState;
+        if (latestVehicleState != null) {
+            return latestVehicleState;
+        }
+        return vsomeipDataSource != null ? vsomeipDataSource.getLatestState() : null;
     }
 
     /**
      * 获取数据源状态
      */
     public DataSourceStatus getSourceStatus() {
+        if (vsomeipDataSource != null && vsomeipDataSource.getStatus() != DataSourceStatus.STOPPED) {
+            return vsomeipDataSource.getStatus();
+        }
         return sourceStatus;
     }
 
     public DataValidity getDataValidity() {
-        if (null != latestVehicleState) {
-            return latestVehicleState.getValidity();
+        VehicleState state = getLatestVehicleState();
+        if (null != state) {
+            return state.getValidity();
         }
         return DataValidity.INCOMPLETE;
     }
@@ -744,8 +576,9 @@ public class VehicleSendService extends Service {
             try {
                 vsomeipExecutorToStop.execute(() -> {
                     try {
-                        VsomeipClient.clearListener(someipListener);
-                        VsomeipClient.stop();
+                        if (vsomeipDataSource != null) {
+                            vsomeipDataSource.stop();
+                        }
                         Log.i(TAG, "SOMEIP_RELEASED id=" + System.identityHashCode(this));
                     } catch (Throwable t) {
                         Log.e(TAG, "vsomeip stop failed", t);
@@ -783,7 +616,6 @@ public class VehicleSendService extends Service {
                 PendingIntent.FLAG_UPDATE_CURRENT
                         | PendingIntent.FLAG_IMMUTABLE
         );
-
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Vehicle data service")

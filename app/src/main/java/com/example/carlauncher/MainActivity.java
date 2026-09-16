@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this)
                 .get(CockpitViewModel.class);
 
-//        viewModel.getUiState().observe(this, this::render);
         viewModel.getUiState().observe(this, uiState -> {
             Log.d(
                     TAG,

@@ -58,7 +58,6 @@ public class VehicleSendService extends Service {
     // 是否已调度重连标志
     private final AtomicBoolean reconnectScheduled = new AtomicBoolean(false);
 
-    private ScheduledExecutorService reconnectScheduler;
     // vSomeIP 生命周期专用单线程执行器：native start/stop 与 10 Hz 发送解耦，
     // 避免在主线程上执行 vsomeip（其 start() 会阻塞）导致 UI/Service.onCreate 卡死。
     private ExecutorService vsomeipExecutor;
@@ -127,21 +126,19 @@ public class VehicleSendService extends Service {
                     }
 
                     latestVehicleState = state;
-                    // 发送车辆状态到 TCP 客户端
-                    sendVehicleState(state);
                     // vSomeIP 路径（TCP 保留作对照；native 侧在 Service 不可用/未 init 时自动跳过）
-                    if (vsomeipStarted || (nativeTransport != null && nativeTransport.isAvailable())) {
-                        try {
-                            VsomeipClient.buildAndSend(
-                                    (int) state.getSequence(),
-                                    state.getTimestampMs(),
-                                    state.getVehSpeedKph(),
-                                    state.getGear() == null ? 0xFF : state.getGear().getValue(),
-                                    state.getDataStatus() == null ? 0xFF : state.getDataStatus().getValue());
-                        } catch (Exception e) {
-                            Log.e(TAG, "vsomeip send failed", e);
-                        }
-                    }
+//                    if (vsomeipStarted || (nativeTransport != null && nativeTransport.isAvailable())) {
+//                        try {
+//                            VsomeipClient.buildAndSend(
+//                                    (int) state.getSequence(),
+//                                    state.getTimestampMs(),
+//                                    state.getVehSpeedKph(),
+//                                    state.getGear() == null ? 0xFF : state.getGear().getValue(),
+//                                    state.getDataStatus() == null ? 0xFF : state.getDataStatus().getValue());
+//                        } catch (Exception e) {
+//                            Log.e(TAG, "vsomeip send failed", e);
+//                        }
+//                    }
                     notifyStateChanged();
                 }
 
@@ -186,7 +183,6 @@ public class VehicleSendService extends Service {
         startForeground(NOTIFICATION_ID, createNotification());
 
         // 初始化重连调度器、TCP 客户端和车辆数据源
-        reconnectScheduler = Executors.newSingleThreadScheduledExecutor();
         vsomeipExecutor = SomeipLifecycle.EXECUTOR;
         sourceStatus = DataSourceStatus.CONNECTING;
 
@@ -201,27 +197,6 @@ public class VehicleSendService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // 服务被系统杀死后尝试重启
         return START_STICKY;
-    }
-
-    /**
-     * 启动车辆数据源
-     */
-    private void startVehicleDataSource() {
-        if (stopping
-                || vehicleDataSource == null
-                || vehicleDataSource.isRunning()) {
-            return;
-        }
-
-        try {
-            sourceStatus = DataSourceStatus.CONNECTING;
-            notifyStateChanged();
-            vehicleDataSource.start(dataListener);
-        } catch (RuntimeException exception) {
-            sourceStatus = DataSourceStatus.ERROR;
-            Log.e(TAG, "Start vehicle data source failed", exception);
-            notifyStateChanged();
-        }
     }
 
     /**
@@ -262,191 +237,6 @@ public class VehicleSendService extends Service {
         }
     }
 
-    /**
-     * 发起 TCP 连接
-     */
-    private void connectTcp() {
-        if (stopping || getTcpState() == TcpConnectionState.ONLINE) {
-            return;
-        }
-        // 确保只有一个连接任务在进行
-        if (!connecting.compareAndSet(false, true)) {
-            Log.d(TAG, "TCP connection already in progress");
-            return;
-        }
-
-        TcpConnectionState current = tcpState.get();
-        transitionTo(
-                current == TcpConnectionState.DISCONNECTED
-                        ? TcpConnectionState.CONNECTING
-                        : TcpConnectionState.RECOVERING,
-                "connect requested"
-        );
-
-        Log.i(TAG, "Try connect TCP");
-        notifyStateChanged();
-
-        tcpClient.connect(new VehicleTcpClient.Callback() {
-            @Override
-            public void onConnected() {
-                connecting.set(false);
-                reconnectScheduled.set(false);
-
-                if (stopping) {
-                    return;
-                }
-                // TCP 已建立，但尚未证明数据可正常发送。
-                transitionTo(
-                        TcpConnectionState.RECOVERING,
-                        "socket connected"
-                );
-
-                sendingStarted.set(true);
-                Log.i(TAG, "TCP connected; vehicle frames can be sent");
-
-                VehicleState state = latestVehicleState;
-                if (state != null) {
-                    sendVehicleState(state);
-                }
-                notifyStateChanged();
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                connecting.set(false);
-                sendingStarted.set(false);
-
-                if (stopping) {
-                    return;
-                }
-                transitionTo(
-                        TcpConnectionState.DISCONNECTED,
-                        "connect failed: " + exception.getMessage()
-                );
-
-                Log.e(
-                        TAG,
-                        "TCP connect failed; retry after 2 seconds",
-                        exception
-                );
-                notifyStateChanged();
-                // 连接失败，调度重连
-                scheduleReconnect();
-            }
-        });
-    }
-
-    /**
-     * 将车辆状态序列化为 JSON 并通过 TCP 发送
-     */
-    private void sendVehicleState(VehicleState state) {
-        VehicleTcpClient client = tcpClient;
-        if (stopping
-                || !sendingStarted.get()
-                || client == null
-                || !client.isConnected()) {
-            return;
-        }
-        final String json;
-        try {
-            json = state.toJson();
-        } catch (Exception exception) {
-            Log.e(TAG, "VehicleState JSON failed", exception);
-            return;
-        }
-
-        client.sendLine(json, new VehicleTcpClient.Callback() {
-            @Override
-            public void onMessageSent(String message) {
-                if (state.getValidity() == DataValidity.VALID) {
-                    transitionTo(
-                            TcpConnectionState.ONLINE,
-                            "first valid frame sent"
-                    );
-                }
-                long sequence = state.getSequence();
-                // 每发送 20 帧打印一次日志 (约 2 秒)，并包含告警状态
-                if (sequence % 20 == 1) {
-                    Log.i(
-                            TAG,
-                            "seq=" + sequence
-                                    + " speed=" + state.getVehSpeedKph()
-                                    + " brk=" + state.isParkingBrake()
-                                    + " lock=" + state.getDoorLock()
-                                    + " belt=" + state.getBeltWarning()
-                                    + " warn=" + state.getWarning().getValue()
-                    );
-                }
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                Log.e(TAG, "Send failed", exception);
-                // 发送失败，处理连接丢失
-                handleConnectionLost(exception);
-            }
-        });
-    }
-
-    /**
-     * 处理连接丢失的情况
-     */
-    private void handleConnectionLost(Exception exception) {
-        if (stopping
-                || !sendingStarted.compareAndSet(true, false)) {
-            return;
-        }
-
-        Log.w(
-                TAG,
-                "TCP connection lost; keep data source running"
-        );
-        connecting.set(false);
-
-        if (tcpClient != null) {
-            tcpClient.close();
-        }
-        transitionTo(
-                TcpConnectionState.DISCONNECTED,
-                "send failed: " + exception.getMessage()
-        );
-        notifyStateChanged();
-        // 调度自动重连
-        scheduleReconnect();
-    }
-
-    /**
-     * 调度 TCP 重连任务
-     */
-    private void scheduleReconnect() {
-        ScheduledExecutorService scheduler = reconnectScheduler;
-        if (stopping
-                || scheduler == null
-                || scheduler.isShutdown()
-                || !reconnectScheduled.compareAndSet(false, true)) {
-            return;
-        }
-        transitionTo(
-                TcpConnectionState.RECOVERING,
-                "retry scheduled"
-        );
-
-        try {
-            scheduler.schedule(
-                    () -> {
-                        reconnectScheduled.set(false);
-                        connectTcp();
-                    },
-                    RECONNECT_DELAY_SECONDS,
-                    TimeUnit.SECONDS
-            );
-        } catch (RejectedExecutionException exception) {
-            reconnectScheduled.set(false);
-            if (!stopping) {
-                Log.e(TAG, "Schedule TCP reconnect failed", exception);
-            }
-        }
-    }
 
     /**
      * 是否正在发送数据
@@ -562,10 +352,7 @@ public class VehicleSendService extends Service {
             vehicleDataSource = null;
         }
 
-        if (reconnectScheduler != null) {
-            reconnectScheduler.shutdownNow();
-            reconnectScheduler = null;
-        }
+
 
         // 停止 vSomeIP：排队到同一单线程执行器（与 start 保持先后顺序），
         // 避免主线程被 native stop 的 join 阻塞；native stop 幂等（未启动则直接返回）。

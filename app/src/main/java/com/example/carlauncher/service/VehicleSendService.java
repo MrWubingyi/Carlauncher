@@ -19,47 +19,31 @@ import com.example.carlauncher.MainActivity;
 import com.example.carlauncher.R;
 import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.data.VehicleDataSource;
-import com.example.carlauncher.data.VehicleProtocol;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
-import com.example.carlauncher.network.VehicleTcpClient;
 import com.example.carlauncher.someip.NativeVehicleTransport;
 import com.example.carlauncher.someip.SomeipConnectionMonitor;
 
 import com.example.carlauncher.someip.VSomeIpDataSource;
 import com.example.carlauncher.someip.VSomeIpNativeTransport;
-import com.example.carlauncher.someip.VsomeipClient;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Foreground owner of the remote vehicle Event subscription and latest UI snapshot.
- * Historical class name and TCP inspection methods are retained for compatibility.
  */
 public class VehicleSendService extends Service {
     private static final String TAG = "VEHICLE_SERVICE";
     private static final String CHANNEL_ID = "vehicle_send_channel";
     private static final int NOTIFICATION_ID = 1001;
-    private static final long RECONNECT_DELAY_SECONDS = VehicleProtocol.RECONNECT_DELAY_SECONDS;
 
     private final IBinder binder = new LocalBinder();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
-    // 连接状态标志
-    private final AtomicBoolean connecting = new AtomicBoolean(false);
-    // 是否已开始发送数据标志
-    private final AtomicBoolean sendingStarted = new AtomicBoolean(false);
-    // 是否已调度重连标志
-    private final AtomicBoolean reconnectScheduled = new AtomicBoolean(false);
 
-    // vSomeIP 生命周期专用单线程执行器：native start/stop 与 10 Hz 发送解耦，
-    // 避免在主线程上执行 vsomeip（其 start() 会阻塞）导致 UI/Service.onCreate 卡死。
+    // vSomeIP 生命周期专用单线程执行器，避免 native start/stop 阻塞主线程。
     private ExecutorService vsomeipExecutor;
     // The native client is process-wide; serialize lifecycle across Service recreation too.
     private static final class SomeipLifecycle {
@@ -72,37 +56,11 @@ public class VehicleSendService extends Service {
     public SomeipConnectionMonitor.Snapshot getSomeipStatus() {
         return vsomeipDataSource != null ? vsomeipDataSource.getConnectionMonitor().snapshot() : someipMonitor.snapshot();
     }
-    private VehicleTcpClient tcpClient;
-    private VehicleDataSource vehicleDataSource;
 
     private volatile boolean stopping;
-    // vSomeIP 是否已启动成功（native 不可用时跳过 10 Hz 发送，避免空转 JNI 调用）
-    private volatile boolean vsomeipStarted;
     private volatile VehicleState latestVehicleState;
     private volatile DataSourceStatus sourceStatus = DataSourceStatus.STOPPED;
     private StateListener stateListener;
-
-    private final AtomicReference<TcpConnectionState> tcpState =
-            new AtomicReference<>(TcpConnectionState.DISCONNECTED);
-
-    private void transitionTo(
-            TcpConnectionState next,
-            String reason
-    ) {
-        TcpConnectionState previous = tcpState.getAndSet(next);
-        if (previous == next) {
-            return;
-        }
-
-        Log.i(TAG, "TCP_STATE " + previous + " -> " + next
-                + " reason=" + reason);
-
-        notifyStateChanged();
-    }
-
-    public TcpConnectionState getTcpState() {
-        return tcpState.get();
-    }
 
     /**
      * 服务状态监听接口
@@ -126,19 +84,6 @@ public class VehicleSendService extends Service {
                     }
 
                     latestVehicleState = state;
-                    // vSomeIP 路径（TCP 保留作对照；native 侧在 Service 不可用/未 init 时自动跳过）
-//                    if (vsomeipStarted || (nativeTransport != null && nativeTransport.isAvailable())) {
-//                        try {
-//                            VsomeipClient.buildAndSend(
-//                                    (int) state.getSequence(),
-//                                    state.getTimestampMs(),
-//                                    state.getVehSpeedKph(),
-//                                    state.getGear() == null ? 0xFF : state.getGear().getValue(),
-//                                    state.getDataStatus() == null ? 0xFF : state.getDataStatus().getValue());
-//                        } catch (Exception e) {
-//                            Log.e(TAG, "vsomeip send failed", e);
-//                        }
-//                    }
                     notifyStateChanged();
                 }
 
@@ -182,7 +127,7 @@ public class VehicleSendService extends Service {
         createNotificationChannel();
         startForeground(NOTIFICATION_ID, createNotification());
 
-        // 初始化重连调度器、TCP 客户端和车辆数据源
+        // 初始化 vSomeIP Event 数据源。
         vsomeipExecutor = SomeipLifecycle.EXECUTOR;
         sourceStatus = DataSourceStatus.CONNECTING;
 
@@ -227,7 +172,6 @@ public class VehicleSendService extends Service {
         if (stopping || vsomeipDataSource == null) return;
         try {
             vsomeipDataSource.start(dataListener);
-            vsomeipStarted = vsomeipDataSource.isRunning() || vsomeipDataSource.getTransport().isAvailable();
             notifyStateChanged();
             Log.i(TAG, "VsomeipClient.start=true (on executor thread)");
         } catch (Exception | LinkageError e) {
@@ -237,27 +181,6 @@ public class VehicleSendService extends Service {
         }
     }
 
-
-    /**
-     * 是否正在发送数据
-     */
-    public boolean isSending() {
-        return sendingStarted.get() && isTcpConnected();
-    }
-
-    /**
-     * 是否正在尝试连接
-     */
-    public boolean isConnecting() {
-        return getTcpState() == TcpConnectionState.CONNECTING;
-    }
-
-    /**
-     * TCP 是否已连接
-     */
-    public boolean isTcpConnected() {
-        return tcpClient != null && tcpClient.isConnected();
-    }
 
     /**
      * 获取最新的车辆状态
@@ -337,26 +260,13 @@ public class VehicleSendService extends Service {
         Log.i(TAG, "Service onDestroy id=" + System.identityHashCode(this));
         stopping = true;
         someipMonitor.stop();
-        connecting.set(false);
-        sendingStarted.set(false);
-        reconnectScheduled.set(false);
         stateListener = null;
         mainHandler.removeCallbacksAndMessages(null);
-        transitionTo(
-                TcpConnectionState.DISCONNECTED,
-                "on destory"
-        );
-        // 停止并清理资源
-        if (vehicleDataSource != null) {
-            vehicleDataSource.stop();
-            vehicleDataSource = null;
-        }
 
 
 
         // 停止 vSomeIP：排队到同一单线程执行器（与 start 保持先后顺序），
         // 避免主线程被 native stop 的 join 阻塞；native stop 幂等（未启动则直接返回）。
-        vsomeipStarted = false;
         ExecutorService vsomeipExecutorToStop = vsomeipExecutor;
         vsomeipExecutor = null;
         if (vsomeipExecutorToStop != null) {
@@ -374,11 +284,6 @@ public class VehicleSendService extends Service {
             } catch (RejectedExecutionException exception) {
                 Log.e(TAG, "schedule vsomeip stop rejected", exception);
             }
-        }
-
-        if (tcpClient != null) {
-            tcpClient.shutdown();
-            tcpClient = null;
         }
 
         sourceStatus = DataSourceStatus.STOPPED;

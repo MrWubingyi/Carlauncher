@@ -5,7 +5,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
-import com.example.carlauncher.service.TcpConnectionState;
 import com.example.carlauncher.testing.StubVehicleSendService;
 import com.example.carlauncher.ui.CockpitConnectionState;
 import com.example.carlauncher.ui.CockpitUiState;
@@ -57,7 +56,7 @@ public class VehicleRepositoryTest {
         onMain(() -> repository.attachService(new StubVehicleSendService()
                 .withLatestState(vehicleState)
                 .withSourceStatus(DataSourceStatus.CONNECTED)
-                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.VALID)));
 
         CockpitUiState state = repository.getUiState().getValue();
@@ -73,7 +72,7 @@ public class VehicleRepositoryTest {
 
         onMain(() -> repository.attachService(new StubVehicleSendService()
                 .withLatestState(new VehicleState.Builder().build())
-                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.INVALID_SPEED)));
 
         assertEquals(CockpitConnectionState.INVALID_DATA,
@@ -85,7 +84,7 @@ public class VehicleRepositoryTest {
         VehicleRepository repository = new VehicleRepository();
         StubVehicleSendService service = new StubVehicleSendService()
                 .withLatestState(new VehicleState.Builder().build())
-                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.VALID);
         onMain(() -> repository.attachService(service));
         assertEquals(CockpitConnectionState.ONLINE,
@@ -104,7 +103,7 @@ public class VehicleRepositoryTest {
         VehicleRepository repository = new VehicleRepository();
         onMain(() -> repository.attachService(new StubVehicleSendService()
                 .withLatestState(new VehicleState.Builder().build())
-                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)));
+                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)));
 
         onMain(repository::detachService);
 
@@ -120,10 +119,10 @@ public class VehicleRepositoryTest {
     }
 
     @Test
-    public void tcpSuccessCannotHideSomeipWaitingErrorOrTimeout() {
+    public void someipWaitingErrorAndTimeoutRecoverOnResponse() {
         VehicleRepository repository = new VehicleRepository();
         StubVehicleSendService service = new StubVehicleSendService()
-                .withTcpState(TcpConnectionState.ONLINE)
+
                 .withValidity(DataValidity.VALID)
                 .withSomeipAvailable(true, 0);
         onMain(() -> repository.attachService(service));
@@ -138,7 +137,7 @@ public class VehicleRepositoryTest {
         assertEquals("SOME/IP EVENT TIMEOUT", repository.getUiState().getValue().getConnectionLabel());
         assertTrue(repository.getUiState().getValue().isStopAction());
 
-        service.withTcpState(TcpConnectionState.DISCONNECTED).withSomeipResponse(true, 0, 3200);
+        service.withSomeipResponse(true, 0, 3200);
         onMain(repository::refresh);
         assertEquals("SOME/IP ONLINE", repository.getUiState().getValue().getConnectionLabel());
         service.withSomeipAvailable(false, 3300);

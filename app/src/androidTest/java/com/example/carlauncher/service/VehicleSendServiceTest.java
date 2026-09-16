@@ -17,7 +17,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -37,13 +36,8 @@ public class VehicleSendServiceTest {
     @Test
     public void newInstance_hasStoppedDefaults() {
         VehicleSendService service = newServiceInstance();
-
-        assertEquals(TcpConnectionState.DISCONNECTED, service.getTcpState());
         assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus());
         assertNull(service.getLatestVehicleState());
-        assertFalse(service.isSending());
-        assertFalse(service.isConnecting());
-        assertFalse(service.isTcpConnected());
     }
 
     @Test

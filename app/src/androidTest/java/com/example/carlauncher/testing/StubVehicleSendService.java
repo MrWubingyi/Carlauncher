@@ -3,7 +3,6 @@ package com.example.carlauncher.testing;
 import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
-import com.example.carlauncher.service.TcpConnectionState;
 import com.example.carlauncher.service.VehicleSendService;
 import com.example.carlauncher.someip.SomeipConnectionMonitor;
 
@@ -17,7 +16,6 @@ public final class StubVehicleSendService extends VehicleSendService {
 
     private VehicleState latestState;
     private DataSourceStatus sourceStatus = DataSourceStatus.CONNECTED;
-    private TcpConnectionState tcpState = TcpConnectionState.ONLINE;
     private DataValidity dataValidity = DataValidity.VALID;
     private final SomeipConnectionMonitor someip = new SomeipConnectionMonitor();
 
@@ -51,10 +49,6 @@ public final class StubVehicleSendService extends VehicleSendService {
         return this;
     }
 
-    public StubVehicleSendService withTcpState(TcpConnectionState state) {
-        this.tcpState = state;
-        return this;
-    }
 
     public StubVehicleSendService withValidity(DataValidity validity) {
         this.dataValidity = validity;
@@ -71,10 +65,6 @@ public final class StubVehicleSendService extends VehicleSendService {
         return sourceStatus;
     }
 
-    @Override
-    public TcpConnectionState getTcpState() {
-        return tcpState;
-    }
 
     @Override
     public DataValidity getDataValidity() {

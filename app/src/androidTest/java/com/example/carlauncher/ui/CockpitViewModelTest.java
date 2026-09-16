@@ -7,7 +7,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.example.carlauncher.data.DataSourceStatus;
 import com.example.carlauncher.model.DataValidity;
 import com.example.carlauncher.model.VehicleState;
-import com.example.carlauncher.service.TcpConnectionState;
 import com.example.carlauncher.testing.StubVehicleSendService;
 
 import org.junit.Test;
@@ -48,7 +47,7 @@ public class CockpitViewModelTest {
         onMain(() -> viewModel.attachService(new StubVehicleSendService()
                 .withLatestState(vehicleState)
                 .withSourceStatus(DataSourceStatus.CONNECTED)
-                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                 .withValidity(DataValidity.VALID)));
 
         CockpitUiState state = viewModel.getUiState().getValue();

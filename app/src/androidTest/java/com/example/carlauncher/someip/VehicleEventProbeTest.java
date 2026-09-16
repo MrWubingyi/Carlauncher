@@ -47,7 +47,6 @@ public class VehicleEventProbeTest {
                             long seq = service.getLatestVehicleState().getSequence();
                             assertEquals(SomeipConnectionMonitor.State.ONLINE, service.getSomeipStatus().getState());
                             assertEquals(service.getLatestVehicleState().getVehSpeedKph() + " km/h", speed);
-                            assertFalse(service.isTcpConnected());
                             if (first.get() < 0) first.set(seq);
                             latest.set(seq);
                             android.util.Log.i("EVENT_UI_PROBE", "UI seq=" + seq + " speed=" + speed);

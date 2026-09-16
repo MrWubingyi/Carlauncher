@@ -14,7 +14,6 @@ import com.example.carlauncher.model.Gear;
 import com.example.carlauncher.model.TurnSignal;
 import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.model.WarningState;
-import com.example.carlauncher.service.TcpConnectionState;
 import com.example.carlauncher.testing.StubVehicleSendService;
 import com.example.carlauncher.ui.CockpitViewModel;
 
@@ -85,7 +84,7 @@ public class MainActivityTest {
                     .attachService(new StubVehicleSendService()
                             .withLatestState(vehicleState)
                             .withSourceStatus(DataSourceStatus.CONNECTED)
-                            .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                            .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                             .withValidity(DataValidity.VALID)));
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
             scenario.onActivity(activity -> {
@@ -118,7 +117,7 @@ public class MainActivityTest {
                     .attachService(new StubVehicleSendService()
                             .withLatestState(null)
                             .withSourceStatus(DataSourceStatus.CONNECTED)
-                            .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                            .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
                             .withValidity(DataValidity.VALID)));
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
             scenario.onActivity(activity -> {
@@ -135,9 +134,9 @@ public class MainActivityTest {
     }
 
     @Test
-    public void someipFaultsRemainVisibleWhileTcpIsOnline() {
+    public void someipFaultsRemainVisibleUntilEventRecovery() {
         StubVehicleSendService service = new StubVehicleSendService()
-                .withTcpState(TcpConnectionState.ONLINE).withSomeipAvailable(true, 0);
+                .withSomeipAvailable(true, 0);
         try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
             scenario.onActivity(activity -> {
                 CockpitViewModel model = new ViewModelProvider(activity).get(CockpitViewModel.class);
@@ -156,7 +155,7 @@ public class MainActivityTest {
                 assertEquals("SOME/IP EVENT TIMEOUT", text(activity, R.id.connectionStatusText));
                 assertEquals("STOP RECEIVE", text(activity, R.id.connectButton));
 
-                service.withTcpState(TcpConnectionState.DISCONNECTED).withSomeipResponse(true, 0, 3020);
+                service.withSomeipResponse(true, 0, 3020);
                 model.refresh();
                 assertEquals("SOME/IP ONLINE", text(activity, R.id.connectionStatusText));
             });

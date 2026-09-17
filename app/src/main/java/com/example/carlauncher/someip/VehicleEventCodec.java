@@ -2,13 +2,18 @@ package com.example.carlauncher.someip;
 
 import com.example.carlauncher.data.DataStatus;
 import com.example.carlauncher.model.*;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.nio.charset.StandardCharsets;
 
-/** Event 0x8001: complete UTF-8 JSON vehicle snapshot, version 1. */
+/**
+ * Event 0x8001: complete UTF-8 JSON vehicle snapshot, version 1.
+ */
 public final class VehicleEventCodec {
-    private VehicleEventCodec() {}
+    private VehicleEventCodec() {
+    }
 
     private static long integer(JSONObject json, String name) throws JSONException {
         Object value = json.get(name);
@@ -41,6 +46,10 @@ public final class VehicleEventCodec {
     public static VehicleState decode(byte[] payload) throws JSONException {
         if (payload == null || payload.length == 0 || payload.length > 4096)
             throw new JSONException("Invalid event length");
+        // Some JSON parsers treat a raw NUL as end-of-input and ignore the suffix.
+        for (byte value : payload) {
+            if (value == 0) throw new JSONException("NUL in event payload");
+        }
         JSONObject j = new JSONObject(new String(payload, StandardCharsets.UTF_8));
         bounded(j, "version", 1, 1);
         long seq = integer(j, "seq"), timestamp = integer(j, "timestampMs");

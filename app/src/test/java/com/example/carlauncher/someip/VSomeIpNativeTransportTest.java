@@ -85,6 +85,63 @@ public class VSomeIpNativeTransportTest {
 
     // ---- Helpers ----
 
+    /** VS-15: same timestamp permits only a strictly greater sequence. */
+    @Test public void equalTimestamp_rejectsDuplicateAndLowerSequence() throws Exception {
+        transport.onVehicleEvent(createEventPayload(10, 2000, 10));
+        transport.onVehicleEvent(createEventPayload(99, 1999, 99));
+        transport.onVehicleEvent(createEventPayload(10, 2000, 20));
+        transport.onVehicleEvent(createEventPayload(9, 2000, 30));
+        transport.onVehicleEvent(createEventPayload(11, 2000, 40));
+
+        assertEquals(2, listener.vehicleStates.size());
+        assertEquals(10, listener.vehicleStates.get(0).getVehSpeedKph());
+        assertEquals(11L, listener.vehicleStates.get(1).getSequence());
+        assertEquals(40, listener.vehicleStates.get(1).getVehSpeedKph());
+        assertTrue(listener.errors.isEmpty());
+    }
+
+    /** VS-16: process restart need not produce an unavailable callback. */
+    @Test public void newerTimestamp_acceptsRestartedSequenceWithoutDisconnect() throws Exception {
+        transport.onVehicleEvent(createEventPayload(9000, 2000, 60));
+        transport.onVehicleEvent(createEventPayload(1, 2100, 17));
+
+        assertEquals(2, listener.vehicleStates.size());
+        assertEquals(1L, listener.vehicleStates.get(1).getSequence());
+        assertEquals(17, listener.vehicleStates.get(1).getVehSpeedKph());
+    }
+
+    /** VS-16: also cover restart after an explicit availability transition. */
+    @Test public void rediscovery_acceptsNewPublisherFirstFrame() throws Exception {
+        transport.onVehicleEvent(createEventPayload(9000, 2000, 60));
+        transport.onAvailable(false);
+        transport.onAvailable(true);
+        transport.onVehicleEvent(createEventPayload(1, 2100, 17));
+
+        assertEquals(2, listener.vehicleStates.size());
+        assertEquals(1L, listener.vehicleStates.get(1).getSequence());
+        assertEquals(2100L, listener.vehicleStates.get(1).getTimestampMs());
+    }
+
+    /** VS-17: UDP loss must not cause waiting for the missing sequence. */
+    @Test public void sequenceGap_acceptsLatestCompleteSnapshot() throws Exception {
+        transport.onVehicleEvent(createEventPayload(101, 1000, 17));
+        transport.onVehicleEvent(createEventPayload(104, 1300, 83));
+        assertEquals(2, listener.vehicleStates.size());
+        assertEquals(104L, listener.vehicleStates.get(1).getSequence());
+        assertEquals(83, listener.vehicleStates.get(1).getVehSpeedKph());
+    }
+
+    /** VS-20: detaching a consumer suppresses callbacks without invoking JNI. */
+    @Test public void removedListener_receivesNoFurtherCallbacks() throws Exception {
+        transport.setListener(null);
+        transport.onVehicleEvent(createEventPayload(101, 1000, 17));
+        transport.onAvailable(true);
+        transport.onResponse(false, 1);
+        assertTrue(listener.vehicleStates.isEmpty());
+        assertTrue(listener.availabilities.isEmpty());
+        assertTrue(listener.errors.isEmpty());
+    }
+
     private byte[] createEventPayload(long seq, long timestampMs, int speedKph) throws Exception {
         JSONObject j = new JSONObject();
         j.put("version", 1);

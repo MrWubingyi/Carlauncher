@@ -44,8 +44,8 @@ scp .\tools\someip-probe\socket-tap-event-probe.py root@192.168.31.248:/root/dev
 `socket-tap-sd-shared-02`，并同步修改后续两个 Ubuntu 终端的 `run_dir`。
 
 ```powershell
-$run = 'socket-tap-sd-shared-01'
-ssh root@192.168.31.248 "cd /root/develop/carlauncher-probe-20260909 && python3 socket-tap-event-probe.py $run --network-only --duration 0 --connect-timeout 1800"
+run_dir='socket-tap-sd-shared-01'
+ssh root@192.168.31.248 "cd /root/develop/carlauncher-probe-20260909 && python3 socket-tap-event-probe.py $run_dir --network-only --duration 0 --connect-timeout 1800"
 ```
 
 等待 `NETWORK_ONLY` 和 `READY`。**必须带 `--network-only`**：helper 只启动 TAP、

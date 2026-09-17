@@ -68,15 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 .get(CockpitViewModel.class);
 
         viewModel.getUiState().observe(this, uiState -> {
-            Log.d(
-                    TAG,
-                    "LiveData emitted, activity="
-                            + System.identityHashCode(this)
-                            + ", viewModel="
-                            + System.identityHashCode(viewModel)
-                            + ", state="
-                            + uiState.getConnectionState()
-            );
 
             render(uiState);
         });

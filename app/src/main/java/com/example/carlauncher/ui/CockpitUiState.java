@@ -7,7 +7,9 @@ import com.example.carlauncher.someip.SomeipConnectionMonitor;
 import com.example.carlauncher.someip.SomeipConnectionMonitor.Snapshot;
 
 
-/** Immutable cockpit snapshot. Transport health is determined only by SOME/IP. */
+/**
+ * Immutable cockpit snapshot. Transport health is determined only by SOME/IP.
+ */
 public final class CockpitUiState {
     private final VehicleState vehicleState;
     private final DataSourceStatus dataSourceStatus;
@@ -45,12 +47,25 @@ public final class CockpitUiState {
                 new SomeipConnectionMonitor().snapshot(), DataValidity.VALID);
     }
 
-    public VehicleState getVehicleState() { return vehicleState; }
-    public DataSourceStatus getDataSourceStatus() { return dataSourceStatus; }
-    public boolean isServiceBound() { return serviceBound; }
-    public boolean hasVehicleData() { return vehicleState != null; }
-    public Snapshot getSomeipStatus() { return someip; }
-    public CockpitConnectionState getState() { return state; }
+    public VehicleState getVehicleState() {
+        return vehicleState;
+    }
+
+    public DataSourceStatus getDataSourceStatus() {
+        return dataSourceStatus;
+    }
+
+    public boolean isServiceBound() {
+        return serviceBound;
+    }
+
+    public boolean hasVehicleData() {
+        return vehicleState != null;
+    }
+
+    public CockpitConnectionState getState() {
+        return state;
+    }
 
     public String getConnectionLabel() {
         if (!serviceBound) return "SERVICE UNBOUND";
@@ -62,9 +77,17 @@ public final class CockpitUiState {
     }
 
     // Service ownership, rather than network health, determines whether STOP is possible.
-    public String getActionLabel() { return serviceBound ? "STOP RECEIVE" : "START RECEIVE"; }
-    public boolean isActionEnabled() { return true; }
-    public boolean isStopAction() { return serviceBound; }
+    public String getActionLabel() {
+        return serviceBound ? "STOP RECEIVE" : "START RECEIVE";
+    }
+
+    public boolean isActionEnabled() {
+        return true;
+    }
+
+    public boolean isStopAction() {
+        return serviceBound;
+    }
 
     public String getTransportLabel() {
         if (!serviceBound) return "SOME/IP: STOPPED";
@@ -74,9 +97,12 @@ public final class CockpitUiState {
 
     private String eventStateLabel() {
         switch (someip.getState()) {
-            case WAITING_RESPONSE: return "WAITING EVENT";
-            case RESPONSE_TIMEOUT: return "EVENT TIMEOUT";
-            default: return someip.getState().name();
+            case WAITING_RESPONSE:
+                return "WAITING EVENT";
+            case RESPONSE_TIMEOUT:
+                return "EVENT TIMEOUT";
+            default:
+                return someip.getState().name();
         }
     }
 

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CarLauncher｜三个 Skill 的协作流程与职责汇报</title>
+<style>
+:root{--ink:#172b43;--muted:#617085;--line:#dce4ec;--paper:#fff;--bg:#edf1f6;--sdlc:#6554c0;--test:#007c89;--review:#a4670b;--human:#a73562;--agent:#2361ac;--tool:#64748b;--red:#b33232}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Segoe UI","Microsoft YaHei",sans-serif}button,a{ -webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:#235fa3;text-underline-offset:3px}.toolbar{position:sticky;top:0;z-index:10;background:#142a43;color:#fff;display:flex;align-items:center;gap:12px;padding:12px max(24px,calc((100vw - 1280px)/2));box-shadow:0 3px 14px #10253a22}.brand{font-weight:700;white-space:nowrap}.toolbar .spacer{flex:1}.toolbar button{border:1px solid #ffffff45;border-radius:7px;padding:6px 12px;background:transparent;color:white;white-space:nowrap}.toolbar button:hover{background:#ffffff18}.toolbar button:disabled{opacity:.4;cursor:default}.toolbar .primary{background:#fff;color:#142a43}#pageCount{font-size:13px;min-width:46px;text-align:center}.pages{max-width:1280px;margin:28px auto 48px;padding:0 18px}.page{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:16px;margin:24px 0;padding:38px 42px 34px;box-shadow:0 10px 32px #162c4410;scroll-margin-top:85px}.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase}h1{font-size:46px;line-height:1.2;letter-spacing:-1px;margin:22px 0}h2{font-size:29px;line-height:1.35;margin:10px 0 14px}h3{font-size:18px;margin:0 0 10px}p{margin:10px 0}.lead{font-size:19px;max-width:950px;color:#455d75}.muted{color:var(--muted)}.small{font-size:12px}.foot{margin-top:24px;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.card{border:1px solid var(--line);border-radius:11px;padding:20px;background:#fff}.card p{font-size:14px}.card.sdlc{border-top:4px solid var(--sdlc)}.card.test{border-top:4px solid var(--test)}.card.review{border-top:4px solid var(--review)}.badge{display:inline-block;border-radius:5px;padding:3px 8px;font-size:11px;line-height:1.5;font-weight:700;vertical-align:middle}.badge.agent{background:#e9f1fd;color:var(--agent)}.badge.human{background:#fbeaf0;color:var(--human)}.badge.tool{background:#edf1f5;color:var(--tool)}.badge.sdlc{background:#eeeafb;color:var(--sdlc)}.badge.test{background:#e3f3f3;color:var(--test)}.badge.review{background:#fff1d9;color:var(--review)}.badge.none{background:#f0f2f5;color:#5f6c7d}.skill{font-family:Consolas,monospace;font-size:13px;font-weight:600;overflow-wrap:anywhere}.roles{display:flex;gap:18px;flex-wrap:wrap;padding:14px 0}.roles span{font-size:13px}.note{background:#f0f5fb;border-left:4px solid #396fa8;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px}.note.amber{background:#fff7e9;border-color:#c79331}.note.red{background:#fff0f0;border-color:#b94a49}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0}.stat{padding:20px;background:#f3f6fa;border-radius:10px}.stat strong{display:block;font-size:31px;line-height:1.3;color:#193d63}.stat span{font-size:12px;color:var(--muted)}.hero-line{display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr;align-items:center;margin:32px 0;gap:8px}.hero-line .phase{padding:20px;border-radius:10px;background:#f3f5fa;text-align:center}.hero-line .phase b{display:block;font-size:21px}.hero-line .phase span{font-size:12px}.hero-line .arrow{text-align:center;color:#8596a9;font-size:26px}.phase.gate{background:#fff0f5;border:1px solid #e1b5c6}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin:22px 0}.step{padding:15px;border:1px solid var(--line);border-radius:10px;position:relative;background:#fafbfd}.step.human-step{background:#fff5f8;border-color:#e7c4d1}.step .num{font-size:25px;font-weight:750;color:#bdc9d5;line-height:1}.step h3{font-size:15px;margin:9px 0}.step p{font-size:12px;line-height:1.6;min-height:39px}.step .skill{font-size:10px;min-height:31px;display:block;margin-top:9px}.loop{display:flex;justify-content:space-between;gap:14px;align-items:center;border:1px dashed #c19b63;border-radius:9px;background:#fffaf1;padding:13px 17px;font-size:13px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:10px 9px;vertical-align:top}th{background:#eff3f8;font-weight:700}td:first-child{font-weight:650}tr:last-child td{border-bottom:0}.matrix td:nth-child(2){width:17%}.matrix td:nth-child(3){width:20%}.matrix td:nth-child(4){width:20%}.matrix td:nth-child(5){width:25%}.matrix .skill{font-size:11px}.matrix .manual{background:#fff6f9}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:22px 0}.event{border-left:3px solid #abbcd0;padding:4px 13px}.event.alert{border-color:#c35757}.event.ok{border-color:#439086}.event b{font-size:14px}.event p{font-size:12px}.event .time{font-size:11px;color:var(--muted);display:block}.approval{background:#f4f7fa;border-radius:10px;padding:18px;font-size:12px;overflow-wrap:anywhere}.approval code{font:11px/1.7 Consolas,monospace}.results{font-size:14px}.results td,.results th{padding:13px}.fail{color:var(--red);font-weight:700}.ok-text{color:#146b65;font-weight:700}.coverage-row{margin:16px 0}.coverage-row .label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}.track{height:12px;border-radius:6px;background:#e8edf3;position:relative;overflow:visible}.fill{height:100%;border-radius:6px;background:#307b95}.threshold{position:absolute;top:-4px;width:2px;height:20px;background:#a23345}.findings{counter-reset:issue}.finding{display:flex;gap:12px;margin:15px 0}.finding .idx{width:28px;height:28px;flex:0 0 28px;text-align:center;background:#fbe7e7;border-radius:6px;color:var(--red);font-weight:700}.finding p{margin:0;font-size:13px}.link-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}.link-list a{padding:14px 17px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-size:13px;background:#f9fbfd}.link-list a:hover{border-color:#648bb3}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.progress{height:3px;position:fixed;top:61px;left:0;background:#67b7c6;z-index:12;transition:width .2s;width:0}.speaker{border-top:1px dashed var(--line);margin-top:20px;padding-top:13px;color:#65768a;font-size:12px}.presenting .pages{margin:18px auto;padding-bottom:20px}.presenting .page{display:none;min-height:calc(100vh - 115px);margin:0}.presenting .page.active{display:block}.presenting .speaker{display:none}.presenting h1{font-size:43px}:focus-visible{outline:3px solid #44adc7;outline-offset:3px}
+@media(max-width:1000px){.page{padding:27px}.flow{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}h1{font-size:36px}.matrix{min-width:850px}.toolbar{padding:10px 16px}.brand{font-size:13px}.toolbar button{padding:5px 8px}.toolbar .report-label{display:none}}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.hero-line{grid-template-columns:1fr}.hero-line .arrow{transform:rotate(90deg)}.page{padding:22px 18px}.pages{padding:0 10px}.toolbar{gap:6px;flex-wrap:wrap}.brand{width:100%}.toolbar .spacer{display:none}.link-list,.flow,.timeline{grid-template-columns:1fr}.foot,.loop{flex-direction:column;align-items:flex-start}h1{font-size:31px}h2{font-size:25px}}
+@media print{@page{size:A4 landscape;margin:10mm}body{background:white;font-size:11px}.toolbar,.progress,.speaker{display:none!important}.pages,.presenting .pages{max-width:none;margin:0;padding:0}.page,.presenting .page,.presenting .page.active{display:block!important;min-height:0;margin:0;padding:8mm 7mm;box-shadow:none;border:0;border-radius:0;break-after:page}.page:last-child{break-after:auto}h1{font-size:33px!important}h2{font-size:23px}h3{font-size:15px}.lead{font-size:15px}.grid{grid-template-columns:repeat(3,1fr)}.grid.two{grid-template-columns:repeat(2,1fr)}.card{padding:13px}.card p{font-size:11px}.flow{grid-template-columns:repeat(5,1fr);gap:8px}.step{padding:10px}.step h3{font-size:12px}.step p{font-size:10px}.step .skill{font-size:9px}.stats{margin:18px 0}.stat{padding:13px}.stat strong{font-size:25px}.table-wrap{overflow:visible}.matrix{min-width:0}.matrix td,.matrix th{font-size:10px;padding:6px}.timeline{grid-template-columns:repeat(5,1fr)}.event p{font-size:10px}.results{font-size:12px}.results td,.results th{padding:8px}.foot{margin-top:15px}.note{padding:10px 13px;margin:14px 0;font-size:11px}a{color:#172b43}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<nav class="toolbar" aria-label="汇报控制"><span class="brand">CarLauncher <span class="report-label">/ 流程与职责汇报</span></span><span class="spacer"></span><button id="mode" class="primary" aria-pressed="false">进入汇报模式</button><button id="prev" aria-label="上一页">←</button><span id="pageCount" aria-live="polite">1 / 7</span><button id="next" aria-label="下一页">→</button><button id="print">打印 / PDF</button></nav>
+<div class="progress" id="progress"></div>
+<main class="pages">
+
+<section class="page active" id="overview" aria-labelledby="title1">
+<div class="eyebrow">01 / WORKFLOW OVERVIEW · 2026.09.17</div>
+<h1 id="title1">三个 Skill 协作<br>让测试从需求走向可核验的证据</h1>
+<p class="lead">以 CarLauncher 为例：明确每一步由谁做、遵循哪个 Skill、交付什么，以及人工在哪一步作决定。</p>
+<div class="hero-line"><div class="phase"><b>梳理与设计</b><span>Agent · sdlc-input-analysis / 测试工作流</span></div><div class="arrow">→</div><div class="phase gate"><b>人工审批</b><span>人工决定 · content-review 保存记录</span></div><div class="arrow">→</div><div class="phase"><b>生成、执行与报告</b><span>Agent · android-unit-test-workflow</span></div></div>
+<div class="stats"><div class="stat"><strong>3</strong><span>工作方法 Skill，职责各有边界</span></div><div class="stat"><strong>1</strong><span>执行前的人工内容审批关卡</span></div><div class="stat"><strong>24</strong><span>本轮新增执行用例</span></div><div class="stat"><strong>2</strong><span>测试复现的产品缺陷</span></div></div>
+<div class="note"><strong>汇报结论：</strong>审批后的测试与证据整理已完成；结果为“存在失败，覆盖率未达标”。流程执行完成不等于产品验收通过。</div>
+<div class="foot"><span>范围：设计文档分析 → 用例审批 → Android Debug 验证</span><span>独立离线 HTML · 支持逐页汇报与打印</span></div>
+</section>
+
+<section class="page" id="roles" aria-labelledby="title2">
+<div class="eyebrow">02 / WHO DOES WHAT</div><h2 id="title2">Skill 规定方法，Agent 执行工作，人工作决定</h2>
+<div class="roles"><span><b class="badge agent">AGENT</b> 阅读、推导、编写、调用工具、核对证据</span><span><b class="badge human">人工</b> 提出目标、确认预期、批准或退回</span><span><b class="badge tool">执行工具</b> Gradle / JUnit / ADB / JaCoCo / Lint</span></div>
+<div class="grid">
+<article class="card sdlc"><span class="badge sdlc">输入与追溯</span><h3 class="skill" style="margin-top:13px">sdlc-input-analysis</h3><p><strong>由 Agent 按技能执行：</strong>阅读设计和源码，按六阶段整理输入，区分事实、假设、冲突与缺口。</p><p><strong>交付：</strong>输入基线、需求—实现—测试追溯表、待决问题。</p><p class="muted">不把源码现状自动当需求；不负责声称测试已经通过。</p></article>
+<article class="card review"><span class="badge review">内容版本与人工决定</span><h3 class="skill" style="margin-top:13px">content-review</h3><p><strong>Agent 操作：</strong>提交快照、打开审阅页、读取和核对审批记录。<br><strong>人工操作：</strong>阅读、批准、退回或要求补充。</p><p><strong>交付：</strong>reviewId、revision、SHA-256、决定、意见与时间。</p><p class="muted">不代写内容、不代替人工批准、不运行测试；批准只对应指定内容版本。</p></article>
+<article class="card test"><span class="badge test">测试设计与工程验证</span><h3 class="skill" style="margin-top:13px">android-unit-test-workflow</h3><p><strong>由 Agent 按技能执行：</strong>划分 JVM / 设备测试，编写行为断言，运行回归，检查覆盖率及 Lint。</p><p><strong>交付：</strong>测试源码、JUnit / JaCoCo / Lint 证据和统一报告。</p><p class="muted">不自行批准需求；不缩小覆盖分母或放宽断言来制造“通过”。</p></article>
+</div>
+<div class="note"><strong>职责归属和实际执行者是两个维度。</strong>“归属 content-review”表示使用其审批机制；点击批准的是人工，提交和核验记录的是 Agent。Skill 之间的交接由 Agent 按用户指令组织，不代表自动互相触发。</div>
+<div class="foot"><span>本报告依据本次实际读取的三个 SKILL.md 与本地执行记录</span><span>02 / 07</span></div>
+</section>
+
+<section class="page" id="flow" aria-labelledby="title3">
+<div class="eyebrow">03 / APPROVAL-FIRST WORKFLOW</div><h2 id="title3">标准顺序：先确认测试预期，再生成并执行</h2>
+<p class="muted">以下为本项目纠正后采用的流程。执行前审批是用户在本次协作中明确的要求。</p>
+<div class="flow">
+<article class="step human-step"><span class="num">01</span><h3>提出目标与范围</h3><span class="badge human">人工</span><p>指定设计文档，要求补测，并明确审批位置。</p><span class="skill">Skill：无，用户输入</span></article>
+<article class="step"><span class="num">02</span><h3>建立输入基线</h3><span class="badge agent">Agent</span><p>读取需求、源码和已有测试，定位冲突与缺口。</p><span class="skill">sdlc-input-analysis</span></article>
+<article class="step"><span class="num">03</span><h3>设计可验证用例</h3><span class="badge agent">Agent</span><p>明确输入、步骤、预期，划分 JVM / 设备层。</p><span class="skill">android-unit-test-workflow<br>输入来自 sdlc-input-analysis</span></article>
+<article class="step"><span class="num">04</span><h3>提交待审快照</h3><span class="badge agent">Agent</span><p>冻结设计内容，生成版本和哈希，打开审阅页。</p><span class="skill">content-review</span></article>
+<article class="step human-step"><span class="num">05</span><h3>批准或退回</h3><span class="badge human">人工决策点</span><p>确认测试预期与范围；有疑问则退回或补充。</p><span class="skill">content-review<br>仅记录人工决定</span></article>
+<article class="step"><span class="num">06</span><h3>核验审批一致性</h3><span class="badge agent">Agent</span><p>检查决定、版本、哈希及当前生成物是否匹配。</p><span class="skill">content-review</span></article>
+<article class="step"><span class="num">07</span><h3>生成测试代码</h3><span class="badge agent">Agent</span><p>按批准预期实现断言，不修改预期迎合现状。</p><span class="skill">android-unit-test-workflow</span></article>
+<article class="step"><span class="num">08</span><h3>执行与质量检查</h3><span class="badge agent">Agent 调用工具</span><p>JVM、设备回归；覆盖率与 Lint 分别判定。</p><span class="skill">android-unit-test-workflow</span></article>
+<article class="step"><span class="num">09</span><h3>归档与结果交接</h3><span class="badge agent">Agent</span><p>归档证据与缺陷，明确通过、失败和未验收项。</p><span class="skill">测试工作流主责<br>sdlc-input-analysis 辅助维护交接</span></article>
+<article class="step human-step"><span class="num">10</span><h3>决定后续处置</h3><span class="badge human">人工</span><p>根据结果决定修复、扩大测试或另行验收。</p><span class="skill">Skill：无，项目决策<br>本案例尚未进行该决策</span></article>
+</div>
+<div class="loop"><strong>退回路径：05 → 02 / 03 → 04 → 05</strong><span>内容改变则提交新版本；旧批准不能自动沿用。</span></div>
+<div class="note amber">本任务最初已授权“生成并测试”，因此审批关卡满足后可继续这项工作，无需虚构第二次执行授权。若扩大到生产缺陷修复、远端部署等范围，则需另有授权。</div>
+<div class="foot"><span>箭头按编号从01到10；审批前不执行基线测试或新增用例</span><span>03 / 07</span></div>
+</section>
+
+<section class="page" id="matrix" aria-labelledby="title4">
+<div class="eyebrow">04 / RESPONSIBILITY MATRIX</div><h2 id="title4">逐步职责表：谁做、属于谁、交付什么</h2>
+<div class="table-wrap"><table class="matrix"><thead><tr><th>步骤</th><th>实际执行者</th><th>主责 Skill</th><th>关键输入 → 输出</th><th>进入下一步的条件</th></tr></thead><tbody>
+<tr class="manual"><td>01 目标与范围</td><td><span class="badge human">人工</span></td><td>无 · 用户指令</td><td>设计文档 → 任务范围与审批要求</td><td>明确工作目标；不将未提及的修复纳入范围。</td></tr>
+<tr><td>02 输入梳理</td><td><span class="badge agent">Agent</span></td><td class="skill">sdlc-input-analysis</td><td>文档、源码、已有测试 → 基线 / 缺口 / 冲突</td><td>重要判断能定位来源，未知值明确标出。</td></tr>
+<tr><td>03 用例设计</td><td><span class="badge agent">Agent</span></td><td class="skill">android-unit-test-workflow</td><td>基线与场景 → 步骤、断言、测试层、通过条件</td><td>区分现状刻画与期望修复，足以供人工审阅。</td></tr>
+<tr><td>04 提交审阅</td><td><span class="badge agent">Agent</span></td><td class="skill">content-review</td><td>设计文本 → 不可变版本 / 哈希 / PENDING</td><td>审阅页面显示正确标题、版本和待审批状态。</td></tr>
+<tr class="manual"><td>05 审批内容</td><td><span class="badge human">人工</span><br>系统保存决定</td><td class="skill">content-review</td><td>待审版本 → APPROVED / 退回 / 需补充</td><td>批准来自人工；沉默不算批准，退回不能越过关卡。</td></tr>
+<tr><td>06 核对批准</td><td><span class="badge agent">Agent</span></td><td class="skill">content-review</td><td>审批记录 + 当前内容 → 一致性核验</td><td>当前版本与批准哈希一致，且在用户原授权范围内。</td></tr>
+<tr><td>07 实现用例</td><td><span class="badge agent">Agent</span></td><td class="skill">android-unit-test-workflow</td><td>批准预期 → 测试源码 / 可编译套件</td><td>实现不改变批准语义；需要改变时返回送审。</td></tr>
+<tr><td>08 运行检查</td><td><span class="badge agent">Agent 编排</span><br><span class="badge tool">工具实际执行</span></td><td class="skill">android-unit-test-workflow</td><td>测试代码 → JUnit / 覆盖率 / Lint / 日志</td><td>保留本次有效证据；失败不拦截独立证据收集，也不计为通过。</td></tr>
+<tr><td>09 结果交接</td><td><span class="badge agent">Agent</span></td><td class="skill">android-unit-test-workflow<br><span class="muted">SDLC 辅助追溯</span></td><td>运行结果 → 中文报告 / 缺陷 / 剩余缺口</td><td>区分批准、执行、验收三个状态；报告真实边界。</td></tr>
+<tr class="manual"><td>10 后续决策</td><td><span class="badge human">人工</span></td><td>无 · 项目决策</td><td>测试报告 → 修复或进一步验收安排</td><td>本案例尚未授权生产修复，也未宣布产品验收通过。</td></tr>
+</tbody></table></div>
+<div class="speaker">汇报提示：沿表格从左向右解释每一步。Skill 是方法归属；“Agent / 人工 / 工具”才是实际执行角色。</div>
+<div class="foot"><span>审批本身由人工负责；测试代码生成与命令调用由Agent负责</span><span>04 / 07</span></div>
+</section>
+
+<section class="page" id="actual" aria-labelledby="title5">
+<div class="eyebrow">05 / WHAT ACTUALLY HAPPENED</div><h2 id="title5">本次经过：纠正审批顺序，再建立有效执行记录</h2>
+<div class="note red"><strong>必须如实说明的偏差：</strong>Agent 最初把 content-review 安排成事后审阅，已生成代码并执行测试。用户明确纠正后，停止后续测试并提交 v1。这次批准不能追溯为此前执行的事先授权。</div>
+<div class="timeline">
+<div class="event alert"><span class="time">阶段 A · 顺序偏差</span><b>先生成并执行</b><p>已补24个用例，发现2个失败；尚未进行前置审批。</p><span class="badge agent">Agent</span></div>
+<div class="event"><span class="time">阶段 B · 用户纠正</span><b>明确先审后测</b><p>停止后续测试，整理需求、设计和已生成代码快照。</p><span class="badge human">人工指示</span></div>
+<div class="event ok"><span class="time">17:20:23 · 北京时间</span><b>v1 获得批准</b><p>审批人“武”，意见“通过”。内容涵盖设计及现有代码。</p><span class="badge human">人工决定</span></div>
+<div class="event ok"><span class="time">阶段 D · 执行前核对</span><b>10份文件匹配</b><p>逐项核验版本和哈希，无需重新生成已匹配的测试代码。</p><span class="badge agent">Agent / review</span></div>
+<div class="event ok"><span class="time">阶段 E · 审批后</span><b>完整回归与报告</b><p>重新执行两层测试，补齐覆盖率，保留此前日志。</p><span class="badge agent">Agent / 测试工作流</span></div>
+</div>
+<div class="grid two"><div class="approval"><h3>审批证据</h3><p><strong>决定：</strong>APPROVED · revision 1<br><strong>审批人：</strong>武（本地自填标签）<br><strong>意见：</strong>通过 · 问题答案：{}<br><strong>时间：</strong>2026-09-17T09:20:23.449+00:00</p><p><strong>reviewId</strong><br><code>REV-5d10a82ff17a4f77b7cd107a627d0fc4</code></p><p><strong>内容 SHA-256</strong><br><code>9e622edb325c50ec29a132a1e75280e561ab5bbbf7201a19c549dcc94ab76232</code></p></div><div class="card"><h3>实际流程与标准流程的差异</h3><p>标准流程将代码生成放在批准之后；本轮纠正时，代码已经生成，因此把现有代码一并送审，批准后核对一致性并重跑。</p><p>原有未提交 SOME/IP 用例保持原状并纳入回归，未计入本次新增24项。</p><p>未重写人工审批记录，未修改批准快照来掩盖原有PENDING状态或之前的顺序错误。</p><p class="muted small">跨 Skill 的前置审批顺序来自本次用户要求，不能描述为三个独立技能原本已自动强制执行该顺序。</p></div></div>
+<div class="foot"><span>事实来源：审批导出、匹配记录、审批后JUnit时间戳及运行日志</span><span>05 / 07</span></div>
+</section>
+
+<section class="page" id="results" aria-labelledby="title6">
+<div class="eyebrow">06 / VERIFIED RESULTS</div><h2 id="title6">新增用例发现缺陷，质量门禁保持真实</h2>
+<div class="grid two"><div><table class="results"><thead><tr><th>执行范围</th><th>总数</th><th>通过</th><th>失败</th><th>跳过</th></tr></thead><tbody><tr><td>JVM 完整回归</td><td>220</td><td>219</td><td class="fail">1</td><td>0</td></tr><tr><td>设备完整回归</td><td>75</td><td>69</td><td class="fail">1</td><td>5</td></tr><tr><td>本轮新增合计</td><td>24</td><td>22</td><td class="fail">2</td><td>0</td></tr></tbody></table><p class="small muted">新增项为JVM 18、设备6，已包含在完整回归中；不重复相加。参数化边界按实际执行实例计数。设备覆盖率恢复重跑不重复计入测试总数。</p><div class="finding"><span class="idx">1</span><p><strong>Mock 停止后的迟到任务抛空指针</strong><br>seq699停止后执行已捕获任务；seq700路径访问已清空的listener。</p></div><div class="finding"><span class="idx">2</span><p><strong>广播页面返回前台后未重新注册</strong><br>onStop清空binding；同一Activity的onStart因此跳过注册。</p></div></div>
+<div class="card"><h3>全模块覆盖率：未通过门禁</h3><div class="coverage-row"><div class="label"><span>行覆盖率 · 1274 / 1987</span><b>64.12% / 门槛90%</b></div><div class="track"><div class="fill" style="width:64.12%"></div><i class="threshold" style="left:90%"></i></div></div><div class="coverage-row"><div class="label"><span>分支覆盖率 · 426 / 792</span><b>53.79% / 门槛85%</b></div><div class="track"><div class="fill" style="width:53.79%"></div><i class="threshold" style="left:85%"></i></div></div><p class="small muted">蓝色为实际覆盖；红线为原有门槛。没有缩小生产代码分母。</p><p><strong>设备数据确实贡献覆盖：</strong>合并前28/55个可执行类，合并后50/55；已盘点41个Java源文件，无可执行源码静默漏出分母。</p><p><strong>Lint：</strong><span class="ok-text">0错误</span>，104警告。源码未变，审批后任务成功复用有效缓存产物。</p><p class="small muted">JaCoCo不涵盖C++/JNI本体。VHAL专项、单栏重选、数据库异步退出、5个远端/原生探针及性能验收仍有缺口。</p></div></div>
+<div class="note amber"><strong>状态要分开讲：</strong>内容审批 <b>APPROVED</b>；测试执行 <b>已完成、有失败</b>；覆盖率门禁 <b>FAILED</b>；产品整体验收 <b>未通过本轮证据确认</b>。本次没有修改生产代码。</div>
+<div class="foot"><span>环境：Debug · JDK21 · Gradle9.5.0 · Automotive API35 · user10</span><span>06 / 07</span></div>
+</section>
+
+<section class="page" id="handoff" aria-labelledby="title7">
+<div class="eyebrow">07 / DELIVERABLES &amp; DECISIONS</div><h2 id="title7">交付可追溯材料，把下一步决定交还人工</h2>
+<div class="grid"><div class="card sdlc"><span class="badge agent">Agent</span><h3 style="margin-top:12px">需求到用例有来源</h3><p>设计文档 → 六阶段输入基线 → TC-D01–14 → 24个执行实例。</p><p class="skill">sdlc-input-analysis<br>＋ android-unit-test-workflow</p></div><div class="card review"><span class="badge human">人工决定</span><h3 style="margin-top:12px">内容到批准有版本</h3><p>送审快照 → v1 / SHA-256 → 人工批准 → Agent一致性核验。</p><p class="skill">content-review</p></div><div class="card test"><span class="badge agent">Agent</span><h3 style="margin-top:12px">执行到结论有证据</h3><p>源码 → JUnit / JaCoCo / Lint → 统一报告 → 缺陷与剩余风险。</p><p class="skill">android-unit-test-workflow</p></div></div>
+<div class="link-list"><a href="../CarLauncher设计测试输入基线-20260917.md">输入基线与用例追溯表 ↗</a><a href="design-tests-prereview-20260917.approval.json">人工审批记录与不可变快照 ↗</a><a href="../../evidence/20260917-design-tests/summary-zh.html">统一测试报告与运行证据 ↗</a><a href="../CarLauncher设计测试结果-20260917.md">缺陷、覆盖率与后续交接 ↗</a></div>
+<div class="note"><strong>建议下一步：</strong>由人工决定是否安排两个缺陷的生产修复，以及是否扩大VHAL、数据库生命周期、远端集成等测试范围。获得对应授权后，Agent再实施修复或补测；验收预期发生变化时重新送审。</div>
+<p><strong>可用于汇报的结语：</strong>本次协作明确了需求分析、内容审批与测试执行的分工。人工控制预期和范围，Agent按Skill完成工作，工具输出可核验结果；发现失败时如实交付，保留继续修复的依据。</p>
+<p class="small muted">本页面无外部资源依赖，可单文件离线打开；证据链接需保留项目目录结构。日期与结果为2026-09-17快照。此页是流程汇报材料，不代替正式审批记录或测试证据。</p>
+<div class="foot"><span>键盘：← / → 翻页 · Home / End 跳转 · Esc 返回连续阅读</span><span>07 / 07</span></div>
+</section>
+</main>
+<script>
+(() => {
+ const pages=[...document.querySelectorAll('.page')];
+ const mode=document.getElementById('mode'), prev=document.getElementById('prev'), next=document.getElementById('next');
+ const count=document.getElementById('pageCount'), progress=document.getElementById('progress');
+ let index=0, presenting=false;
+ function update(){pages.forEach((p,i)=>p.classList.toggle('active',i===index));count.textContent=`${index+1} / ${pages.length}`;prev.disabled=index===0;next.disabled=index===pages.length-1;progress.style.width=`${(index+1)/pages.length*100}%`;}
+ function go(n){index=Math.max(0,Math.min(pages.length-1,n));update();if(presenting)window.scrollTo({top:0,behavior:'instant'});else pages[index].scrollIntoView({behavior:'smooth',block:'start'});}
+ function setMode(value){presenting=value;document.body.classList.toggle('presenting',presenting);mode.textContent=presenting?'连续阅读模式':'进入汇报模式';mode.setAttribute('aria-pressed',String(presenting));go(index);}
+ mode.addEventListener('click',()=>setMode(!presenting));prev.addEventListener('click',()=>go(index-1));next.addEventListener('click',()=>go(index+1));document.getElementById('print').addEventListener('click',()=>window.print());
+ document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();go(index+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(index-1);}if(e.key==='Home'){e.preventDefault();go(0);}if(e.key==='End'){e.preventDefault();go(pages.length-1);}if(e.key==='Escape'&&presenting)setMode(false);});
+ if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{if(presenting)return;const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);if(visible.length){index=pages.indexOf(visible[0].target);update();}},{rootMargin:'-70px 0px -35% 0px',threshold:[0,.2,.5]});pages.forEach(p=>observer.observe(p));}
+ update();
+})();
+</script>
+</body>
+</html>

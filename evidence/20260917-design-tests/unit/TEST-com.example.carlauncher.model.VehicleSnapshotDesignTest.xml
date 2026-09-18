@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.model.VehicleSnapshotDesignTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.229Z" hostname="DESKTOP-H9SISPA" time="0.011">
+  <properties/>
+  <testcase name="explicitNullOptionals_areOmittedRatherThanWrittenAsFalseOrZero" classname="com.example.carlauncher.model.VehicleSnapshotDesignTest" time="0.009"/>
+  <testcase name="reusedBuilder_doesNotMutatePublishedSnapshot" classname="com.example.carlauncher.model.VehicleSnapshotDesignTest" time="0.0"/>
+  <testcase name="sequenceAndTimestamp_preserveLongPrecisionOnWire" classname="com.example.carlauncher.model.VehicleSnapshotDesignTest" time="0.0"/>
+  <testcase name="injectedInvalidValues_preserveRawSpeedRpmAndBatteryButClampSoc" classname="com.example.carlauncher.model.VehicleSnapshotDesignTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

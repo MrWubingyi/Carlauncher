@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.model.EnumValueContractTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-17T08:43:39.301Z" hostname="DESKTOP-H9SISPA" time="0.0">
+  <properties/>
+  <testcase name="dataValidity_getValueMatchesWireContract" classname="com.example.carlauncher.model.EnumValueContractTest" time="0.0"/>
+  <testcase name="turnSignal_getValueMatchesWireContract" classname="com.example.carlauncher.model.EnumValueContractTest" time="0.0"/>
+  <testcase name="warningState_getValueMatchesWireContract" classname="com.example.carlauncher.model.EnumValueContractTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -27,6 +27,28 @@ public class FragmentLabActivityTest {
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
     }
 
+    @Test
+    public void recreate_keepsSelectedDetailAndBackStackWithoutAddingInitialFragments() {
+        try (ActivityScenario<FragmentLabActivity> scenario =
+                     ActivityScenario.launch(FragmentLabActivity.class)) {
+            scenario.onActivity(activity -> {
+                activity.onSettingSelected("Network");
+                activity.getSupportFragmentManager().executePendingTransactions();
+            });
+            java.util.concurrent.atomic.AtomicInteger backStack = new java.util.concurrent.atomic.AtomicInteger();
+            scenario.onActivity(activity -> backStack.set(
+                    activity.getSupportFragmentManager().getBackStackEntryCount()));
+            scenario.recreate();
+            scenario.onActivity(activity -> {
+                assertEquals("Network Detail", detailTitle(detailFragment(activity)));
+                assertEquals(backStack.get(),
+                        activity.getSupportFragmentManager().getBackStackEntryCount());
+                assertEquals(1, activity.getSupportFragmentManager().getFragments().stream()
+                        .filter(fragment -> "settings_detail".equals(fragment.getTag())).count());
+            });
+        }
+    }
+
     private static Fragment detailFragment(FragmentLabActivity activity) {
         return activity.getSupportFragmentManager()
                 .findFragmentByTag("settings_detail");

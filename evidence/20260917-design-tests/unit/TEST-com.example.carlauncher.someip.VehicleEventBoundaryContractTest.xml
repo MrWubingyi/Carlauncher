@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.311Z" hostname="DESKTOP-H9SISPA" time="0.013">
+  <properties/>
+  <testcase name="decode_enforcesApprovedBoundary[speedKph=-1, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.004"/>
+  <testcase name="decode_enforcesApprovedBoundary[speedKph=0, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[speedKph=200, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[speedKph=201, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[rpm=-1, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[rpm=0, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[rpm=8,000, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[rpm=8,001, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[soc=-1, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.001"/>
+  <testcase name="decode_enforcesApprovedBoundary[soc=0, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[soc=100, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[soc=101, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[engineCoolantTemp=-51, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[engineCoolantTemp=-50, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[engineCoolantTemp=200, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[engineCoolantTemp=201, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[evBatteryLevel=-1, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.001"/>
+  <testcase name="decode_enforcesApprovedBoundary[evBatteryLevel=0, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[evBatteryLevel=100, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[evBatteryLevel=101, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[headlightsState=-1, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.002"/>
+  <testcase name="decode_enforcesApprovedBoundary[headlightsState=0, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[headlightsState=100, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[headlightsState=101, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.001"/>
+  <testcase name="decode_enforcesApprovedBoundary[highBeamLightsState=-1, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[highBeamLightsState=0, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <testcase name="decode_enforcesApprovedBoundary[highBeamLightsState=100, accepted=true]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.001"/>
+  <testcase name="decode_enforcesApprovedBoundary[highBeamLightsState=101, accepted=false]" classname="com.example.carlauncher.someip.VehicleEventBoundaryContractTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

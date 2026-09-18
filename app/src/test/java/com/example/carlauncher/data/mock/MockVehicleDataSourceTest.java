@@ -266,4 +266,53 @@ public class MockVehicleDataSourceTest {
         assertSame(MockVehicleDataSource.class, dataSource.getClass());
         assertFalse(dataSource.isRunning());
     }
+
+    @Test
+    public void invalidWindow_lastFramePreservesRawBatteryAndClampsSoc() {
+        ControllableScheduler scheduler = new ControllableScheduler();
+        MockVehicleDataSource source = new MockVehicleDataSource(scheduler.scheduler());
+        RecordingListener listener = new RecordingListener();
+        try {
+            source.start(listener);
+            for (int i = 0; i < 699; i++) scheduler.tick();
+            VehicleState last = listener.states.get(698);
+            assertEquals(699L, last.getSequence());
+            assertEquals(100, last.getSoc());
+            assertEquals(Float.valueOf(150f), last.getEvBatteryLevel());
+            assertEquals(Float.valueOf(-999f), last.getEngineCoolantTemp());
+            assertEquals(DataStatus.INVALID, last.getDataStatus());
+        } finally {
+            source.stop();
+        }
+    }
+
+    @Test
+    public void stop_twiceEmitsStoppedOnceAndDropsAlreadyQueuedNormalFrame() {
+        ControllableScheduler scheduler = new ControllableScheduler();
+        MockVehicleDataSource source = new MockVehicleDataSource(scheduler.scheduler());
+        RecordingListener listener = new RecordingListener();
+        source.start(listener);
+        scheduler.tick();
+        source.stop();
+        source.stop();
+        scheduler.tick(); // An executor task captured before shutdown can still be in flight.
+        assertEquals(1, listener.states.size());
+        assertEquals(java.util.Arrays.asList(DataSourceStatus.CONNECTED, DataSourceStatus.STOPPED),
+                listener.statuses);
+        assertFalse(source.isRunning());
+    }
+
+    @Test
+    public void stop_beforeQueuedSilenceTransitionDoesNotDereferenceClearedListener() {
+        ControllableScheduler scheduler = new ControllableScheduler();
+        MockVehicleDataSource source = new MockVehicleDataSource(scheduler.scheduler());
+        RecordingListener listener = new RecordingListener();
+        source.start(listener);
+        for (int i = 0; i < 699; i++) scheduler.tick();
+        source.stop();
+        scheduler.tick(); // seq=700: same cancellation contract as an ordinary queued frame.
+        assertEquals(699, listener.states.size());
+        assertEquals(java.util.Arrays.asList(DataSourceStatus.CONNECTED, DataSourceStatus.STOPPED),
+                listener.statuses);
+    }
 }

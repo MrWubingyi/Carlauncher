@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="75" failures="1" errors="0" skipped="5" time="76.032" timestamp="2026-09-17T09:22:54" hostname="localhost">
+  <testsuite name="com.example.carlauncher.AppDrawerActivityTest" tests="3" failures="0" errors="0" skipped="0" time="3.14" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="clickCountButton_setsTextToFive" classname="com.example.carlauncher.AppDrawerActivityTest" time="1.194" />
+    <testcase name="launch_countMatchesVisibleLauncherItems" classname="com.example.carlauncher.AppDrawerActivityTest" time="0.935" />
+    <testcase name="countSurvivesRecreation_throughSavedInstanceState" classname="com.example.carlauncher.AppDrawerActivityTest" time="1.011" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.BroadcastLabActivityTest" tests="3" failures="1" errors="0" skipped="0" time="48.82" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="receiver_isUnregisteredAfterStop" classname="com.example.carlauncher.BroadcastLabActivityTest" time="46.254" />
+    <testcase name="powerBroadcasts_updateStatusText" classname="com.example.carlauncher.BroadcastLabActivityTest" time="0.953" />
+    <testcase name="sameInstanceReturningToForeground_registersReceiverAgain" classname="com.example.carlauncher.BroadcastLabActivityTest" time="1.613">
+      <failure>java.lang.AssertionError: onStart must register after the previous onStop
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at com.example.carlauncher.BroadcastLabActivityTest.lambda$sameInstanceReturningToForeground_registersReceiverAgain$4(BroadcastLabActivityTest.java:81)
+at com.example.carlauncher.BroadcastLabActivityTest$$ExternalSyntheticLambda3.perform(D8$$SyntheticClass:0)
+at androidx.test.core.app.ActivityScenario.lambda$onActivity$2$androidx-test-core-app-ActivityScenario(ActivityScenario.java:794)
+at androidx.test.core.app.ActivityScenario$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2614)
+at android.os.Handler.handleCallback(Handler.java:991)
+at android.os.Handler.dispatchMessage(Handler.java:102)
+at android.os.Looper.loopOnce(Looper.java:232)
+at android.os.Looper.loop(Looper.java:317)
+at android.app.ActivityThread.main(ActivityThread.java:8787)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:591)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:871)
+</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="com.example.carlauncher.CarLauncherApplicationTest" tests="1" failures="0" errors="0" skipped="0" time="0.003" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="applicationContext_isCarLauncherApplication_andAppliesSavedTheme" classname="com.example.carlauncher.CarLauncherApplicationTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.DatabaseLabActivityTest" tests="4" failures="0" errors="0" skipped="0" time="3.906" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="launch_opensDatabaseAndShowsStatus" classname="com.example.carlauncher.DatabaseLabActivityTest" time="0.909" />
+    <testcase name="insertButton_withEmptyInputs_showsValidationMessage" classname="com.example.carlauncher.DatabaseLabActivityTest" time="1.019" />
+    <testcase name="updateButton_withEmptyInputs_showsValidationMessage" classname="com.example.carlauncher.DatabaseLabActivityTest" time="1.009" />
+    <testcase name="deleteButton_withEmptyName_showsValidationMessage" classname="com.example.carlauncher.DatabaseLabActivityTest" time="0.969" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="0.003" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="useAppContext" classname="com.example.carlauncher.ExampleInstrumentedTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.FragmentLabActivityTest" tests="6" failures="0" errors="0" skipped="0" time="6.349" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="rapidSecondSelection_isDebounced" classname="com.example.carlauncher.FragmentLabActivityTest" time="1.005" />
+    <testcase name="menuButton_navigatesToDetailWithBackButton" classname="com.example.carlauncher.FragmentLabActivityTest" time="0.917" />
+    <testcase name="recreate_keepsSelectedDetailAndBackStackWithoutAddingInitialFragments" classname="com.example.carlauncher.FragmentLabActivityTest" time="1.072" />
+    <testcase name="launch_showsMenuFragment_inSinglePane" classname="com.example.carlauncher.FragmentLabActivityTest" time="0.989" />
+    <testcase name="detailBackButton_popsBackToMenu" classname="com.example.carlauncher.FragmentLabActivityTest" time="0.927" />
+    <testcase name="duplicateSelection_isIgnored" classname="com.example.carlauncher.FragmentLabActivityTest" time="1.439" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.FragmentLabActivityTwoPaneTest" tests="2" failures="0" errors="0" skipped="0" time="1.703" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="launch_showsMenuAndInitialDisplayDetail_inTwoPane" classname="com.example.carlauncher.FragmentLabActivityTwoPaneTest" time="0.829" />
+    <testcase name="menuNetworkSelection_replacesDetailPane" classname="com.example.carlauncher.FragmentLabActivityTwoPaneTest" time="0.874" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.MainActivityTest" tests="6" failures="0" errors="0" skipped="0" time="5.788" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="nextSnapshotWithMissingOptionals_clearsPreviouslyDisplayedValues" classname="com.example.carlauncher.MainActivityTest" time="1.168" />
+    <testcase name="someipFaultsRemainVisibleUntilEventRecovery" classname="com.example.carlauncher.MainActivityTest" time="0.665" />
+    <testcase name="attachedServiceWithNullState_rendersNoDataPlaceholders" classname="com.example.carlauncher.MainActivityTest" time="1.111" />
+    <testcase name="invalidSnapshot_displaysRawValuesAlongsideInvalidity" classname="com.example.carlauncher.MainActivityTest" time="1.083" />
+    <testcase name="attachedServiceWithVehicleState_rendersFullDashboard" classname="com.example.carlauncher.MainActivityTest" time="0.673" />
+    <testcase name="launch_showsInitialNoDataUi" classname="com.example.carlauncher.MainActivityTest" time="1.088" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.SettingsDetailFragmentTest" tests="4" failures="0" errors="0" skipped="0" time="3.907" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="networkDetail_showsTitle_andHidesThemeControls" classname="com.example.carlauncher.SettingsDetailFragmentTest" time="0.959" />
+    <testcase name="resetButton_restoresDefaultsAndUpdatesUi" classname="com.example.carlauncher.SettingsDetailFragmentTest" time="1.035" />
+    <testcase name="welcomeSwitchToggle_persistsDisabledState" classname="com.example.carlauncher.SettingsDetailFragmentTest" time="0.958" />
+    <testcase name="displayDetail_showsTitleAndDisplayControls" classname="com.example.carlauncher.SettingsDetailFragmentTest" time="0.955" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.ThemePreferencesContextTest" tests="8" failures="0" errors="0" skipped="0" time="0.057" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="resetToDefaults_clearsThemeAndWelcome" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.003" />
+    <testcase name="getColorTheme_withInvalidStoredValue_fallsBackAndClearsKey" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.005" />
+    <testcase name="saveAndApply_appliesNightModeToAppCompat" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.004" />
+    <testcase name="saveAndApply_persistsLightAndDarkThemes" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.002" />
+    <testcase name="applySavedTheme_appliesStoredTheme" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.03" />
+    <testcase name="getColorTheme_withoutStoredValue_returnsSystemDefault" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.005" />
+    <testcase name="saveAndApply_withInvalidTheme_persistsSystemFallback" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.004" />
+    <testcase name="welcomeEnabled_roundTripsPersistedValue" classname="com.example.carlauncher.ThemePreferencesContextTest" time="0.004" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.data.VehicleRepositoryTest" tests="7" failures="0" errors="0" skipped="0" time="0.048" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="refresh_afterAttach_reflectsUpdatedSnapshot" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.002" />
+    <testcase name="detachService_returnsToInitialState" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.003" />
+    <testcase name="refresh_withoutService_keepsInitialState" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.028" />
+    <testcase name="attachService_exposesServiceSnapshotAsUiState" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.004" />
+    <testcase name="attachService_withOnlineButInvalidValidity_mapsToInvalidData" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.004" />
+    <testcase name="initial_returnsUnboundDisconnectedState" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.004" />
+    <testcase name="someipWaitingErrorAndTimeoutRecoverOnResponse" classname="com.example.carlauncher.data.VehicleRepositoryTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.data.local.LabDatabaseHelperTest" tests="7" failures="0" errors="0" skipped="0" time="0.207" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="upgrade_populatedVersionOnePreservesIdValueAndTimestampWithEmptyNote" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.003" />
+    <testcase name="insert_duplicateUniqueName_throwsConstraintException" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.054" />
+    <testcase name="upgrade_fromVersionOne_addsNoteColumn" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.03" />
+    <testcase name="getWritableDatabase_createsSchemaWithVersionTwo" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.033" />
+    <testcase name="insert_thenQuery_roundTripsRecord" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.03" />
+    <testcase name="schema_omittedNoteDefaultsEmptyButExplicitNullIsRejected" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.003" />
+    <testcase name="updateAndDelete_affectMatchingRows" classname="com.example.carlauncher.data.local.LabDatabaseHelperTest" time="0.054" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.model.AppAdapterTest" tests="4" failures="0" errors="0" skipped="0" time="0.011" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="itemClick_dispatchesBoundAppToListener" classname="com.example.carlauncher.model.AppAdapterTest" time="0.004" />
+    <testcase name="getItemCount_reflectsItemListSize" classname="com.example.carlauncher.model.AppAdapterTest" time="0.002" />
+    <testcase name="itemClick_rootClickListenerIsPerItem" classname="com.example.carlauncher.model.AppAdapterTest" time="0.002" />
+    <testcase name="onBindViewHolder_setsNameAndPackageText" classname="com.example.carlauncher.model.AppAdapterTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.service.VehicleSendServiceTest" tests="6" failures="0" errors="0" skipped="0" time="0.019" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="clearStateListener_stopsNotifications" classname="com.example.carlauncher.service.VehicleSendServiceTest" time="0.003" />
+    <testcase name="onStartCommand_returnsStartSticky" classname="com.example.carlauncher.service.VehicleSendServiceTest" time="0.003" />
+    <testcase name="setStateListener_notifiesListenerOnMainLooper" classname="com.example.carlauncher.service.VehicleSendServiceTest" time="0.003" />
+    <testcase name="onBind_returnsLocalBinder_forSameService" classname="com.example.carlauncher.service.VehicleSendServiceTest" time="0.002" />
+    <testcase name="getDataValidity_withoutVehicleState_returnsIncomplete" classname="com.example.carlauncher.service.VehicleSendServiceTest" time="0.002" />
+    <testcase name="newInstance_hasStoppedDefaults" classname="com.example.carlauncher.service.VehicleSendServiceTest" time="0.006" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.someip.AndroidNetworkMonitorTest" tests="2" failures="0" errors="0" skipped="0" time="0.006" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="registrationIsIdempotentAndEmptyOrLatePlatformCallbacksStayDown" classname="com.example.carlauncher.someip.AndroidNetworkMonitorTest" time="0.003" />
+    <testcase name="registrationFailureDoesNotLeakOrAcceptCallbacks" classname="com.example.carlauncher.someip.AndroidNetworkMonitorTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.someip.VSomeIpNativeTransportConfigTest" tests="1" failures="0" errors="0" skipped="0" time="0.003" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="localAddressRewritePreservesRemoteEndpointAndDiscoveryMode" classname="com.example.carlauncher.someip.VSomeIpNativeTransportConfigTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.someip.VehicleEventProbeTest" tests="1" failures="0" errors="0" skipped="1" time="0.003" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="remoteEventsUpdateActivity" classname="com.example.carlauncher.someip.VehicleEventProbeTest" time="0.003">
+      <skipped />
+    </testcase>
+  </testsuite>
+  <testsuite name="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" tests="1" failures="0" errors="0" skipped="1" time="0.006" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="backgroundRebindAndRestartReleaseEachNativeClientOnce" classname="com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest" time="0.006">
+      <skipped />
+    </testcase>
+  </testsuite>
+  <testsuite name="com.example.carlauncher.someip.VsomeipClientTest" tests="1" failures="0" errors="0" skipped="0" time="0.003" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="callbacksUseMainThreadAndClearedListenersReceiveNoQueuedEvents" classname="com.example.carlauncher.someip.VsomeipClientTest" time="0.003" />
+  </testsuite>
+  <testsuite name="com.example.carlauncher.someip.VsomeipNativeProbeTest" tests="3" failures="0" errors="0" skipped="3" time="0.038" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="requestResponseRejectAndRestart" classname="com.example.carlauncher.someip.VsomeipNativeProbeTest" time="0.03">
+      <skipped />
+    </testcase>
+    <testcase name="nativeRegistrationAndRepeatedStopAreSafe" classname="com.example.carlauncher.someip.VsomeipNativeProbeTest" time="0.003">
+      <skipped />
+    </testcase>
+    <testcase name="discoversServiceAndExchangesMethods" classname="com.example.carlauncher.someip.VsomeipNativeProbeTest" time="0.005">
+      <skipped />
+    </testcase>
+  </testsuite>
+  <testsuite name="com.example.carlauncher.ui.CockpitViewModelTest" tests="4" failures="0" errors="0" skipped="0" time="0.012" timestamp="2026-09-17T09:22:54" hostname="localhost">
+    <properties>
+      <property name="device" value="Automotive_1408p_landscape(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="detachService_returnsToInitialState" classname="com.example.carlauncher.ui.CockpitViewModelTest" time="0.003" />
+    <testcase name="refresh_withoutAttachedService_staysInitial" classname="com.example.carlauncher.ui.CockpitViewModelTest" time="0.003" />
+    <testcase name="getUiState_neverNull_startsWithInitialState" classname="com.example.carlauncher.ui.CockpitViewModelTest" time="0.004" />
+    <testcase name="attachService_emitsBoundState" classname="com.example.carlauncher.ui.CockpitViewModelTest" time="0.002" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.someip.VehicleEventRejectionContractTest" tests="83" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.351Z" hostname="DESKTOP-H9SISPA" time="0.012">
+  <properties/>
+  <testcase name="decode_rejectsInvalidWireData[missing parkingBrake]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[null parkingBrake]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string parkingBrake]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[missing highBeamLightsState]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null highBeamLightsState]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string highBeamLightsState]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing speedKph]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null speedKph]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string speedKph]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[missing doorLock]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null doorLock]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string doorLock]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing soc]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null soc]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string soc]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing dataStatus]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null dataStatus]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[string dataStatus]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing version]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null version]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string version]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing rpm]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null rpm]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string rpm]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[missing evBatteryLevel]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null evBatteryLevel]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string evBatteryLevel]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing headlightsState]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null headlightsState]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[string headlightsState]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing warning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null warning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string warning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing beltWarning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null beltWarning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string beltWarning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing validity]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null validity]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string validity]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing seq]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null seq]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string seq]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing turnSignal]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null turnSignal]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string turnSignal]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing engineCoolantTemp]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null engineCoolantTemp]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string engineCoolantTemp]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing timestampMs]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null timestampMs]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string timestampMs]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[missing gear]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null gear]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[string gear]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[numeric boolean parkingBrake]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[numeric boolean doorLock]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[numeric boolean beltWarning]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[version=2]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[seq=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[seq=1.5]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[timestampMs=0]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[timestampMs=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[timestampMs=1.5]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[speedKph=1.5]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[rpm=1.5]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[soc=1.5]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[gear=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[gear=4]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[turnSignal=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[turnSignal=4]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[warning=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[warning=3]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[validity=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[validity=4]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[dataStatus=-1]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[dataStatus=5]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[rpm=2147483648]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[null payload]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[empty payload]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[array root]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[truncated object]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.001"/>
+  <testcase name="decode_rejectsInvalidWireData[4097 bytes]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <testcase name="decode_rejectsInvalidWireData[embedded NUL]" classname="com.example.carlauncher.someip.VehicleEventRejectionContractTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

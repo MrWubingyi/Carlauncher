@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.someip.VSomeIpDataSourceTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.275Z" hostname="DESKTOP-H9SISPA" time="0.007">
+  <properties/>
+  <testcase name="vehicleState_updatesLatestStateAndStatusConnected" classname="com.example.carlauncher.someip.VSomeIpDataSourceTest" time="0.005"/>
+  <testcase name="vehicleState_withNoData_updatesStatusNoData" classname="com.example.carlauncher.someip.VSomeIpDataSourceTest" time="0.001"/>
+  <testcase name="availabilityChanged_updatesStatusAndMonitor" classname="com.example.carlauncher.someip.VSomeIpDataSourceTest" time="0.0"/>
+  <testcase name="start_subscribesToTransportAndNotifiesConnecting" classname="com.example.carlauncher.someip.VSomeIpDataSourceTest" time="0.0"/>
+  <testcase name="stop_unsubscribesAndResetsStatus" classname="com.example.carlauncher.someip.VSomeIpDataSourceTest" time="0.0"/>
+  <testcase name="error_updatesStatusErrorAndNotifiesListener" classname="com.example.carlauncher.someip.VSomeIpDataSourceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

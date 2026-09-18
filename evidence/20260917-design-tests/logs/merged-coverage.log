@@ -1,0 +1,35 @@
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:generateDebugRFile UP-TO-DATE
+> Task :app:compileDebugKotlin NO-SOURCE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:fullDebugUnitTestCoverageReport
+
+> Task :app:verifyFullDebugUnitTestCoverage FAILED
+[ant:jacocoReport] Rule violated for bundle app: lines covered ratio is 0.64, but expected minimum is 0.90
+[ant:jacocoReport] Rule violated for bundle app: branches covered ratio is 0.53, but expected minimum is 0.85
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:verifyFullDebugUnitTestCoverage' (registered in build file 'app\build.gradle.kts').
+> A failure occurred while executing org.gradle.internal.jacoco.JacocoCoverageAction
+   > Rule violated for bundle app: lines covered ratio is 0.64, but expected minimum is 0.90
+     Rule violated for bundle app: branches covered ratio is 0.53, but expected minimum is 0.85
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+12 actionable tasks: 2 executed, 10 up-to-date

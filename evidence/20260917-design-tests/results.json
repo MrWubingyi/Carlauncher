@@ -1,0 +1,961 @@
+{
+  "createdAt": "2026-09-17T17:27:29.673511+08:00",
+  "baseline_unit": {
+    "suites": 21,
+    "tests": 202,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\baseline-unit",
+    "valid": true
+  },
+  "baseline_device": {
+    "suites": 1,
+    "tests": 69,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 5,
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\baseline-instrumentation",
+    "valid": true
+  },
+  "unit": {
+    "suites": 23,
+    "tests": 220,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\unit",
+    "valid": true
+  },
+  "instrumentation": {
+    "suites": 1,
+    "tests": 75,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 5,
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\instrumentation",
+    "valid": true
+  },
+  "coverage": {
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\jacoco.xml",
+    "valid": true,
+    "counters": {
+      "instruction": {
+        "missed": 2822,
+        "covered": 5474,
+        "total": 8296,
+        "ratio": 0.6598360655737705
+      },
+      "branch": {
+        "missed": 366,
+        "covered": 426,
+        "total": 792,
+        "ratio": 0.5378787878787878
+      },
+      "line": {
+        "missed": 713,
+        "covered": 1274,
+        "total": 1987,
+        "ratio": 0.6411675893306492
+      },
+      "complexity": {
+        "missed": 354,
+        "covered": 472,
+        "total": 826,
+        "ratio": 0.5714285714285714
+      },
+      "method": {
+        "missed": 122,
+        "covered": 296,
+        "total": 418,
+        "ratio": 0.7081339712918661
+      },
+      "class": {
+        "missed": 5,
+        "covered": 50,
+        "total": 55,
+        "ratio": 0.9090909090909091
+      }
+    }
+  },
+  "unit_coverage": {
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\unit-only-jacoco.xml",
+    "valid": true,
+    "counters": {
+      "instruction": {
+        "missed": 5635,
+        "covered": 2661,
+        "total": 8296,
+        "ratio": 0.3207569913211186
+      },
+      "branch": {
+        "missed": 506,
+        "covered": 286,
+        "total": 792,
+        "ratio": 0.3611111111111111
+      },
+      "line": {
+        "missed": 1435,
+        "covered": 552,
+        "total": 1987,
+        "ratio": 0.2778057372924006
+      },
+      "complexity": {
+        "missed": 550,
+        "covered": 276,
+        "total": 826,
+        "ratio": 0.3341404358353511
+      },
+      "method": {
+        "missed": 274,
+        "covered": 144,
+        "total": 418,
+        "ratio": 0.3444976076555024
+      },
+      "class": {
+        "missed": 27,
+        "covered": 28,
+        "total": 55,
+        "ratio": 0.509090909090909
+      }
+    }
+  },
+  "lint": {
+    "path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\lint.xml",
+    "html_path": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\evidence\\20260917-design-tests\\lint.html",
+    "valid": true,
+    "total": 104,
+    "fatal": 0,
+    "errors": 0,
+    "warnings": 104,
+    "information": 0,
+    "other": 0
+  },
+  "failures": [
+    {
+      "layer": "unit",
+      "test": "com.example.carlauncher.data.mock.MockVehicleDataSourceTest.stop_beforeQueuedSilenceTransitionDoesNotDereferenceClearedListener",
+      "detail": "java.lang.NullPointerException: Cannot invoke \"com.example.carlauncher.data.VehicleDataSource$Listener.onSourceStatusChanged(com.example.carlauncher.data.DataSourceStatus)\" because \"this.listener\" is null\n\tat com.example.carlauncher.data.mock.MockVehicleDataSource.generateState(MockVehicleDataSource.java:84)\n\tat com.example.carlauncher.data.mock.MockVehicleDataSourceTest$ControllableScheduler.tick(MockVehicleDataSourceTest.java:93)\n\tat com.example.carlauncher.data.mock.MockVehicleDataSourceTest.stop_beforeQueuedSilenceTransitionDoesNotDereferenceClearedListener(MockVehicleDataSourceTest.java:313)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)\n\tat org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)\n\tat org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:413)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:137)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:115)\n\tat org.gradle.api.internal.tasks.testing.junit.JUnitTestExecutor.runRequest(JUnitTestExecutor.java:175)\n\tat org.gradle.api.internal.tasks.testing.junit.JUnitTestExecutor.accept(JUnitTestExecutor.java:84)\n\tat org.gradle.api.internal.tasks.testing.junit.JUnitTestExecutor.accept(JUnitTestExecutor.java:47)\n\tat org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestDefinitionProcessor.processTestDefinition(AbstractJUnitTestDefinitionProcessor.java:65)\n\tat org.gradle.api.internal.tasks.testing.SuiteTestDefinitionProcessor.processTestDefinition(SuiteTestDefinitionProcessor.java:53)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.gradle.internal.dispatch.MethodInvocation.invokeOn(MethodInvocation.java:77)\n\tat org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:28)\n\tat org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:19)\n\tat org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)\n\tat org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88)\n\tat jdk.proxy2/jdk.proxy2.$Proxy6.processTestDefinition(Unknown Source)\n\tat org.gradle.api.internal.tasks.testing.worker.TestWorker$2.run(TestWorker.java:178)\n\tat org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:126)\n\tat org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)\n\tat org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)\n\tat org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)\n\tat org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122)\n\tat org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72)\n\tat worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)\n\tat worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)\n"
+    },
+    {
+      "layer": "instrumentation",
+      "test": "com.example.carlauncher.BroadcastLabActivityTest.sameInstanceReturningToForeground_registersReceiverAgain",
+      "detail": "java.lang.AssertionError: onStart must register after the previous onStop\nat org.junit.Assert.fail(Assert.java:89)\nat org.junit.Assert.assertTrue(Assert.java:42)\nat com.example.carlauncher.BroadcastLabActivityTest.lambda$sameInstanceReturningToForeground_registersReceiverAgain$4(BroadcastLabActivityTest.java:81)\nat com.example.carlauncher.BroadcastLabActivityTest$$ExternalSyntheticLambda3.perform(D8$$SyntheticClass:0)\nat androidx.test.core.app.ActivityScenario.lambda$onActivity$2$androidx-test-core-app-ActivityScenario(ActivityScenario.java:794)\nat androidx.test.core.app.ActivityScenario$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)\nat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)\nat java.util.concurrent.FutureTask.run(FutureTask.java:264)\nat android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2614)\nat android.os.Handler.handleCallback(Handler.java:991)\nat android.os.Handler.dispatchMessage(Handler.java:102)\nat android.os.Looper.loopOnce(Looper.java:232)\nat android.os.Looper.loop(Looper.java:317)\nat android.app.ActivityThread.main(ActivityThread.java:8787)\nat java.lang.reflect.Method.invoke(Native Method)\nat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:591)\nat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:871)\n"
+    }
+  ],
+  "skipped": [
+    "com.example.carlauncher.someip.VehicleEventProbeTest.remoteEventsUpdateActivity",
+    "com.example.carlauncher.someip.VehicleServiceLifecycleProbeTest.backgroundRebindAndRestartReleaseEachNativeClientOnce",
+    "com.example.carlauncher.someip.VsomeipNativeProbeTest.requestResponseRejectAndRestart",
+    "com.example.carlauncher.someip.VsomeipNativeProbeTest.nativeRegistrationAndRepeatedStopAreSafe",
+    "com.example.carlauncher.someip.VsomeipNativeProbeTest.discoversServiceAndExchangesMethods"
+  ],
+  "inventory": [
+    {
+      "source": "com/example/carlauncher/AppDrawerActivity.java",
+      "runtime": "instrumentation",
+      "line": [
+        67,
+        22
+      ],
+      "branch": [
+        7,
+        3
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/AppDrawerActivityTest.java"
+      ],
+      "device_added_lines": 67
+    },
+    {
+      "source": "com/example/carlauncher/BroadcastLabActivity.java",
+      "runtime": "instrumentation",
+      "line": [
+        36,
+        1
+      ],
+      "branch": [
+        8,
+        2
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/BroadcastLabActivityTest.java"
+      ],
+      "device_added_lines": 36
+    },
+    {
+      "source": "com/example/carlauncher/CarLauncherApplication.java",
+      "runtime": "instrumentation",
+      "line": [
+        4,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/CarLauncherApplicationTest.java"
+      ],
+      "device_added_lines": 4
+    },
+    {
+      "source": "com/example/carlauncher/data/DataSourceStatus.java",
+      "runtime": "JVM",
+      "line": [
+        7,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/ui/CockpitUiStateTest.java",
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/service/VehicleSendServiceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/testing/StubVehicleSendService.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/DataStatus.java",
+      "runtime": "JVM",
+      "line": [
+        8,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/data/DataStatusTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventBoundaryContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/local/LabDatabaseContract.java",
+      "runtime": "instrumentation",
+      "line": [
+        0,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/data/local/LabDatabaseHelperTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/local/LabDatabaseHelper.java",
+      "runtime": "instrumentation",
+      "line": [
+        15,
+        0
+      ],
+      "branch": [
+        1,
+        1
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/DatabaseLabActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/local/LabDatabaseHelperTest.java"
+      ],
+      "device_added_lines": 15
+    },
+    {
+      "source": "com/example/carlauncher/data/mock/MockVehicleDataSource.java",
+      "runtime": "JVM",
+      "line": [
+        100,
+        0
+      ],
+      "branch": [
+        58,
+        2
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/SourceType.java",
+      "runtime": "JVM",
+      "line": [
+        3,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/VehicleDataSource.java",
+      "runtime": "接口：由实现类行为测试验证",
+      "line": [
+        0,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/VehicleDataSourceFactory.java",
+      "runtime": "instrumentation",
+      "line": [
+        2,
+        1
+      ],
+      "branch": [
+        1,
+        1
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/VehicleProtocol.java",
+      "runtime": "JVM",
+      "line": [
+        3,
+        0
+      ],
+      "branch": [
+        12,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/data/VehicleProtocolTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/data/VehicleRepository.java",
+      "runtime": "instrumentation",
+      "line": [
+        16,
+        0
+      ],
+      "branch": [
+        2,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java"
+      ],
+      "device_added_lines": 16
+    },
+    {
+      "source": "com/example/carlauncher/data/vhal/VhalVehicleDataSource.java",
+      "runtime": "instrumentation",
+      "line": [
+        0,
+        216
+      ],
+      "branch": [
+        0,
+        124
+      ],
+      "present": true,
+      "related": [],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/DatabaseLabActivity.java",
+      "runtime": "instrumentation",
+      "line": [
+        57,
+        111
+      ],
+      "branch": [
+        6,
+        22
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/DatabaseLabActivityTest.java"
+      ],
+      "device_added_lines": 57
+    },
+    {
+      "source": "com/example/carlauncher/FragmentLabActivity.java",
+      "runtime": "instrumentation",
+      "line": [
+        32,
+        8
+      ],
+      "branch": [
+        11,
+        3
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTwoPaneTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/SettingsDetailFragmentTest.java"
+      ],
+      "device_added_lines": 32
+    },
+    {
+      "source": "com/example/carlauncher/MainActivity.java",
+      "runtime": "instrumentation",
+      "line": [
+        145,
+        67
+      ],
+      "branch": [
+        30,
+        23
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleEventProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleServiceLifecycleProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/testing/StubVehicleSendService.java"
+      ],
+      "device_added_lines": 145
+    },
+    {
+      "source": "com/example/carlauncher/model/AppAdapter.java",
+      "runtime": "instrumentation",
+      "line": [
+        22,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/model/AppAdapterTest.java"
+      ],
+      "device_added_lines": 22
+    },
+    {
+      "source": "com/example/carlauncher/model/AppInfo.java",
+      "runtime": "instrumentation",
+      "line": [
+        9,
+        1
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/model/AppAdapterTest.java"
+      ],
+      "device_added_lines": 9
+    },
+    {
+      "source": "com/example/carlauncher/model/DataValidity.java",
+      "runtime": "JVM",
+      "line": [
+        7,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/model/EnumValueContractTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleDesignBoundaryTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleSnapshotDesignTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateValidatorTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventBoundaryContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/ui/CockpitUiStateTest.java",
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/service/VehicleSendServiceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/testing/StubVehicleSendService.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/model/Gear.java",
+      "runtime": "JVM",
+      "line": [
+        13,
+        0
+      ],
+      "branch": [
+        6,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/model/GearTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleDesignBoundaryTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleSnapshotDesignTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateValidatorTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/model/TurnSignal.java",
+      "runtime": "JVM",
+      "line": [
+        7,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/model/EnumValueContractTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/model/VehicleState.java",
+      "runtime": "JVM",
+      "line": [
+        88,
+        18
+      ],
+      "branch": [
+        10,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/model/VehicleDesignBoundaryTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleSnapshotDesignTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateValidatorTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventBoundaryContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventLengthContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpNativeTransportTest.java",
+        "app/src/test/java/com/example/carlauncher/ui/CockpitUiStateTest.java",
+        "app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/service/VehicleSendServiceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleEventProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleServiceLifecycleProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/testing/StubVehicleSendService.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/model/VehicleStateValidator.java",
+      "runtime": "JVM",
+      "line": [
+        7,
+        0
+      ],
+      "branch": [
+        8,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/model/VehicleDesignBoundaryTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateValidatorTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/model/WarningState.java",
+      "runtime": "JVM",
+      "line": [
+        6,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/model/EnumValueContractTest.java",
+        "app/src/test/java/com/example/carlauncher/model/VehicleStateTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/service/VehicleSendService.java",
+      "runtime": "instrumentation",
+      "line": [
+        32,
+        100
+      ],
+      "branch": [
+        9,
+        37
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/service/VehicleSendServiceTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleEventProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleServiceLifecycleProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/testing/StubVehicleSendService.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 32
+    },
+    {
+      "source": "com/example/carlauncher/SettingsDetailFragment.java",
+      "runtime": "instrumentation",
+      "line": [
+        93,
+        6
+      ],
+      "branch": [
+        7,
+        5
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/SettingsDetailFragmentTest.java"
+      ],
+      "device_added_lines": 93
+    },
+    {
+      "source": "com/example/carlauncher/SettingsMenuFragment.java",
+      "runtime": "instrumentation",
+      "line": [
+        37,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTwoPaneTest.java"
+      ],
+      "device_added_lines": 37
+    },
+    {
+      "source": "com/example/carlauncher/someip/AndroidNetworkMonitor.java",
+      "runtime": "instrumentation",
+      "line": [
+        59,
+        20
+      ],
+      "branch": [
+        19,
+        27
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/someip/AndroidNetworkMonitorTest.java"
+      ],
+      "device_added_lines": 59
+    },
+    {
+      "source": "com/example/carlauncher/someip/NativeVehicleTransport.java",
+      "runtime": "接口：由实现类行为测试验证",
+      "line": [
+        0,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpNativeTransportTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/someip/NetworkStateTracker.java",
+      "runtime": "JVM",
+      "line": [
+        27,
+        0
+      ],
+      "branch": [
+        28,
+        2
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/NetworkStateTrackerTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/someip/SomeipConnectionMonitor.java",
+      "runtime": "JVM",
+      "line": [
+        41,
+        0
+      ],
+      "branch": [
+        24,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/SomeipConnectionMonitorTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/SomeipEventWatchdogContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java",
+        "app/src/test/java/com/example/carlauncher/ui/CockpitUiStateTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleEventProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleServiceLifecycleProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/testing/StubVehicleSendService.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/someip/SomeipPayloadCodec.java",
+      "runtime": "JVM",
+      "line": [
+        19,
+        0
+      ],
+      "branch": [
+        8,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/SomeipPayloadCodecTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VsomeipNativeProbeTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/someip/VehicleEventCodec.java",
+      "runtime": "JVM",
+      "line": [
+        45,
+        0
+      ],
+      "branch": [
+        57,
+        3
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventBoundaryContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventCodecTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventLengthContractTest.java",
+        "app/src/test/java/com/example/carlauncher/someip/VehicleEventRejectionContractTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/someip/VsomeipClient.java",
+      "runtime": "instrumentation",
+      "line": [
+        31,
+        52
+      ],
+      "branch": [
+        21,
+        48
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/someip/VehicleServiceLifecycleProbeTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VsomeipClientTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VsomeipNativeProbeTest.java"
+      ],
+      "device_added_lines": 27
+    },
+    {
+      "source": "com/example/carlauncher/someip/VSomeIpDataSource.java",
+      "runtime": "instrumentation",
+      "line": [
+        63,
+        18
+      ],
+      "branch": [
+        18,
+        22
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpDataSourceTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/someip/VSomeIpNativeTransport.java",
+      "runtime": "JVM 决策 + instrumentation 平台边界",
+      "line": [
+        55,
+        72
+      ],
+      "branch": [
+        24,
+        40
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/someip/VSomeIpNativeTransportTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/someip/VSomeIpNativeTransportConfigTest.java"
+      ],
+      "device_added_lines": 13
+    },
+    {
+      "source": "com/example/carlauncher/ThemePreferences.java",
+      "runtime": "JVM 决策 + instrumentation 平台边界",
+      "line": [
+        52,
+        0
+      ],
+      "branch": [
+        22,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/ThemePreferencesTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/CarLauncherApplicationTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/SettingsDetailFragmentTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/ThemePreferencesContextTest.java"
+      ],
+      "device_added_lines": 42
+    },
+    {
+      "source": "com/example/carlauncher/ui/CockpitConnectionState.java",
+      "runtime": "JVM",
+      "line": [
+        14,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/ui/CockpitConnectionStateTest.java",
+        "app/src/test/java/com/example/carlauncher/ui/CockpitUiStateTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 0
+    },
+    {
+      "source": "com/example/carlauncher/ui/CockpitUiState.java",
+      "runtime": "JVM",
+      "line": [
+        37,
+        0
+      ],
+      "branch": [
+        29,
+        1
+      ],
+      "present": true,
+      "related": [
+        "app/src/test/java/com/example/carlauncher/ui/CockpitUiStateTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/data/VehicleRepositoryTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 1
+    },
+    {
+      "source": "com/example/carlauncher/ui/CockpitViewModel.java",
+      "runtime": "instrumentation",
+      "line": [
+        15,
+        0
+      ],
+      "branch": [
+        0,
+        0
+      ],
+      "present": true,
+      "related": [
+        "app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java",
+        "app/src/androidTest/java/com/example/carlauncher/ui/CockpitViewModelTest.java"
+      ],
+      "device_added_lines": 15
+    }
+  ],
+  "gate": "FAILED",
+  "overall": "FAILED",
+  "new_jvm_cases": 18,
+  "new_instrumentation_cases": 6,
+  "approval": {
+    "reviewId": "REV-5d10a82ff17a4f77b7cd107a627d0fc4",
+    "revision": 1,
+    "contentSha256": "9e622edb325c50ec29a132a1e75280e561ab5bbbf7201a19c549dcc94ab76232",
+    "outcome": "APPROVED",
+    "reviewer": "武",
+    "decidedAt": "2026-09-17T09:20:23.449+00:00",
+    "comment": "通过",
+    "answers": {}
+  }
+}

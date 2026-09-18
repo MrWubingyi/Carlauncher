@@ -134,6 +134,49 @@ public class MainActivityTest {
     }
 
     @Test
+    public void invalidSnapshot_displaysRawValuesAlongsideInvalidity() {
+        VehicleState state = new VehicleState.Builder().setVehSpeedKph(255).setEngRpm(9999)
+                .setSoc(150).setEvBatteryLevel(150f).setEngineCoolantTemp(-999f)
+                .setValidity(DataValidity.INVALID_SPEED).build();
+        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+            scenario.onActivity(activity -> {
+                new ViewModelProvider(activity).get(CockpitViewModel.class)
+                        .attachService(new StubVehicleSendService().withLatestState(state)
+                                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
+                                .withValidity(DataValidity.INVALID_SPEED));
+                assertEquals("255 km/h", text(activity, R.id.speedText));
+                assertEquals("9999 rpm", text(activity, R.id.rpmText));
+                assertEquals("100%", text(activity, R.id.batteryText));
+                assertEquals("150 %", text(activity, R.id.evBatteryText));
+                assertEquals("-999 °C", text(activity, R.id.coolantTempText));
+                assertEquals("INVALID_SPEED", text(activity, R.id.validityText));
+                assertEquals("SOME/IP ONLINE / INVALID DATA", text(activity, R.id.connectionStatusText));
+            });
+        }
+    }
+
+    @Test
+    public void nextSnapshotWithMissingOptionals_clearsPreviouslyDisplayedValues() {
+        StubVehicleSendService service = new StubVehicleSendService()
+                .withLatestState(new VehicleState.Builder().setDoorLock(true)
+                        .setEngineCoolantTemp(90f).setEvBatteryLevel(70f).build());
+        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
+            scenario.onActivity(activity -> {
+                CockpitViewModel model = new ViewModelProvider(activity).get(CockpitViewModel.class);
+                model.attachService(service);
+                assertEquals("LOCKED", text(activity, R.id.doorLockText));
+                assertEquals("90 °C", text(activity, R.id.coolantTempText));
+                assertEquals("70 %", text(activity, R.id.evBatteryText));
+                service.withLatestState(new VehicleState.Builder().setDoorLock(null).build());
+                model.refresh();
+                assertEquals("--", text(activity, R.id.doorLockText));
+                assertEquals("-- °C", text(activity, R.id.coolantTempText));
+                assertEquals("-- %", text(activity, R.id.evBatteryText));
+            });
+        }
+    }
+
+    @Test
     public void someipFaultsRemainVisibleUntilEventRecovery() {
         StubVehicleSendService service = new StubVehicleSendService()
                 .withSomeipAvailable(true, 0);

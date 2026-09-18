@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.ThemePreferencesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.180Z" hostname="DESKTOP-H9SISPA" time="0.002">
+  <properties/>
+  <testcase name="themeToPosition_mapsThemes" classname="com.example.carlauncher.ThemePreferencesTest" time="0.001"/>
+  <testcase name="themeMapping_roundTrips" classname="com.example.carlauncher.ThemePreferencesTest" time="0.0"/>
+  <testcase name="themeToPosition_invalidOrNullDefaultsToSystem" classname="com.example.carlauncher.ThemePreferencesTest" time="0.0"/>
+  <testcase name="positionToColorTheme_outOfRangeDefaultsToSystem" classname="com.example.carlauncher.ThemePreferencesTest" time="0.001"/>
+  <testcase name="positionToColorTheme_mapsPositions" classname="com.example.carlauncher.ThemePreferencesTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

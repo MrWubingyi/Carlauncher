@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.someip.VehicleEventLengthContractTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.339Z" hostname="DESKTOP-H9SISPA" time="0.001">
+  <properties/>
+  <testcase name="decode_acceptsExactly4096Bytes" classname="com.example.carlauncher.someip.VehicleEventLengthContractTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

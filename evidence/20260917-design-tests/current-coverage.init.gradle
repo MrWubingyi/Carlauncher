@@ -1,0 +1,19 @@
+// This run uses explicit current execution files, never the historical *.ec glob.
+import org.gradle.testing.jacoco.tasks.JacocoReport
+import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification
+
+gradle.projectsEvaluated {
+    def app = gradle.rootProject.project(':app')
+    def files = [app.file('build/jacoco/testDebugUnitTest.exec')]
+    if (!gradle.startParameter.projectProperties.containsKey('designUnitOnly')) {
+        files.add(app.file('../build/design-tests/current-device.ec'))
+    }
+    app.tasks.withType(JacocoReport).configureEach {
+        dependsOn(app.tasks.named('compileDebugJavaWithJavac'))
+        executionData.setFrom(files)
+    }
+    app.tasks.withType(JacocoCoverageVerification).configureEach {
+        dependsOn(app.tasks.named('compileDebugJavaWithJavac'))
+        executionData.setFrom(files)
+    }
+}

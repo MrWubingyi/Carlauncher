@@ -1,0 +1,13 @@
+{
+  "JUnit测试": {
+    "测试套件数": 23,
+    "测试数": 220,
+    "失败数": 1,
+    "错误数": 0,
+    "跳过数": 0,
+    "路径": "D:\\Android\\AndroidStudioProjects\\CarLauncher\\app\\build\\test-results\\testDebugUnitTest",
+    "有效": true
+  },
+  "Gradle任务": ":app:testDebugUnitTest",
+  "Gradle退出码": 1
+}

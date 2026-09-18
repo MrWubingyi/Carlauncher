@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.model.VehicleDesignBoundaryTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.217Z" hostname="DESKTOP-H9SISPA" time="0.009">
+  <properties/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[0: speed=-0.5, gear=D, validity=VALID]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.007"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[1: speed=-0.5, gear=D, validity=INVALID_SPEED]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[2: speed=0, gear=P, validity=VALID]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[3: speed=200, gear=D, validity=VALID]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[4: speed=200.5, gear=D, validity=VALID]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[5: speed=200.5, gear=D, validity=INVALID_SPEED]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[6: speed=340,282,346,638,528,860,000,000,000,000,000,000,000, gear=D, validity=INVALID_SPEED]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[7: speed=-340,282,346,638,528,860,000,000,000,000,000,000,000, gear=D, validity=INVALID_SPEED]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[8: speed=NaN, gear=null, validity=INVALID_SPEED]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[9: speed=∞, gear=null, validity=INVALID_SPEED]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.001"/>
+  <testcase name="validate_respectsRoundedBoundaryAndErrorPrecedence[10: speed=0, gear=null, validity=INCOMPLETE]" classname="com.example.carlauncher.model.VehicleDesignBoundaryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

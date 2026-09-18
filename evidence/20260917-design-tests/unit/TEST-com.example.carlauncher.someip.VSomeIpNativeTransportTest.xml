@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.carlauncher.someip.VSomeIpNativeTransportTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-09-17T09:21:32.287Z" hostname="DESKTOP-H9SISPA" time="0.017">
+  <properties/>
+  <testcase name="equalTimestamp_rejectsDuplicateAndLowerSequence" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.004"/>
+  <testcase name="sequenceGap_acceptsLatestCompleteSnapshot" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.001"/>
+  <testcase name="removedListener_receivesNoFurtherCallbacks" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.0"/>
+  <testcase name="onVehicleEvent_filtersOutStaleTimestamps" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.001"/>
+  <testcase name="stop_discardsLateCallbacks" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.009"/>
+  <testcase name="rediscovery_acceptsNewPublisherFirstFrame" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.001"/>
+  <testcase name="onAvailable_notifiesListener" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.0"/>
+  <testcase name="newerTimestamp_acceptsRestartedSequenceWithoutDisconnect" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.001"/>
+  <testcase name="onVehicleEvent_decodesAndFiltersOutStaleSequences" classname="com.example.carlauncher.someip.VSomeIpNativeTransportTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

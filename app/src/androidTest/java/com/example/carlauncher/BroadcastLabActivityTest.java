@@ -67,6 +67,25 @@ public class BroadcastLabActivityTest {
         }
     }
 
+    @Test
+    public void sameInstanceReturningToForeground_registersReceiverAgain() {
+        try (ActivityScenario<BroadcastLabActivity> scenario =
+                     ActivityScenario.launch(BroadcastLabActivity.class)) {
+            java.util.concurrent.atomic.AtomicReference<BroadcastLabActivity> original =
+                    new java.util.concurrent.atomic.AtomicReference<>();
+            scenario.onActivity(original::set);
+            scenario.moveToState(Lifecycle.State.CREATED);
+            scenario.moveToState(Lifecycle.State.RESUMED);
+            scenario.onActivity(activity -> {
+                org.junit.Assert.assertSame(original.get(), activity);
+                org.junit.Assert.assertTrue("onStart must register after the previous onStop",
+                        receiverRegistered(activity));
+                dispatchPowerAction(activity, Intent.ACTION_POWER_CONNECTED);
+                assertEquals("Power connected", text(activity));
+            });
+        }
+    }
+
     private static boolean receiverRegistered(BroadcastLabActivity activity) {
         try {
             java.lang.reflect.Field field = BroadcastLabActivity.class

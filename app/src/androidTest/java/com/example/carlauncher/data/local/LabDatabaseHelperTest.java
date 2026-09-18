@@ -180,6 +180,50 @@ public class LabDatabaseHelperTest {
         return database.insertOrThrow(TABLE, null, values);
     }
 
+    @Test
+    public void upgrade_populatedVersionOnePreservesIdValueAndTimestampWithEmptyNote() {
+        try (SQLiteDatabase database = SQLiteDatabase.create(null);
+             LabDatabaseHelper helper = new LabDatabaseHelper(context())) {
+            database.execSQL("CREATE TABLE " + TABLE + " ("
+                    + "_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, "
+                    + "value TEXT NOT NULL, created_at INTEGER NOT NULL)");
+            database.execSQL("INSERT INTO " + TABLE
+                    + " (_id,name,value,created_at) VALUES (41,'saved','80',1234)");
+            helper.onUpgrade(database, 1, 2);
+            try (Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE, null)) {
+                assertEquals(1, cursor.getCount());
+                assertTrue(cursor.moveToFirst());
+                assertEquals(41, cursor.getLong(cursor.getColumnIndexOrThrow("_id")));
+                assertEquals("saved", cursor.getString(cursor.getColumnIndexOrThrow("name")));
+                assertEquals("80", cursor.getString(cursor.getColumnIndexOrThrow("value")));
+                assertEquals(1234, cursor.getLong(cursor.getColumnIndexOrThrow("created_at")));
+                assertEquals("", cursor.getString(cursor.getColumnIndexOrThrow("note")));
+            }
+            assertTrue(insertRecord(database, "next", "81", "note") > 41);
+        }
+    }
+
+    @Test
+    public void schema_omittedNoteDefaultsEmptyButExplicitNullIsRejected() {
+        try (SQLiteDatabase database = SQLiteDatabase.create(null);
+             LabDatabaseHelper helper = new LabDatabaseHelper(context())) {
+            helper.onCreate(database);
+            database.execSQL("INSERT INTO " + TABLE
+                    + " (name,value,created_at) VALUES ('default','v',1)");
+            try (Cursor cursor = database.rawQuery("SELECT note FROM " + TABLE, null)) {
+                assertTrue(cursor.moveToFirst());
+                assertEquals("", cursor.getString(0));
+            }
+            try {
+                database.execSQL("INSERT INTO " + TABLE
+                        + " (name,value,created_at,note) VALUES ('null','v',2,NULL)");
+                fail("Explicit NULL must not bypass the note NOT NULL contract");
+            } catch (SQLiteConstraintException expected) {
+                // The database, rather than UI validation, enforces the schema contract.
+            }
+        }
+    }
+
     private static boolean hasColumn(SQLiteDatabase database, String column) {
         try (Cursor cursor = database.rawQuery(
                 "PRAGMA table_info(" + TABLE + ")", null)) {

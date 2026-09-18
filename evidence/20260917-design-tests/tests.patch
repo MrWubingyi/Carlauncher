@@ -1,0 +1,230 @@
+diff --git a/app/src/androidTest/java/com/example/carlauncher/BroadcastLabActivityTest.java b/app/src/androidTest/java/com/example/carlauncher/BroadcastLabActivityTest.java
+index eb2a062..93a92c3 100644
+--- a/app/src/androidTest/java/com/example/carlauncher/BroadcastLabActivityTest.java
++++ b/app/src/androidTest/java/com/example/carlauncher/BroadcastLabActivityTest.java
+@@ -67,6 +67,25 @@ public class BroadcastLabActivityTest {
+         }
+     }
+ 
++    @Test
++    public void sameInstanceReturningToForeground_registersReceiverAgain() {
++        try (ActivityScenario<BroadcastLabActivity> scenario =
++                     ActivityScenario.launch(BroadcastLabActivity.class)) {
++            java.util.concurrent.atomic.AtomicReference<BroadcastLabActivity> original =
++                    new java.util.concurrent.atomic.AtomicReference<>();
++            scenario.onActivity(original::set);
++            scenario.moveToState(Lifecycle.State.CREATED);
++            scenario.moveToState(Lifecycle.State.RESUMED);
++            scenario.onActivity(activity -> {
++                org.junit.Assert.assertSame(original.get(), activity);
++                org.junit.Assert.assertTrue("onStart must register after the previous onStop",
++                        receiverRegistered(activity));
++                dispatchPowerAction(activity, Intent.ACTION_POWER_CONNECTED);
++                assertEquals("Power connected", text(activity));
++            });
++        }
++    }
++
+     private static boolean receiverRegistered(BroadcastLabActivity activity) {
+         try {
+             java.lang.reflect.Field field = BroadcastLabActivity.class
+diff --git a/app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTest.java b/app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTest.java
+index 92049a0..17e8cf2 100644
+--- a/app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTest.java
++++ b/app/src/androidTest/java/com/example/carlauncher/FragmentLabActivityTest.java
+@@ -27,6 +27,28 @@ public class FragmentLabActivityTest {
+         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+     }
+ 
++    @Test
++    public void recreate_keepsSelectedDetailAndBackStackWithoutAddingInitialFragments() {
++        try (ActivityScenario<FragmentLabActivity> scenario =
++                     ActivityScenario.launch(FragmentLabActivity.class)) {
++            scenario.onActivity(activity -> {
++                activity.onSettingSelected("Network");
++                activity.getSupportFragmentManager().executePendingTransactions();
++            });
++            java.util.concurrent.atomic.AtomicInteger backStack = new java.util.concurrent.atomic.AtomicInteger();
++            scenario.onActivity(activity -> backStack.set(
++                    activity.getSupportFragmentManager().getBackStackEntryCount()));
++            scenario.recreate();
++            scenario.onActivity(activity -> {
++                assertEquals("Network Detail", detailTitle(detailFragment(activity)));
++                assertEquals(backStack.get(),
++                        activity.getSupportFragmentManager().getBackStackEntryCount());
++                assertEquals(1, activity.getSupportFragmentManager().getFragments().stream()
++                        .filter(fragment -> "settings_detail".equals(fragment.getTag())).count());
++            });
++        }
++    }
++
+     private static Fragment detailFragment(FragmentLabActivity activity) {
+         return activity.getSupportFragmentManager()
+                 .findFragmentByTag("settings_detail");
+diff --git a/app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java b/app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java
+index 1e5f4cd..56fdfef 100644
+--- a/app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java
++++ b/app/src/androidTest/java/com/example/carlauncher/MainActivityTest.java
+@@ -133,6 +133,49 @@ public class MainActivityTest {
+         return view.getText().toString();
+     }
+ 
++    @Test
++    public void invalidSnapshot_displaysRawValuesAlongsideInvalidity() {
++        VehicleState state = new VehicleState.Builder().setVehSpeedKph(255).setEngRpm(9999)
++                .setSoc(150).setEvBatteryLevel(150f).setEngineCoolantTemp(-999f)
++                .setValidity(DataValidity.INVALID_SPEED).build();
++        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
++            scenario.onActivity(activity -> {
++                new ViewModelProvider(activity).get(CockpitViewModel.class)
++                        .attachService(new StubVehicleSendService().withLatestState(state)
++                                .withSomeipAvailable(true, 0).withSomeipResponse(true, 0, 1)
++                                .withValidity(DataValidity.INVALID_SPEED));
++                assertEquals("255 km/h", text(activity, R.id.speedText));
++                assertEquals("9999 rpm", text(activity, R.id.rpmText));
++                assertEquals("100%", text(activity, R.id.batteryText));
++                assertEquals("150 %", text(activity, R.id.evBatteryText));
++                assertEquals("-999 °C", text(activity, R.id.coolantTempText));
++                assertEquals("INVALID_SPEED", text(activity, R.id.validityText));
++                assertEquals("SOME/IP ONLINE / INVALID DATA", text(activity, R.id.connectionStatusText));
++            });
++        }
++    }
++
++    @Test
++    public void nextSnapshotWithMissingOptionals_clearsPreviouslyDisplayedValues() {
++        StubVehicleSendService service = new StubVehicleSendService()
++                .withLatestState(new VehicleState.Builder().setDoorLock(true)
++                        .setEngineCoolantTemp(90f).setEvBatteryLevel(70f).build());
++        try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
++            scenario.onActivity(activity -> {
++                CockpitViewModel model = new ViewModelProvider(activity).get(CockpitViewModel.class);
++                model.attachService(service);
++                assertEquals("LOCKED", text(activity, R.id.doorLockText));
++                assertEquals("90 °C", text(activity, R.id.coolantTempText));
++                assertEquals("70 %", text(activity, R.id.evBatteryText));
++                service.withLatestState(new VehicleState.Builder().setDoorLock(null).build());
++                model.refresh();
++                assertEquals("--", text(activity, R.id.doorLockText));
++                assertEquals("-- °C", text(activity, R.id.coolantTempText));
++                assertEquals("-- %", text(activity, R.id.evBatteryText));
++            });
++        }
++    }
++
+     @Test
+     public void someipFaultsRemainVisibleUntilEventRecovery() {
+         StubVehicleSendService service = new StubVehicleSendService()
+diff --git a/app/src/androidTest/java/com/example/carlauncher/data/local/LabDatabaseHelperTest.java b/app/src/androidTest/java/com/example/carlauncher/data/local/LabDatabaseHelperTest.java
+index 9695bfa..6e48a12 100644
+--- a/app/src/androidTest/java/com/example/carlauncher/data/local/LabDatabaseHelperTest.java
++++ b/app/src/androidTest/java/com/example/carlauncher/data/local/LabDatabaseHelperTest.java
+@@ -180,6 +180,50 @@ public class LabDatabaseHelperTest {
+         return database.insertOrThrow(TABLE, null, values);
+     }
+ 
++    @Test
++    public void upgrade_populatedVersionOnePreservesIdValueAndTimestampWithEmptyNote() {
++        try (SQLiteDatabase database = SQLiteDatabase.create(null);
++             LabDatabaseHelper helper = new LabDatabaseHelper(context())) {
++            database.execSQL("CREATE TABLE " + TABLE + " ("
++                    + "_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, "
++                    + "value TEXT NOT NULL, created_at INTEGER NOT NULL)");
++            database.execSQL("INSERT INTO " + TABLE
++                    + " (_id,name,value,created_at) VALUES (41,'saved','80',1234)");
++            helper.onUpgrade(database, 1, 2);
++            try (Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE, null)) {
++                assertEquals(1, cursor.getCount());
++                assertTrue(cursor.moveToFirst());
++                assertEquals(41, cursor.getLong(cursor.getColumnIndexOrThrow("_id")));
++                assertEquals("saved", cursor.getString(cursor.getColumnIndexOrThrow("name")));
++                assertEquals("80", cursor.getString(cursor.getColumnIndexOrThrow("value")));
++                assertEquals(1234, cursor.getLong(cursor.getColumnIndexOrThrow("created_at")));
++                assertEquals("", cursor.getString(cursor.getColumnIndexOrThrow("note")));
++            }
++            assertTrue(insertRecord(database, "next", "81", "note") > 41);
++        }
++    }
++
++    @Test
++    public void schema_omittedNoteDefaultsEmptyButExplicitNullIsRejected() {
++        try (SQLiteDatabase database = SQLiteDatabase.create(null);
++             LabDatabaseHelper helper = new LabDatabaseHelper(context())) {
++            helper.onCreate(database);
++            database.execSQL("INSERT INTO " + TABLE
++                    + " (name,value,created_at) VALUES ('default','v',1)");
++            try (Cursor cursor = database.rawQuery("SELECT note FROM " + TABLE, null)) {
++                assertTrue(cursor.moveToFirst());
++                assertEquals("", cursor.getString(0));
++            }
++            try {
++                database.execSQL("INSERT INTO " + TABLE
++                        + " (name,value,created_at,note) VALUES ('null','v',2,NULL)");
++                fail("Explicit NULL must not bypass the note NOT NULL contract");
++            } catch (SQLiteConstraintException expected) {
++                // The database, rather than UI validation, enforces the schema contract.
++            }
++        }
++    }
++
+     private static boolean hasColumn(SQLiteDatabase database, String column) {
+         try (Cursor cursor = database.rawQuery(
+                 "PRAGMA table_info(" + TABLE + ")", null)) {
+diff --git a/app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java b/app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java
+index 271e808..4f47ee9 100644
+--- a/app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java
++++ b/app/src/test/java/com/example/carlauncher/data/mock/MockVehicleDataSourceTest.java
+@@ -266,4 +266,53 @@ public class MockVehicleDataSourceTest {
+         assertSame(MockVehicleDataSource.class, dataSource.getClass());
+         assertFalse(dataSource.isRunning());
+     }
++
++    @Test
++    public void invalidWindow_lastFramePreservesRawBatteryAndClampsSoc() {
++        ControllableScheduler scheduler = new ControllableScheduler();
++        MockVehicleDataSource source = new MockVehicleDataSource(scheduler.scheduler());
++        RecordingListener listener = new RecordingListener();
++        try {
++            source.start(listener);
++            for (int i = 0; i < 699; i++) scheduler.tick();
++            VehicleState last = listener.states.get(698);
++            assertEquals(699L, last.getSequence());
++            assertEquals(100, last.getSoc());
++            assertEquals(Float.valueOf(150f), last.getEvBatteryLevel());
++            assertEquals(Float.valueOf(-999f), last.getEngineCoolantTemp());
++            assertEquals(DataStatus.INVALID, last.getDataStatus());
++        } finally {
++            source.stop();
++        }
++    }
++
++    @Test
++    public void stop_twiceEmitsStoppedOnceAndDropsAlreadyQueuedNormalFrame() {
++        ControllableScheduler scheduler = new ControllableScheduler();
++        MockVehicleDataSource source = new MockVehicleDataSource(scheduler.scheduler());
++        RecordingListener listener = new RecordingListener();
++        source.start(listener);
++        scheduler.tick();
++        source.stop();
++        source.stop();
++        scheduler.tick(); // An executor task captured before shutdown can still be in flight.
++        assertEquals(1, listener.states.size());
++        assertEquals(java.util.Arrays.asList(DataSourceStatus.CONNECTED, DataSourceStatus.STOPPED),
++                listener.statuses);
++        assertFalse(source.isRunning());
++    }
++
++    @Test
++    public void stop_beforeQueuedSilenceTransitionDoesNotDereferenceClearedListener() {
++        ControllableScheduler scheduler = new ControllableScheduler();
++        MockVehicleDataSource source = new MockVehicleDataSource(scheduler.scheduler());
++        RecordingListener listener = new RecordingListener();
++        source.start(listener);
++        for (int i = 0; i < 699; i++) scheduler.tick();
++        source.stop();
++        scheduler.tick(); // seq=700: same cancellation contract as an ordinary queued frame.
++        assertEquals(699, listener.states.size());
++        assertEquals(java.util.Arrays.asList(DataSourceStatus.CONNECTED, DataSourceStatus.STOPPED),
++                listener.statuses);
++    }
+ }

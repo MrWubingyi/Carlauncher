@@ -22,6 +22,26 @@ import static org.junit.Assert.assertTrue;
 public class AppDrawerActivityTest {
 
     @Test
+    public void topButton_displaysEntireLabelWithoutClipping() {
+        try (ActivityScenario<AppDrawerActivity> scenario =
+                     ActivityScenario.launch(AppDrawerActivity.class)) {
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity -> {
+                TextView button = activity.findViewById(R.id.clickButton);
+                android.text.Layout layout = button.getLayout();
+                assertNotNull(layout);
+                assertTrue(layout.getHeight() <= button.getHeight()
+                        - button.getCompoundPaddingTop() - button.getCompoundPaddingBottom());
+                for (int line = 0; line < layout.getLineCount(); line++) {
+                    assertEquals(0, layout.getEllipsisCount(line));
+                    assertTrue(layout.getLineWidth(line) <= layout.getWidth());
+                }
+                assertEquals(button.length(), layout.getLineEnd(layout.getLineCount() - 1));
+            });
+        }
+    }
+
+    @Test
     public void launch_countMatchesVisibleLauncherItems() {
         try (ActivityScenario<AppDrawerActivity> scenario =
                      ActivityScenario.launch(AppDrawerActivity.class)) {

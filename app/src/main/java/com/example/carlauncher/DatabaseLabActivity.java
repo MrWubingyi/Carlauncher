@@ -49,7 +49,7 @@ public final class DatabaseLabActivity
 
             if (name.isEmpty() || value.isEmpty()) {
                 binding.databaseStatusText.setText(
-                        "name 和 value 不能为空"
+                        R.string.db_fields_required
                 );
                 return;
             }
@@ -67,7 +67,7 @@ public final class DatabaseLabActivity
 
             if (name.isEmpty() || value.isEmpty()) {
                 binding.databaseStatusText.setText(
-                        "更新失败：name 和 value 不能为空"
+                        R.string.db_update_fields_required
                 );
                 return;
             }
@@ -81,7 +81,7 @@ public final class DatabaseLabActivity
 
             if (name.isEmpty()) {
                 binding.databaseStatusText.setText(
-                        "删除失败：请输入要删除的 name"
+                        R.string.db_delete_name_required
                 );
                 return;
             }
@@ -97,7 +97,7 @@ public final class DatabaseLabActivity
 
     private void openDatabase() {
         binding.databaseStatusText.setText(
-                "正在创建或打开数据库……"
+                R.string.db_opening
         );
 
         databaseExecutor.execute(() -> {
@@ -118,7 +118,7 @@ public final class DatabaseLabActivity
                     }
 
                     binding.databaseStatusText.setText(
-                            "数据库已打开，版本：" + version
+                            getString(R.string.db_opened, version)
                     );
                 });
             } catch (RuntimeException exception) {
@@ -134,7 +134,7 @@ public final class DatabaseLabActivity
                     }
 
                     binding.databaseStatusText.setText(
-                            "数据库打开失败，请查看 Logcat"
+                            R.string.db_open_failed
                     );
                 });
             }
@@ -194,7 +194,7 @@ public final class DatabaseLabActivity
 
                 runOnUiThread(() -> {
                         binding.databaseStatusText.setText(
-                                "新增成功，rowId=" + rowId
+                                getString(R.string.db_inserted, rowId)
                         );
                         queryAllRecords();
                 });
@@ -207,7 +207,7 @@ public final class DatabaseLabActivity
 
                 runOnUiThread(() ->
                         binding.databaseStatusText.setText(
-                                "新增失败：name 已存在"
+                                R.string.db_duplicate
                         )
                 );
             } catch (RuntimeException exception) {
@@ -266,12 +266,12 @@ public final class DatabaseLabActivity
                 runOnUiThread(() -> {
                     if (updatedRows > 0) {
                         binding.databaseStatusText.setText(
-                                "更新成功，影响行数：" + updatedRows
+                                getString(R.string.db_updated, updatedRows)
                         );
                         queryAllRecords();
                     } else {
                         binding.databaseStatusText.setText(
-                                "未找到匹配记录，更新失败"
+                                R.string.db_update_missing
                         );
                     }
                 });
@@ -280,7 +280,7 @@ public final class DatabaseLabActivity
 
                 runOnUiThread(() ->
                         binding.databaseStatusText.setText(
-                                "更新失败，请查看 Logcat"
+                                R.string.db_update_failed
                         )
                 );
             }
@@ -318,12 +318,12 @@ public final class DatabaseLabActivity
                 runOnUiThread(() -> {
                     if (deletedRows > 0) {
                         binding.databaseStatusText.setText(
-                                "删除成功，影响行数：" + deletedRows
+                                getString(R.string.db_deleted, deletedRows)
                         );
                         queryAllRecords();
                     } else {
                         binding.databaseStatusText.setText(
-                                "未找到匹配记录，删除失败"
+                                R.string.db_delete_missing
                         );
                     }
                 });
@@ -332,7 +332,7 @@ public final class DatabaseLabActivity
 
                 runOnUiThread(() ->
                         binding.databaseStatusText.setText(
-                                "删除失败，请查看 Logcat"
+                                R.string.db_delete_failed
                         )
                 );
             }
@@ -395,14 +395,9 @@ public final class DatabaseLabActivity
                 );
 
                 while (cursor.moveToNext()) {
-                    result.append("id=")
-                            .append(cursor.getLong(idIndex))
-                            .append(", name=")
-                            .append(cursor.getString(nameIndex))
-                            .append(", value=")
-                            .append(cursor.getString(valueIndex))
-                            .append(", note=")
-                            .append(cursor.getString(noteIndex))
+                    result.append(getString(R.string.record_row,
+                            cursor.getLong(idIndex), cursor.getString(nameIndex),
+                            cursor.getString(valueIndex), cursor.getString(noteIndex)))
                             .append('\n');
                 }
 
@@ -414,7 +409,7 @@ public final class DatabaseLabActivity
 
             String displayText =
                     result.length() == 0
-                            ? "当前没有记录"
+                            ? getString(R.string.no_records)
                             : result.toString();
 
             runOnUiThread(() ->

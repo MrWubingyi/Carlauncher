@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="cockpit_panel_bg">#1A2130</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="cockpit_background">#F2F5FA</color>
+    <color name="cockpit_panel_bg">#FFFFFF</color>
+    <color name="cockpit_text_primary">#182235</color>
+    <color name="cockpit_text_secondary">#526178</color>
+    <color name="cockpit_accent">#1765AB</color>
+    <color name="cockpit_accent_variant">#124B80</color>
+    <color name="cockpit_on_accent">#FFFFFF</color>
+    <color name="cockpit_action_bg">#DEEAF7</color>
+    <color name="cockpit_divider">#CFD8E5</color>
+    <color name="cockpit_positive">#176B49</color>
+    <color name="cockpit_warning">#815000</color>
+    <color name="cockpit_error">#AC2835</color>
+    <color name="status_online">#176B49</color>
+    <color name="status_connecting">#285E8A</color>
+    <color name="status_offline">#43516A</color>
+    <color name="status_error">#A42B3C</color>
 </resources>

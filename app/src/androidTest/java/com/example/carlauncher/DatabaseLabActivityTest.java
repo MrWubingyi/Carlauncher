@@ -35,9 +35,10 @@ public class DatabaseLabActivityTest {
                 String status = ((TextView) activity.findViewById(R.id.databaseStatusText))
                         .getText().toString();
                 // 打开成功或尚未完成的提示均可接受，重点是启动过程不崩溃且状态栏被更新
-                assertTrue(status.equals("正在创建或打开数据库……")
-                        || status.startsWith("数据库已打开")
-                        || status.equals("数据库打开失败，请查看 Logcat"));
+                assertTrue(status.equals(activity.getString(R.string.db_opening))
+                        || status.equals(activity.getString(R.string.db_opened,
+                                com.example.carlauncher.data.local.LabDatabaseHelper.DATABASE_VERSION))
+                        || status.equals(activity.getString(R.string.db_open_failed)));
             });
         }
     }
@@ -50,7 +51,7 @@ public class DatabaseLabActivityTest {
                 setText(activity, R.id.nameInput, "");
                 setText(activity, R.id.valueInput, "");
                 activity.findViewById(R.id.insertButton).performClick();
-                assertEquals("name 和 value 不能为空", statusText(activity));
+                assertEquals(activity.getString(R.string.db_fields_required), statusText(activity));
             });
         }
     }
@@ -63,7 +64,7 @@ public class DatabaseLabActivityTest {
                 setText(activity, R.id.nameInput, "  ");
                 setText(activity, R.id.valueInput, "");
                 activity.findViewById(R.id.updateButton).performClick();
-                assertEquals("更新失败：name 和 value 不能为空", statusText(activity));
+                assertEquals(activity.getString(R.string.db_update_fields_required), statusText(activity));
             });
         }
     }
@@ -75,7 +76,7 @@ public class DatabaseLabActivityTest {
             scenario.onActivity(activity -> {
                 setText(activity, R.id.nameInput, "");
                 activity.findViewById(R.id.deleteButton).performClick();
-                assertEquals("删除失败：请输入要删除的 name", statusText(activity));
+                assertEquals(activity.getString(R.string.db_delete_name_required), statusText(activity));
             });
         }
     }

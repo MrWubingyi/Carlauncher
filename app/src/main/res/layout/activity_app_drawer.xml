@@ -10,7 +10,8 @@
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,24 +20,30 @@
 
         <Button
             android:id="@+id/backButton"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/clickButton"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="set time to 5" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:minHeight="48dp"
+            android:textAllCaps="false"
+            android:text="@string/set_time_to_five" />
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:textColor="#000000"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="28sp"
             android:textStyle="bold" />
 

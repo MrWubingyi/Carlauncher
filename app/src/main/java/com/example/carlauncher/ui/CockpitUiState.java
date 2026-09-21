@@ -59,6 +59,10 @@ public final class CockpitUiState {
         return serviceBound;
     }
 
+    public Snapshot getTransportSnapshot() {
+        return someip;
+    }
+
     public boolean hasVehicleData() {
         return vehicleState != null;
     }

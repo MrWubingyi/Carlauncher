@@ -47,11 +47,11 @@ public class BroadcastLabActivity extends AppCompatActivity {
                     );
 
                     if (Intent.ACTION_POWER_CONNECTED.equals(action)) {
-                        statusText.setText("Power connected");
+                        statusText.setText(R.string.power_connected);
                     } else if (
                             Intent.ACTION_POWER_DISCONNECTED.equals(action)
                     ) {
-                        statusText.setText("Power disconnected");
+                        statusText.setText(R.string.power_disconnected);
                     }
                 }
             };

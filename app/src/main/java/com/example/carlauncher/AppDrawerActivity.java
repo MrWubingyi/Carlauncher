@@ -72,7 +72,7 @@ public class AppDrawerActivity extends AppCompatActivity {
 
                 Toast.makeText(
                         this,
-                        "Unable to launch " + app.getName(),
+                        getString(R.string.launch_failed, app.getName()),
                         Toast.LENGTH_SHORT
                 ).show();
 
@@ -90,7 +90,7 @@ public class AppDrawerActivity extends AppCompatActivity {
 
                 Toast.makeText(
                         this,
-                        "Unable to launch " + app.getName(),
+                        getString(R.string.launch_failed, app.getName()),
                         Toast.LENGTH_SHORT
                 ).show();
             }

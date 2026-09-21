@@ -53,9 +53,10 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/welcomeSwitch"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="启用界面提示" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/welcome_enabled" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/resetSettingsButton"
@@ -63,5 +64,5 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="恢复默认设置" />
+        android:text="@string/reset_settings" />
 </LinearLayout>

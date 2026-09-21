@@ -5,7 +5,7 @@
     android:id="@+id/cockpitRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10141C"
+    android:background="@color/cockpit_background"
     tools:context=".MainActivity">
 
     <!-- 顶部栏 -->
@@ -19,13 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <TextClock
             android:id="@+id/timeText"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="24dp"
             android:gravity="center_vertical"
-            android:text="09:30"
-            android:textColor="#FFFFFF"
+            tools:text="09:30"
+            android:textColor="@color/cockpit_text_primary"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -35,8 +36,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Cockpit Hub"
-            android:textColor="#FFFFFF"
+            android:text="@string/cockpit_title"
+            android:textColor="@color/cockpit_text_primary"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -45,15 +46,15 @@
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="MOCK"
-            android:textColor="#AEB8C8"
+            android:text="@string/state_stopped"
+            android:textColor="@color/cockpit_text_secondary"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/connectionStatusText"
             android:layout_width="190dp"
             android:layout_height="40dp"
-            android:background="#32506B"
+            android:background="@color/status_connecting"
             android:gravity="center"
             android:maxLines="2"
             app:autoSizeTextType="uniform"
@@ -62,8 +63,8 @@
             app:autoSizeStepGranularity="1sp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="SERVICE UNBOUND"
-            android:textColor="#FFFFFF"
+            android:text="@string/service_unbound"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -72,12 +73,12 @@
             android:layout_width="180dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:backgroundTint="#2879C7"
+            android:backgroundTint="@color/cockpit_accent"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:text="START RECEIVE"
+            android:text="@string/start_receive"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/cockpit_on_accent"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -101,15 +102,15 @@
             android:id="@+id/vehicleStatusPanel"
             android:layout_width="340dp"
             android:layout_height="match_parent"
-            android:background="#1A2130"
+            android:background="@color/cockpit_panel_bg"
             android:orientation="vertical"
             android:padding="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="VEHICLE STATUS"
-                android:textColor="#8290A6"
+                android:text="@string/vehicle_status"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -117,8 +118,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Gear"
-                android:textColor="#8290A6"
+                android:text="@string/gear_label"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="16sp" />
 
             <TextView
@@ -127,7 +128,7 @@
                 android:layout_height="54dp"
                 android:gravity="center_vertical"
                 android:text="-"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/cockpit_text_primary"
                 android:textSize="42sp"
                 android:textStyle="bold" />
 
@@ -141,8 +142,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RPM"
-                    android:textColor="#8290A6"
+                    android:text="@string/rpm_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -150,7 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-- rpm"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -166,8 +167,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="SOC"
-                    android:textColor="#8290A6"
+                    android:text="@string/soc_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -175,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-- %"
-                    android:textColor="#6EDDA8"
+                    android:textColor="@color/cockpit_positive"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -191,8 +192,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="EV Battery"
-                    android:textColor="#8290A6"
+                    android:text="@string/ev_battery_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -200,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-- %"
-                    android:textColor="#6EDDA8"
+                    android:textColor="@color/cockpit_positive"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -216,8 +217,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Coolant"
-                    android:textColor="#8290A6"
+                    android:text="@string/coolant_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -225,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-- °C"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -236,7 +237,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="18dp"
-                android:background="#344054" />
+                android:background="@color/cockpit_divider" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -247,8 +248,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Door"
-                    android:textColor="#8290A6"
+                    android:text="@string/door_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -256,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="--"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -272,8 +273,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Parking brake"
-                    android:textColor="#8290A6"
+                    android:text="@string/parking_brake_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -281,7 +282,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="--"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -297,8 +298,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Turn signal"
-                    android:textColor="#8290A6"
+                    android:text="@string/turn_signal_label"
+                    android:textColor="@color/cockpit_text_secondary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -306,7 +307,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="--"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -324,7 +325,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#1A2130"
+            android:background="@color/cockpit_panel_bg"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="20dp">
@@ -333,8 +334,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="CURRENT SPEED"
-                android:textColor="#8290A6"
+                android:text="@string/current_speed"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -344,7 +345,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="-- km/h"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/cockpit_text_primary"
                 android:textSize="72sp"
                 android:textStyle="bold" />
 
@@ -352,8 +353,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="WARNING"
-                android:textColor="#8290A6"
+                android:text="@string/warning_label"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="14sp" />
 
             <TextView
@@ -361,8 +362,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center"
-                android:text="NO DATA"
-                android:textColor="#FFCC66"
+                android:text="@string/state_no_data"
+                android:textColor="@color/cockpit_warning"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -371,7 +372,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
-                android:background="#344054" />
+                android:background="@color/cockpit_divider" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -388,8 +389,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="VALIDITY"
-                        android:textColor="#8290A6"
+                        android:text="@string/validity_label"
+                        android:textColor="@color/cockpit_text_secondary"
                         android:textSize="13sp" />
 
                     <TextView
@@ -397,8 +398,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="INVALID"
-                        android:textColor="#FFFFFF"
+                        android:text="@string/state_invalid"
+                        android:textColor="@color/cockpit_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -414,8 +415,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SEQUENCE"
-                        android:textColor="#8290A6"
+                        android:text="@string/sequence_label"
+                        android:textColor="@color/cockpit_text_secondary"
                         android:textSize="13sp" />
 
                     <TextView
@@ -423,8 +424,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Seq --"
-                        android:textColor="#FFFFFF"
+                        android:text="@string/sequence_empty"
+                        android:textColor="@color/cockpit_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -438,8 +439,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text="Waiting for vehicle data"
-                android:textColor="#8290A6"
+                android:text="@string/waiting_vehicle_data"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -453,15 +454,15 @@
             android:id="@+id/quickActionsPanel"
             android:layout_width="330dp"
             android:layout_height="match_parent"
-            android:background="#1A2130"
+            android:background="@color/cockpit_panel_bg"
             android:orientation="vertical"
             android:padding="18dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="QUICK ACTIONS"
-                android:textColor="#8290A6"
+                android:text="@string/quick_actions"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -476,10 +477,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Navigation"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/navigation"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
                 <Space
@@ -491,10 +492,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Media"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/media"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -510,10 +511,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Phone"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/phone"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
                 <Space
@@ -525,10 +526,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Apps"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/apps"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -544,10 +545,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Vehicle"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/vehicle"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
                 <Space
@@ -559,10 +560,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Settings"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/settings"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -578,10 +579,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Board"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/board"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
 
                 <Space
@@ -593,10 +594,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#263247"
-                    android:text="Database"
+                    android:backgroundTint="@color/cockpit_action_bg"
+                    android:text="@string/database"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/cockpit_text_primary"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -605,13 +606,13 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="14dp"
-                android:background="#344054" />
+                android:background="@color/cockpit_divider" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="COMMUNICATION"
-                android:textColor="#8290A6"
+                android:text="@string/communication"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -620,8 +621,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="SOME/IP: STOPPED"
-                android:textColor="#FFFFFF"
+                android:text="@string/transport_stopped"
+                android:textColor="@color/cockpit_text_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -629,8 +630,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TCP baseline: 192.168.31.248:19090"
-                android:textColor="#8290A6"
+                android:text="@string/diagnostic_endpoint"
+                android:textColor="@color/cockpit_text_secondary"
                 android:textSize="14sp" />
 
         </LinearLayout>

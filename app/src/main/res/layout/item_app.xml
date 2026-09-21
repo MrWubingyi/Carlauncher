@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:textColor="#111827" />
+                android:textColor="@color/cockpit_text_primary" />
 
             <TextView
                 android:id="@+id/packageName"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textSize="12sp"
-                android:textColor="#64748B" />
+                android:textColor="@color/cockpit_text_secondary" />
 
         </LinearLayout>
 

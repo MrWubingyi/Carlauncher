@@ -21,6 +21,7 @@ import com.example.carlauncher.databinding.ActivityMainBinding;
 import com.example.carlauncher.model.VehicleState;
 import com.example.carlauncher.service.VehicleSendService;
 import com.example.carlauncher.ui.CockpitUiState;
+import com.example.carlauncher.ui.CockpitText;
 import com.example.carlauncher.ui.CockpitViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -182,11 +183,11 @@ public class MainActivity extends AppCompatActivity {
         binding.parkingBrakeText.setText("--");
         binding.doorLockText.setText("--");
 
-        binding.warningText.setText("NO DATA");
-        binding.validityText.setText("INVALID");
-        binding.sequenceText.setText("Seq --");
+        binding.warningText.setText(getString(R.string.state_no_data));
+        binding.validityText.setText(getString(R.string.state_invalid));
+        binding.sequenceText.setText(getString(R.string.sequence_empty));
 
-        binding.lastUpdateText.setText("Waiting for vehicle data");
+        binding.lastUpdateText.setText(getString(R.string.waiting_vehicle_data));
     }
 
     /**
@@ -237,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 更新最后更新时间/序列号
         binding.lastUpdateText.setText(
-                "Updated · Seq " + state.getSequence()
+                getString(R.string.updated_sequence, state.getSequence())
         );
 
         // 更新各项车辆动态指标
@@ -253,19 +254,19 @@ public class MainActivity extends AppCompatActivity {
         );
 
         binding.turnSignalText.setText(
-                String.valueOf(state.getTurnSignal())
+                CockpitText.state(this, String.valueOf(state.getTurnSignal()))
         );
         binding.parkingBrakeText.setText(
-                state.isParkingBrake() ? "ON" : "OFF"
+                getString(state.isParkingBrake() ? R.string.state_on : R.string.state_off)
         );
         binding.warningText.setText(
-                String.valueOf(state.getWarning())
+                CockpitText.state(this, String.valueOf(state.getWarning()))
         );
         binding.validityText.setText(
-                String.valueOf(state.getValidity())
+                CockpitText.state(this, String.valueOf(state.getValidity()))
         );
         binding.sequenceText.setText(
-                "Seq " + state.getSequence()
+                getString(R.string.sequence_value, state.getSequence())
         );
 
         renderNullableFields(state);
@@ -294,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
     private void renderNullableFields(VehicleState state) {
         Boolean doorLock = state.getDoorLock();
         binding.doorLockText.setText(
-                doorLock == null ? "--" : doorLock ? "LOCKED" : "UNLOCKED"
+                doorLock == null ? "--" : getString(doorLock ? R.string.state_locked : R.string.state_unlocked)
         );
 
         Float coolant = state.getEngineCoolantTemp();
@@ -314,17 +315,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         renderConnectionState(
-                uiState.getConnectionLabel(),
+                CockpitText.connection(this, uiState),
                 resolveConnectionBackground(uiState),
                 uiState.isActionEnabled(),
-                uiState.getActionLabel()
+                getString(uiState.isStopAction() ? R.string.stop_receive : R.string.start_receive)
         );
 
         binding.sourceStatusText.setText(
-                String.valueOf(uiState.getDataSourceStatus())
+                CockpitText.state(this, String.valueOf(uiState.getDataSourceStatus()))
         );
         binding.transportStatusText.setText(
-                uiState.getTransportLabel()
+                CockpitText.transport(this, uiState)
         );
 
         VehicleState state = uiState.getVehicleState();
@@ -417,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
         binding.getRoot().post(() -> {
             Snackbar.make(
                     binding.getRoot(),
-                    "欢迎进入 CarLauncher",
+                    getString(R.string.welcome_message),
                     Snackbar.LENGTH_LONG
             ).show();
 

@@ -65,7 +65,7 @@ public class SettingsDetailFragment extends Fragment {
         Log.i(TAG, "onViewCreated, title=" + title);
 
         binding.detailTitleText.setText(
-                getString(R.string.fragment_detail_title, title)
+                getString(R.string.fragment_detail_title, localizedTitle())
         );
 
         if ("Display".equals(title)) {
@@ -87,6 +87,15 @@ public class SettingsDetailFragment extends Fragment {
         }
 
     }
+    private String localizedTitle() {
+        switch (title) {
+            case "Display": return getString(R.string.settings_display);
+            case "Network": return getString(R.string.settings_network);
+            case "About": return getString(R.string.settings_about);
+            default: return title;
+        }
+    }
+
     private void setupResetSettingsButton() {
         binding.resetSettingsButton.setVisibility(View.VISIBLE);
 
@@ -119,7 +128,7 @@ public class SettingsDetailFragment extends Fragment {
 
             Snackbar.make(
                     binding.getRoot(),
-                    "已恢复默认设置",
+                    getString(R.string.settings_reset),
                     Snackbar.LENGTH_LONG
             ).show();
 

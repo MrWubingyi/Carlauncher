@@ -35,14 +35,14 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
 set(VSOMEIP_DEPENDENCIES_ROOT "${CMAKE_CURRENT_LIST_DIR}/../../../../third_party")
 set(VSOMEIP_SOURCE_ROOT "${VSOMEIP_DEPENDENCIES_ROOT}/vsomeip" CACHE PATH
     "vSomeIP source submodule")
-set(VSOMEIP_LIBRARY_DIR "${VSOMEIP_DEPENDENCIES_ROOT}/vsomeip-android/lib/${ANDROID_ABI}" CACHE PATH
-    "Directory containing the patched monolithic libvsomeip3.so")
+# Deliberately not a CACHE entry: old IDE caches must not restore the vendored .so.
+set(VSOMEIP_LIBRARY_DIR "${CMAKE_CURRENT_LIST_DIR}/../../../../build/native/artifact/lib/${ANDROID_ABI}")
 
 if(NOT EXISTS "${VSOMEIP_SOURCE_ROOT}/interface/vsomeip/vsomeip.hpp")
     message(FATAL_ERROR "vSomeIP submodule missing; run git submodule update --init --recursive")
 endif()
 if(NOT EXISTS "${VSOMEIP_LIBRARY_DIR}/libvsomeip3.so")
-    message(FATAL_ERROR "Patched vSomeIP library missing for ${ANDROID_ABI}; see third_party/vsomeip-android/README.md")
+    message(FATAL_ERROR "Source-built vSomeIP missing for ${ANDROID_ABI}; run bash tools/vsomeip-android/build-source.sh on Linux, or restore the matching CI native artifact; see third_party/vsomeip-android/README.md")
 endif()
 
 add_library(vsomeip3 SHARED IMPORTED)

@@ -7,28 +7,28 @@
 
 ## 重建
 
-项目使用 `third_party/vsomeip` 子模块中的定制源码，其中已经包含本适配，无需再次应用补丁。先执行 `git submodule update --init --recursive`。按原有 Android monolithic 参数配置该源码的构建目录后，重建并打包：
+项目使用 `third_party/vsomeip` 子模块中的定制源码，其中已经包含本适配，无需再次应用补丁。
+CI 使用 Android CLI 安装环境，随后从源码编译 Boost 和 vSomeIP，生成的库不再提交到主仓库。
+完整命令、固定版本及 Windows 使用方式见 [源码构建说明](../../third_party/vsomeip-android/README.md)。
 
-```powershell
-& 'C:\Program Files\CMake\bin\cmake.exe' --build .\third_party\vsomeip\build-android-x86_64-mono --target vsomeip3 -j 4
-.\tools\vsomeip-android\package-dependency.ps1
-.\gradlew.bat :app:assembleDebug --offline
+```bash
+git submodule update --init --recursive
+bash tools/vsomeip-android/build-source.sh
+bash gradlew :app:assembleDebug :app:testDebugUnitTest
 ```
 
 在未应用本适配的 vSomeIP 3.7.5 源码上执行（示例使用原本机源码路径）：
 
 ```powershell
 & .\tools\vsomeip-android\apply-network-patch.ps1 -SourceRoot E:\Src\vsomeip
-& 'C:\Program Files\CMake\bin\cmake.exe' --build E:\Src\vsomeip\build-android-x86_64-mono --target vsomeip3 -j 4
-.\tools\vsomeip-android\package-dependency.ps1 -SourceRoot E:\Src\vsomeip -Library E:\Src\vsomeip\build-android-x86_64-mono\libvsomeip3.so
-.\gradlew.bat :app:assembleDebug --offline
 ```
 
 脚本修改 `netlink_connector.hpp/.cpp` 并复制同目录的 `android_network_connector.inc`。
 所有锚点先检查唯一性；重复应用会报错。其他既有 Android monolithic 配置改动保持原样。
 已应用的源码更新 `.inc` 时应先审查差异，再复制该文件和重建。
 本项目导入的 `libvsomeip3.so` 必须包含该导出符号，否则 JNI 链接会明确失败。
-项目默认使用子模块头文件并链接 [配套预编译库](../../third_party/vsomeip-android/README.md)；源码修改须先提交和推送，并同步主仓库的子模块提交与库包，才能用于 App 和 CI。
+项目使用子模块头文件并链接 `build/native/artifact/` 中本次生成的库；源码修改须先提交和推送，
+再更新主仓库的子模块提交，由 CI 重新编译，不接受手工打包旧库替代源码构建。
 
 ## 并发和状态约束
 

@@ -1,43 +1,60 @@
-# vSomeIP Android 预编译库
+# vSomeIP Android 源码构建
 
-vSomeIP 源码和公共头文件由 `third_party/vsomeip` Git submodule 管理，来源为 [MrWubingyi/vsomeip](https://github.com/MrWubingyi/vsomeip)。主仓库通过 gitlink 固定提交，不自动跟随远端分支。
+主仓库不再保存或读取 `lib/x86_64/libvsomeip3.so`。vSomeIP 源码由
+[third_party/vsomeip](https://github.com/MrWubingyi/vsomeip) 子模块管理，gitlink 是唯一的源码版本记录。
+CI 在全新的 Ubuntu runner 上从源码构建 Boost 和 vSomeIP，然后构建 JNI 与 APK。
 
-本目录保存与子模块提交配套的 Android x86_64 预编译库，供本地和 GitHub Actions 直接链接：
+## 构建输入与输出
 
-- `lib/x86_64/libvsomeip3.so`：vSomeIP 3.7.5，NDK 28.2.13676358、API 24、`c++_shared`，静态链接 Boost 1.90.0。
-- `SOURCE_COMMIT`：构建库所对应的源码提交；CI 检查其与子模块 HEAD 一致。
-- `licenses/`：vSomeIP MPL-2.0 和 Boost 许可证。
-- `SHA256SUMS`：库、许可证和源码提交记录的校验值。
+- vSomeIP：子模块固定提交，已经包含 Android 网络适配与 monolithic 修改，不重复应用补丁。
+- Boost：官方 1.90.0 源码包，下载后校验脚本固定的 SHA-256，以静态 PIC 库构建。
+- 环境：Android CLI 安装 NDK 28.2.13676358、CMake 3.22.1；目标为 x86_64 / API 24 / `c++_shared`。
+- 参数：Release、`ENABLE_MULTIPLE_ROUTING_MANAGERS=ON`、`ANDROID_CI_BUILD=ON`，关闭 DLT 和 systemd。
+- 输出：`build/native/artifact/lib/x86_64/libvsomeip3.so`。CMake 只链接此生成路径，无旧库回退。
 
-当前提交为 `d217416287b48c4f935bdaa7926a67efde4b0c9b`，已包含 Android 网络适配和 monolithic 修改，导出 `vsomeip_android_set_network_state`。构建使用 `ENABLE_MULTIPLE_ROUTING_MANAGERS=ON`、`ANDROID_CI_BUILD=ON`。原预编译库来自 `E:\Src\vsomeip\build-android-x86_64-mono`；源码和头文件现在直接取自同一提交的子模块，不再保存源码压缩包或重复的头文件。
+源码构建脚本拒绝脏子模块、与主仓库 HEAD gitlink 不一致的检出、以及已存在的 `build/native`。
+升级时先推送子模块提交，再提交主仓库 gitlink；运行脚本前必须完成主仓库提交。
+CI 不使用原生二进制缓存，每次重新编译。首次构建耗时会高于旧的预编译包方案。
 
-## 获取与更新
+## Linux 本地执行
 
-```powershell
+需要 Git、curl、tar、bzip2、Python 3、主机 C++ 编译器（Boost.Build 启动工具）和 Android CLI。
+
+```bash
 git submodule update --init --recursive
+export ANDROID_HOME="$HOME/Android/Sdk"
+android --sdk="$ANDROID_HOME" sdk install \
+  platforms/android-36.1 build-tools/36.0.0 \
+  ndk/28.2.13676358 cmake/3.22.1 platform-tools
+bash tools/vsomeip-android/build-source.sh
+bash gradlew :app:assembleDebug :app:testDebugUnitTest
+python3 tools/vsomeip-android/verify-artifact.py --apk app/build/outputs/apk/debug/app-debug.apk
+bash gradlew :app:fullDebugUnitTestCoverageReport
 ```
 
-升级时先在子模块中检出目标提交，使用相同 NDK、ABI 和 monolithic 参数重新构建，再打包：
+重新构建前，确认路径后清理项目内生成的 `build/native` 目录。不要删除 `third_party/vsomeip`。
+`NATIVE_BUILD_JOBS` 可设置并行度，默认 2，避免云端内存不足。
 
-```powershell
-.\tools\vsomeip-android\package-dependency.ps1
-.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest
-git add third_party/vsomeip third_party/vsomeip-android
-```
+## Windows / Android Studio
 
-打包默认读取子模块下的 `build-android-x86_64-mono/libvsomeip3.so`；可以通过 `-Library` 指定其他位置的配套构建，调用者须确认其确实由 `SOURCE_COMMIT` 所记录的源码构建。
-脚本要求源码修改已提交，并检查网络适配导出符号。定制源码提交应先推送到子模块远端，再提交主仓库的 gitlink 和预编译包。
-源码由子模块管理，预编译产物仍由主仓库管理；CI 不重编译 vSomeIP 和 Boost。
+源码构建脚本在 Linux 上执行。Windows 开发可使用 Linux / WSL 构建环境，
+也可下载**当前源码版本对应的成功 CI** 的 `CarLauncher-native-x86_64-*` 产物，
+将其内容解压到 `build/native/artifact/`，再执行 `gradlew.bat :app:assembleDebug`。
+解压后应存在 `build/native/artifact/lib/x86_64/libvsomeip3.so`，不能额外嵌套产物文件夹。
+检查 `provenance.json` 中的主仓库提交、vSomeIP 提交与环境版本，并按 `SHA256SUMS` 校验文件。
+这些本地生成文件由 `/build` 忽略规则排除，不能提交回源码目录。
 
-CMake 可通过 `VSOMEIP_SOURCE_ROOT` 和 `VSOMEIP_LIBRARY_DIR` 覆盖源码目录和库目录。当前仅提供 x86_64 库。
+当前子模块包含大小写冲突的两个文档路径；Windows 可使用本机 sparse-checkout 排除
+`documentation/readme.md`。Linux CI 完整检出，源码构建脚本要求子模块状态干净。
 
-## Windows 大小写冲突
+## 验证与归档
 
-当前子模块提交同时含有 `documentation/README.md` 与 `documentation/readme.md`。Windows 默认文件系统无法区分它们，首次检出可能显示一个文档被修改；这不影响编译。确认未编辑这两个文档后，可仅在本机排除小写路径：
+CI 检查 ELF64 / x86_64、未带版本号的 SONAME、Android 网络适配导出符号以及动态依赖白名单。
+Boost 静态链接，不允许依赖主机 Linux 库或外置 vSomeIP 插件。
+APK 生成后，对包内 `lib/x86_64/libvsomeip3.so` 与本次生成库做 SHA-256 一致性校验。
 
-```powershell
-Remove-Item -LiteralPath .\third_party\vsomeip\documentation\README.md
-git -C third_party/vsomeip sparse-checkout set --no-cone '/*' '!/documentation/readme.md'
-```
+原生产物包含库、许可证、`provenance.json`、`SHA256SUMS`、ELF / 符号检查记录和
+`apk-verification.json`；编译日志、CMake 配置与编译命令单独归档，失败时也上传可用日志。
+APK、测试报告、原生产物和诊断日志保留 14 天。历史提交中的二进制保留在 Git 历史中，当前构建不再读取。
 
-该配置仅存于本机子模块 Git 元数据，不改变固定提交；Linux CI 使用完整检出。
+这提供源码到 APK 的可追溯证据；并不声称不同环境的重复构建必然逐字节一致，也不替代设备运行验证。

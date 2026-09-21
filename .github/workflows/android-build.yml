@@ -16,7 +16,7 @@ jobs:
   build:
     name: Debug APK and unit tests
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -58,18 +58,35 @@ jobs:
       - name: Set up Gradle and validate wrapper
         uses: gradle/actions/setup-gradle@v5
 
-      - name: Verify native dependency and source revision
-        run: |
-          expected_revision=$(tr -d '\r\n' < third_party/vsomeip-android/SOURCE_COMMIT)
-          actual_revision=$(git -C third_party/vsomeip rev-parse HEAD)
-          test "$actual_revision" = "$expected_revision"
-          cd third_party/vsomeip-android
-          sha256sum --check SHA256SUMS
+      - name: Build Boost and vSomeIP from pinned sources
+        run: bash tools/vsomeip-android/build-source.sh
 
       - name: Build Debug APK and run unit tests
         run: >-
           bash ./gradlew --no-daemon --stacktrace --continue
           :app:assembleDebug :app:testDebugUnitTest
+
+      - name: Verify APK contains the source-built library
+        run: >-
+          python3 tools/vsomeip-android/verify-artifact.py
+          --apk app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload native library and provenance
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-native-x86_64-${{ github.run_number }}
+          path: build/native/artifact/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload native build diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-native-logs-${{ github.run_number }}
+          path: build/native/logs/
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v6

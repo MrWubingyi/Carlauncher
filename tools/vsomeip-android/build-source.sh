@@ -27,6 +27,10 @@ if [[ -e "$out" ]]; then
 fi
 mkdir -p "$out/artifact/lib/x86_64" "$out/artifact/licenses" "$out/logs"
 exec > >(tee "$out/logs/source-build.log") 2>&1
+# Preserve configuration evidence even when configure/compile fails.
+trap 'for f in CMakeCache.txt compile_commands.json; do
+  if [[ -f "$out/vsomeip-build/$f" ]]; then cp "$out/vsomeip-build/$f" "$out/logs/"; fi
+done' EXIT
 curl --fail --location --retry 3 \
   "https://archives.boost.io/release/$boost_version/source/$boost_archive" \
   --output "$out/$boost_archive"
@@ -45,13 +49,14 @@ EOF
     target-os=android architecture=x86 address-model=64 \
     link=static runtime-link=shared threading=multi variant=release \
     cxxstd=17 cxxflags=-fPIC --with-filesystem --layout=system \
-    --prefix="$boost_prefix" -j"$jobs" install
+    --prefix="$boost_prefix" -d0 -j"$jobs" install
 )
 "$cmake" -S "$source_root" -B "$out/vsomeip-build" -G Ninja \
   -DCMAKE_MAKE_PROGRAM="$sdk/cmake/3.22.1/bin/ninja" \
   -DCMAKE_TOOLCHAIN_FILE="$ndk/build/cmake/android.toolchain.cmake" \
   -DANDROID_ABI=x86_64 -DANDROID_PLATFORM=android-24 -DANDROID_STL=c++_shared \
   -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+  -DCMAKE_FIND_ROOT_PATH="$boost_prefix" -DCMAKE_PREFIX_PATH="$boost_prefix" \
   -DBoost_DIR="$boost_prefix/lib/cmake/Boost-1.90.0" -DBoost_USE_STATIC_LIBS=ON \
   -DENABLE_MULTIPLE_ROUTING_MANAGERS=ON -DANDROID_CI_BUILD=ON \
   -DDISABLE_DLT=ON -DDISABLE_SYSTEMD=ON
@@ -84,8 +89,6 @@ data = {
 }
 (root / "build/native/artifact/provenance.json").write_text(json.dumps(data, indent=2) + "\n")
 PY
-cp "$out/vsomeip-build/CMakeCache.txt" "$out/logs/"
-cp "$out/vsomeip-build/compile_commands.json" "$out/logs/"
 (
   cd "$out/artifact"
   sha256sum lib/x86_64/libvsomeip3.so licenses/* provenance.json elf.txt symbols.txt > SHA256SUMS

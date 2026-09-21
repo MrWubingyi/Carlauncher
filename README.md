@@ -1,5 +1,26 @@
 # CarLauncher
 
+## GitHub 自动构建
+
+[Android Build](.github/workflows/android-build.yml) 在推送、Pull Request 和手动触发时运行，使用 GitHub 的 Ubuntu runner，无需配置 Secrets 或自托管机器。
+
+流水线递归拉取子模块，安装 Java 21，并通过官方 [Android CLI](https://developer.android.com/tools/agents/android-cli) 的 `android sdk install` 管理 Android SDK 36.1、Build Tools 36.0.0、NDK 28.2.13676358、CMake 3.22.1 和 Platform Tools。CLI 使用官方最新安装脚本，运行日志记录实际版本；SDK 路径通过 `ANDROID_HOME` 和 `ANDROID_SDK_ROOT` 同步给 Gradle。
+随后校验 [vSomeIP 预编译库及对应源码提交](third_party/vsomeip-android/README.md)，构建 Debug APK、运行 JVM 单元测试并生成 JaCoCo 覆盖率报告。
+成功后在仓库 **Actions → Android Build → 对应运行 → Artifacts** 下载 `CarLauncher-debug-x86_64-*`；测试及覆盖率报告保存为 `CarLauncher-reports-*`，产物保留 14 天。
+测试失败时也会尝试上传已有报告。当前 APK 仅支持 x86_64，使用 Android 默认 Debug 签名。
+
+本地验证命令（Java 21）：
+
+```powershell
+git submodule update --init --recursive
+.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest
+.\gradlew.bat :app:fullDebugUnitTestCoverageReport
+```
+
+SDK 路径可以通过 Android Studio 的 `local.properties` 或 `ANDROID_HOME` 提供。CI 不运行设备测试和双机网络联调，也不启用依赖设备覆盖率数据的全模块覆盖率门禁；这些仍按下文执行。
+
+vSomeIP 源码通过 `.gitmodules` 引用 `MrWubingyi/vsomeip`，位于 `third_party/vsomeip`，由主仓库固定提交。首次克隆也可使用 `git clone --recurse-submodules`；升级源码时须同时重建配套库并更新 `third_party/vsomeip-android/SOURCE_COMMIT`。
+
 Android 和 Ubuntu 上可见的 LVGL 仪表订阅**同一个** `vehicle_mock_service`，
 接收 Service `0x1111` / Instance `0x2222` / Event `0x8001` / EventGroup `0x0001`。
 本页是前台双界面联调的唯一启动顺序。

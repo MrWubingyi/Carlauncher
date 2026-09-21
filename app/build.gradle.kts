@@ -1,14 +1,3 @@
-import java.util.Properties
-
-val localProperties = Properties().apply {
-    rootProject.file("local.properties")
-        .inputStream()
-        .use(::load)
-}
-
-val sdkDir = localProperties.getProperty("sdk.dir")
-    ?: error("sdk.dir is not defined in local.properties")
-
 plugins {
     alias(libs.plugins.android.application)
     jacoco
@@ -16,6 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.carlauncher"
+    ndkVersion = "28.2.13676358"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -84,7 +74,9 @@ dependencies {
     androidTestImplementation(libs.fragment.testing)
     compileOnly(
         files(
-            "${sdkDir}/platforms/android-36.1/optional/android.car.jar"
+            androidComponents.sdkComponents.sdkDirectory.map {
+                it.file("platforms/android-36.1/optional/android.car.jar")
+            }
         )
     )
 }

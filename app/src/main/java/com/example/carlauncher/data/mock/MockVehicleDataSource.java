@@ -67,6 +67,12 @@ public final class MockVehicleDataSource
     }
 
     private void generateState() {
+        // An in-flight scheduler callback can still enter after stop().
+        Listener currentListener = listener;
+        if (currentListener == null) {
+            return;
+        }
+
         // 1. 先递增序列号
         sequence++;
 
@@ -81,13 +87,13 @@ public final class MockVehicleDataSource
         if (testCycle >= 700 && testCycle < 1000) {
             // 静默测试：直接返回，不触发 onStateChanged
             if (testCycle == 700) {
-                listener.onSourceStatusChanged(DataSourceStatus.NO_DATA);
+                currentListener.onSourceStatusChanged(DataSourceStatus.NO_DATA);
             }
             return;
         }
 
         if (testCycle == 1000) {
-            listener.onSourceStatusChanged(DataSourceStatus.CONNECTED);
+            currentListener.onSourceStatusChanged(DataSourceStatus.CONNECTED);
         }
 
         updateSpeed();
@@ -145,7 +151,7 @@ public final class MockVehicleDataSource
                 .setDataStatus(testCycle >= 600 && testCycle < 700 ? DataStatus.INVALID : DataStatus.NORMAL)
                 .build();
 
-        Listener currentListener = listener;
+        currentListener = listener;
         if (currentListener != null) {
             currentListener.onStateChanged(state);
         }

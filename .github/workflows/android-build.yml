@@ -1,0 +1,97 @@
+name: Android Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-build-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Debug APK and unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Install Android CLI
+        shell: bash
+        run: |
+          curl --fail --silent --show-error --location --retry 3 \
+            https://dl.google.com/android/cli/latest/linux_x86_64/install.sh \
+            --output "$RUNNER_TEMP/install-android-cli.sh"
+          bash "$RUNNER_TEMP/install-android-cli.sh"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/android" --version
+
+          sdk_root="${ANDROID_HOME:-$RUNNER_TEMP/android-sdk}"
+          mkdir -p "$sdk_root"
+          echo "ANDROID_HOME=$sdk_root" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$sdk_root" >> "$GITHUB_ENV"
+
+      - name: Install Android build dependencies with Android CLI
+        shell: bash
+        run: |
+          android --sdk="$ANDROID_HOME" sdk install \
+            platforms/android-36.1 build-tools/36.0.0 \
+            ndk/28.2.13676358 cmake/3.22.1 platform-tools
+          test -f "$ANDROID_HOME/platforms/android-36.1/optional/android.car.jar"
+          test -x "$ANDROID_HOME/cmake/3.22.1/bin/cmake"
+          test -f "$ANDROID_HOME/ndk/28.2.13676358/source.properties"
+
+      - name: Set up Gradle and validate wrapper
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Verify native dependency and source revision
+        run: |
+          expected_revision=$(tr -d '\r\n' < third_party/vsomeip-android/SOURCE_COMMIT)
+          actual_revision=$(git -C third_party/vsomeip rev-parse HEAD)
+          test "$actual_revision" = "$expected_revision"
+          cd third_party/vsomeip-android
+          sha256sum --check SHA256SUMS
+
+      - name: Build Debug APK and run unit tests
+        run: >-
+          bash ./gradlew --no-daemon --stacktrace --continue
+          :app:assembleDebug :app:testDebugUnitTest
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-debug-x86_64-${{ github.run_number }}
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      # The existing report also scans manually collected device coverage under
+      # app/build. Run it separately to avoid overlapping assemble task outputs.
+      - name: Generate coverage report
+        run: bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
+
+      - name: Upload test and coverage reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-reports-${{ github.run_number }}
+          path: |
+            app/build/reports/tests/testDebugUnitTest/
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/jacoco/fullDebugUnitTestCoverageReport/
+          if-no-files-found: warn
+          retention-days: 14

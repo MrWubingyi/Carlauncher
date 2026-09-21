@@ -6,3 +6,11 @@ evidence/20260910-service-lifecycle/** -text
 evidence/20260910-multicast-path/** -text
 *.pcap binary
 *.pb binary
+
+# Preserve the exact vendored bytes verified by SHA256SUMS on every OS.
+third_party/vsomeip-android/licenses/** -text
+*.so binary
+
+.github/workflows/*.yml text eol=lf
+third_party/vsomeip-android/SHA256SUMS text eol=lf
+third_party/vsomeip-android/SOURCE_COMMIT text eol=lf

@@ -29,19 +29,29 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
     # List C/C++ source files with relative paths to this CMakeLists.txt.
     carlauncher.cpp)
 
-# CarLauncher: 使用单库（monolithic）libvsomeip3.so —— E:\Src\vsomeip 以
+# CarLauncher: 使用单库（monolithic）libvsomeip3.so，以
 # ENABLE_MULTIPLE_ROUTING_MANAGERS=ON 构建（configuration + service discovery 编入核心库，
 # 不再 dlopen 插件：bionic 不跨 DSO 统一弱 typeinfo 会让插件 dynamic_cast 失败 → exit）。
-set(VSOMEIP_ROOT "E:/Src/vsomeip/build-android-x86_64-mono")
-set(VSOMEIP_INCLUDE_ROOT "E:/Src/vsomeip/install-android-x86_64")
+set(VSOMEIP_DEPENDENCIES_ROOT "${CMAKE_CURRENT_LIST_DIR}/../../../../third_party")
+set(VSOMEIP_SOURCE_ROOT "${VSOMEIP_DEPENDENCIES_ROOT}/vsomeip" CACHE PATH
+    "vSomeIP source submodule")
+set(VSOMEIP_LIBRARY_DIR "${VSOMEIP_DEPENDENCIES_ROOT}/vsomeip-android/lib/${ANDROID_ABI}" CACHE PATH
+    "Directory containing the patched monolithic libvsomeip3.so")
+
+if(NOT EXISTS "${VSOMEIP_SOURCE_ROOT}/interface/vsomeip/vsomeip.hpp")
+    message(FATAL_ERROR "vSomeIP submodule missing; run git submodule update --init --recursive")
+endif()
+if(NOT EXISTS "${VSOMEIP_LIBRARY_DIR}/libvsomeip3.so")
+    message(FATAL_ERROR "Patched vSomeIP library missing for ${ANDROID_ABI}; see third_party/vsomeip-android/README.md")
+endif()
 
 add_library(vsomeip3 SHARED IMPORTED)
 set_target_properties(vsomeip3 PROPERTIES
-    IMPORTED_LOCATION "${VSOMEIP_ROOT}/libvsomeip3.so"
+    IMPORTED_LOCATION "${VSOMEIP_LIBRARY_DIR}/libvsomeip3.so"
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    "${VSOMEIP_INCLUDE_ROOT}/include"
+    "${VSOMEIP_SOURCE_ROOT}/interface"
 )
 
 # Specifies libraries CMake should link to your target library. You

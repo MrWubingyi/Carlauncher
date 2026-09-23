@@ -58,6 +58,7 @@
     <string name="update_record">更新</string>
     <string name="delete_record">删除</string>
     <string name="query_all">查询全部</string>
+    <string name="db_query_failed">查询失败</string>
     <string name="result_label">结果</string>
     <string name="no_records">当前没有记录</string>
     <string name="welcome_enabled">显示欢迎提示</string>

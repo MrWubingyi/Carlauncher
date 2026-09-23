@@ -65,7 +65,7 @@ scp .\tools\someip-probe\socket-tap-event-probe.py root@192.168.31.248:/root/dev
 `socket-tap-sd-shared-02`，并同步修改后续两个 Ubuntu 终端的 `run_dir`。
 
 ```powershell
-run_dir='socket-tap-sd-shared-01'
+run_dir='socket-tap-sd-shared-0922-01'
 ssh root@192.168.31.248 "cd /root/develop/carlauncher-probe-20260909 && python3 socket-tap-event-probe.py $run_dir --network-only --duration 0 --connect-timeout 1800"
 ```
 
@@ -80,7 +80,7 @@ DHCP、抓包和网络转发，生成 `MOCK_CONFIG` / `LVGL_CONFIG`，不启动 
 
 ```bash
 cd /root/develop/carlauncher-probe-20260909
-run_dir=/root/develop/carlauncher-probe-20260909/socket-tap-sd-shared-01
+run_dir=/root/develop/carlauncher-probe-20260909/socket-tap-sd-shared-0922-01
 env LD_LIBRARY_PATH=/root/develop/vsomeip/build \
     VSOMEIP_CONFIGURATION="$run_dir/service-sd.json" \
     ./build/vehicle_mock_service 2>&1 | tee "$run_dir/service.log"
@@ -95,7 +95,7 @@ env LD_LIBRARY_PATH=/root/develop/vsomeip/build \
 
 ```bash
 cd /root/develop/dashboard_simulator
-run_dir=/root/develop/carlauncher-probe-20260909/socket-tap-sd-shared-01
+run_dir=/root/develop/carlauncher-probe-20260909/socket-tap-sd-shared-0923
 env -u SDL_VIDEODRIVER -u SDL_RENDER_DRIVER \
     LD_LIBRARY_PATH=/root/develop/vsomeip/build \
     VSOMEIP_CONFIGURATION="$run_dir/lvgl-client.json" \

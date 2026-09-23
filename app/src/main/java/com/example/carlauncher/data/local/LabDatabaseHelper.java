@@ -13,7 +13,7 @@ public final class LabDatabaseHelper
     private static final String TAG = "LAB_DATABASE";
 
     public static final String DATABASE_NAME =
-            "car_launcher_lab.db";
+            "car_launcher_lab_test.db";
 
     // 第一阶段必须保持为 1。
     public static final int DATABASE_VERSION = 2;

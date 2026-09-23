@@ -57,6 +57,7 @@
     <string name="update_record">Update</string>
     <string name="delete_record">Delete</string>
     <string name="query_all">Query All</string>
+    <string name="db_query_failed">DB Query Failed</string>
     <string name="result_label">Result</string>
     <string name="no_records">No records</string>
     <string name="welcome_enabled">Show welcome message</string>

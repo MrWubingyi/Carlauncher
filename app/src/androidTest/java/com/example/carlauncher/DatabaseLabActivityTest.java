@@ -37,7 +37,7 @@ public class DatabaseLabActivityTest {
                 // 打开成功或尚未完成的提示均可接受，重点是启动过程不崩溃且状态栏被更新
                 assertTrue(status.equals(activity.getString(R.string.db_opening))
                         || status.equals(activity.getString(R.string.db_opened,
-                                com.example.carlauncher.data.local.LabDatabaseHelper.DATABASE_VERSION))
+                                com.example.carlauncher.data.local.LabRoomDatabase.getInstance(activity).getOpenHelper().getWritableDatabase().getVersion()))
                         || status.equals(activity.getString(R.string.db_open_failed)));
             });
         }

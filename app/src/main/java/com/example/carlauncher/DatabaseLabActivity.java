@@ -10,9 +10,12 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carlauncher.data.local.LabDatabaseContract;
-import com.example.carlauncher.data.local.LabDatabaseHelper;
+import com.example.carlauncher.data.local.LabRecord;
+import com.example.carlauncher.data.local.LabRecordDao;
+import com.example.carlauncher.data.local.LabRoomDatabase;
 import com.example.carlauncher.databinding.ActivityDatabaseLabBinding;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,10 +25,12 @@ public final class DatabaseLabActivity
     private static final String TAG = "DATABASE_LAB";
 
     private ActivityDatabaseLabBinding binding;
-    private LabDatabaseHelper databaseHelper;
+
 
     private final ExecutorService databaseExecutor =
             Executors.newSingleThreadExecutor();
+    private LabRoomDatabase database;
+    private LabRecordDao recordDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +41,9 @@ public final class DatabaseLabActivity
         );
         setContentView(binding.getRoot());
 
-        databaseHelper = new LabDatabaseHelper(
-                getApplicationContext()
-        );
+
+        database = LabRoomDatabase.getInstance(this);
+        recordDao = database.recordDao();
         binding.insertButton.setOnClickListener(view -> {
             String name =
                     binding.nameInput.getText().toString().trim();
@@ -102,10 +107,8 @@ public final class DatabaseLabActivity
 
         databaseExecutor.execute(() -> {
             try {
-                SQLiteDatabase database =
-                        databaseHelper.getWritableDatabase();
 
-                int version = database.getVersion();
+                int version = database.getOpenHelper().getWritableDatabase().getVersion();
 
                 Log.i(
                         TAG,
@@ -113,7 +116,7 @@ public final class DatabaseLabActivity
                 );
 
                 runOnUiThread(() -> {
-                    if (isFinishing() || isDestroyed()) {
+                    if (binding == null || isFinishing() || isDestroyed()) {
                         return;
                     }
 
@@ -129,6 +132,9 @@ public final class DatabaseLabActivity
                 );
 
                 runOnUiThread(() -> {
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
                     if (isFinishing() || isDestroyed()) {
                         return;
                     }
@@ -140,6 +146,7 @@ public final class DatabaseLabActivity
             }
         });
     }
+
     private void insertRecord(
             String name,
             String value,
@@ -147,42 +154,15 @@ public final class DatabaseLabActivity
     ) {
         databaseExecutor.execute(() -> {
             try {
-                SQLiteDatabase database =
-                        databaseHelper.getWritableDatabase();
 
-                ContentValues values = new ContentValues();
-                values.put(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NAME,
-                        name
-                );
-                values.put(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_VALUE,
-                        value
-                );
-                values.put(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NOTE,
-                        note
-                );
-                values.put(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_CREATED_AT,
-                        System.currentTimeMillis()
-                );
 
-                long rowId = database.insertOrThrow(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .TABLE_NAME,
-                        null,
-                        values
-                );
+                LabRecord record = new LabRecord();
+                record.name = name;
+                record.value = value;
+                record.note = note;
+                record.createdAt = System.currentTimeMillis();
+
+                long rowId = recordDao.insert(record);
 
                 Log.i(
                         TAG,
@@ -193,10 +173,13 @@ public final class DatabaseLabActivity
                 );
 
                 runOnUiThread(() -> {
-                        binding.databaseStatusText.setText(
-                                getString(R.string.db_inserted, rowId)
-                        );
-                        queryAllRecords();
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
+                    binding.databaseStatusText.setText(
+                            getString(R.string.db_inserted, rowId)
+                    );
+                    queryAllRecords();
                 });
             } catch (SQLiteConstraintException exception) {
                 Log.w(
@@ -205,16 +188,20 @@ public final class DatabaseLabActivity
                         exception
                 );
 
-                runOnUiThread(() ->
-                        binding.databaseStatusText.setText(
-                                R.string.db_duplicate
-                        )
-                );
+                runOnUiThread(() -> {
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
+                    binding.databaseStatusText.setText(
+                            R.string.db_duplicate
+                    );
+                });
             } catch (RuntimeException exception) {
                 Log.e(TAG, "Insert failed", exception);
             }
         });
     }
+
     private void updateRecord(
             String name,
             String value,
@@ -222,38 +209,9 @@ public final class DatabaseLabActivity
     ) {
         databaseExecutor.execute(() -> {
             try {
-                SQLiteDatabase database =
-                        databaseHelper.getWritableDatabase();
 
-                ContentValues values = new ContentValues();
-                values.put(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_VALUE,
-                        value
-                );
-                values.put(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NOTE,
-                        note
-                );
 
-                String selection =
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NAME
-                                + " = ?";
-                String[] selectionArgs = { name };
-
-                int updatedRows = database.update(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .TABLE_NAME,
-                        values,
-                        selection,
-                        selectionArgs
-                );
+                int updatedRows = recordDao.updateByName(name, value, note);
 
                 Log.i(
                         TAG,
@@ -264,6 +222,9 @@ public final class DatabaseLabActivity
                 );
 
                 runOnUiThread(() -> {
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
                     if (updatedRows > 0) {
                         binding.databaseStatusText.setText(
                                 getString(R.string.db_updated, updatedRows)
@@ -278,34 +239,25 @@ public final class DatabaseLabActivity
             } catch (RuntimeException exception) {
                 Log.e(TAG, "Update failed", exception);
 
-                runOnUiThread(() ->
-                        binding.databaseStatusText.setText(
-                                R.string.db_update_failed
-                        )
+                runOnUiThread(() -> {
+                            if (binding == null || isFinishing() || isDestroyed()) {
+                                return;
+                            }
+                            binding.databaseStatusText.setText(
+                                    R.string.db_update_failed
+                            );
+                        }
                 );
             }
         });
     }
+
     private void deleteRecord(String name) {
         databaseExecutor.execute(() -> {
             try {
-                SQLiteDatabase database =
-                        databaseHelper.getWritableDatabase();
 
-                String selection =
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NAME
-                                + " = ?";
-                String[] selectionArgs = { name };
 
-                int deletedRows = database.delete(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .TABLE_NAME,
-                        selection,
-                        selectionArgs
-                );
+                int deletedRows = recordDao.deleteByName(name);
 
                 Log.i(
                         TAG,
@@ -316,6 +268,9 @@ public final class DatabaseLabActivity
                 );
 
                 runOnUiThread(() -> {
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
                     if (deletedRows > 0) {
                         binding.databaseStatusText.setText(
                                 getString(R.string.db_deleted, deletedRows)
@@ -330,100 +285,65 @@ public final class DatabaseLabActivity
             } catch (RuntimeException exception) {
                 Log.e(TAG, "Delete failed", exception);
 
-                runOnUiThread(() ->
-                        binding.databaseStatusText.setText(
-                                R.string.db_delete_failed
-                        )
+                runOnUiThread(() -> {
+
+                            if (binding == null || isFinishing() || isDestroyed()) {
+                                return;
+                            }
+                            binding.databaseStatusText.setText(
+                                    R.string.db_delete_failed
+                            );
+                        }
                 );
             }
         });
     }
+
     private void queryAllRecords() {
         databaseExecutor.execute(() -> {
-            SQLiteDatabase database =
-                    databaseHelper.getReadableDatabase();
+            try {
+                List<LabRecord> records = recordDao.queryAll();
+                StringBuilder result = new StringBuilder();
 
-            String[] columns = {
-                    LabDatabaseContract.LabRecordEntry._ID,
-                    LabDatabaseContract
-                            .LabRecordEntry
-                            .COLUMN_NAME,
-                    LabDatabaseContract
-                            .LabRecordEntry
-                            .COLUMN_VALUE,
-                    LabDatabaseContract
-                            .LabRecordEntry
-                            .COLUMN_NOTE,
-                    LabDatabaseContract
-                            .LabRecordEntry
-                            .COLUMN_CREATED_AT
-            };
-
-            StringBuilder result = new StringBuilder();
-
-            try (Cursor cursor = database.query(
-                    LabDatabaseContract
-                            .LabRecordEntry
-                            .TABLE_NAME,
-                    columns,
-                    null,
-                    null,
-                    null,
-                    null,
-                    LabDatabaseContract
-                            .LabRecordEntry
-                            ._ID
-                            + " ASC"
-            )) {
-                int idIndex = cursor.getColumnIndexOrThrow(
-                        LabDatabaseContract.LabRecordEntry._ID
-                );
-                int nameIndex = cursor.getColumnIndexOrThrow(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NAME
-                );
-                int valueIndex = cursor.getColumnIndexOrThrow(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_VALUE
-                );
-                int noteIndex = cursor.getColumnIndexOrThrow(
-                        LabDatabaseContract
-                                .LabRecordEntry
-                                .COLUMN_NOTE
-                );
-
-                while (cursor.moveToNext()) {
-                    result.append(getString(R.string.record_row,
-                            cursor.getLong(idIndex), cursor.getString(nameIndex),
-                            cursor.getString(valueIndex), cursor.getString(noteIndex)))
-                            .append('\n');
+                for (LabRecord record : records) {
+                    result.append(getString(
+                            R.string.record_row,
+                            record.id,
+                            record.name,
+                            record.value,
+                            record.note
+                    )).append('\n');
                 }
 
-                Log.i(
-                        TAG,
-                        "Query success, count=" + cursor.getCount()
-                );
+                String displayText = records.isEmpty()
+                        ? getString(R.string.no_records)
+                        : result.toString();
+
+                Log.i(TAG, "Query success, count=" + records.size());
+
+                runOnUiThread(() -> {
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
+                    binding.databaseResultText.setText(displayText);
+                });
+            } catch (RuntimeException exception) {
+                Log.e(TAG, "Query failed", exception);
+
+                runOnUiThread(() -> {
+                    if (binding == null || isFinishing() || isDestroyed()) {
+                        return;
+                    }
+                    binding.databaseStatusText.setText(R.string.db_query_failed);
+                });
             }
-
-            String displayText =
-                    result.length() == 0
-                            ? getString(R.string.no_records)
-                            : result.toString();
-
-            runOnUiThread(() ->
-                    binding.databaseResultText.setText(displayText)
-            );
         });
     }
+
     @Override
     protected void onDestroy() {
         databaseExecutor.shutdown();
 
-        if (databaseHelper != null) {
-            databaseHelper.close();
-        }
 
         binding = null;
         super.onDestroy();

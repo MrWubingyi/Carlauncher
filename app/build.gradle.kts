@@ -30,6 +30,12 @@ android {
                 arguments += "-DANDROID_STL=c++_shared"
             }
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["room.schemaLocation"] =
+                    "$projectDir/schemas"
+            }
+        }
     }
 
     buildTypes {
@@ -79,6 +85,8 @@ dependencies {
             }
         )
     )
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
 }
 
 // ---------------------------------------------------------------------------

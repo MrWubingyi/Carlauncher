@@ -88,7 +88,12 @@ public class BroadcastLabActivity extends AppCompatActivity {
             receiverRegistered = false;
             Log.i(TAG, "receiver unregistered");
         }
-        binding = null;
         super.onStop();
+    }
+    @Override
+    protected void onDestroy() {
+        binding = null;
+        statusText = null;
+        super.onDestroy();
     }
 }

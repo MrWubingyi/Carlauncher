@@ -11,6 +11,7 @@ fragment = "1.9.0"
 json = "20240303"
 androidxTestCore = "1.7.0"
 room = "2.8.5"
+ksp = "2.3.12"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -29,3 +30,4 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

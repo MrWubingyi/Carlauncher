@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ubuntu 虚拟机 Android CLI 构建验证汇报</title>
+<style>
+:root{--bg:#07111f;--panel:#0d1b2c;--panel2:#11243a;--line:#29425f;--text:#eef6ff;--muted:#9eb1c8;--blue:#54a7ff;--cyan:#40d6c7;--green:#67dfa1;--amber:#ffc864;--red:#ff7d83;--shadow:0 22px 70px rgba(0,0,0,.34)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 12% 8%,#123151 0,transparent 28%),radial-gradient(circle at 85% 12%,#123d49 0,transparent 25%),var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;line-height:1.55}
+a{color:inherit}.deck{max-width:1260px;margin:86px auto 90px;padding:0 22px}.page{position:relative;min-height:690px;margin:0 0 42px;padding:54px 58px 48px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,rgba(17,36,58,.96),rgba(8,22,38,.98));box-shadow:var(--shadow);overflow:hidden}.page:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan),transparent 80%)}
+.eyebrow{color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(42px,6vw,76px);line-height:1.05;margin:24px 0 22px;max-width:980px}.hero .lead{font-size:23px;max-width:900px;color:#cbd9e8}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:42px}.status-card,.card{border:1px solid var(--line);border-radius:18px;background:rgba(7,18,31,.62);padding:22px}.status-card strong{display:block;font-size:22px;margin-bottom:8px}.status-pass{border-color:#2e8f68}.status-warn{border-color:#9a7432}.status-pass strong{color:var(--green)}.status-warn strong{color:var(--amber)}
+h2{font-size:38px;line-height:1.18;margin:12px 0 28px}h3{font-size:20px;margin:0 0 12px}.muted{color:var(--muted)}.small{font-size:13px}.big-number{font-size:48px;font-weight:850;line-height:1;color:var(--blue)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.metric{padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(6,17,30,.56)}.metric b{display:block;font-size:27px;color:#fff;margin:5px 0}.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border-radius:999px;background:#17314c;color:#cfe5ff;font-size:13px;font-weight:700}.dot{width:8px;height:8px;border-radius:50%;background:currentColor}.pass{color:var(--green)}.warn{color:var(--amber)}.fail{color:var(--red)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch;margin-top:32px}.step{position:relative;border:1px solid var(--line);border-radius:17px;padding:19px;background:#0a1a2c;min-height:150px}.step:not(:last-child):after{content:"→";position:absolute;right:-18px;top:54px;color:var(--blue);font-size:25px;z-index:2}.step .n{color:var(--cyan);font-weight:800;font-size:13px}.step b{display:block;margin:12px 0 7px}.step.done{border-color:#318463}.step.pending{border-color:#916d2f}
+table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#091827}th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #203852;vertical-align:top}th{color:#bad9f8;background:#112a42;font-size:13px;letter-spacing:.04em}tr:last-child td{border-bottom:0}code{font-family:"Cascadia Code","SFMono-Regular",Consolas,monospace;font-size:.9em;color:#c9e8ff;background:#0a1726;border:1px solid #263d57;border-radius:6px;padding:2px 5px}.code{white-space:pre-wrap;margin:18px 0 0;padding:18px;border:1px solid var(--line);border-radius:15px;background:#06121f;color:#c8e4ff;font:13px/1.6 "Cascadia Code",Consolas,monospace;overflow:auto}
+.callout{margin-top:20px;padding:17px 20px;border-left:4px solid var(--amber);border-radius:8px;background:rgba(255,200,100,.09)}.callout.passbox{border-color:var(--green);background:rgba(103,223,161,.08)}.timeline{display:grid;grid-template-columns:150px 1fr;gap:0 22px}.time{color:var(--cyan);font-weight:800;padding:14px 0;border-bottom:1px solid var(--line)}.event{padding:14px 0;border-bottom:1px solid var(--line)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px}.foot{position:absolute;left:58px;right:58px;bottom:22px;display:flex;justify-content:space-between;color:#7189a3;font-size:12px}.toolbar{position:fixed;z-index:20;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px;border:1px solid #35516e;border-radius:14px;background:rgba(6,16,28,.88);backdrop-filter:blur(16px);box-shadow:0 12px 36px rgba(0,0,0,.35)}button{border:1px solid #35516e;border-radius:9px;background:#10253c;color:var(--text);padding:8px 12px;cursor:pointer}button:hover{border-color:var(--blue)}button:disabled{opacity:.4;cursor:default}.count{min-width:62px;text-align:center;font-variant-numeric:tabular-nums}.progress{position:fixed;z-index:21;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .2s}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:28px}.toc a{text-decoration:none;border:1px solid var(--line);border-radius:14px;padding:14px 17px;background:#0b1c2e}.toc a:hover{border-color:var(--blue)}
+body.presenting{overflow:hidden}.presenting .deck{margin:0;max-width:none;padding:0}.presenting .page{display:none;margin:0;border:0;border-radius:0;min-height:100vh;height:100vh;padding:70px 7vw 55px}.presenting .page.active{display:block}.presenting .foot{left:7vw;right:7vw}
+@media(max-width:820px){.deck{margin-top:78px;padding:0 12px}.page{padding:34px 24px 52px;min-height:auto}.hero-grid,.grid-2,.grid-3,.flow{grid-template-columns:1fr}.step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-25px}.timeline{grid-template-columns:100px 1fr}.foot{left:24px;right:24px}.toolbar button:nth-of-type(1),.toolbar button:nth-of-type(4){display:none}table{display:block;overflow-x:auto;white-space:nowrap}th,td{min-width:140px}}
+@media print{@page{size:A4 landscape;margin:8mm}body{background:#fff;color:#111;font-size:13px}.toolbar,.progress{display:none}.deck{margin:0;padding:0;max-width:none}.page{break-after:page;margin:0;min-height:190mm;height:190mm;padding:10mm 13mm;box-shadow:none;border:1px solid #bbb;border-radius:0;background:#fff;color:#111}.page:before{display:none}h2{font-size:28px;margin:6px 0 16px}.muted,.foot{color:#555}.card,.metric,.status-card,.step,.code,table{background:#fff;color:#111;border-color:#aaa}.card,.metric,.status-card{padding:14px}th,td{padding:8px 10px}code{background:#f2f4f6;color:#111}.eyebrow,.step .n,.time{color:#075b84}.status-pass strong,.pass{color:#177445}.status-warn strong,.warn{color:#9a5e00}.callout{margin-top:12px;padding:10px 14px;background:#fff8e8}.callout.passbox{background:#eefaf4}.grid-2,.grid-3{gap:12px}.toc{margin-top:14px;gap:8px}.toc a{padding:8px 12px}.flow{margin-top:18px}.code{margin-top:10px;padding:11px;line-height:1.42}.foot{bottom:10px;left:13mm;right:13mm}#evidence .grid-2{margin-top:10px!important}#evidence .card p{margin:5px 0}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="toolbar" aria-label="汇报控制">
+  <button id="mode">进入汇报模式</button><button id="prev">上一页</button><span class="count" id="count">1 / 8</span><button id="next">下一页</button><button id="print">打印 / PDF</button>
+</nav>
+<main class="deck">
+<section class="page hero active" id="cover">
+  <div class="eyebrow">CarLauncher · Ubuntu 本机构建验证</div>
+  <h1>Android CLI 在 Ubuntu 虚拟机上的构建验证</h1>
+  <p class="lead">验证 Android CLI 能否在干净的 Linux 环境中建立可复现的 Android 构建工具链，并尝试从固定源码重新生成 vSomeIP 原生库。</p>
+  <div class="hero-grid">
+    <div class="status-card status-pass"><strong>CLI / SDK 环境：通过</strong><span class="muted">CLI 安装、SDK 目录识别、5 项构建组件安装及清单核对完成。</span></div>
+    <div class="status-card status-warn"><strong>完整构建：未验收</strong><span class="muted">Boost 下载发生 TLS 中断；后台重试最终状态尚未取回。</span></div>
+  </div>
+  <div class="legend"><span class="pill pass"><i class="dot"></i>已取得证据</span><span class="pill warn"><i class="dot"></i>等待最终证据</span><span class="pill">2026-09-23 · 北京时间</span></div>
+  <footer class="foot"><span>汇报口径：已验证事实与待验收项分开呈现</span><span>1 / 8</span></footer>
+</section>
+
+<section class="page" id="conclusion">
+  <div class="eyebrow">Executive summary</div><h2>结论先行：环境链路成立，产物链路仍需收口</h2>
+  <div class="grid-3">
+    <div class="metric"><span class="muted">Android CLI</span><b>1.0.16406183</b><span class="pass">安装与命令调用通过</span></div>
+    <div class="metric"><span class="muted">SDK 构建组件</span><b>5 / 5</b><span class="pass">全部出现在 Installed packages</span></div>
+    <div class="metric"><span class="muted">完整构建验收</span><b>未完成</b><span class="warn">依赖下载阶段受网络中断影响</span></div>
+  </div>
+  <div class="callout passbox"><strong>已经证明：</strong>Android CLI 可以在 Ubuntu 22.04 虚拟机上管理独立 SDK 目录，并准确安装项目所需 Platform、Build Tools、NDK、CMake 与 Platform Tools。</div>
+  <div class="callout"><strong>尚未证明：</strong>本次虚拟机运行还没有取得“vSomeIP 编译成功 → APK 构建成功 → JVM 测试通过 → APK 内 `.so` 哈希一致”的完整证据链。</div>
+  <div class="toc">
+    <a href="#environment">03 · 验证环境与固定输入</a><a href="#flow">04 · Ubuntu 构建流程</a>
+    <a href="#evidence">05 · 已取得的验证证据</a><a href="#incident">06 · 网络故障与影响</a>
+    <a href="#acceptance">07 · 完整验收门槛</a><a href="#decision">08 · 建议与下一步</a>
+  </div>
+  <footer class="foot"><span>当前判定：Android CLI 环境通过 / 完整构建待验收</span><span>2 / 8</span></footer>
+</section>
+
+<section class="page" id="environment">
+  <div class="eyebrow">Controlled inputs</div><h2>验证环境与固定输入</h2>
+  <div class="grid-2">
+    <div class="card"><h3>Ubuntu 虚拟机</h3><table><tr><th>项目</th><th>值</th></tr><tr><td>系统</td><td>Ubuntu 22.04.5 LTS · x86_64</td></tr><tr><td>主机</td><td><code>wuby-virtual-machine</code></td></tr><tr><td>工作目录</td><td><code>/root/develop/android-cli-validation-20260923</code></td></tr><tr><td>SDK 目录</td><td><code>.../sdk</code>，与系统其他 SDK 隔离</td></tr><tr><td>Java</td><td>Temurin 21.0.12.1，下载包 SHA-256 校验通过</td></tr></table></div>
+    <div class="card"><h3>源码基线</h3><table><tr><th>项目</th><th>固定值</th></tr><tr><td>CarLauncher</td><td><code>09ea8746ae57...</code></td></tr><tr><td>vSomeIP 子模块</td><td><code>d217416287b4...</code></td></tr><tr><td>Boost</td><td>1.90.0 · 固定 SHA-256</td></tr><tr><td>ABI / API</td><td>x86_64 / Android API 24</td></tr><tr><td>说明</td><td>采用此前 GitHub CI 通过的固定基线，不代表当前 Windows 工作区的新改动已经验证。</td></tr></table></div>
+  </div>
+  <div class="callout"><strong>可复现性原则：</strong>CLI、SDK、JDK、源码和 Gradle 缓存均放在独立目录；主仓库不提供预编译 `.so` 作为构建输入。</div>
+  <footer class="foot"><span>固定输入用于区分环境问题、网络问题和源码问题</span><span>3 / 8</span></footer>
+</section>
+
+<section class="page" id="flow">
+  <div class="eyebrow">Build chain</div><h2>Ubuntu 上的完整构建链路</h2>
+  <div class="flow">
+    <div class="step done"><span class="n">01</span><b>安装 Android CLI</b><span class="muted">官方 Linux 安装脚本，CLI 版本确认。</span></div>
+    <div class="step done"><span class="n">02</span><b>准备 SDK</b><span class="muted">CLI 安装 Platform、Build Tools、NDK、CMake。</span></div>
+    <div class="step pending"><span class="n">03</span><b>原生源码构建</b><span class="muted">下载并校验 Boost，交叉编译 vSomeIP。</span></div>
+    <div class="step pending"><span class="n">04</span><b>Gradle 构建与测试</b><span class="muted">生成 Debug APK，执行 JVM 单元测试。</span></div>
+    <div class="step pending"><span class="n">05</span><b>产物一致性</b><span class="muted">核对 APK 内 `.so` 与刚生成原生库哈希。</span></div>
+  </div>
+  <pre class="code">android --no-metrics --sdk="$ANDROID_HOME" sdk install \
+  platforms/android-36.1 build-tools/36.0.0 \
+  ndk/28.2.13676358 cmake/3.22.1 platform-tools
+
+bash tools/vsomeip-android/build-source.sh
+bash gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
+python3 tools/vsomeip-android/verify-artifact.py \
+  --apk app/build/outputs/apk/debug/app-debug.apk</pre>
+  <div class="callout"><strong>职责边界：</strong>Android CLI 负责 SDK 环境管理；NDK/CMake/Boost.Build 负责原生编译；Gradle 负责 APK 和 JVM 测试；验证脚本负责产物哈希闭环。</div>
+  <footer class="foot"><span>绿色：已验证 · 黄色：本次尚未取得最终证据</span><span>4 / 8</span></footer>
+</section>
+
+<section class="page" id="evidence">
+  <div class="eyebrow">Observed evidence</div><h2>已取得的 CLI 与 SDK 证据</h2>
+  <table><thead><tr><th>验证项</th><th>实测结果</th><th>状态</th></tr></thead><tbody>
+    <tr><td>CLI 安装</td><td>官方脚本返回 “android is ready to use”</td><td><span class="pill pass"><i class="dot"></i>通过</span></td></tr>
+    <tr><td>CLI 版本</td><td><code>1.0.16406183</code></td><td><span class="pill pass"><i class="dot"></i>通过</span></td></tr>
+    <tr><td>SDK 目录识别</td><td><code>/root/develop/android-cli-validation-20260923/sdk</code></td><td><span class="pill pass"><i class="dot"></i>通过</span></td></tr>
+    <tr><td>Android Platform</td><td>36.1 · revision 1</td><td><span class="pill pass"><i class="dot"></i>已安装</span></td></tr>
+    <tr><td>Build Tools</td><td>36.0.0</td><td><span class="pill pass"><i class="dot"></i>已安装</span></td></tr>
+    <tr><td>NDK</td><td>28.2.13676358 · r28c</td><td><span class="pill pass"><i class="dot"></i>已安装</span></td></tr>
+    <tr><td>CMake</td><td>3.22.1</td><td><span class="pill pass"><i class="dot"></i>已安装</span></td></tr>
+    <tr><td>Platform Tools</td><td>37.0.1</td><td><span class="pill pass"><i class="dot"></i>已安装</span></td></tr>
+  </tbody></table>
+  <div class="grid-2" style="margin-top:18px"><div class="card"><h3>本机归档</h3><p class="muted">原始日志：<code>build/ubuntu-cli-validation-20260923/</code></p><p class="small">包含 CLI 安装、版本、环境、SDK 安装、组件清单与构建尝试日志。</p></div><div class="card"><h3>虚拟机归档</h3><p class="muted"><code>/root/develop/android-cli-validation-20260923/logs/</code></p><p class="small">保留完整终端输出、后台重试日志及后续结果文件位置。</p></div></div>
+  <footer class="foot"><span>证据来自 2026-09-23 实际执行日志</span><span>5 / 8</span></footer>
+</section>
+
+<section class="page" id="incident">
+  <div class="eyebrow">Incident analysis</div><h2>构建没有走完：问题发生在依赖下载阶段</h2>
+  <div class="timeline">
+    <div class="time">16:55–17:08</div><div class="event"><strong>环境准备成功</strong><br><span class="muted">安装 Android CLI，下载并解压 5 项 SDK 组件，校验 JDK，拉取固定源码及子模块。</span></div>
+    <div class="time">17:08</div><div class="event"><strong>首次原生构建尝试</strong><br><span class="muted">持续 SSH 会话在 Boost 下载期间被重置，构建进程随会话中断。</span></div>
+    <div class="time">17:10–17:13</div><div class="event"><strong>后台执行重试</strong><br><span class="muted">改用 nohup 脱离 SSH；Boost 下载返回 <code>curl (56) OpenSSL SSL_read: unexpected eof</code>，退出码 56。</span></div>
+    <div class="time">17:14 起</div><div class="event"><strong>启用网络错误重试</strong><br><span class="muted">独立 CURL_HOME 增加 retry-all-errors；最后取回的快照仍在下载，之后 SSH/SCP 多次连接超时，最终状态尚未取得。</span></div>
+  </div>
+  <div class="grid-2" style="margin-top:20px"><div class="status-card status-pass"><strong>不是 CLI 失败</strong><span class="muted">CLI 安装、SDK 下载解压与组件查询均已完成并有日志。</span></div><div class="status-card status-warn"><strong>是外部下载链路不稳定</strong><span class="muted">失败点位于 Boost 压缩包传输，尚未进入 vSomeIP 编译。</span></div></div>
+  <footer class="foot"><span>故障域：依赖下载 / SSH 网络稳定性</span><span>6 / 8</span></footer>
+</section>
+
+<section class="page" id="acceptance">
+  <div class="eyebrow">Acceptance gate</div><h2>完整构建通过需要同时满足 5 个条件</h2>
+  <div class="grid-2">
+    <div class="card"><h3>当前已满足</h3><p><span class="pill pass"><i class="dot"></i>1 · Android CLI 正常</span></p><p><span class="pill pass"><i class="dot"></i>2 · SDK / NDK / CMake 齐备</span></p><p><span class="pill pass"><i class="dot"></i>3 · 固定源码和子模块就绪</span></p></div>
+    <div class="card"><h3>仍需取得</h3><p><span class="pill warn"><i class="dot"></i>4 · vSomeIP 从源码成功生成</span></p><p><span class="pill warn"><i class="dot"></i>5 · APK 与 JVM 测试成功</span></p><p><span class="pill warn"><i class="dot"></i>6 · APK 内 `.so` 哈希一致</span></p></div>
+  </div>
+  <pre class="code"># Ubuntu 本机最终状态检查
+sudo tail -30 /root/develop/android-cli-validation-20260923/logs/09-network-retry-console.log
+sudo test -f /root/develop/android-cli-validation-20260923/logs/result.json &amp;&amp; \
+  sudo cat /root/develop/android-cli-validation-20260923/logs/result.json</pre>
+  <div class="callout"><strong>判定规则：</strong>只有日志出现 <code>VALIDATION_EXIT=0</code>、生成 <code>result.json</code>，且 APK 原生库校验成功，才能将完整构建状态从“待验收”改为“通过”。</div>
+  <footer class="foot"><span>当前报告没有用历史 GitHub 成功结果替代本次 Ubuntu 证据</span><span>7 / 8</span></footer>
+</section>
+
+<section class="page" id="decision">
+  <div class="eyebrow">Recommendation</div><h2>建议：保留 CLI 方案，强化依赖下载与证据归档</h2>
+  <div class="grid-3">
+    <div class="card"><span class="big-number">01</span><h3>继续使用 Android CLI</h3><p class="muted">Ubuntu 实测已证明它能统一安装和查询构建所需 SDK 组件，适合 CI 与本地 Linux 验证保持一致。</p></div>
+    <div class="card"><span class="big-number">02</span><h3>稳定 Boost 获取方式</h3><p class="muted">为下载增加全错误重试、断点续传或可信缓存；仍保留版本与 SHA-256 校验，避免牺牲供应链可追溯性。</p></div>
+    <div class="card"><span class="big-number">03</span><h3>完成一次证据闭环</h3><p class="muted">取得 vSomeIP、APK、测试和哈希核对结果后，再将 Ubuntu 验证升级为完整通过。</p></div>
+  </div>
+  <div class="callout passbox"><strong>管理层结论：</strong>Android CLI 方案本身可用；本次未完成项来自外部依赖下载与远程连接稳定性，不需要推翻现有流水线设计。</div>
+  <p class="muted" style="margin-top:28px">验证范围不包含真机、模拟器、车端、Journey 或当前 Windows 工作区的新改动。原生构建脚本中的 GitHub run URL 字段不适用于本地虚拟机运行。</p>
+  <footer class="foot"><span>报告版本：2026-09-23 · Ubuntu CLI validation</span><span>8 / 8</span></footer>
+</section>
+</main>
+<script>
+(()=>{const pages=[...document.querySelectorAll('.page')],mode=document.getElementById('mode'),prev=document.getElementById('prev'),next=document.getElementById('next'),count=document.getElementById('count'),progress=document.getElementById('progress');let current=0,presenting=false;function update(){pages.forEach((p,i)=>p.classList.toggle('active',i===current));count.textContent=`${current+1} / ${pages.length}`;progress.style.width=`${(current+1)/pages.length*100}%`;prev.disabled=current===0;next.disabled=current===pages.length-1}function go(i){current=Math.max(0,Math.min(pages.length-1,i));update();if(!presenting)pages[current].scrollIntoView({behavior:'smooth',block:'start'})}function setMode(v){presenting=v;document.body.classList.toggle('presenting',v);mode.textContent=v?'返回阅读模式':'进入汇报模式';mode.setAttribute('aria-pressed',String(v));window.scrollTo({top:0,behavior:'instant'});update()}mode.onclick=()=>setMode(!presenting);prev.onclick=()=>go(current-1);next.onclick=()=>go(current+1);document.getElementById('print').onclick=()=>window.print();document.addEventListener('keydown',e=>{if(!presenting||e.ctrlKey||e.altKey||e.metaKey)return;if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();go(current+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(pages.length-1)}else if(e.key==='Escape'){setMode(false)}});document.querySelectorAll('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();const i=pages.findIndex(p=>'#'+p.id===a.getAttribute('href'));if(i>=0)go(i)});let ticking=false;addEventListener('scroll',()=>{if(presenting||ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;let best=0,d=Infinity;pages.forEach((p,i)=>{const n=Math.abs(p.getBoundingClientRect().top-90);if(n<d){d=n;best=i}});if(best!==current){current=best;update()}})},{passive:true});update()})();
+</script>
+</body>
+</html>

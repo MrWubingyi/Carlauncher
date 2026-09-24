@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.ksp)
     jacoco
 }
 
@@ -28,12 +29,6 @@ android {
             cmake {
                 cppFlags += ""
                 arguments += "-DANDROID_STL=c++_shared"
-            }
-        }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments["room.schemaLocation"] =
-                    "$projectDir/schemas"
             }
         }
     }
@@ -66,6 +61,10 @@ android {
     }
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 dependencies {
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
@@ -86,7 +85,7 @@ dependencies {
         )
     )
     implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
 }
 
 // ---------------------------------------------------------------------------
@@ -96,10 +95,10 @@ dependencies {
 val jacocoClassDir = layout.buildDirectory.dir(
     "intermediates/javac/debug/compileDebugJavaWithJavac/classes"
 )
+val jacocoKotlinClassDir = layout.buildDirectory.dir("intermediates/built_in_kotlinc/debug/compileDebugKotlin/classes")
 val jacocoExecFile = layout.buildDirectory.file("jacoco/testDebugUnitTest.exec")
-val instrumentationCoverage = fileTree(layout.buildDirectory) {
-    include("**/*.ec")
-    exclude("outputs/code_coverage/debugAndroidTest/connected/**/*.ec")
+val instrumentationCoverage = fileTree(layout.buildDirectory.dir("outputs/code_coverage/debugAndroidTest")) {
+    include("*.ec")
 }
 val jacocoSourceDirs = files("src/main/java", "src/main/kotlin")
 
@@ -113,12 +112,14 @@ val jacocoGeneratedExcludes = listOf(
     "**/*BindingImpl.class"
 )
 
-fun mainClassTree() = fileTree(jacocoClassDir) {
+fun mainClassTree() = files(jacocoClassDir, jacocoKotlinClassDir).asFileTree.matching {
     exclude(jacocoGeneratedExcludes)
+    exclude("**/*_Impl*.class")
 }
 
 tasks.register<JacocoReport>("fullDebugUnitTestCoverageReport") {
     dependsOn("testDebugUnitTest")
+    mustRunAfter("connectedDebugAndroidTest")
     group = "verification"
     description = "生成 Debug 全模块单元测试覆盖率报告（HTML + XML）"
 

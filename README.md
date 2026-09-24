@@ -1,5 +1,10 @@
 # CarLauncher
 
+应用、JVM 单元测试和设备测试均使用 Kotlin，源码继续保留在 `app/src/*/java` 目录中。
+项目使用 AGP 内置 Kotlin 支持，Room 通过 KSP 生成代码并继续导出到 `app/schemas`；
+XML/ViewBinding 界面、数据库版本及 C++/JNI 协议保持原有结构。
+JNI 入口和回调通过 `@JvmStatic` 保留 `VsomeipClient` 的 JVM 静态签名。
+
 ## GitHub 自动构建
 
 [Android Build](.github/workflows/android-build.yml) 在推送、Pull Request 和手动触发时运行，使用 GitHub 的 Ubuntu runner，无需配置 Secrets 或自托管机器。

@@ -13,7 +13,7 @@ import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.example.carlauncher.MainActivity
+import com.example.carlauncher.ComposeMainActivity
 import com.example.carlauncher.R
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.data.VehicleDataSource
@@ -261,7 +261,7 @@ open class VehicleSendService : Service() {
 
     /** 创建前台服务通知 */
     private fun createNotification(): Notification? {
-        val notificationIntent = Intent(this, MainActivity::class.java)
+        val notificationIntent = Intent(this, ComposeMainActivity::class.java)
         notificationIntent.setFlags(
             (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         )

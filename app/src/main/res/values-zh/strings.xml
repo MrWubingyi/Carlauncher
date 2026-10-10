@@ -119,4 +119,6 @@
     <string name="state_response_error">响应错误</string>
     <string name="state_available">可用</string>
     <string name="state_unavailable">不可用</string>
+    <string name="db_finish_and_return">完成并返回</string>
+    <string name="db_result_failed">读取返回结果失败，请重试</string>
 </resources>

@@ -27,7 +27,7 @@ project("carlauncher")
 # used in the AndroidManifest.xml file.
 add_library(${CMAKE_PROJECT_NAME} SHARED
     # List C/C++ source files with relative paths to this CMakeLists.txt.
-    carlauncher.cpp)
+    jni/VsomeipJni.cpp)
 
 # CarLauncher: 使用单库（monolithic）libvsomeip3.so，以
 # ENABLE_MULTIPLE_ROUTING_MANAGERS=ON 构建（configuration + service discovery 编入核心库，
@@ -50,15 +50,14 @@ set_target_properties(vsomeip3 PROPERTIES
     IMPORTED_LOCATION "${VSOMEIP_LIBRARY_DIR}/libvsomeip3.so"
 )
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    "${VSOMEIP_SOURCE_ROOT}/interface"
-)
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../../../vehicle/native"
+    "${CMAKE_CURRENT_BINARY_DIR}/vehicle-native")
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
 # build script, prebuilt third-party libraries, or Android system libraries.
 target_link_libraries(${CMAKE_PROJECT_NAME}
     # List libraries link to the target library
-    vsomeip3
+    vehicle_someip
     android
     log)

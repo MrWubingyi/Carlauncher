@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarLauncher">
         <activity
-            android:name=".ComposeMainActivity"
+            android:name=".ui.home.ComposeMainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
@@ -39,12 +39,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-
         <service
             android:name=".service.VehicleSendService"
             android:enabled="true"
@@ -52,19 +46,19 @@
             android:foregroundServiceType="dataSync" />
 
         <activity
-            android:name=".AppDrawerActivity"
+            android:name=".ui.apps.AppDrawerActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".FragmentLabActivity"
+            android:name=".ui.settings.FragmentLabActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".BroadcastLabActivity"
+            android:name=".ui.lab.broadcast.BroadcastLabActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".DatabaseLabActivity"
+            android:name=".ui.lab.database.DatabaseLabActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
     </application>

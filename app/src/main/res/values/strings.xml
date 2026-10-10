@@ -120,4 +120,6 @@
     <string name="state_response_error">RESPONSE_ERROR</string>
     <string name="state_available">AVAILABLE</string>
     <string name="state_unavailable">UNAVAILABLE</string>
+    <string name="db_finish_and_return">complete and return</string>
+    <string name="db_result_failed">Failed to read the returned result; please try again.</string>
 </resources>

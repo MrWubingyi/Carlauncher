@@ -4,12 +4,12 @@ import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.model.DataValidity
 import com.example.carlauncher.model.VehicleState
 import com.example.carlauncher.service.VehicleSendService
-import com.example.carlauncher.someip.SomeipConnectionMonitor
+import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
 
 /**
  * 测试替身：[VehicleSendService] 的子类。
  *
- * 仅为 Repository / ViewModel / MainActivity 提供可控的服务快照读取， 不触发 onCreate、前台通知、TCP 或数据源等真实副作用。
+ * 仅为 Repository / ViewModel / Compose 页面提供可控的服务快照读取， 不触发 onCreate、前台通知、TCP 或数据源等真实副作用。
  */
 class StubVehicleSendService : VehicleSendService() {
 

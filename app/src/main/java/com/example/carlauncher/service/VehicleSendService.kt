@@ -13,16 +13,16 @@ import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.example.carlauncher.ComposeMainActivity
+import com.example.carlauncher.ui.home.ComposeMainActivity
 import com.example.carlauncher.R
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.data.VehicleDataSource
 import com.example.carlauncher.model.DataValidity
 import com.example.carlauncher.model.VehicleState
-import com.example.carlauncher.someip.NativeVehicleTransport
-import com.example.carlauncher.someip.SomeipConnectionMonitor
-import com.example.carlauncher.someip.VSomeIpDataSource
-import com.example.carlauncher.someip.VSomeIpNativeTransport
+import com.example.vehicle.someip.transport.NativeVehicleTransport
+import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
+import com.example.carlauncher.data.someip.VSomeIpDataSource
+import com.example.vehicle.someip.android.VSomeIpNativeTransport
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
@@ -63,7 +63,7 @@ open class VehicleSendService : Service() {
             }
 
             override fun onSourceStatusChanged(status: DataSourceStatus?) {
-                if (status == null) {
+                if (stopping || status == null) {
                     return
                 }
 
@@ -74,6 +74,7 @@ open class VehicleSendService : Service() {
             }
 
             override fun onError(exception: Exception?) {
+                if (stopping) return
                 Log.e(TAG, "Vehicle data source error", exception)
                 sourceStatus = DataSourceStatus.ERROR
                 if (!stopping) {
@@ -138,39 +139,58 @@ open class VehicleSendService : Service() {
 
     /** 调度 vSomeIP 启动到专用单线程执行器（不占主线程；native start 内部不再阻塞）。 */
     private fun startVsomeipClient() {
+        if (stopping) return
         notifyStateChanged()
         val executor = vsomeipExecutor
-        if (executor == null || executor!!.isShutdown()) {
-            Log.w(TAG, "vsomeip executor unavailable, skip start")
-            someipMonitor.startFailed()
-            notifyStateChanged()
+        val source = vsomeipDataSource
+        if (executor == null || executor.isShutdown || source == null) {
+            handleStartFailure(IllegalStateException("Vehicle source or lifecycle executor unavailable"))
             return
         }
         try {
-            executor!!.execute(Runnable { this.runVsomeipStart() })
+            executor.execute {
+                if (stopping) return@execute
+                val failure = try {
+                    source.start(dataListener)
+                    check(source.isRunning) { "Vehicle data source did not start" }
+                    null
+                } catch (error: Exception) {
+                    error
+                } catch (error: LinkageError) {
+                    error
+                }
+                if (failure != null) {
+                    // Cleanup stays on the lifecycle executor, before any subsequent start.
+                    try {
+                        source.stop()
+                    } catch (cleanupError: Exception) {
+                        if (cleanupError !== failure) failure.addSuppressed(cleanupError)
+                    } catch (cleanupError: LinkageError) {
+                        if (cleanupError !== failure) failure.addSuppressed(cleanupError)
+                    }
+                    handleStartFailure(failure)
+                } else if (!stopping) {
+                    Log.i(TAG, "Vehicle data source started (on lifecycle executor)")
+                    notifyStateChanged()
+                }
+            }
         } catch (exception: RejectedExecutionException) {
-            Log.e(TAG, "schedule vsomeip start rejected", exception)
-            someipMonitor.startFailed()
-            notifyStateChanged()
+            handleStartFailure(exception)
         }
     }
 
-    /** 在 vsomeipExecutor 线程启动 VSomeIpDataSource。 */
-    private fun runVsomeipStart() {
-        if (stopping || vsomeipDataSource == null) return
-        try {
-            vsomeipDataSource!!.start(dataListener)
-            notifyStateChanged()
-            Log.i(TAG, "VsomeipClient.start=true (on executor thread)")
-        } catch (e: Exception) {
-            Log.e(TAG, "start vsomeip failed", e)
-            someipMonitor.startFailed()
-            notifyStateChanged()
-        } catch (e: LinkageError) {
-            Log.e(TAG, "start vsomeip failed", e)
-            someipMonitor.startFailed()
-            notifyStateChanged()
+    /** One terminal Service result for scheduling, initialization and native-load failures. */
+    private fun handleStartFailure(error: Throwable) {
+        if (stopping) return
+        Log.e(TAG, "Vehicle data source start failed", error)
+        latestVehicleState = null
+        sourceStatus = DataSourceStatus.ERROR
+        // Scheduling can fail before the adapter starts; cleanup can also reset the monitor.
+        if (someipMonitor.snapshot().state == SomeipConnectionMonitor.State.STOPPED) {
+            someipMonitor.start()
         }
+        someipMonitor.startFailed()
+        notifyStateChanged()
     }
 
     /** 获取最新的车辆状态 */
@@ -183,9 +203,8 @@ open class VehicleSendService : Service() {
 
     /** 获取数据源状态 */
     open fun getSourceStatus(): DataSourceStatus? {
-        if (vsomeipDataSource != null && vsomeipDataSource!!.status != DataSourceStatus.STOPPED) {
-            return vsomeipDataSource!!.status
-        }
+        // Source callbacks update this value; Service startup failures must not be shadowed
+        // by a data source left in CONNECTING after throwing during initialization.
         return sourceStatus
     }
 

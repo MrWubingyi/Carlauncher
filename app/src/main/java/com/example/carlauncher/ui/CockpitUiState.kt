@@ -3,8 +3,8 @@ package com.example.carlauncher.ui
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.model.DataValidity
 import com.example.carlauncher.model.VehicleState
-import com.example.carlauncher.someip.SomeipConnectionMonitor
-import com.example.carlauncher.someip.SomeipConnectionMonitor.Snapshot
+import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
+import com.example.vehicle.someip.adapter.SomeipConnectionMonitor.Snapshot
 
 /** Immutable cockpit snapshot. Transport health is determined only by SOME/IP. */
 class CockpitUiState(

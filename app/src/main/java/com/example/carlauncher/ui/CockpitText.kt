@@ -2,7 +2,7 @@ package com.example.carlauncher.ui
 
 import android.content.Context
 import com.example.carlauncher.R
-import com.example.carlauncher.someip.SomeipConnectionMonitor
+import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
 
 /* Localized display text; protocol values and state-machine labels remain unchanged. */
 class CockpitText private constructor() {

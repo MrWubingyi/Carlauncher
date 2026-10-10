@@ -1,6 +1,7 @@
 package com.example.carlauncher.ui.lab.database
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -30,8 +31,10 @@ import java.util.concurrent.Executors
 import java.io.File
 import org.json.JSONArray
 import org.json.JSONObject
+import org.json.JSONException
 import androidx.activity.result.contract.ActivityResultContracts
 import android.net.Uri
+import android.provider.OpenableColumns
 
 class DatabaseLabActivity : ComponentActivity() {
     private val databaseExecutor = Executors.newSingleThreadExecutor()
@@ -130,6 +133,7 @@ class DatabaseLabActivity : ComponentActivity() {
                     onReadSnapshot = ::readSnapshot,
                     onDeleteSnapshot = ::deleteSnapshot,
                     onExportSnapshot = ::exportSnapshot,
+                    onReadDocument = ::selectJsonDocument,
                 )
             }
         }
@@ -231,6 +235,7 @@ class DatabaseLabActivity : ComponentActivity() {
             }
         }
     }
+
     private fun writeSnapshotToDocument(uri: Uri) {
         val content = pendingExportJson
 
@@ -264,6 +269,7 @@ class DatabaseLabActivity : ComponentActivity() {
             }
         }
     }
+
     private fun saveSnapshot() {
         runSnapshotOperation {
             val records = recordDao.queryAll()
@@ -309,6 +315,108 @@ class DatabaseLabActivity : ComponentActivity() {
         }
     }
 
+    private val openJsonDocument =
+        registerForActivityResult(
+            ActivityResultContracts.OpenDocument()
+        ) { uri ->
+            if (uri == null) {
+                actionsEnabled = true
+                status = "已取消选择"
+                // 保留原 resultText
+            } else {
+                readJsonDocument(uri)
+            }
+        }
+
+    private fun selectJsonDocument() {
+        if (!actionsEnabled) return
+        actionsEnabled = false
+
+        try {
+            openJsonDocument.launch(
+                arrayOf("application/json", "text/plain")
+            )
+        } catch (exception: ActivityNotFoundException) {
+            actionsEnabled = true
+            status = "当前系统没有可用的文档选择器"
+        }
+    }
+
+    private fun readJsonDocument(uri: Uri) {
+        databaseExecutor.execute {
+            try {
+                var displayName = "未知文件"
+                var sizeBytes: Long? = null
+
+                // 查询元数据，不读取文件正文
+                contentResolver.query(
+                    uri,
+                    arrayOf(
+                        OpenableColumns.DISPLAY_NAME,
+                        OpenableColumns.SIZE,
+                    ),
+                    null,
+                    null,
+                    null,
+                )?.use { cursor ->
+                    if (cursor.moveToFirst()) {
+                        val nameIndex = cursor.getColumnIndex(
+                            OpenableColumns.DISPLAY_NAME
+                        )
+                        val sizeIndex = cursor.getColumnIndex(
+                            OpenableColumns.SIZE
+                        )
+
+                        if (nameIndex >= 0 && !cursor.isNull(nameIndex)) {
+                            displayName = cursor.getString(nameIndex)
+                        }
+                        if (sizeIndex >= 0 && !cursor.isNull(sizeIndex)) {
+                            sizeBytes = cursor.getLong(sizeIndex)
+                        }
+                    }
+                }
+
+                // 读取文件正文
+                val stream = contentResolver.openInputStream(uri)
+                    ?: error("无法打开文档")
+
+                val json = stream.bufferedReader(Charsets.UTF_8).use {
+                    it.readText()
+                }
+
+                // 当前快照格式为 JSON 数组
+                val records = JSONArray(json)
+                val sizeText = sizeBytes?.let { "$it B" } ?: "未知"
+
+                val display = """
+                文件名：$displayName
+                大小：$sizeText
+                记录数：${records.length()}
+
+                ${records.toString(2)}
+            """.trimIndent()
+
+                updateUi {
+                    resultText = display
+                    status = "文档读取成功"
+                    actionsEnabled = true
+                }
+            } catch (exception: JSONException) {
+                Log.w(TAG, "Invalid JSON document", exception)
+                updateUi {
+                    status = "文件不是有效的 JSON 数组，请重新选择"
+                    actionsEnabled = true
+                }
+            } catch (exception: Exception) {
+                Log.e(TAG, "Document read failed", exception)
+                updateUi {
+                    status = "文档读取失败，请重新选择"
+                    actionsEnabled = true
+                }
+            }
+        }
+    }
+
     companion object {
         const val EXTRA_RECORD_COUNT = "com.example.carlauncher.extra.RECORD_COUNT"
         private const val TAG = "DATABASE_LAB"
@@ -330,6 +438,7 @@ internal fun DatabaseLabScreen(
     onReadSnapshot: () -> Unit,
     onDeleteSnapshot: () -> Unit,
     onExportSnapshot: () -> Unit,
+    onReadDocument: () -> Unit,
 ) {
     var name by rememberSaveable { mutableStateOf("") }
     var value by rememberSaveable { mutableStateOf("") }
@@ -490,6 +599,13 @@ internal fun DatabaseLabScreen(
                 ) {
                     Text("删除快照")
                 }
+                OutlinedButton(
+                    onClick = onReadDocument,
+                    enabled = actionsEnabled,
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text("选择文档读取")
+                }
             }
 
             Text(
@@ -537,6 +653,7 @@ private fun DatabaseLabPreview() {
             onReadSnapshot = {},
             onDeleteSnapshot = {},
             onExportSnapshot = {},
+            onReadDocument = {},
         )
     }
 }

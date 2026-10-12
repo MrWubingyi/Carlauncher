@@ -60,6 +60,7 @@ class DatabaseLabActivity : ComponentActivity() {
     private var pendingExportJson: String? = null
 
     private fun exportSnapshot() {
+        Log.d(TAG, "exportSnapshot called")
         if (!actionsEnabled) return
         actionsEnabled = false
 
@@ -83,6 +84,7 @@ class DatabaseLabActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate called")
         enableEdgeToEdge()
         database = requireNotNull(LabRoomDatabase.getInstance(this))
         recordDao = requireNotNull(database.recordDao())
@@ -94,6 +96,7 @@ class DatabaseLabActivity : ComponentActivity() {
                 DatabaseLabScreen(
                     status, resultText, actionsEnabled,
                     onInsert = { name, value, note ->
+                        Log.d(TAG, "onInsert called: name=$name, value=$value, note=$note")
                         if (name.isEmpty() || value.isEmpty()) {
                             status = getString(R.string.db_fields_required)
                         } else executeDatabaseOperation(R.string.db_query_failed) {
@@ -107,6 +110,7 @@ class DatabaseLabActivity : ComponentActivity() {
                         }
                     },
                     onUpdate = { name, value, note ->
+                        Log.d(TAG, "onUpdate called: name=$name, value=$value, note=$note")
                         if (name.isEmpty() || value.isEmpty()) {
                             status = getString(R.string.db_update_fields_required)
                         } else executeDatabaseOperation(R.string.db_update_failed) {
@@ -117,6 +121,7 @@ class DatabaseLabActivity : ComponentActivity() {
                         }
                     },
                     onDelete = { name ->
+                        Log.d(TAG, "onDelete called: name=$name")
                         if (name.isEmpty()) status = getString(R.string.db_delete_name_required)
                         else executeDatabaseOperation(R.string.db_delete_failed) {
                             val count = recordDao.deleteByName(name)
@@ -126,6 +131,7 @@ class DatabaseLabActivity : ComponentActivity() {
                         }
                     },
                     onQuery = {
+                        Log.d(TAG, "onQuery called")
                         executeDatabaseOperation(R.string.db_query_failed) { null to readRecords() }
                     },
                     onFinish = ::finishWithResult,
@@ -185,6 +191,7 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     private fun finishWithResult() {
+        Log.d(TAG, "finishWithResult called")
         if (!actionsEnabled) return
         actionsEnabled = false
         databaseExecutor.execute {
@@ -210,8 +217,29 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
+        Log.d(TAG, "onDestroy called")
         databaseExecutor.shutdown()
         super.onDestroy()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop called")
     }
 
     private val snapshotFile: File
@@ -237,6 +265,7 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     private fun writeSnapshotToDocument(uri: Uri) {
+        Log.d(TAG, "writeSnapshotToDocument called with uri: $uri")
         val content = pendingExportJson
 
         if (content == null) {
@@ -271,6 +300,7 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     private fun saveSnapshot() {
+        Log.d(TAG, "saveSnapshot called")
         runSnapshotOperation {
             val records = recordDao.queryAll()
             val array = JSONArray()
@@ -291,6 +321,7 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     private fun readSnapshot() {
+        Log.d(TAG, "readSnapshot called")
         runSnapshotOperation {
             if (snapshotFile.exists()) {
                 "快照读取成功" to snapshotFile.readText(Charsets.UTF_8)
@@ -301,6 +332,7 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     private fun deleteSnapshot() {
+        Log.d(TAG, "deleteSnapshot called")
         runSnapshotOperation {
             when {
                 !snapshotFile.exists() ->
@@ -329,6 +361,7 @@ class DatabaseLabActivity : ComponentActivity() {
         }
 
     private fun selectJsonDocument() {
+        Log.d(TAG, "selectJsonDocument called")
         if (!actionsEnabled) return
         actionsEnabled = false
 
@@ -343,6 +376,7 @@ class DatabaseLabActivity : ComponentActivity() {
     }
 
     private fun readJsonDocument(uri: Uri) {
+        Log.d(TAG, "readJsonDocument called with uri: $uri")
         databaseExecutor.execute {
             try {
                 var displayName = "未知文件"
@@ -524,7 +558,7 @@ internal fun DatabaseLabScreen(
                         )
                     }
                 }
-                Fields(maxWidth >= 600.dp)
+                Fields(this.maxWidth >= 600.dp)
             }
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(

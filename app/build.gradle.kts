@@ -68,6 +68,11 @@ ksp {
 }
 
 dependencies {
+    implementation(libs.okhttp)
+    implementation(libs.coroutines.android)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.coroutines.test)
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)

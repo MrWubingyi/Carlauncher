@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.carlauncher.data.remote.HttpRecordsRepository
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
@@ -37,6 +40,9 @@ import android.net.Uri
 import android.provider.OpenableColumns
 
 class DatabaseLabActivity : ComponentActivity() {
+    private val httpViewModel: HttpRecordsViewModel by viewModels {
+        HttpRecordsViewModel.factory(HttpRecordsRepository())
+    }
     private val databaseExecutor = Executors.newSingleThreadExecutor()
     private lateinit var database: LabRoomDatabase
     private lateinit var recordDao: LabRecordDao
@@ -92,6 +98,7 @@ class DatabaseLabActivity : ComponentActivity() {
         resultText = getString(R.string.no_records)
         setResult(Activity.RESULT_CANCELED)
         setContent {
+            val httpState by httpViewModel.uiState.collectAsStateWithLifecycle()
             HuTheme {
                 DatabaseLabScreen(
                     status, resultText, actionsEnabled,
@@ -140,6 +147,13 @@ class DatabaseLabActivity : ComponentActivity() {
                     onDeleteSnapshot = ::deleteSnapshot,
                     onExportSnapshot = ::exportSnapshot,
                     onReadDocument = ::selectJsonDocument,
+                    networkContent = {
+                        HttpRecordsSection(
+                            state = httpState,
+                            onLoad = httpViewModel::loadRecords,
+                            onCancel = httpViewModel::cancel,
+                        )
+                    },
                 )
             }
         }
@@ -473,6 +487,7 @@ internal fun DatabaseLabScreen(
     onDeleteSnapshot: () -> Unit,
     onExportSnapshot: () -> Unit,
     onReadDocument: () -> Unit,
+    networkContent: @Composable () -> Unit = {},
 ) {
     var name by rememberSaveable { mutableStateOf("") }
     var value by rememberSaveable { mutableStateOf("") }
@@ -641,6 +656,8 @@ internal fun DatabaseLabScreen(
                     Text("选择文档读取")
                 }
             }
+
+            networkContent()
 
             Text(
                 stringResource(R.string.result_label),

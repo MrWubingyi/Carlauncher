@@ -35,7 +35,36 @@ class ComposeMainActivity : ComponentActivity() {
     private val serviceIntent by lazy { Intent(this, VehicleSendService::class.java) }
     private val listener = VehicleSendService.StateListener { viewModel.refresh() }
     private val permissionRequest =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {}
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { grants ->
+            // 本次请求也可能只包含车辆权限，
+            // 没有通知权限这一项时，不提示“通知权限被拒绝”。
+            val notificationGranted =
+                grants[Manifest.permission.POST_NOTIFICATIONS]
+
+            if (notificationGranted != null) {
+                val message = when {
+                    notificationGranted ->
+                        "通知权限已授予"
+
+                    shouldShowRequestPermissionRationale(
+                        Manifest.permission.POST_NOTIFICATIONS
+                    ) ->
+                        "未授予通知权限；需要通知时，可再次申请"
+
+                    else ->
+                        "未授予通知权限；如需开启，请到系统设置中检查"
+                }
+
+                Log.i(TAG, message)
+                Toast.makeText(
+                    this,
+                    message,
+                    Toast.LENGTH_LONG,
+                ).show()
+            }
+        }
     private val databaseLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
@@ -69,6 +98,7 @@ class ComposeMainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i(TAG,"on Create")
         enableEdgeToEdge()
         setContent {
             CarLauncherScreen(
@@ -132,9 +162,30 @@ class ComposeMainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
+        Log.i(TAG,"on start")
+
         if (!bindingActive) bindingActive = bindService(serviceIntent, connection, 0)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val message = if (Build.VERSION.SDK_INT >= 33) {
+            val granted =
+                checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) ==
+                        PackageManager.PERMISSION_GRANTED
+
+            if (granted) {
+                "页面恢复：通知权限已授予"
+            } else {
+                "页面恢复：通知权限未授予"
+            }
+        } else {
+            "页面恢复：当前系统无需申请 POST_NOTIFICATIONS"
+        }
+
+        Log.i(TAG, message)
+    }
     private fun releaseBinding() {
         vehicleService?.clearStateListener(listener)
         if (bindingActive) unbindService(connection)
@@ -145,6 +196,7 @@ class ComposeMainActivity : ComponentActivity() {
 
     override fun onStop() {
         releaseBinding()
+        Log.i(TAG,"on stop")
         super.onStop()
     }
 

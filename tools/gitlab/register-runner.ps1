@@ -11,6 +11,7 @@ check_interval = 3
   clone_url = "http://gitlab:8929"
   token = "$($state.runner_token)"
   executor = "docker"
+  request_concurrency = 2
   [runners.docker]
     image = "carlauncher-android-ci:local"
     pull_policy = "if-not-present"

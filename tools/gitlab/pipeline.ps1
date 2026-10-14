@@ -5,8 +5,8 @@ $state = Get-Content (Join-Path $repo '.gitlab-local/bootstrap.json') -Raw | Con
 $headers = @{ 'PRIVATE-TOKEN' = $state.api_token }
 $url = "http://localhost:8929/api/v4/projects/$($state.project_id)"
 if ($Start) {
-    Invoke-RestMethod -Method Put -Uri $url -Headers $headers -Body @{ default_branch = 'codex/gitlab-ci' } | Out-Null
-    $pipeline = Invoke-RestMethod -Method Post -Uri "$url/pipeline" -Headers $headers -Body @{ ref = 'codex/gitlab-ci' }
+    Invoke-RestMethod -Method Put -Uri $url -Headers $headers -ContentType 'application/json' -Body (@{ default_branch = 'codex/gitlab-ci' } | ConvertTo-Json) | Out-Null
+    $pipeline = Invoke-RestMethod -Method Post -Uri "$url/pipeline" -Headers $headers -ContentType 'application/json' -Body (@{ ref = 'codex/gitlab-ci' } | ConvertTo-Json)
 } else {
     $pipeline = (Invoke-RestMethod -Uri "$url/pipelines?ref=codex%2Fgitlab-ci&per_page=1" -Headers $headers)[0]
 }

@@ -27,4 +27,14 @@ Runner 持有 Docker socket，供本仓库的可信流水线使用。
 
 GitHub upstream 保持 `git@github.com:MrWubingyi/Carlauncher.git`。
 GitLab SSH 地址为 `ssh://git@localhost:2229/root/Carlauncher.git`。
+首次上传使用 `codex/gitlab-ci` 快照分支包含当前未提交源码；原工作分支和索引保留。
+GitLab 默认分支指向该快照，日常提交后可推送对应分支：
+
+```powershell
+git push gitlab HEAD:vsomeip-jni-client
+```
+
+需要再次上传未提交的本地源码快照时，执行 `publish-snapshot.ps1`；脚本通过独立
+Git index 生成快照提交，保留原有工作区。`pipeline.ps1` 查看最新快照流水线，
+加 `-Start` 可手动运行；Job 日志写入 `.gitlab-local`。
 不要使用 `docker compose down -v`，该命令会删除持久卷。

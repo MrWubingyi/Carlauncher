@@ -1,11 +1,16 @@
 stages: [build]
 
+workflow:
+  auto_cancel:
+    on_new_commit: interruptible
+
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
   GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle-ci"
   NATIVE_BUILD_JOBS: '2'
 
 android-build:
+  interruptible: true
   stage: build
   image: carlauncher-android-ci:local
   tags: [carlauncher-docker]

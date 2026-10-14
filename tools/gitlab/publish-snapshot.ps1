@@ -14,7 +14,9 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'snapshot whitespace check failed' }
     $tree = git write-tree
     if ($LASTEXITCODE -ne 0) { throw 'write-tree failed' }
-    $parent = git rev-parse HEAD
+    $branches = @(git for-each-ref --format='%(refname)' refs/heads)
+    if ($branches -contains "refs/heads/$Branch") { $parent = git rev-parse "refs/heads/$Branch" }
+    else { $parent = git rev-parse HEAD }
     $commit = 'Prepare local GitLab CI and capture current source' | git -c user.name='Codex' -c user.email='codex@localhost' commit-tree $tree -p $parent
     if ($LASTEXITCODE -ne 0) { throw 'snapshot commit failed' }
     git update-ref "refs/heads/$Branch" $commit

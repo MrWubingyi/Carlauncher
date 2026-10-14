@@ -29,6 +29,8 @@ Gradle 官方分发跳转在本机网络下不可用时，从镜像下载同版�
 `.gitlab-ci.yml` 对齐 GitHub Actions：递归子模块、固定 SDK/NDK、Boost/vSomeIP
 源码构建、Debug APK、JVM 测试、APK 库校验、JaCoCo 报告；产物保留 14 天。
 不包含设备测试或双机网络联调。
+`native-build` 从源码编译并归档原生库；`android-build` 下载同一次流水线的原生
+产物，再构建 APK、执行单元测试和覆盖率报告。失败时可单独重试相应 Job。
 
 GitHub upstream 保持 `git@github.com:MrWubingyi/Carlauncher.git`。
 GitLab SSH 地址为 `ssh://git@localhost:2229/root/Carlauncher.git`。

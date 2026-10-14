@@ -1,4 +1,9 @@
-stages: [build]
+stages: [native, build]
+
+default:
+  image: carlauncher-android-ci:local
+  tags: [carlauncher-docker]
+  interruptible: true
 
 workflow:
   auto_cancel:
@@ -12,11 +17,27 @@ variables:
   NATIVE_DOWNLOAD_CACHE: "$CI_PROJECT_DIR/.native-download-cache"
   GRADLE_DOWNLOAD_URL: 'https://mirrors.cloud.tencent.com/gradle/gradle-9.5.0-bin.zip'
 
+native-build:
+  stage: native
+  timeout: 2h
+  cache:
+    key: native-source
+    when: always
+    paths: [.native-download-cache/]
+  script:
+    - bash tools/vsomeip-android/build-source.sh
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths:
+      - build/native/artifact/
+      - build/native/logs/
+
 android-build:
-  interruptible: true
   stage: build
-  image: carlauncher-android-ci:local
-  tags: [carlauncher-docker]
+  needs:
+    - job: native-build
+      artifacts: true
   timeout: 2h
   cache:
     key: android-gradle
@@ -24,10 +45,8 @@ android-build:
     paths:
       - .gradle-ci/caches/
       - .gradle-ci/wrapper/
-      - .native-download-cache/
   script:
     - bash tools/gitlab/prepare-gradle.sh
-    - bash tools/vsomeip-android/build-source.sh
     - bash ./gradlew --no-daemon --stacktrace --continue :app:assembleDebug :app:testDebugUnitTest
     - python3 tools/vsomeip-android/verify-artifact.py --apk app/build/outputs/apk/debug/app-debug.apk
     - bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
@@ -35,8 +54,6 @@ android-build:
     when: always
     expire_in: 14 days
     paths:
-      - build/native/artifact/
-      - build/native/logs/
       - app/build/outputs/apk/debug/*.apk
       - app/build/reports/tests/testDebugUnitTest/
       - app/build/test-results/testDebugUnitTest/

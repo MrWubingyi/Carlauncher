@@ -62,6 +62,9 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+    lint {
+        abortOnError = true
+    }
 }
 
 ksp {

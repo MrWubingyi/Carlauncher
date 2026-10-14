@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
+import androidx.core.graphics.withSave
 import com.example.carlauncher.ui.compose.designsystem.HuColors
 
 /** Offline illustration, intentionally separate from the external real-navigation action. */
@@ -60,7 +61,7 @@ fun MapCard(modifier: Modifier = Modifier, fullScreen: Boolean = false, bottomCl
         Column(Modifier.align(Alignment.TopEnd).padding(top = 72.dp, end = 14.dp).background(Color(0xEE202530))) {
             DashboardIcon(Icons.Outlined.Add, "Zoom in", { zoom = (zoom + .25f).coerceAtMost(3f) })
             DashboardIcon(Icons.Outlined.Remove, "Zoom out", { zoom = (zoom - .25f).coerceAtLeast(1f); pan = Offset.Zero })
-            DashboardIcon(Icons.Outlined.MyLocation, "Recenter map", { zoom = 1f; pan = Offset.Zero }, true)
+            DashboardIcon(Icons.Outlined.MyLocation, "Recenter map", { zoom = 1f; pan = Offset.Zero }, active = true)
         }
         Text("DEMO MAP · 拖动 / 缩放", Modifier.align(Alignment.BottomStart).padding(8.dp).background(Color(0xD90E111A)).padding(6.dp), color = HuColors.TextDim, fontSize = 10.sp, lineHeight = 12.sp)
         content()
@@ -114,8 +115,9 @@ fun DarkMapCanvas(modifier: Modifier = Modifier, zoom: Float = 1f, pan: Offset =
             fun label(text: String, x: Float, y: Float, rotation: Float = 0f, bright: Boolean = false) {
                 paint.color = if (bright) 0xFFB6BDBA.toInt() else 0xFF9298A5.toInt()
                 paint.textSize = 11.dp.toPx()
-                drawContext.canvas.nativeCanvas.apply {
-                    save(); rotate(rotation, x * w, y * h); drawText(text, x * w, y * h, paint); restore()
+                drawContext.canvas.nativeCanvas.withSave {
+                    rotate(rotation, x * w, y * h)
+                    drawText(text, x * w, y * h, paint)
                 }
             }
             label("95th St", .33f, .175f); label("2nd Avenue", .80f, .26f, 14f)

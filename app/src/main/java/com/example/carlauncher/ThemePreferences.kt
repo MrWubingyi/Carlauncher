@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 
 class ThemePreferences private constructor() {
     companion object {
@@ -23,7 +24,7 @@ class ThemePreferences private constructor() {
             Log.i(TAG, "Loaded theme=" + storedTheme)
             if (!isColorValid(storedTheme)) {
                 Log.w(TAG, "Invalid stored theme, fallback to system: " + storedTheme)
-                preferences(context)!!.edit().remove(KEY_COLOR_THEME).apply()
+                preferences(context)!!.edit { remove(KEY_COLOR_THEME) }
                 return THEME_COLOR_SYSTEM
             }
             return storedTheme
@@ -32,7 +33,7 @@ class ThemePreferences private constructor() {
         @JvmStatic
         fun saveAndApplyColorTheme(context: Context?, theme: String?) {
             val safeTheme = if (isColorValid(theme)) theme else THEME_COLOR_SYSTEM
-            preferences(context)!!.edit().putString(KEY_COLOR_THEME, safeTheme).apply()
+            preferences(context)!!.edit { putString(KEY_COLOR_THEME, safeTheme) }
             Log.i(TAG, "Saved theme=" + safeTheme)
             applyColorTheme(safeTheme)
         }
@@ -95,7 +96,7 @@ class ThemePreferences private constructor() {
 
         @JvmStatic
         fun setWelcomeEnabled(context: Context?, enabled: Boolean) {
-            preferences(context)!!.edit().putBoolean(KEY_WELCOME_ENABLED, enabled).apply()
+            preferences(context)!!.edit { putBoolean(KEY_WELCOME_ENABLED, enabled) }
 
             Log.i(TAG, "Saved welcome enabled=" + enabled)
         }
@@ -111,11 +112,10 @@ class ThemePreferences private constructor() {
 
         @JvmStatic
         fun resetToDefaults(context: Context?) {
-            preferences(context)!!
-                .edit()
-                .remove(KEY_COLOR_THEME)
-                .remove(KEY_WELCOME_ENABLED)
-                .apply()
+            preferences(context)!!.edit {
+                remove(KEY_COLOR_THEME)
+                remove(KEY_WELCOME_ENABLED)
+            }
 
             Log.i(
                 TAG,

@@ -104,7 +104,10 @@ jobs:
       - name: Generate coverage report
         run: bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
 
-      - name: Upload test, coverage, and Detekt reports
+      - name: Run Android Lint
+        run: bash ./gradlew --no-daemon --stacktrace :app:lintDebug
+
+      - name: Upload test, coverage, lint, and Detekt reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
@@ -113,6 +116,8 @@ jobs:
             app/build/reports/tests/testDebugUnitTest/
             app/build/test-results/testDebugUnitTest/
             app/build/reports/jacoco/fullDebugUnitTestCoverageReport/
+            app/build/reports/lint-results-debug.html
+            app/build/reports/lint-results-debug.xml
             app/build/reports/detekt/
           if-no-files-found: warn
           retention-days: 14

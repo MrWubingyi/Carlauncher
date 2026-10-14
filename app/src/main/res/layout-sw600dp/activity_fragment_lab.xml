@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentLabRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="?android:attr/colorBackground">
+    android:orientation="horizontal">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/menu_container"
         android:layout_width="360dp"
         android:layout_height="match_parent" />
 
+    <!-- The detail pane exists only on wide screens. FragmentLabActivity and
+         SettingsDetailFragment null-check this ID before choosing the pane. -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:ignore="InconsistentLayout" />
 
 </LinearLayout>

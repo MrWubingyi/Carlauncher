@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -136,7 +137,7 @@ fun CarLauncherScreen(
                         launch(
                             Intent(
                                 Intent.ACTION_VIEW,
-                                Uri.parse("geo:0,0?q=${Uri.encode(destination.trim())}"),
+                                "geo:0,0?q=${Uri.encode(destination.trim())}".toUri(),
                             )
                         )
                     },

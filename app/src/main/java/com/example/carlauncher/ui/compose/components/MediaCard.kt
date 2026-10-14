@@ -45,8 +45,8 @@ fun MediaCard(state: CarLauncherUiState, modifier: Modifier = Modifier, onPlay: 
                 }
                 Row {
                     DashboardIcon(Icons.AutoMirrored.Outlined.QueueMusic, "Open playlist", onQueue)
-                    DashboardIcon(if (state.isFavorite) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder, "Favorite track", onFavorite, state.isFavorite)
-                    DashboardIcon(Icons.Outlined.Repeat, "Repeat track", onRepeat, state.isRepeat)
+                    DashboardIcon(if (state.isFavorite) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder, "Favorite track", onFavorite, active = state.isFavorite)
+                    DashboardIcon(Icons.Outlined.Repeat, "Repeat track", onRepeat, active = state.isRepeat)
                 }
             }
             Box(Modifier.padding(horizontal = 12.dp).width(1.dp).fillMaxHeight(.8f).background(Color(0xFF484B54)))

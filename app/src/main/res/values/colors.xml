@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
     <color name="cockpit_background">#F2F5FA</color>
     <color name="cockpit_panel_bg">#FFFFFF</color>
     <color name="cockpit_text_primary">#182235</color>
@@ -9,13 +7,6 @@
     <color name="cockpit_accent">#1765AB</color>
     <color name="cockpit_accent_variant">#124B80</color>
     <color name="cockpit_on_accent">#FFFFFF</color>
-    <color name="cockpit_action_bg">#DEEAF7</color>
-    <color name="cockpit_divider">#CFD8E5</color>
-    <color name="cockpit_positive">#176B49</color>
-    <color name="cockpit_warning">#815000</color>
     <color name="cockpit_error">#AC2835</color>
-    <color name="status_online">#176B49</color>
-    <color name="status_connecting">#285E8A</color>
     <color name="status_offline">#43516A</color>
-    <color name="status_error">#A42B3C</color>
 </resources>

@@ -38,6 +38,9 @@ class ComposeMainActivity : ComponentActivity() {
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) { grants ->
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                return@registerForActivityResult
+            }
             // 本次请求也可能只包含车辆权限，
             // 没有通知权限这一项时，不提示“通知权限被拒绝”。
             val notificationGranted =

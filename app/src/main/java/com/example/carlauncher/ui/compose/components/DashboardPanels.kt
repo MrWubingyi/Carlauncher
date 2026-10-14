@@ -44,7 +44,7 @@ fun Panel(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Uni
 }
 
 @Composable
-fun DashboardIcon(icon: ImageVector, label: String, onClick: () -> Unit, active: Boolean = false, modifier: Modifier = Modifier) {
+fun DashboardIcon(icon: ImageVector, label: String, onClick: () -> Unit, modifier: Modifier = Modifier, active: Boolean = false) {
     IconButton(onClick, modifier.size(48.dp)) {
         Icon(icon, label, tint = if (active) HuColors.AccentBlue else HuColors.TextDim, modifier = Modifier.size(24.dp))
     }
@@ -95,7 +95,7 @@ fun WeatherStatus(modifier: Modifier = Modifier, onOpenApps: () -> Unit, onWifi:
                 }
                 Text(SimpleDateFormat(if (wide) "EEEE, dd MMM yyyy" else "dd MMM", Locale.ENGLISH).format(now),
                     Modifier.weight(1f).padding(horizontal = 12.dp), color = Color.White, fontSize = if (wide) 17.sp else 14.sp, maxLines = 1)
-                DashboardIcon(Icons.Outlined.Bluetooth, "Bluetooth settings", onBluetooth, true)
+                DashboardIcon(Icons.Outlined.Bluetooth, "Bluetooth settings", onBluetooth, active = true)
                 DashboardIcon(Icons.Outlined.Wifi, "Wi-Fi settings", onWifi)
                 IconButton(onOpenApps, Modifier.size(48.dp).clip(CircleShape).background(Color(0xFF303846))) {
                     Icon(Icons.Outlined.Person, "Open apps", tint = Color.White, modifier = Modifier.size(30.dp))

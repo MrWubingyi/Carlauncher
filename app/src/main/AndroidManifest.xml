@@ -16,6 +16,14 @@
         android:name="android.hardware.type.automotive"
         android:required="false" />
 
+    <!-- The app drawer lists activities that can be launched from a launcher. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
         android:name=".CarLauncherApplication"
         android:allowBackup="true"

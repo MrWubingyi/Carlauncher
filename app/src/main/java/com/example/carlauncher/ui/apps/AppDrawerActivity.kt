@@ -18,6 +18,7 @@ import com.example.carlauncher.databinding.ActivityAppDrawerBinding
 import com.example.carlauncher.model.AppAdapter
 import com.example.carlauncher.model.AppInfo
 import com.example.carlauncher.R
+import java.text.NumberFormat
 import java.util.ArrayList
 
 open class AppDrawerActivity : AppCompatActivity() {
@@ -48,7 +49,8 @@ open class AppDrawerActivity : AppCompatActivity() {
         binding!!.backButton.setOnClickListener { finish() }
         binding!!.clickButton.setOnClickListener {
             createTime = 5
-            binding!!.text.setText(createTime!!.toString())
+            binding!!.text.text =
+                NumberFormat.getIntegerInstance(resources.configuration.locales[0]).format(createTime!!)
         }
         if (savedInstanceState != null) {
             createTime = savedInstanceState!!.getInt("test_count", 0)
@@ -165,7 +167,8 @@ open class AppDrawerActivity : AppCompatActivity() {
         super.onResume()
         //        startVehicleRefresh();
         Log.i(TAG, "AppDrawerActivity  onResume")
-        binding!!.text.setText(createTime!!.toString())
+        binding!!.text.text =
+            NumberFormat.getIntegerInstance(resources.configuration.locales[0]).format(createTime!!)
     }
 
     protected override fun onSaveInstanceState(outState: Bundle) {

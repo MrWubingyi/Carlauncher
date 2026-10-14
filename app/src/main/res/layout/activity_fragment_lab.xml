@@ -3,9 +3,8 @@
     android:id="@+id/fragmentLabRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
     android:orientation="horizontal">
-    <androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/menu_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

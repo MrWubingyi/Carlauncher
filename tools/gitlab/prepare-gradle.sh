@@ -2,6 +2,8 @@
 set -euo pipefail
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
 export GRADLE_USER_HOME=${GRADLE_USER_HOME:-$root/.gradle-ci}
+mkdir -p "$GRADLE_USER_HOME/init.d"
+cp "$root/tools/gitlab/init.gradle" "$GRADLE_USER_HOME/init.d/carlauncher-local.gradle"
 # Seed the wrapper's canonical cache with a byte-identical distribution.
 # The repository URL and mandatory SHA-256 remain unchanged.
 zip=$(python3 - "$root" <<'PY'

@@ -30,6 +30,9 @@ class HttpRecordsRepositoryTest {
 
     @Before fun setup() {
         server = MockWebServer()
+        // Keep the mock server and client on the same loopback address. After
+        // cancellation, OkHttp may try localhost's IPv6 address even when the
+        // server is listening only on IPv4 (as in Docker).
         server.start(InetAddress.getByName("127.0.0.1"), 0)
         client = OkHttpClient.Builder()
             .eventListener(object : EventListener() {

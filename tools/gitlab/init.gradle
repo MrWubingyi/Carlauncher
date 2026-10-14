@@ -1,0 +1,10 @@
+// Apply only inside the local CI user home. Normal project repositories stay intact.
+beforeSettings { settings ->
+    settings.pluginManagement.repositories.maven {
+        url = uri('https://maven.aliyun.com/repository/gradle-plugin')
+        content {
+            includeGroup('org.gradle.toolchains.foojay-resolver-convention')
+            includeGroup('org.gradle.toolchains')
+        }
+    }
+}

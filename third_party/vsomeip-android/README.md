@@ -37,6 +37,61 @@ bash gradlew :app:fullDebugUnitTestCoverageReport
 
 ## Windows / Android Studio
 
+### Windows 统一构建入口
+
+从项目根目录执行 `build-local.ps1`。Windows 需要 PowerShell 5.1+、Git、Python 3.9+、
+OpenSSH 的 `ssh`/`scp`、完整 JDK 21（含 `javac` 和 `jlink`）及 Android SDK。
+SDK 路径优先使用 `local.properties` 的 `sdk.dir`，否则使用 `ANDROID_HOME` / `ANDROID_SDK_ROOT`；
+SDK 组件缺失时调用已安装的 Android CLI 安装项目固定版本。
+JDK 默认查找 `JAVA_HOME`、Android Studio JBR 和 `~/.jdks`；也可传 `-JavaHome`。
+
+Ubuntu 需要可用的 SSH 密钥认证，以及 Git、curl、tar、bzip2、Python 3.9+ 和 g++。
+脚本检查这些前提；缺少 Android CLI 时安装到独立缓存的 `bin` 目录，缺少 NDK/CMake 时
+自动安装。首次下载需要 Ubuntu 能访问 Google Android 与 Boost 官方下载站。
+
+```powershell
+# 首次设置；UbuntuHost 也可以是 ~/.ssh/config 中的别名
+.\build-local.ps1 -UbuntuHost root@192.168.112.129 -SaveConfiguration
+# 后续一条命令
+.\build-local.ps1
+# 强制从源码重建原生库
+.\build-local.ps1 -RebuildNative
+# APK + JVM 单元测试
+.\build-local.ps1 -Test
+# 可选：使用 Ubuntu 已有 SDK 和指定缓存目录
+.\build-local.ps1 -UbuntuHost user@ubuntu -RemoteRoot /home/user/.cache/carlauncher-local-build `
+  -RemoteSdk /home/user/Android/Sdk -JavaHome 'C:\Program Files\Java\jdk-21' -Jobs 4 -SaveConfiguration
+```
+
+`-SaveConfiguration` 保存 `UbuntuHost`、`RemoteRoot`、`RemoteSdk` 和 `JavaHome` 到
+项目根目录的 `local-build.json`，此文件被 Git 忽略。也可以用环境变量
+`CARLAUNCHER_UBUNTU_HOST` 提供主机。命令参数优先于配置文件；`Jobs` 默认 2，
+`-Test` 和 `-RebuildNative` 仅对本次执行生效。
+
+缓存键包含主仓库 HEAD、vSomeIP gitlink 与三个原生构建/验证脚本内容；提交或脚本变更后
+重新构建。应用未提交改动由本地 Gradle 直接编译。原生脚本未提交改动按当前内容传送；
+vSomeIP 必须与 HEAD gitlink 一致且构建输入干净，仅忽略 `documentation/` 的文档差异，
+以兼容 Windows 大小写冲突。通过 Git bundle 传递固定提交，无需推送，也无需 Ubuntu
+持有 GitHub 凭据。机器配置和产物不进入源码提交。
+
+Ubuntu 默认目录为 `$HOME/.cache/carlauncher-local-build`，SDK 放在其中的 `sdk`。
+Boost 下载包保存在 `downloads/`，每次复用前校验脚本固定的 SHA-256；CI 默认不启用此缓存。
+每次远程操作使用 `runs/<随机ID>`，成功产物按输入哈希缓存于 `artifacts/`；
+脚本不会清理已有目录。远程缓存校验不通过时重新构建，旧缓存保留。
+本地下载、构建日志及旧产物保存在 `build/local-build/<随机ID>/`。
+远端日志是相应 `runs/<随机ID>/console.log`；SSH 或构建失败会停止，不继续打包 APK。
+旧本地产物只有在新产物完整验证成功后才替换。
+
+有效本地缓存不连接 Ubuntu；取回后校验所有必要文件的 SHA-256、源码提交、构建输入和
+工具链参数、ELF 架构、SONAME、Android 网络符号与动态依赖。归档仅允许预期普通文件，
+拒绝链接及路径越界。最后调用 Gradle，禁用 Java 自动探测并使用完整 JDK 21，避免选中
+编辑器附带的精简 JRE；APK 生成后再次校验包内库哈希。
+
+输出仍为 `app/build/outputs/apk/debug/app-debug.apk`，x86_64、默认 Debug 签名。
+这是构建入口，不执行设备安装或运行验收。
+
+### 手动准备原生依赖
+
 源码构建脚本在 Linux 上执行。Windows 开发可使用 Linux / WSL 构建环境，
 也可下载**当前源码版本对应的成功 CI** 的 `CarLauncher-native-x86_64-*` 产物，
 将其内容解压到 `build/native/artifact/`，再执行 `gradlew.bat :app:assembleDebug`。

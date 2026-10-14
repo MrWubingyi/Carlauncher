@@ -2,6 +2,7 @@
 .gradle
 /.kotlin/
 /local.properties
+/local-build.json
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -24,3 +25,6 @@ local.properties
 /log
 /archify
 /evidence
+/.gitlab-local/
+/.gradle-ci/
+/.native-download-cache/

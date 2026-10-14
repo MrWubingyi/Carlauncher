@@ -1,0 +1,62 @@
+stages: [native, build]
+
+default:
+  image: carlauncher-android-ci:local
+  tags: [carlauncher-docker]
+  interruptible: true
+
+workflow:
+  auto_cancel:
+    on_new_commit: interruptible
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle-ci"
+  NATIVE_BUILD_JOBS: '2'
+  BOOST_DOWNLOAD_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.90.0/boost_1_90_0.tar.bz2'
+  NATIVE_DOWNLOAD_CACHE: "$CI_PROJECT_DIR/.native-download-cache"
+  GRADLE_DOWNLOAD_URL: 'https://mirrors.cloud.tencent.com/gradle/gradle-9.5.0-bin.zip'
+
+native-build:
+  stage: native
+  timeout: 2h
+  cache:
+    key: native-source
+    when: always
+    paths: [.native-download-cache/]
+  script:
+    - bash tools/vsomeip-android/build-source.sh
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths:
+      - build/native/artifact/
+      - build/native/logs/
+
+android-build:
+  stage: build
+  needs:
+    - job: native-build
+      artifacts: true
+  timeout: 2h
+  cache:
+    key: android-gradle
+    when: always
+    paths:
+      - .gradle-ci/caches/
+      - .gradle-ci/wrapper/
+  script:
+    - bash tools/gitlab/prepare-gradle.sh
+    - bash ./gradlew --no-daemon --stacktrace --continue :app:assembleDebug :app:testDebugUnitTest
+    - python3 tools/vsomeip-android/verify-artifact.py --apk app/build/outputs/apk/debug/app-debug.apk
+    - bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
+  artifacts:
+    when: always
+    expire_in: 14 days
+    paths:
+      - app/build/outputs/apk/debug/*.apk
+      - app/build/reports/tests/testDebugUnitTest/
+      - app/build/test-results/testDebugUnitTest/
+      - app/build/reports/jacoco/fullDebugUnitTestCoverageReport/
+    reports:
+      junit: app/build/test-results/testDebugUnitTest/TEST-*.xml

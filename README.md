@@ -10,11 +10,30 @@ JNI 入口和回调通过 `@JvmStatic` 保留 `VsomeipClient` 的 JVM 静态签�
 [Android Build](.github/workflows/android-build.yml) 在推送、Pull Request 和手动触发时运行，使用 GitHub 的 Ubuntu runner，无需配置 Secrets 或自托管机器。
 
 流水线递归拉取子模块，安装 Java 21，并通过官方 [Android CLI](https://developer.android.com/tools/agents/android-cli) 的 `android sdk install` 管理 Android SDK 36.1、Build Tools 36.0.0、NDK 28.2.13676358、CMake 3.22.1 和 Platform Tools。CLI 使用官方最新安装脚本，运行日志记录实际版本；SDK 路径通过 `ANDROID_HOME` 和 `ANDROID_SDK_ROOT` 同步给 Gradle。
-随后校验 [vSomeIP 预编译库及对应源码提交](third_party/vsomeip-android/README.md)，构建 Debug APK、运行 JVM 单元测试并生成 JaCoCo 覆盖率报告。
+随后从固定版本源码构建 [Boost 和 vSomeIP](third_party/vsomeip-android/README.md)，构建 Debug APK、运行 JVM 单元测试并生成 JaCoCo 覆盖率报告。
 成功后在仓库 **Actions → Android Build → 对应运行 → Artifacts** 下载 `CarLauncher-debug-x86_64-*`；测试及覆盖率报告保存为 `CarLauncher-reports-*`，产物保留 14 天。
 测试失败时也会尝试上传已有报告。当前 APK 仅支持 x86_64，使用 Android 默认 Debug 签名。
 
 本地验证命令（Java 21）：
+
+Windows 日常构建使用统一入口，首次配置 Ubuntu SSH 地址后即可一条命令编译：
+
+```powershell
+# 首次执行；使用自己的 Ubuntu SSH 地址或 ~/.ssh/config 别名
+.\build-local.ps1 -UbuntuHost root@192.168.112.129 -SaveConfiguration
+# 后续执行（配置保存在 Git 忽略的 local-build.json）
+.\build-local.ps1
+# 同时运行 JVM 单元测试
+.\build-local.ps1 -Test
+```
+
+入口检查完整 JDK 21 和 Android SDK；自动校验原生库版本、构建输入、SHA-256 与
+Android ELF 依赖。缺库、缓存不匹配或损坏时，通过 SSH 在 Ubuntu 独立目录构建、
+校验并取回，再执行 Gradle 和 APK 库哈希校验。有效本地缓存可离线复用。
+首次准备环境及原生编译耗时较长；前提及参数见
+[本地构建说明](third_party/vsomeip-android/README.md#windows-统一构建入口)。
+
+以下底层命令仍可用于已准备好原生依赖的环境：
 
 ```powershell
 git submodule update --init --recursive

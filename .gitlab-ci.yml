@@ -10,6 +10,7 @@ variables:
   NATIVE_BUILD_JOBS: '2'
   BOOST_DOWNLOAD_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.90.0/boost_1_90_0.tar.bz2'
   NATIVE_DOWNLOAD_CACHE: "$CI_PROJECT_DIR/.native-download-cache"
+  GRADLE_DOWNLOAD_URL: 'https://mirrors.cloud.tencent.com/gradle/gradle-9.5.0-bin.zip'
 
 android-build:
   interruptible: true
@@ -19,11 +20,13 @@ android-build:
   timeout: 2h
   cache:
     key: android-gradle
+    when: always
     paths:
       - .gradle-ci/caches/
       - .gradle-ci/wrapper/
       - .native-download-cache/
   script:
+    - bash tools/gitlab/prepare-gradle.sh
     - bash tools/vsomeip-android/build-source.sh
     - bash ./gradlew --no-daemon --stacktrace --continue :app:assembleDebug :app:testDebugUnitTest
     - python3 tools/vsomeip-android/verify-artifact.py --apk app/build/outputs/apk/debug/app-debug.apk

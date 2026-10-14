@@ -22,6 +22,8 @@ Runner 和有效期 7 天的 API token。执行前将公钥复制到容器 `/tmp
 Runner 持有 Docker socket，供本仓库的可信流水线使用。
 本机网络无法连接 Boost 默认归档站时，GitLab CI 使用 SourceForge Boost 镜像，
 继续验证仓库固定 SHA-256；仅缓存源码归档，每次 Job 仍重新编译原生库。
+Gradle 官方分发跳转在本机网络下不可用时，从镜像下载同版本发行包，验证 Wrapper
+中固定 SHA-256 后写入官方 URL 对应缓存，保持 Wrapper 配置不变。
 
 `.gitlab-ci.yml` 对齐 GitHub Actions：递归子模块、固定 SDK/NDK、Boost/vSomeIP
 源码构建、Debug APK、JVM 测试、APK 库校验、JaCoCo 报告；产物保留 14 天。

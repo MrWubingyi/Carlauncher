@@ -31,10 +31,20 @@ exec > >(tee "$out/logs/source-build.log") 2>&1
 trap 'for f in CMakeCache.txt compile_commands.json; do
   if [[ -f "$out/vsomeip-build/$f" ]]; then cp "$out/vsomeip-build/$f" "$out/logs/"; fi
 done' EXIT
-curl --fail --location --retry 3 \
-  "https://archives.boost.io/release/$boost_version/source/$boost_archive" \
-  --output "$out/$boost_archive"
+download_cache=${NATIVE_DOWNLOAD_CACHE:-}
+if [[ -n "$download_cache" && -f "$download_cache/$boost_archive" ]] && \
+    echo "$boost_sha256  $download_cache/$boost_archive" | sha256sum --check; then
+  cp "$download_cache/$boost_archive" "$out/$boost_archive"
+else
+  curl --fail --location --retry 3 --retry-all-errors --connect-timeout 20 --max-time 600 \
+    "https://archives.boost.io/release/$boost_version/source/$boost_archive" \
+    --output "$out/$boost_archive"
+fi
 echo "$boost_sha256  $out/$boost_archive" | sha256sum --check
+if [[ -n "$download_cache" ]]; then
+  mkdir -p "$download_cache"
+  cp "$out/$boost_archive" "$download_cache/$boost_archive"
+fi
 tar -xjf "$out/$boost_archive" -C "$out"
 boost_source="$out/boost_1_90_0"
 boost_prefix="$out/boost-install"
@@ -84,7 +94,7 @@ data = {
     "ndk": "28.2.13676358", "cmake": "3.22.1", "abi": "x86_64", "api": 24,
     "stl": "c++_shared", "configuration": "Release", "boost_linkage": "static",
     "multiple_routing_managers": True, "android_ci_build": True,
-    "run_url": f'https://github.com/{os.getenv("GITHUB_REPOSITORY", "")}/actions/runs/{os.getenv("GITHUB_RUN_ID", "")}',
+    "run_url": os.getenv("CI_JOB_URL") or f'https://github.com/{os.getenv("GITHUB_REPOSITORY", "")}/actions/runs/{os.getenv("GITHUB_RUN_ID", "")}',
     "compiler": subprocess.check_output([os.environ["ANDROID_HOME"] + "/ndk/28.2.13676358/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++", "--version"], text=True).strip(),
 }
 (root / "build/native/artifact/provenance.json").write_text(json.dumps(data, indent=2) + "\n")

@@ -1,0 +1,109 @@
+# Explicit source-only rules. A finding fails the build; no baseline is used.
+config:
+  validation: true
+  warningsAsErrors: true
+
+complexity:
+  active: true
+  ComplexCondition:
+    active: true
+    allowedConditions: 4
+  CyclomaticComplexMethod:
+    active: true
+    allowedComplexity: 20
+    ignoreSingleWhenExpression: true
+    ignoreSimpleWhenEntries: true
+    ignoreNestingFunctions: true
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/test/**', '**/androidTest/**']
+  LongMethod:
+    active: true
+    allowedLines: 80
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/test/**', '**/androidTest/**']
+  NestedBlockDepth:
+    active: true
+    allowedDepth: 5
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/test/**', '**/androidTest/**']
+
+empty-blocks:
+  active: true
+  EmptyCatchBlock:
+    active: true
+    allowedExceptionNameRegex: '_|(ignore|expected).*'
+  EmptyDoWhileBlock:
+    active: true
+  EmptyElseBlock:
+    active: true
+  EmptyFinallyBlock:
+    active: true
+  EmptyForBlock:
+    active: true
+  EmptyFunctionBlock:
+    active: true
+    ignoreOverridden: true
+  EmptyIfBlock:
+    active: true
+  EmptyInitBlock:
+    active: true
+  EmptyTryBlock:
+    active: true
+  EmptyWhenBlock:
+    active: true
+  EmptyWhileBlock:
+    active: true
+
+exceptions:
+  active: true
+  NotImplementedDeclaration:
+    active: true
+  PrintStackTrace:
+    active: true
+  RethrowCaughtException:
+    active: true
+  SwallowedException:
+    active: true
+    allowedExceptionNameRegex: '_|(ignore|expected).*'
+  ThrowingExceptionFromFinally:
+    active: true
+  ThrowingExceptionsWithoutMessageOrCause:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  ThrowingNewInstanceOfSameException:
+    active: true
+  TooGenericExceptionCaught:
+    active: true
+    # Framework and transport boundaries may catch Exception/RuntimeException.
+    # VM errors must propagate; catch a specific native linkage error if needed.
+    exceptionNames: ['Throwable', 'Error']
+    allowedExceptionNameRegex: '^$'
+  TooGenericExceptionThrown:
+    active: true
+
+naming:
+  active: true
+  ClassNaming:
+    active: true
+  FunctionNaming:
+    active: true
+    ignoreAnnotated: ['Composable', 'Test']
+  FunctionParameterNaming:
+    active: true
+  PackageNaming:
+    active: true
+
+style:
+  active: true
+  ForbiddenImport:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+    forbiddenImports:
+      - value: 'kotlinx.coroutines.GlobalScope'
+        reason: 'Use a lifecycle-owned scope so work can be cancelled.'
+      - value: 'kotlinx.coroutines.runBlocking'
+        reason: 'Do not block Android production threads; use suspending calls.'
+  MandatoryBracesLoops:
+    active: true
+  NewLineAtEndOfFile:
+    active: true

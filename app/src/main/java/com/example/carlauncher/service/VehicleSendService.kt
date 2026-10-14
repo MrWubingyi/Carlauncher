@@ -264,8 +264,11 @@ open class VehicleSendService : Service() {
                             vsomeipDataSource!!.stop()
                         }
                         Log.i(TAG, "SOMEIP_RELEASED id=" + System.identityHashCode(this))
-                    } catch (t: Throwable) {
-                        Log.e(TAG, "vsomeip stop failed", t)
+                    } catch (exception: Exception) {
+                        Log.e(TAG, "vsomeip stop failed", exception)
+                    } catch (error: LinkageError) {
+                        // Native loading can fail during cleanup; VM failures must propagate.
+                        Log.e(TAG, "vsomeip stop failed", error)
                     }
                 }
             } catch (exception: RejectedExecutionException) {

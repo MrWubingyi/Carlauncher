@@ -54,15 +54,16 @@ internal class NetworkStateTracker(
                 continue
             val candidate = entry!!.value
             if (!candidate!!.available) continue
-            if (
-                (!selected!!.available ||
-                    (candidate!!.route && !selected!!.route) ||
-                    (candidate!!.route == selected!!.route &&
-                        candidate!!.iface!!.compareTo(selected!!.iface) < 0))
-            ) {
+            if (isPreferred(candidate, selected)) {
                 selected = candidate
             }
         }
         return selected
+    }
+
+    private fun isPreferred(candidate: State, selected: State): Boolean {
+        if (!selected.available) return true
+        if (candidate.route != selected.route) return candidate.route
+        return candidate.iface.compareTo(selected.iface) < 0
     }
 }

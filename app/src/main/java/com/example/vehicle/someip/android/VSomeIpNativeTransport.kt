@@ -20,7 +20,9 @@ open class VSomeIpNativeTransport(context: Context?) :
         get() {
             try {
                 return VsomeipClient.isAvailable
-            } catch (e: UnsatisfiedLinkError) {
+            } catch (expectedNativeUnavailable: UnsatisfiedLinkError) {
+                // A missing library or JNI entry point means this capability is unavailable.
+                // Startup reports native loading failures through the owning Service.
                 return false
             }
         }

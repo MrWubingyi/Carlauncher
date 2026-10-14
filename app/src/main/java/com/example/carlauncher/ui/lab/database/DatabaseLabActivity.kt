@@ -157,6 +157,10 @@ class DatabaseLabActivity : ComponentActivity() {
                 )
             }
         }
+        openDatabaseAsync()
+    }
+
+    private fun openDatabaseAsync() {
         databaseExecutor.execute {
             try {
                 val version = database.openHelper.writableDatabase.version
@@ -384,6 +388,7 @@ class DatabaseLabActivity : ComponentActivity() {
                 arrayOf("application/json", "text/plain")
             )
         } catch (exception: ActivityNotFoundException) {
+            Log.w(TAG, "No document picker available", exception)
             actionsEnabled = true
             status = "当前系统没有可用的文档选择器"
         }

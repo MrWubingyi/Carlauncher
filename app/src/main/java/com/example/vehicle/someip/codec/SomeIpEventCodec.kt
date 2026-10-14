@@ -50,14 +50,20 @@ class SomeIpEventCodec private constructor() {
 
         @Throws(JSONException::class)
         @JvmStatic
-        fun decode(payload: ByteArray?): VehicleSignals {
+        private fun parsePayload(payload: ByteArray?): JSONObject {
             if (payload == null || payload!!.size == 0 || payload!!.size > 4096)
                 throw JSONException("Invalid event length")
             // Some JSON parsers treat a raw NUL as end-of-input and ignore the suffix.
             for (value in payload!!) {
                 if (value.toInt() == 0) throw JSONException("NUL in event payload")
             }
-            val j = JSONObject(String(payload, StandardCharsets.UTF_8))
+            return JSONObject(String(payload, StandardCharsets.UTF_8))
+        }
+
+        @Throws(JSONException::class)
+        @JvmStatic
+        fun decode(payload: ByteArray?): VehicleSignals {
+            val j = parsePayload(payload)
             bounded(j, "version", 1, 1)
             val seq = integer(j, "seq")
             val timestamp = integer(j, "timestampMs")

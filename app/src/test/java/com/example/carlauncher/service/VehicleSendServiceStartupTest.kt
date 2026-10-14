@@ -36,7 +36,7 @@ class VehicleSendServiceStartupTest {
         var starts = 0
         var stops = 0
         var succeeds = true
-        var stopError: RuntimeException? = null
+        var stopError: Throwable? = null
         override val isAvailable = false
         override fun setListener(listener: NativeVehicleTransport.Listener?) = Unit
         override fun start(): Boolean { starts++; return succeeds }
@@ -154,6 +154,55 @@ class VehicleSendServiceStartupTest {
         assertEquals(0, transport.starts)
         assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
         assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
+    }
+
+    @Test fun queuedDestructionContainsStopRuntimeException() {
+        assertStopFailureIsContained(IllegalStateException("test cleanup failure"))
+    }
+
+    @Test fun queuedDestructionContainsNativeLinkageFailure() {
+        assertStopFailureIsContained(UnsatisfiedLinkError("test native cleanup failure"))
+    }
+
+    @Test fun queuedDestructionPropagatesTheOriginalVirtualMachineError() {
+        // Construct the failure directly; this test does not create memory pressure.
+        val failure = OutOfMemoryError("simulated VM failure")
+        val source = queueDestructionWithStopFailure(failure)
+
+        val thrown = assertThrows(OutOfMemoryError::class.java) { executor.drain() }
+
+        assertSame(failure, thrown)
+        assertEquals(1, transport.stops)
+        assertFalse(source.isRunning)
+        assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
+        assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
+    }
+
+    private fun queueDestructionWithStopFailure(failure: Throwable): VSomeIpDataSource {
+        val source = schedule()!!
+        executor.drain()
+        assertTrue(source.isRunning)
+        transport.stopError = failure
+
+        service.onDestroy()
+
+        assertEquals(0, transport.stops)
+        assertEquals(1, executor.tasks.size)
+        return source
+    }
+
+    private fun assertStopFailureIsContained(failure: Throwable) {
+        val source = queueDestructionWithStopFailure(failure)
+        var nextLifecycleTaskRan = false
+        executor.execute { nextLifecycleTaskRan = true }
+
+        executor.drain()
+
+        assertEquals(1, transport.stops)
+        assertFalse(source.isRunning)
+        assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
+        assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
+        assertTrue(nextLifecycleTaskRan)
     }
 
     @Test fun failureAfterDestructionDoesNotOverwriteStoppedState() {

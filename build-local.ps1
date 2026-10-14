@@ -112,6 +112,10 @@ try {
         foreach ($file in $sdkFiles) { if (-not (Test-Path (Join-Path $sdk $file))) { throw "SDK component missing: $file" } }
     }
 
+    Write-Host 'Running Detekt before preparing native dependencies...'
+    Run "$root/gradlew.bat" @('--no-daemon', '-Porg.gradle.java.installations.auto-detect=false',
+        "-Porg.gradle.java.installations.paths=$JavaHome", ':app:detekt')
+
     # A different repository commit or native script invalidates the cache.
     $inputText = "$commit`n$sourceCommit`n"
     foreach ($file in @('build-source.sh', 'verify-artifact.py', 'remote-build.sh')) {

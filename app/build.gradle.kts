@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.detekt)
     jacoco
 }
 
@@ -66,6 +67,29 @@ android {
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
+
+// Source-only analysis has no dependency on compiled classes or generated code,
+// so it can safely gate preBuild and direct Kotlin/Java compilation tasks.
+val detektGate = tasks.named<dev.detekt.gradle.Detekt>("detekt") {
+    setSource(fileTree("src") { include("**/*.kt") })
+    config.setFrom(rootProject.file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig.set(false)
+    ignoreFailures.set(false)
+    failOnSeverity.set(dev.detekt.gradle.extensions.FailOnSeverity.Warning)
+    basePath.set(rootProject.projectDir.absolutePath)
+    reports {
+        html.required.set(true)
+        checkstyle.required.set(true)
+        sarif.required.set(true)
+    }
+}
+
+tasks.named("preBuild") { dependsOn(detektGate) }
+tasks.named("check") { dependsOn(detektGate) }
+tasks.matching {
+    name.startsWith("compile") &&
+        (name.endsWith("Kotlin") || name.endsWith("JavaWithJavac"))
+}.configureEach { dependsOn(detektGate) }
 
 dependencies {
     implementation(libs.okhttp)

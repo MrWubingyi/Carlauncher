@@ -43,6 +43,43 @@ git submodule update --init --recursive
 
 SDK 路径可以通过 Android Studio 的 `local.properties` 或 `ANDROID_HOME` 提供。CI 不运行设备测试和双机网络联调，也不启用依赖设备覆盖率数据的全模块覆盖率门禁；这些仍按下文执行。
 
+### Detekt 强制规则检查
+
+规则定义在 [`config/detekt/detekt.yml`](config/detekt/detekt.yml)。固定使用 Detekt
+`2.0.0-alpha.6`；该预览版适配当前 AGP 9.3.1 内置 Kotlin，升级时需重新验证构建兼容性，
+参见 [Detekt 兼容性表](https://detekt.dev/docs/introduction/compatibility/)。
+
+检查覆盖 `app/src` 下全部 Kotlin 源码，包括生产、JVM 测试及设备测试源码。
+采用编译前的源码分析，不依赖生成代码或已编译的类；Java 和 Android API/资源问题继续由 Android Lint 检查。
+仅启用配置中列出的规则，不使用 baseline；任何规则发现都会使任务失败。
+
+| 规则范围 | 当前约束 |
+| --- | --- |
+| 复杂度 | 单个条件最多 4 个子条件；函数圈复杂度最多 20、长度最多 80 行、嵌套最多 5 层 |
+| 异常处理 | 检查吞异常、空 catch、finally 中抛异常、无消息和原因的异常、直接打印堆栈等；禁止笼统捕获 `Throwable`/`Error` |
+| 协程使用 | 生产源码禁止导入 `GlobalScope` 和 `runBlocking` |
+| 基础规范 | 类/函数/参数/包命名、空代码块、循环大括号和文件末尾换行 |
+
+Compose 函数及测试函数允许其惯用命名；Compose 和测试不限制函数长度、圈复杂度与嵌套深度，
+其余适用规则仍检查。允许空的 override，以及显式命名为 `_`、`ignore…`、`expected…` 的预期异常；
+使用这些例外时应说明原因，但异常命名不能绕过对 `Throwable`/`Error` 的禁用。
+Android 框架或传输边界仍可捕获 `Exception`/`RuntimeException`。
+
+`preBuild`、`check` 和 Kotlin/Java 编译任务都依赖 `:app:detekt`，因此正常执行
+`assembleDebug`、`assembleRelease`、单元测试或 Android Studio 构建时，违规会阻断后续编译。
+`build-local.ps1` 和 CI 还会在原生库准备前先检查，尽早失败。CI 始终尝试上传已生成的 Detekt 报告。
+
+```powershell
+# 只检查 Kotlin 规则，无需原生库、模拟器或 Ubuntu
+.\gradlew.bat :app:detekt
+# 正常构建会自动先检查
+.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest
+```
+
+HTML、Checkstyle XML 和 SARIF 报告位于 `app/build/reports/detekt/`。
+规则配置中 `warningsAsErrors` 用于拒绝无效配置；代码违规的失败门槛由 Gradle 的
+`ignoreFailures = false` 和 `failOnSeverity = Warning` 控制。不要通过跳过任务或增加 baseline 绕过门禁。
+
 vSomeIP 源码通过 `.gitmodules` 引用 `MrWubingyi/vsomeip`，位于 `third_party/vsomeip`，由主仓库固定提交。首次克隆也可使用 `git clone --recurse-submodules`；升级源码时须同时重建配套库并更新 `third_party/vsomeip-android/SOURCE_COMMIT`。
 
 Android 和 Ubuntu 上可见的 LVGL 仪表订阅**同一个** `vehicle_mock_service`，

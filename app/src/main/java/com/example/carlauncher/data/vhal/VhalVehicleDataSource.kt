@@ -157,6 +157,43 @@ class VhalVehicleDataSource(context: Context?) : VehicleDataSource {
                 true, // 车速是核心属性，必须成功
             )
 
+        registerOptionalPropertyCallbacksLocked()
+
+        if (!speedRegistered) {
+            reportFatalErrorLocked(
+                "无法读取 VHAL 车速属性",
+                IllegalStateException("speed subscription failed"),
+            )
+            return
+        }
+
+        Log.i(
+            TAG,
+            ("VHAL 订阅完成: 车速=" +
+                speedRegistered +
+                " 档位=" +
+                gearRegistered +
+                " 转向灯=" +
+                turnSignalRegistered +
+                " 手刹=" +
+                parkingBrakeRegistered +
+                " 前照灯/近光灯=" +
+                headlightsStateRegistered +
+                " 远光灯=" +
+                highBeamLightsStateRegistered +
+                " 冷却液温度=" +
+                engineCoolantTempRegistered +
+                " soc电池电量=" +
+                evBatteryLevelRegistered +
+                " 安全带告警=" +
+                beltWarningRegistered),
+        )
+
+        updateStatusLocked(DataSourceStatus.NO_DATA)
+    }
+
+    /** 保持原订阅顺序；这些附加属性不决定车速数据源是否可用。 */
+    private fun registerOptionalPropertyCallbacksLocked() {
         // 2. 订阅档位
         gearRegistered =
             registerPropertyLocked(
@@ -224,38 +261,6 @@ class VhalVehicleDataSource(context: Context?) : VehicleDataSource {
                 CarPropertyManager.SENSOR_RATE_ONCHANGE,
                 false,
             )
-
-        if (!speedRegistered) {
-            reportFatalErrorLocked(
-                "无法读取 VHAL 车速属性",
-                IllegalStateException("speed subscription failed"),
-            )
-            return
-        }
-
-        Log.i(
-            TAG,
-            ("VHAL 订阅完成: 车速=" +
-                speedRegistered +
-                " 档位=" +
-                gearRegistered +
-                " 转向灯=" +
-                turnSignalRegistered +
-                " 手刹=" +
-                parkingBrakeRegistered +
-                " 前照灯/近光灯=" +
-                headlightsStateRegistered +
-                " 远光灯=" +
-                highBeamLightsStateRegistered +
-                " 冷却液温度=" +
-                engineCoolantTempRegistered +
-                " soc电池电量=" +
-                evBatteryLevelRegistered +
-                " 安全带告警=" +
-                beltWarningRegistered),
-        )
-
-        updateStatusLocked(DataSourceStatus.NO_DATA)
     }
 
     /** 选择合适的车速属性 ID（不同车型支持的 ID 可能不同） */

@@ -16,7 +16,7 @@ $jobs = Invoke-RestMethod -Uri "$url/pipelines/$($pipeline.id)/jobs" -Headers $h
 $jobs | Select-Object id, name, status, web_url
 foreach ($job in $jobs) {
     if ($job.status -in @('running', 'failed', 'success')) {
-        $trace = Invoke-RestMethod -Uri "$url/jobs/$($job.id)/trace" -Headers $headers
+        $trace = (Invoke-WebRequest -UseBasicParsing -Uri "$url/jobs/$($job.id)/trace" -Headers $headers).Content
         $trace | Set-Content -Encoding utf8 (Join-Path $repo ".gitlab-local/job-$($job.id).log")
         ($trace -split "`n" | Select-Object -Last 20) -join "`n"
     }

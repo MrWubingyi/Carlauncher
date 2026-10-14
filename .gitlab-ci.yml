@@ -8,6 +8,8 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle-ci"
   NATIVE_BUILD_JOBS: '2'
+  BOOST_DOWNLOAD_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.90.0/boost_1_90_0.tar.bz2'
+  NATIVE_DOWNLOAD_CACHE: "$CI_PROJECT_DIR/.native-download-cache"
 
 android-build:
   interruptible: true
@@ -20,6 +22,7 @@ android-build:
     paths:
       - .gradle-ci/caches/
       - .gradle-ci/wrapper/
+      - .native-download-cache/
   script:
     - bash tools/vsomeip-android/build-source.sh
     - bash ./gradlew --no-daemon --stacktrace --continue :app:assembleDebug :app:testDebugUnitTest

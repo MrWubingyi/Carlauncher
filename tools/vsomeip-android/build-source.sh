@@ -37,7 +37,7 @@ if [[ -n "$download_cache" && -f "$download_cache/$boost_archive" ]] && \
   cp "$download_cache/$boost_archive" "$out/$boost_archive"
 else
   curl --fail --location --retry 3 --retry-all-errors --connect-timeout 20 --max-time 600 \
-    "https://archives.boost.io/release/$boost_version/source/$boost_archive" \
+    "${BOOST_DOWNLOAD_URL:-https://archives.boost.io/release/$boost_version/source/$boost_archive}" \
     --output "$out/$boost_archive"
 fi
 echo "$boost_sha256  $out/$boost_archive" | sha256sum --check

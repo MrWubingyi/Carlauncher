@@ -2,6 +2,7 @@ package com.example.carlauncher.data.remote
 
 import java.io.IOException
 import java.io.InterruptedIOException
+import java.net.InetAddress
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import okhttp3.Call
@@ -29,7 +30,7 @@ class HttpRecordsRepositoryTest {
 
     @Before fun setup() {
         server = MockWebServer()
-        server.start()
+        server.start(InetAddress.getByName("127.0.0.1"), 0)
         client = OkHttpClient.Builder()
             .eventListener(object : EventListener() {
                 override fun canceled(call: Call) {
@@ -40,7 +41,10 @@ class HttpRecordsRepositoryTest {
             .callTimeout(3, TimeUnit.SECONDS)
             .retryOnConnectionFailure(false)
             .build()
-        repository = HttpRecordsRepository(client, server.url("/records"))
+        val endpoint = server.url("/records").newBuilder()
+            .host("127.0.0.1")
+            .build()
+        repository = HttpRecordsRepository(client, endpoint)
     }
 
     @After fun cleanup() {

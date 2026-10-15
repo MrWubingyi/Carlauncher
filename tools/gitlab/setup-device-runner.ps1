@@ -46,6 +46,7 @@ $jobEnvironment = @(
     "ANDROID_HOME=$($Sdk.Replace('\','/'))", "ANDROID_SDK_ROOT=$($Sdk.Replace('\','/'))",
     "JAVA_HOME=$($JavaHome.Replace('\','/'))", "PERF_SERIAL=$Serial",
     'GIT_CONFIG_COUNT=1', 'GIT_CONFIG_KEY_0=core.longpaths', 'GIT_CONFIG_VALUE_0=true',
+    'NO_PROXY=localhost,127.0.0.1,192.168.112.1',
     "PATH=$JavaHome/bin;$Sdk/platform-tools;$pythonDirectory;$env:PATH"
 )
 $environmentToml = ($jobEnvironment | ForEach-Object { ConvertTo-Json -InputObject $_ -Compress }) -join ', '
@@ -57,6 +58,7 @@ check_interval = 3
 [[runners]]
   name = "Carlauncher AAOS simpleperf"
   url = "http://localhost:8929"
+  clone_url = "http://localhost:8929"
   token = "$($registration.token)"
   executor = "shell"
   shell = "pwsh"

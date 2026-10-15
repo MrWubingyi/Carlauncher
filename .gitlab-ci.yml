@@ -60,7 +60,11 @@ code-review:
       - app/build/reports/detekt/
       - someip-android/build/reports/detekt/
       - app/build/reports/lint-results-debug.html
+      - app/build/reports/lint-results-debug.xml
+      - app/build/reports/lint-results-debug.sarif
       - someip-android/build/reports/lint-results-debug.html
+      - someip-android/build/reports/lint-results-debug.xml
+      - someip-android/build/reports/lint-results-debug.sarif
     reports:
       codequality: build/reports/code-review/codequality.json
       junit: build/reports/code-review/junit.xml

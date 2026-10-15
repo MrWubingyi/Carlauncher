@@ -2,6 +2,9 @@
 
 流水线执行原生构建 → Detekt/Android Lint 审查 → 两个模块的单元测试、Debug/Profiling
 APK、覆盖率和 JMH。设备采样使用独立的 `simpleperf` Job，避免容器编译负载干扰测量。
+Docker Runner 在独立 `carlauncher-debug-signing` 卷中保留专用 Debug 签名，避免每次
+容器重建生成不同证书而导致 Profiling APK 无法覆盖安装。该密钥不是发布签名，
+不会进入源码或 Job artifacts；执行 `register-runner.ps1` 会幂等准备此卷。
 合并请求会使用 MR 流水线；同一提交已有 MR 时不再重复运行 push 流水线。
 
 ## 在 GitLab 中查看
@@ -10,6 +13,8 @@ APK、覆盖率和 JMH。设备采样使用独立的 `simpleperf` Job，避免�
   性能 testcase 的输出含实际测量值；没有配置回归基线时，预算检查明确显示 skipped。
 - **Merge Request → Code Quality**：Detekt、Lint 的问题、文件及行号。分支对比需要目标
   分支也有报告；首次启用后先让主分支完成一轮。此处是静态分析，不是 AI 语义审查。
+  沿用项目门禁：Detekt finding 或 Lint error 阻断构建；Lint warning 仍保留在
+  Code Quality 报告中，不会因为 Job 成功就被清除。
 - **Job → Artifacts / 报告链接**：下载 HTML、JSON、JUnit、Lint/Detekt 原始报告、JMH
   原始结果，以及 simpleperf 原始采样、函数/线程分布、设备/APK/提交证据。
 - JaCoCo XML 用于 MR 的逐行覆盖率显示；完整 HTML 继续作为产物保留。

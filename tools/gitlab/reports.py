@@ -6,6 +6,7 @@ import html
 import json
 import math
 import os
+import platform
 from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
@@ -27,6 +28,8 @@ def write_reports(output, title, checks, details):
         ET.SubElement(case, 'system-out').text = message
     ET.ElementTree(suite).write(output / 'junit.xml', encoding='utf-8', xml_declaration=True)
     result = {'commit': os.getenv('CI_COMMIT_SHA'), 'job': os.getenv('CI_JOB_URL'),
+              'runner': {'id': os.getenv('CI_RUNNER_ID'), 'name': os.getenv('CI_RUNNER_DESCRIPTION'),
+                         'image': os.getenv('CI_JOB_IMAGE'), 'platform': platform.platform()},
               'checks': checks, 'details': details}
     (output / 'summary.json').write_text(json.dumps(result, indent=2, allow_nan=False), encoding='utf-8')
     table = ''.join('<tr><td>' + '</td><td>'.join(html.escape(str(v)) for v in row) + '</td></tr>'
@@ -100,7 +103,10 @@ def jmh(input_file, output):
         measurement = {key: item[key] for key in ('benchmark', 'jvm', 'jdkVersion', 'jmhVersion',
                        'warmupIterations', 'measurementIterations', 'forks')}
         measurement.update(score=score if math.isfinite(score) else None, unit=metric['scoreUnit'])
-        measurement['allocation_bytes_per_op'] = item.get('secondaryMetrics', {}).get('gc.alloc.rate.norm', {}).get('score')
+        error = metric.get('scoreError')
+        measurement['score_error'] = error if isinstance(error, (float, int)) and math.isfinite(error) else None
+        allocation = item.get('secondaryMetrics', {}).get('gc.alloc.rate.norm', {}).get('score')
+        measurement['allocation_bytes_per_op'] = allocation if isinstance(allocation, (float, int)) and math.isfinite(allocation) else None
         measurements.append(measurement)
         checks.append((item['benchmark'], 'passed' if valid else 'failed', json.dumps(measurement)))
     checks.append(('measurements_present', 'passed' if len(data) >= 4 else 'failed', f'{len(data)} benchmarks'))

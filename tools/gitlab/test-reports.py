@@ -3,10 +3,12 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import sys
 import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
+sys.dont_write_bytecode = True
 spec = importlib.util.spec_from_file_location('reports', Path(__file__).with_name('reports.py'))
 reports = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(reports)

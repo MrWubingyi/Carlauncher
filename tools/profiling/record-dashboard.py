@@ -12,6 +12,7 @@ import sys
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from replay import shell_script, parse_output, validate_results
 
 ROOT = Path(__file__).resolve().parents[2]
 PACKAGE = "com.example.carlauncher.profiling"
@@ -83,6 +84,7 @@ def main():
     parser.add_argument("--frequency", type=int, default=1000)
     parser.add_argument("--warmup", type=int, default=15)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--replay-plan", type=Path, help="Fixed baseline device-side action schedule")
     args = parser.parse_args()
     if args.duration < 10 or args.warmup < 0 or not 1 <= args.frequency <= 1000:
         parser.error("duration >= 10, warmup >= 0 and frequency in 1..1000 required")
@@ -130,6 +132,19 @@ def main():
         "limitations": "Device-specific user-space CPU only, no real media decoder or vehicle stream; JIT enabled, R8 disabled",
         "action_plan": actions,
     }
+    replay = None
+    if args.replay_plan:
+        plan_bytes = args.replay_plan.read_bytes()
+        replay = json.loads(plan_bytes)
+        if args.duration != 60 or args.warmup != 15:
+            raise ValueError('Baseline replay requires duration=60 and warmup=15')
+        for phase in ('warmup', 'recording'):
+            for index, entry in enumerate(replay['phases'][phase]):
+                name, command = actions[index % len(actions)]
+                if entry['action'] != name or entry['input'] != command:
+                    raise ValueError('Live dashboard does not match baseline action schedule')
+        metadata['replay_mode'] = 'device-uptime-v1'
+        metadata['replay_plan_sha256'] = hashlib.sha256(plan_bytes).hexdigest()
     sources = source_inputs(ROOT)
     metadata["source_sha256"] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                                  for p in sorted(sources)}
@@ -139,6 +154,26 @@ def main():
     action_log = output / "actions.jsonl"
 
     def workload(seconds, phase, process=None):
+        if replay is not None:
+            entries = replay['phases'][phase]
+            local_script = output / f'{phase}-replay.sh'
+            local_script.write_text(shell_script(entries, seconds), encoding='utf-8', newline='\n')
+            remote = f'/data/local/tmp/carlauncher-{phase}-replay.sh'
+            device('push', str(local_script), remote)
+            result = subprocess.run([str(adb), '-s', args.serial, 'shell', 'sh', remote],
+                                    env=env, capture_output=True, text=True, encoding='utf-8',
+                                    errors='replace', timeout=seconds + 15)
+            (output / f'{phase}-replay.log').write_text(result.stdout + result.stderr, encoding='utf-8')
+            completed = parse_output(result.stdout, entries, phase)
+            with action_log.open('a', encoding='utf-8') as log:
+                for entry in completed:
+                    log.write(json.dumps(entry) + '\n')
+            metadata[phase + '_replay'] = completed
+            metadata['warmup_actions' if phase == 'warmup' else 'recorded_actions'] = len(completed)
+            if result.returncode:
+                raise RuntimeError(f'Device replay failed: {result.stderr}')
+            validate_results(completed, entries, seconds if phase == 'recording' else None)
+            return len(completed)
         start = time.monotonic()
         index = 0
         with action_log.open("a", encoding="utf-8") as log:

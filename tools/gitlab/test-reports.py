@@ -29,6 +29,9 @@ class ReportTests(unittest.TestCase):
         target.mkdir(parents=True)
         import shutil
         shutil.copyfile(Path(__file__).with_name('performance-baseline.json'), target / 'performance-baseline.json')
+        replay_target = self.root / 'tools/profiling'
+        replay_target.mkdir(parents=True)
+        shutil.copyfile(Path(__file__).parents[1] / 'profiling/dashboard-replay.json', replay_target / 'dashboard-replay.json')
         self.addCleanup(self.root_patch.stop)
 
     def test_missing_scanners_cannot_be_a_clean_review(self):
@@ -106,6 +109,15 @@ class ReportTests(unittest.TestCase):
         raw.mkdir()
         summary = {'samples': 9411, 'sampled_cpu_seconds': base['cpu_seconds'], 'event': base['event']}
         metadata = dict(base['config'], recorded_actions=base['actions'], git_head='current', record_command=['-r', base['record_options']])
+        import hashlib
+        plan_bytes = (self.root / 'tools/profiling/dashboard-replay.json').read_bytes()
+        plan = json.loads(plan_bytes)
+        metadata.update(replay_mode='device-uptime-v1', replay_plan_sha256=hashlib.sha256(plan_bytes).hexdigest(), warmup_actions=31)
+        log = []
+        for phase in ('warmup', 'recording'):
+            metadata[phase + '_replay'] = [dict(item, phase=phase, index=index, actual_seconds=item['seconds'], finished_seconds=item['seconds'] + 0.01) for index, item in enumerate(plan['phases'][phase])]
+            log.extend(metadata[phase + '_replay'])
+        (raw / 'actions.jsonl').write_text('\n'.join(json.dumps(item) for item in log))
         def run():
             (raw / 'summary.json').write_text(json.dumps(summary))
             (raw / 'metadata.json').write_text(json.dumps(metadata))

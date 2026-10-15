@@ -12,6 +12,8 @@ import sys
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "tools/profiling"))
+from replay import validate_results
 
 
 def write_reports(output, title, checks, details):
@@ -172,6 +174,22 @@ def simpleperf(input_dir, output):
     action_ratio = metadata.get('recorded_actions', 0) / ref['actions']
     checks.append(('workload_comparable', 'passed' if 0.95 <= action_ratio <= 1.05 else 'failed',
                    f'baseline_actions={ref["actions"]}; current_actions={metadata.get("recorded_actions", 0)}; tolerance=5%'))
+    try:
+        plan_bytes = (ROOT / 'tools/profiling/dashboard-replay.json').read_bytes()
+        plan = json.loads(plan_bytes)
+        if (metadata.get('replay_mode') != 'device-uptime-v1'
+                or metadata.get('replay_plan_sha256') != hashlib.sha256(plan_bytes).hexdigest()
+                or plan['source_commit'] != base['source']['commit']):
+            raise ValueError('Missing or mismatched fixed baseline replay evidence')
+        log = [json.loads(line) for line in (input_dir / 'actions.jsonl').read_text(encoding='utf-8').splitlines()]
+        for phase, duration, counter in [('warmup', None, 'warmup_actions'), ('recording', 59, 'recorded_actions')]:
+            completed = metadata.get(phase + '_replay', [])
+            validate_results(completed, plan['phases'][phase], duration)
+            if completed != [entry for entry in log if entry['phase'] == phase] or len(completed) != metadata.get(counter):
+                raise ValueError('Device action log and metadata disagree')
+        checks.append(('device_replay_schedule', 'passed', 'Exact baseline replay: warmup=31, recording=119; all recorded actions completed inside recording window; no truncated actions'))
+    except (ValueError, KeyError, OSError) as error:
+        checks.append(('device_replay_schedule', 'failed', str(error)))
     compare(checks, 'scene_cpu_regression', summary['sampled_cpu_seconds'], ref['cpu_seconds'],
             base['thresholds']['simpleperf_cpu_percent'], 'user CPU seconds / 60s scene', base['source'])
     result = write_reports(output, 'Android performance (simpleperf)', checks,

@@ -154,3 +154,13 @@ GitLab simpleperf Job 的 **CPU flame graph (offline HTML)** 报告链接提供�
 悬停或键盘聚焦显示完整函数名、inclusive/self CPU 时间及占比。宽度按 task-clock 事件 period 加权，
 递归栈不会去重，水平顺序不是时间轴。未知符号仍标为 unknown，不会伪造解析结果。
 火焰图用于定位 CPU 热点，性能阻断仍以版本化基线比较为准。
+
+## 固定基线动作重放
+
+CI 使用 `--replay-plan tools/profiling/dashboard-replay.json`，计划直接取自流水线 #19、Job #45 的真实 `actions.jsonl`。
+Windows 仅推送一次脚本并启动设备端 shell；动作由 Android `/proc/uptime` 单调时钟按原始时间点调度，
+不再在 Windows 上逐次启动 ADB、按时间循环决定动作数。固定重放 31 次预热和 119 次采样交互。
+所有输入成功返回后才记完成；保留计划/实际开始/完成时间、设备脚本及日志。
+预热完成后才开始录制，采样动作全部完成且不得超出 59 秒工作窗口（60 秒采样预留启动余量）；
+计数、顺序、输入、计划哈希或日志不一致均失败。原 ±5% 计数门禁仍保留，新增精确动作校验更严格。
+原 #19 CPU/JMH 基线数值及全部回归阈值保持不变，不能通过重新生成基线或归一化计数掩盖失败。

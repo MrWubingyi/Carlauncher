@@ -1,4 +1,4 @@
-stages: [native, build]
+stages: [native, review, build, performance]
 
 default:
   image: carlauncher-android-ci:local
@@ -6,6 +6,11 @@ default:
   interruptible: true
 
 workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH || $CI_COMMIT_TAG'
   auto_cancel:
     on_new_commit: interruptible
 
@@ -33,11 +38,41 @@ native-build:
       - build/native/artifact/
       - build/native/logs/
 
+code-review:
+  stage: review
+  needs:
+    - job: native-build
+      artifacts: true
+  timeout: 1h
+  cache:
+    key: android-gradle
+    when: always
+    paths: [.gradle-ci/caches/, .gradle-ci/wrapper/]
+  script:
+    - bash tools/gitlab/prepare-gradle.sh
+    - bash tools/gitlab/run-review.sh
+  artifacts:
+    when: always
+    expire_in: 14 days
+    expose_as: 'Code review reports'
+    paths:
+      - build/reports/code-review/
+      - app/build/reports/detekt/
+      - someip-android/build/reports/detekt/
+      - app/build/reports/lint-results-debug.html
+      - someip-android/build/reports/lint-results-debug.html
+    reports:
+      codequality: build/reports/code-review/codequality.json
+      junit: build/reports/code-review/junit.xml
+      annotations: build/reports/code-review/annotations.json
+
 android-build:
   stage: build
   needs:
     - job: native-build
       artifacts: true
+    - job: code-review
+      artifacts: false
   timeout: 2h
   cache:
     key: android-gradle
@@ -47,16 +82,62 @@ android-build:
       - .gradle-ci/wrapper/
   script:
     - bash tools/gitlab/prepare-gradle.sh
-    - bash ./gradlew --no-daemon --stacktrace --continue :app:assembleDebug :app:testDebugUnitTest
+    - bash ./gradlew --no-daemon --max-workers=2 --stacktrace --continue :app:assembleDebug :app:testDebugUnitTest :someip-android:assembleDebug :someip-android:testDebugUnitTest :app:assembleProfiling :app:lintProfiling
     - python3 tools/vsomeip-android/verify-artifact.py --apk app/build/outputs/apk/debug/app-debug.apk
     - bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
+    - bash tools/gitlab/run-jmh.sh
   artifacts:
     when: always
     expire_in: 14 days
     paths:
       - app/build/outputs/apk/debug/*.apk
+      - app/build/outputs/apk/profiling/*.apk
+      - someip-android/build/outputs/aar/*.aar
+      - someip-android/build/intermediates/cxx/RelWithDebInfo/**/obj/x86_64/*.so
       - app/build/reports/tests/testDebugUnitTest/
       - app/build/test-results/testDebugUnitTest/
       - app/build/reports/jacoco/fullDebugUnitTestCoverageReport/
+      - someip-android/build/reports/tests/testDebugUnitTest/
+      - someip-android/build/test-results/testDebugUnitTest/
+      - app/build/reports/jmh/
+      - build/reports/jvm-performance/
     reports:
-      junit: app/build/test-results/testDebugUnitTest/TEST-*.xml
+      junit:
+        - app/build/test-results/testDebugUnitTest/TEST-*.xml
+        - someip-android/build/test-results/testDebugUnitTest/TEST-*.xml
+        - build/reports/jvm-performance/junit.xml
+      coverage_report:
+        coverage_format: jacoco
+        path: app/build/reports/jacoco/fullDebugUnitTestCoverageReport/fullDebugUnitTestCoverageReport.xml
+      annotations: build/reports/jvm-performance/annotations.json
+
+simpleperf:
+  stage: performance
+  tags: [carlauncher-device]
+  resource_group: aaos-simpleperf-device
+  interruptible: false
+  needs:
+    - job: android-build
+      artifacts: true
+  variables:
+    GIT_SUBMODULE_STRATEGY: none
+    GIT_CLONE_PATH: '$CI_BUILDS_DIR/carlauncher'
+    PERF_SERIAL: emulator-5554
+  rules:
+    - if: '$RUN_SIMPLEPERF == "1"'
+      when: on_success
+      allow_failure: false
+    - when: manual
+      allow_failure: true
+  timeout: 20m
+  script:
+    - ./tools/gitlab/run-simpleperf.ps1
+  artifacts:
+    when: always
+    expire_in: 14 days
+    expose_as: 'Android simpleperf reports'
+    paths:
+      - build/reports/simpleperf/
+    reports:
+      junit: build/reports/simpleperf/gitlab/junit.xml
+      annotations: build/reports/simpleperf/gitlab/annotations.json

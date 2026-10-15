@@ -85,6 +85,38 @@ val detektGate = tasks.named<dev.detekt.gradle.Detekt>("detekt") {
     }
 }
 
+// Keep JMH annotation processing and forked measurements outside JUnit tests.
+val jmhRuntime by configurations.creating
+dependencies {
+    jmhRuntime("org.openjdk.jmh:jmh-core:1.37")
+    jmhRuntime("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+}
+val debugUnitTestClasspath = providers.provider {
+    tasks.named<Test>("testDebugUnitTest").get().classpath
+}
+val compileJvmBenchmarks = tasks.register<JavaCompile>("compileJvmBenchmarks") {
+    dependsOn("testDebugUnitTest")
+    source(fileTree("src/jmh/java") { include("**/*.java") })
+    classpath = files(debugUnitTestClasspath, jmhRuntime)
+    options.annotationProcessorPath = jmhRuntime
+    destinationDirectory.set(layout.buildDirectory.dir("classes/jmh"))
+    options.release.set(11)
+}
+tasks.register<JavaExec>("jvmPerformanceReport") {
+    group = "verification"
+    description = "Measure production codecs with forked JMH; write machine-readable results"
+    dependsOn(compileJvmBenchmarks)
+    classpath = files(compileJvmBenchmarks.flatMap { it.destinationDirectory },
+        debugUnitTestClasspath, jmhRuntime)
+    mainClass.set("org.openjdk.jmh.Main")
+    val report = layout.buildDirectory.file("reports/jmh/results.json")
+    doFirst { report.get().asFile.parentFile.mkdirs() }
+    args("com.example.carlauncher.perf.VehicleBenchmarks", "-wi", "3", "-i", "5",
+        "-w", "1s", "-r", "1s", "-f", "2", "-t", "1", "-foe", "true",
+        "-prof", "gc", "-rf", "json", "-rff", report.get().asFile.absolutePath,
+        "-jvmArgs", "-Xms256m -Xmx512m")
+}
+
 tasks.named("preBuild") { dependsOn(detektGate) }
 tasks.named("check") { dependsOn(detektGate) }
 tasks.matching {

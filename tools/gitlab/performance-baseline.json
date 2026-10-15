@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "source": {
+    "pipeline": 19,
+    "commit": "f70849b8db506de6385673368eedc78a52e63917",
+    "url": "http://192.168.112.1:8929/root/Carlauncher/-/pipelines/19",
+    "jobs": {
+      "jmh": 44,
+      "simpleperf": 45
+    }
+  },
+  "thresholds": {
+    "jmh_time_percent": 20,
+    "jmh_allocation_percent": 10,
+    "simpleperf_cpu_percent": 20,
+    "jmh_allocation_absolute_bytes": 1
+  },
+  "jmh": {
+    "com.example.carlauncher.perf.VehicleBenchmarks.decodeBinary": {
+      "score": 8.848585049617771,
+      "unit": "ns/op",
+      "allocation": 64.00006114355747,
+      "config": {
+        "jdkVersion": "21.0.12.1",
+        "jmhVersion": "1.37",
+        "warmupIterations": 3,
+        "measurementIterations": 5,
+        "forks": 2,
+        "mode": "avgt",
+        "warmupTime": "1 s",
+        "measurementTime": "1 s",
+        "threads": 1
+      }
+    },
+    "com.example.carlauncher.perf.VehicleBenchmarks.decodeSnapshot": {
+      "score": 6803.865191038322,
+      "unit": "ns/op",
+      "allocation": 5704.047060587338,
+      "config": {
+        "jdkVersion": "21.0.12.1",
+        "jmhVersion": "1.37",
+        "warmupIterations": 3,
+        "measurementIterations": 5,
+        "forks": 2,
+        "mode": "avgt",
+        "warmupTime": "1 s",
+        "measurementTime": "1 s",
+        "threads": 1
+      }
+    },
+    "com.example.carlauncher.perf.VehicleBenchmarks.encodeBinary": {
+      "score": 5.0702688379867125,
+      "unit": "ns/op",
+      "allocation": 32.00003503604851,
+      "config": {
+        "jdkVersion": "21.0.12.1",
+        "jmhVersion": "1.37",
+        "warmupIterations": 3,
+        "measurementIterations": 5,
+        "forks": 2,
+        "mode": "avgt",
+        "warmupTime": "1 s",
+        "measurementTime": "1 s",
+        "threads": 1
+      }
+    },
+    "com.example.carlauncher.perf.VehicleBenchmarks.validateState": {
+      "score": 2.537138907690603,
+      "unit": "ns/op",
+      "allocation": 1.747116801863805e-05,
+      "config": {
+        "jdkVersion": "21.0.12.1",
+        "jmhVersion": "1.37",
+        "warmupIterations": 3,
+        "measurementIterations": 5,
+        "forks": 2,
+        "mode": "avgt",
+        "warmupTime": "1 s",
+        "measurementTime": "1 s",
+        "threads": 1
+      }
+    }
+  },
+  "simpleperf": {
+    "cpu_seconds": 9.411,
+    "actions": 119,
+    "event": "task-clock:u",
+    "config": {
+      "serial": "emulator-5554",
+      "fingerprint": "google/sdk_gcar_x86_64/emulator_car64_x86_64:13/TEA1.250515.001/13505934:userdebug/dev-keys",
+      "screen": "Physical size: 1408x792",
+      "duration_seconds": 60,
+      "warmup_seconds": 15,
+      "scenario": "Repeated demo-map zoom/pan/recenter and demo-media next/play/seek/previous",
+      "action_plan": [
+        [
+          "Zoom in",
+          [
+            "tap",
+            1352,
+            262
+          ]
+        ],
+        [
+          "Zoom in",
+          [
+            "tap",
+            1352,
+            262
+          ]
+        ],
+        [
+          "Pan map right",
+          [
+            "swipe",
+            797,
+            317,
+            1093,
+            317,
+            500
+          ]
+        ],
+        [
+          "Pan map left",
+          [
+            "swipe",
+            1093,
+            317,
+            797,
+            332,
+            500
+          ]
+        ],
+        [
+          "Zoom out",
+          [
+            "tap",
+            1352,
+            310
+          ]
+        ],
+        [
+          "Recenter map",
+          [
+            "tap",
+            1352,
+            358
+          ]
+        ],
+        [
+          "Next track",
+          [
+            "tap",
+            732,
+            450
+          ]
+        ],
+        [
+          "Toggle demo playback",
+          [
+            "tap",
+            670,
+            450
+          ]
+        ],
+        [
+          "Seek demo track",
+          [
+            "swipe",
+            999,
+            498,
+            1247,
+            498,
+            400
+          ]
+        ],
+        [
+          "Previous track",
+          [
+            "tap",
+            608,
+            450
+          ]
+        ]
+      ]
+    },
+    "record_options": "-e task-clock:u -f 1000 -g --duration 60"
+  },
+  "runner_ids": {
+    "jmh": "1",
+    "simpleperf": "2"
+  }
+}

@@ -93,6 +93,25 @@ def review(output, exit_code):
     return result
 
 
+def baseline():
+    data = json.loads((ROOT / 'tools/gitlab/performance-baseline.json').read_text(encoding='utf-8'))
+    if data['schema'] != 1:
+        raise ValueError('Unsupported baseline schema')
+    return data
+
+
+def compare(checks, name, current, reference, percent, unit, source, absolute=0):
+    values = (current, reference, percent, absolute)
+    if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in values) or reference <= 0 or current < 0 or percent < 0 or absolute < 0:
+        raise ValueError(f'Invalid regression inputs: {name}')
+    limit = reference + max(reference * percent / 100, absolute)
+    delta = (current / reference - 1) * 100
+    message = (f'baseline={reference:.6g} {unit}; current={current:.6g} {unit}; '
+               f'delta={delta:+.2f}%; threshold=+{percent}% (absolute allowance={absolute} {unit}); limit={limit:.6g} {unit}; '
+               f'baseline pipeline={source["pipeline"]} commit={source["commit"]}')
+    checks.append((name, 'passed' if current <= limit else 'failed', message))
+
+
 def jmh(input_file, output):
     data = json.loads(input_file.read_text(encoding='utf-8'))
     checks, measurements = [], []
@@ -110,8 +129,21 @@ def jmh(input_file, output):
         measurements.append(measurement)
         checks.append((item['benchmark'], 'passed' if valid else 'failed', json.dumps(measurement)))
     checks.append(('measurements_present', 'passed' if len(data) >= 4 else 'failed', f'{len(data)} benchmarks'))
-    checks.append(('regression_budget', 'skipped',
-                   'No approved same-runner baseline/budget configured. Collection success is not a performance regression verdict.'))
+    base = baseline()
+    if os.getenv('CI'):
+        checks.append(('baseline_runner', 'passed' if os.getenv('CI_RUNNER_ID') == base['runner_ids']['jmh'] else 'failed', 'Expected runner ' + base['runner_ids']['jmh']))
+    expected = base['jmh']
+    names = [item['benchmark'] for item in data]
+    checks.append(('baseline_benchmark_set', 'passed' if len(names) == len(set(names)) and set(names) == set(expected) else 'failed', str(names)))
+    for item in data:
+        name = item['benchmark']
+        if name not in expected:
+            continue
+        ref = expected[name]
+        compatible = all(item.get(k) == v for k, v in ref['config'].items()) and item['primaryMetric']['scoreUnit'] == ref['unit']
+        checks.append((name + '.configuration', 'passed' if compatible else 'failed', 'Configuration must match baseline: ' + json.dumps(ref['config'])))
+        compare(checks, name + '.time_regression', item['primaryMetric']['score'], ref['score'], base['thresholds']['jmh_time_percent'], ref['unit'], base['source'])
+        compare(checks, name + '.allocation_regression', item['secondaryMetrics']['gc.alloc.rate.norm']['score'], ref['allocation'], base['thresholds']['jmh_allocation_percent'], 'B/op', base['source'], base['thresholds']['jmh_allocation_absolute_bytes'])
     return write_reports(output, 'JVM performance (JMH)', checks, measurements)
 
 
@@ -125,8 +157,23 @@ def simpleperf(input_dir, output):
               ('dashboard_actions_executed', 'passed' if metadata.get('recorded_actions', 0) > 0 else 'failed',
                f"actions={metadata.get('recorded_actions', 0)}"),
               ('commit_provenance', 'passed' if provenance else 'failed', str(metadata.get('git_head'))),
-              ('regression_budget', 'skipped',
-               'No approved fixed-device baseline/budget. CPU samples are not frame latency or a regression verdict.')]
+              ]
+    base = baseline()
+    if os.getenv('CI'):
+        checks.append(('baseline_runner', 'passed' if os.getenv('CI_RUNNER_ID') == base['runner_ids']['simpleperf'] else 'failed', 'Expected runner ' + base['runner_ids']['simpleperf']))
+    ref = base['simpleperf']
+    command = metadata.get('record_command', [])
+    options = command[command.index('-r') + 1] if '-r' in command else None
+    checks.append(('baseline_record_options', 'passed' if options == ref['record_options'] else 'failed', str(options)))
+    compatible = all(metadata.get(k) == v for k, v in ref['config'].items()) and summary.get('event') == ref['event']
+    checks.append(('baseline_device_and_scenario', 'passed' if compatible else 'failed',
+                   'Device, screen, scenario, duration and warmup must match baseline'))
+    # A slower workload must not pass just because it performed fewer actions.
+    action_ratio = metadata.get('recorded_actions', 0) / ref['actions']
+    checks.append(('workload_comparable', 'passed' if 0.95 <= action_ratio <= 1.05 else 'failed',
+                   f'baseline_actions={ref["actions"]}; current_actions={metadata.get("recorded_actions", 0)}; tolerance=5%'))
+    compare(checks, 'scene_cpu_regression', summary['sampled_cpu_seconds'], ref['cpu_seconds'],
+            base['thresholds']['simpleperf_cpu_percent'], 'user CPU seconds / 60s scene', base['source'])
     return write_reports(output, 'Android performance (simpleperf)', checks,
                          {'measurements': summary, 'provenance': metadata})
 

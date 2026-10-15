@@ -10,7 +10,7 @@ Docker Runner 在独立 `carlauncher-debug-signing` 卷中保留专用 Debug 签
 ## 在 GitLab 中查看
 
 - **流水线 → Tests**：JUnit 单元测试、静态检查状态、JMH 和 simpleperf 检查结果。
-  性能 testcase 的输出含实际测量值；没有配置回归基线时，预算检查明确显示 skipped。
+  性能 testcase 的输出含实际测量值；回归检查输出基线、当前值、变化百分比、阈值和来源。
 - **Merge Request → Code Quality**：Detekt、Lint 的问题、文件及行号。分支对比需要目标
   分支也有报告；首次启用后先让主分支完成一轮。此处是静态分析，不是 AI 语义审查。
   沿用项目门禁：Detekt finding 或 Lint error 阻断构建；Lint warning 仍保留在
@@ -31,8 +31,10 @@ Docker Runner 在独立 `carlauncher-debug-signing` 卷中保留专用 Debug 签
 返回值由 JMH 消费，避免无效代码消除。报告含 ns/op、分配量、JDK、fork 和采样配置。
 
 它测量宿主机 JVM 上的纯计算路径，不能代表 Android ART、UI 帧率、JNI 或网络延迟。
-共享 Docker CPU 的变化会影响结果。当前检查真实测量是否完整有效；没有批准的同机器
-基线和退化预算，因此不会将采集成功声称为“性能无退化”。
+共享 Docker CPU 的变化会影响结果。基线为成功流水线 #19，提交 `f70849b8db506de6385673368eedc78a52e63917`，JMH Job #44、simpleperf Job #45。
+测量值版本化保存在 `tools/gitlab/performance-baseline.json`，不依赖会过期的 artifacts。
+JMH 耗时允许增加 20%；分配量允许增加 max(基线的 10%, 1 B/op)，避免近零分配量的噪声误判。
+超过上限失败，等于上限通过。benchmark 集合、JDK/JMH、fork、预热、测量、线程数和单位必须一致。
 
 ## Android simpleperf
 
@@ -40,11 +42,16 @@ Docker Job 构建本次提交的 Profiling APK，并提供未剥离原生符号�
 使用本机 SDK/NDK 和指定设备执行已有的 `record-dashboard.py`、`summarize.py`：预热 15 秒，
 采样 60 秒，同时执行地图和媒体演示操作。采样 Job 持有独占 resource_group。
 
-普通提交后在 GitLab 手动启动 `simpleperf`。若希望流水线自动采样并将采样失败作为
-阻断项，在 Run pipeline 时设置 `RUN_SIMPLEPERF=1`。默认设备为 `emulator-5554`，
-可用变量 `PERF_SERIAL` 改为另一已授权、匹配 x86_64 APK 的设备。
+每次提交和 MR 自动运行 `simpleperf`，失败阻断流水线，不再需要 `RUN_SIMPLEPERF`。
+默认设备 `emulator-5554`；离线时失败，Runner 离线则等待，不会跳过。
+设备 serial、系统 fingerprint、屏幕、动作、采样 60 秒和预热 15 秒均需匹配基线。
+交互次数须在 119 次的 ±5% 内，避免少执行工作而虚假改善。
+场景 user CPU 基线 9.411 秒，允许 +20%，上限 11.2932 秒。
 无设备、缺少数据、没有执行交互或提交证据不匹配都会使该 Job 和 JUnit 检查失败。
-没有基线时只报告 CPU 样本及其有效性，不给出无依据的耗时阈值或帧率结论。
+此预算检查固定场景的 CPU 回归，不代表帧率。共享宿主机和单次基线仍有噪声。
+Tests 中每项 regression testcase 输出基线值、当前值、百分比和阈值，超限为 failure；
+HTML/JSON 和原始采样即使失败也上传。基线不随提交自动滚动；修改设备、配置或预算时
+需审核基线文件并记录新成功流水线及原因，不能自动放宽预算掩盖失败。
 
 ### 专用 Windows Runner
 

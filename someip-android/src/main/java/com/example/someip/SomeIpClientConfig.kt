@@ -40,6 +40,7 @@ data class SomeIpClientConfig(val configPath: String, val service: SomeIpService
         }
     }
 
+    /** Parsers for the vSomeIP JSON file and its client-endpoint extension. */
     companion object {
         /** Reads the client-endpoint extension and validates its application declaration. */
         @JvmStatic

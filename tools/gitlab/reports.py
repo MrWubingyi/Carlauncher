@@ -29,7 +29,9 @@ def write_reports(output, title, checks, details):
             ET.SubElement(case, 'skipped', message=message)
         ET.SubElement(case, 'system-out').text = message
     ET.ElementTree(suite).write(output / 'junit.xml', encoding='utf-8', xml_declaration=True)
-    result = {'commit': os.getenv('CI_COMMIT_SHA'), 'job': os.getenv('CI_JOB_URL'),
+    github_run = (f"{os.getenv('GITHUB_SERVER_URL', 'https://github.com')}/{os.getenv('GITHUB_REPOSITORY')}/actions/runs/{os.getenv('GITHUB_RUN_ID')}"
+                  if os.getenv('GITHUB_RUN_ID') else None)
+    result = {'commit': os.getenv('CI_COMMIT_SHA') or os.getenv('GITHUB_SHA'), 'job': os.getenv('CI_JOB_URL') or github_run,
               'runner': {'id': os.getenv('CI_RUNNER_ID'), 'name': os.getenv('CI_RUNNER_DESCRIPTION'),
                          'image': os.getenv('CI_JOB_IMAGE'), 'platform': platform.platform()},
               'checks': checks, 'details': details}
@@ -64,12 +66,13 @@ def review(output, exit_code):
     findings, reports, present = [], [], set()
     for module in ('app', 'someip-android'):
         paths = list((ROOT / module / 'build/reports/detekt').glob('*.xml'))
+        paths += list((ROOT / module / 'build/reports/checkstyle').glob('*.xml'))
         paths += list((ROOT / module / 'build/reports').glob('lint-results-*.xml'))
         for path in paths:
             document = ET.parse(path).getroot()
             reports.append(path.relative_to(ROOT).as_posix())
             if document.tag == 'checkstyle':
-                present.add((module, 'detekt'))
+                present.add((module, 'checkstyle' if path.parent.name == 'checkstyle' else 'detekt'))
                 entries = [(node.get('name'), issue.get('line', '1'), issue.get('source', 'detekt'),
                             issue.get('message', ''), issue.get('severity', 'warning'))
                            for node in document.findall('file') for issue in node.findall('error')]
@@ -87,10 +90,14 @@ def review(output, exit_code):
                     'severity': 'major' if severity.lower() in ('error', 'fatal') else 'minor',
                     'location': {'path': file, 'lines': {'begin': max(1, int(line))}}})
     checks = [('static_analysis', 'passed' if exit_code == 0 else 'failed',
-               f'Detekt/Lint exit={exit_code}, findings={len(findings)}')]
-    checks.append(('scanner_reports_present', 'passed' if len(present) == 4 else 'failed',
-                   f'Expected Detekt and Lint reports for both modules: {reports}'))
-    result = write_reports(output, 'Code review (Detekt + Android Lint)', checks, findings)
+               f'Detekt/Checkstyle/Lint exit={exit_code}, findings={len(findings)}')]
+    expected = {(m, scanner) for m in ('app', 'someip-android')
+                for scanner in ('detekt', 'lint')}
+    expected.update((m, 'checkstyle') for m in ('app', 'someip-android')
+                    if any((ROOT / m / 'src').rglob('*.java')))
+    checks.append(('scanner_reports_present', 'passed' if expected <= present else 'failed',
+                   f'Expected Detekt/Lint reports and Checkstyle reports for modules with Java: {reports}'))
+    result = write_reports(output, 'Code review (Detekt + Checkstyle + Android Lint)', checks, findings)
     (output / 'codequality.json').write_text(json.dumps(findings, indent=2), encoding='utf-8')
     return result
 

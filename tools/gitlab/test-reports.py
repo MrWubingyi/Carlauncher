@@ -50,6 +50,21 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(7, findings[0]['location']['lines']['begin'])
         self.assertNotIn('<script>', (self.output / 'index.html').read_text())
 
+    def test_checkstyle_report_required_for_java_and_findings_published(self):
+        self.test_findings_map_to_source_and_escape_html()
+        java = self.root / 'app/src/jmh/java/Example.java'
+        java.parent.mkdir(parents=True)
+        java.write_text('class Example {}')
+        self.assertEqual(1, reports.review(self.output, 0))
+        report = self.root / 'app/build/reports/checkstyle/checkstyleAll.xml'
+        report.parent.mkdir(parents=True)
+        report.write_text('<checkstyle><file name="app/src/jmh/java/Example.java"><error line="1" severity="error" source="AvoidStarImport" message="Wildcard import"/></file></checkstyle>')
+        self.assertEqual(1, reports.review(self.output, 1))
+        findings = json.loads((self.output / 'codequality.json').read_text())
+        self.assertTrue(any(row['check_name'] == 'AvoidStarImport' for row in findings))
+        report.write_text('<checkstyle/>')
+        self.assertEqual(0, reports.review(self.output, 0))
+
     def test_empty_jmh_measurements_fail(self):
         source = self.root / 'jmh.json'
         source.write_text('[]')

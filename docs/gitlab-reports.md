@@ -90,3 +90,10 @@ Windows 仅推送一次脚本并启动设备端 shell；动作由 Android `/proc
 预热完成后才开始录制，采样动作全部完成且不得超出 59 秒工作窗口（60 秒采样预留启动余量）；
 计数、顺序、输入、计划哈希或日志不一致均失败。原 ±5% 计数门禁仍保留，新增精确动作校验更严格。
 原 #19 CPU/JMH 基线数值及全部回归阈值保持不变，不能通过重新生成基线或归一化计数掩盖失败。
+
+## GitHub Actions 范围
+
+GitHub 的 Android Build 共用 `run-review.sh` 与报告转换器，执行 Detekt、Checkstyle、两模块
+Lint、Debug/Profiling APK、AAR、单元测试、分层检查、原生来源与 APK 校验及覆盖率报告。
+Actions Summary 展示审查和测试汇总，详细报告通过 Artifacts 下载。
+按当前配置，GitHub 不运行 JMH/simpleperf；性能基线、固定重放、火焰图和阻断只在 GitLab 执行。

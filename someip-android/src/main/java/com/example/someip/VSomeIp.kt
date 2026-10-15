@@ -8,6 +8,7 @@ import com.example.someip.internal.NativeBridge
 import com.example.someip.internal.SessionCoordinator
 import java.io.File
 
+/** Factory for process-coordinated SOME/IP clients using the application context. */
 object VSomeIp {
     /** Read and validate JSON before creating the client. Recreate after editing a stopped client's file. */
     @JvmStatic

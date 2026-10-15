@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-Build a Debug APK, preparing its Android vSomeIP library on Ubuntu when necessary.
+Build and verify Debug APK/AAR locally. Remote native preparation requires -AllowRemote.
 .EXAMPLE
-.\build-local.ps1 -UbuntuHost root@192.168.112.129 -SaveConfiguration
+.\build-local.ps1 -AllowRemote -UbuntuHost user@ubuntu -SaveConfiguration
 .EXAMPLE
 .\build-local.ps1
 #>
@@ -15,7 +15,10 @@ param(
     [ValidateRange(1, 32)][int]$Jobs = 2,
     [switch]$SaveConfiguration,
     [switch]$RebuildNative,
-    [switch]$Test
+    [switch]$Test,
+    [switch]$Quick,
+    [switch]$Coverage,
+    [switch]$AllowRemote
 )
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
@@ -24,6 +27,9 @@ $configPath = Join-Path $root 'local-build.json'
 $tools = Join-Path $root 'tools/vsomeip-android'
 $oldJavaHome = $env:JAVA_HOME
 $buildLock = $null
+$transcribing = $false
+$started = Get-Date
+$logPath = $null
 
 function Run([string]$Command, [string[]]$Arguments) {
     & $Command @Arguments
@@ -61,6 +67,11 @@ try {
         $buildLock = [IO.File]::Open((Join-Path $root 'build/local-build.lock'),
             [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
     } catch { throw 'Another local build is running, or build/local-build.lock is inaccessible.' }
+    $logPath = Join-Path $root ('build/local-build-' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '.log')
+    Start-Transcript -Path $logPath | Out-Null
+    $transcribing = $true
+    if ($RebuildNative -and -not $AllowRemote) { throw '-RebuildNative requires -AllowRemote.' }
+    if ($Quick -and ($Test -or $Coverage)) { throw '-Quick cannot be combined with -Test or -Coverage.' }
     if (Test-Path $configPath) {
         $config = Get-Content $configPath -Raw | ConvertFrom-Json
         foreach ($name in @('UbuntuHost', 'RemoteRoot', 'RemoteSdk', 'JavaHome')) {
@@ -112,9 +123,10 @@ try {
         foreach ($file in $sdkFiles) { if (-not (Test-Path (Join-Path $sdk $file))) { throw "SDK component missing: $file" } }
     }
 
-    Write-Host 'Running Detekt before preparing native dependencies...'
+    Write-Host 'Running Detekt, Checkstyle and SOME/IP layer checks...'
+    & (Join-Path $root 'tools/check-someip-layering.ps1')
     Run "$root/gradlew.bat" @('--no-daemon', '-Porg.gradle.java.installations.auto-detect=false',
-        "-Porg.gradle.java.installations.paths=$JavaHome", ':app:detekt', ':someip-android:detekt')
+        "-Porg.gradle.java.installations.paths=$JavaHome", ':app:detekt', ':someip-android:detekt', ':app:checkstyleAll', ':someip-android:checkstyleAll')
 
     # A different repository commit or native script invalidates the cache.
     $inputText = "$commit`n$sourceCommit`n"
@@ -133,6 +145,7 @@ try {
         $valid = $LASTEXITCODE -eq 0
     }
     if (-not $valid) {
+        if (-not $AllowRemote) { throw 'Verified local native artifact is unavailable. Remote source transfer is disabled. Prepare the artifact separately, or explicitly use -AllowRemote -UbuntuHost user@host.' }
         if (-not $UbuntuHost) { throw 'Native dependency needs rebuilding. Supply -UbuntuHost user@host -SaveConfiguration once, or set CARLAUNCHER_UBUNTU_HOST.' }
         # Restrict values sent through the SSH shell to simple paths and host names.
         if ($UbuntuHost -notmatch '^[A-Za-z0-9_][A-Za-z0-9_.@-]*$') { throw 'UbuntuHost must be an SSH alias or user@hostname.' }
@@ -153,7 +166,8 @@ try {
         New-Item -ItemType Directory -Path $transfer -Force | Out-Null
         $upload = "$RemoteRoot/runs/$runId"
         Run 'ssh' ($sshOptions + @($UbuntuHost, "mkdir -p $upload"))
-        Write-Host 'Packaging pinned source commits (no remote Git credentials required)...'
+        Write-Host "Remote source transfer enabled: Git bundles (including reachable history) and native scripts -> ${UbuntuHost}:$upload"
+        Write-Host 'Uncommitted app changes stay local; native inputs must be committed.'
         Run 'git' @('bundle', 'create', "$transfer/main.bundle", 'HEAD')
         Run 'git' @('-C', 'third_party/vsomeip', 'bundle', 'create', "$transfer/vsomeip.bundle", 'HEAD')
         foreach ($file in @('build-source.sh', 'verify-artifact.py', 'remote-build.sh')) {
@@ -185,15 +199,31 @@ try {
             RemoteSdk = $RemoteSdk; JavaHome = $JavaHome } | ConvertTo-Json) + "`n")
         Write-Host "Saved machine settings to $configPath (ignored by Git)."
     }
-    $tasks = @(':app:assembleDebug')
-    if ($Test) { $tasks += @(':app:testDebugUnitTest', ':someip-android:testDebugUnitTest') }
+    $tasks = @(':app:assembleDebug', ':someip-android:assembleDebug')
+    if (-not $Quick) {
+        $tasks += @(':app:testDebugUnitTest', ':someip-android:testDebugUnitTest',
+            ':app:lintDebug', ':someip-android:lintDebug')
+    }
+    Write-Host ('Gradle tasks: ' + ($tasks -join ' '))
     Run "$root/gradlew.bat" (@('--no-daemon', '-Porg.gradle.java.installations.auto-detect=false',
         "-Porg.gradle.java.installations.paths=$JavaHome") + $tasks)
     $apk = Join-Path $root 'app/build/outputs/apk/debug/app-debug.apk'
     Run 'python' @("$tools/verify-artifact.py", '--apk', $apk, '--artifact', $artifact)
+    if ($Coverage) {
+        Run "$root/gradlew.bat" @('--no-daemon', '-Porg.gradle.java.installations.auto-detect=false',
+            "-Porg.gradle.java.installations.paths=$JavaHome", ':app:fullDebugUnitTestCoverageReport')
+    }
     Write-Host "Build successful: $apk"
+    Write-Host "AAR: $root/someip-android/build/outputs/aar/someip-android-debug.aar"
+    Write-Host "Reports: app/build/reports and someip-android/build/reports"
+    Write-Host ("Elapsed: {0:N1}s; log: {1}" -f ((Get-Date) - $started).TotalSeconds, $logPath)
+} catch {
+    Write-Host ("Build failed: " + $_.Exception.Message)
+    if ($logPath) { Write-Host "Log: $logPath" }
+    throw
 } finally {
     if ($null -ne $buildLock) { $buildLock.Dispose() }
+    if ($transcribing) { Stop-Transcript | Out-Null }
     $env:JAVA_HOME = $oldJavaHome
     Pop-Location
 }

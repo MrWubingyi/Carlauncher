@@ -107,3 +107,16 @@ style:
     active: true
   NewLineAtEndOfFile:
     active: true
+
+# Public SOME/IP API only; internal implementation and test source sets stay outside this gate.
+comments:
+  active: true
+  UndocumentedPublicClass:
+    active: true
+    includes: ['**/someip-android/src/main/java/com/example/someip/*.kt']
+  UndocumentedPublicFunction:
+    active: true
+    includes: ['**/someip-android/src/main/java/com/example/someip/*.kt']
+  OutdatedDocumentation:
+    active: true
+    includes: ['**/someip-android/src/main/java/com/example/someip/*.kt']

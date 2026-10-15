@@ -16,7 +16,7 @@ jobs:
   build:
     name: Debug APK and unit tests
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -58,17 +58,18 @@ jobs:
       - name: Set up Gradle and validate wrapper
         uses: gradle/actions/setup-gradle@v5
 
-      - name: Run Detekt
-        run: bash ./gradlew --no-daemon --stacktrace :app:detekt :someip-android:detekt
-
       - name: Build Boost and vSomeIP from pinned sources
         run: bash tools/vsomeip-android/build-source.sh
 
-      - name: Build Debug APK and run unit tests
+      - name: Review Kotlin and Java and run Android Lint
+        run: bash tools/gitlab/run-review.sh
+
+      - name: Build Debug and Profiling APKs and run unit tests
         run: >-
           bash ./gradlew --no-daemon --stacktrace --continue
           :app:assembleDebug :app:testDebugUnitTest
           :someip-android:assembleDebug :someip-android:testDebugUnitTest
+          :app:assembleProfiling :app:lintProfiling
 
       - name: Check SOME/IP dependency boundaries
         shell: pwsh
@@ -96,11 +97,13 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-      - name: Upload Debug APK
+      - name: Upload Debug and Profiling APKs
         uses: actions/upload-artifact@v6
         with:
           name: CarLauncher-debug-x86_64-${{ github.run_number }}
-          path: app/build/outputs/apk/debug/*.apk
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/profiling/*.apk
           if-no-files-found: error
           retention-days: 14
 
@@ -117,8 +120,9 @@ jobs:
       - name: Generate coverage report
         run: bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
 
-      - name: Run Android Lint
-        run: bash ./gradlew --no-daemon --stacktrace :app:lintDebug :someip-android:lintDebug
+      - name: Publish review and test summary
+        if: ${{ always() }}
+        run: python3 tools/github/summarize.py
 
       - name: Upload test, coverage, lint, and Detekt reports
         if: ${{ always() }}
@@ -126,11 +130,15 @@ jobs:
         with:
           name: CarLauncher-reports-${{ github.run_number }}
           path: |
+            build/reports/code-review/
             app/build/reports/tests/testDebugUnitTest/
             app/build/test-results/testDebugUnitTest/
             app/build/reports/jacoco/fullDebugUnitTestCoverageReport/
             app/build/reports/lint-results-debug.html
             app/build/reports/lint-results-debug.xml
+            app/build/reports/lint-results-profiling.*
+            app/build/reports/checkstyle/
+            someip-android/build/reports/checkstyle/
             app/build/reports/detekt/
             someip-android/build/reports/
             someip-android/build/test-results/testDebugUnitTest/

@@ -1,4 +1,5 @@
 plugins {
+    checkstyle
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
@@ -240,3 +241,27 @@ tasks.register<JacocoCoverageVerification>("verifyFullDebugUnitTestCoverage") {
         }
     }
 }
+
+// Scan handwritten Java in every source set, including tests and JMH.
+checkstyle {
+    toolVersion = "12.3.0"
+    configFile = rootProject.file("config/checkstyle/checkstyle.xml")
+    isIgnoreFailures = false
+    maxWarnings = 0
+}
+val checkstyleGate = tasks.register<Checkstyle>("checkstyleAll") {
+    group = "verification"
+    description = "Check all handwritten Java sources"
+    source(fileTree("src") { include("**/*.java") })
+    classpath = files()
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+tasks.named("preBuild") { dependsOn(checkstyleGate) }
+tasks.named("check") { dependsOn(checkstyleGate) }
+tasks.matching {
+    name.startsWith("compile") &&
+        (name.endsWith("Kotlin") || name.endsWith("JavaWithJavac") || name == "compileJvmBenchmarks")
+}.configureEach { dependsOn(checkstyleGate) }

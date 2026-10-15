@@ -57,6 +57,8 @@ code-review:
     expose_as: 'Code review reports'
     paths:
       - build/reports/code-review/
+      - app/build/reports/checkstyle/
+      - someip-android/build/reports/checkstyle/
       - app/build/reports/detekt/
       - someip-android/build/reports/detekt/
       - app/build/reports/lint-results-debug.html

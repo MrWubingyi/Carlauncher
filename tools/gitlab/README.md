@@ -1,7 +1,9 @@
 # 本地 GitLab / Runner
 
-GitLab 页面：http://localhost:8929；Git SSH 端口：2229。
-仅监听 Windows 本机回环地址。Docker 卷持久化 GitLab 数据和 Runner 配置。
+Windows 本机页面：http://localhost:8929；VMware 虚拟机访问：http://192.168.112.1:8929。
+Git SSH 端口：2229。服务监听回环地址和 Windows 的 VMnet8 网卡 `192.168.112.1`；
+GitLab 对外生成的链接使用 VMnet8 地址。Docker 卷持久化 GitLab 数据和 Runner 配置。
+虚拟机 `192.168.112.129` 中的 `localhost` 指向虚拟机自身，访问 GitLab 时须使用宿主机地址。
 
 ```powershell
 docker compose -f tools/gitlab/compose.yaml up -d
@@ -34,6 +36,8 @@ Gradle 官方分发跳转在本机网络下不可用时，从镜像下载同版�
 
 GitHub upstream 保持 `git@github.com:MrWubingyi/Carlauncher.git`。
 GitLab SSH 地址为 `ssh://git@localhost:2229/root/Carlauncher.git`。
+虚拟机中使用 HTTP 克隆地址 `http://192.168.112.1:8929/root/Carlauncher.git`，
+或 SSH 地址 `ssh://git@192.168.112.1:2229/root/Carlauncher.git`（需先在 GitLab 添加虚拟机公钥）。
 首次上传使用 `codex/gitlab-ci` 快照分支包含当前未提交源码；原工作分支和索引保留。
 GitLab 默认分支指向该快照，日常提交后可推送对应分支：
 

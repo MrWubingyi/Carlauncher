@@ -11,6 +11,8 @@ interface VehicleDataSource {
     fun stop()
 
     interface Listener {
+        fun onControlChanged() {}
+
 
         /** 回调完整的车辆状态快照。 回调线程不保证是主线程。 */
         fun onStateChanged(state: VehicleState?)

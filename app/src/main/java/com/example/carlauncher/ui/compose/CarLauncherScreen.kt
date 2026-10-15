@@ -1,5 +1,6 @@
 package com.example.carlauncher.ui.compose
 
+import com.example.vehicle.control.*
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -157,6 +158,7 @@ fun CarLauncherScreen(
                     onOpenSettings,
                     onOpenBroadcast,
                     onOpenDatabase,
+                    viewModel::requestControl,
                 )
             4 ->
                 Panel(modifier) {
@@ -341,8 +343,20 @@ private fun ControlPanel(
     onSettings: () -> Unit,
     onBroadcast: () -> Unit,
     onDatabase: () -> Unit,
+    onControl: (VehicleAction) -> Unit,
 ) {
     val context = LocalContext.current
+    var confirmation by remember { mutableStateOf<VehicleAction?>(null) }
+    confirmation?.let { action ->
+        AlertDialog(
+            onDismissRequest = { confirmation = null },
+            title = { Text("确认${action.label}") },
+            text = { Text("将向车辆发送控制请求。请求受理不代表硬件已执行，请核对车辆反馈。") },
+            confirmButton = { TextButton({ confirmation = null; onControl(action) },
+                enabled = !state.isDemo && action in state.controls.enabledActions) { Text("发送请求") } },
+            dismissButton = { TextButton({ confirmation = null }) { Text("取消") } },
+        )
+    }
     Panel(modifier) {
         Column(
             Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
@@ -352,7 +366,7 @@ private fun ControlPanel(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text("演示模式", color = Color.White)
-                    Text("空调、驾驶模式和车控仅用于界面演示", color = HuColors.TextDim, fontSize = 12.sp)
+                    Text("演示模式不下发命令；空调、驾驶模式仅供演示", color = HuColors.TextDim, fontSize = 12.sp)
                 }
                 Switch(state.isDemo, onDemo, enabled = !state.isServiceBound)
             }
@@ -365,8 +379,25 @@ private fun ControlPanel(
                 color = HuColors.TextDim,
                 fontSize = 12.sp,
             )
-            Button(onConnection) { Text(if (state.isServiceBound) "停止接收" else "开始接收") }
-            Text("实时模式只展示车辆上报数据，不发送车辆控制命令。燃油和空调暂无数据接口。", color = HuColors.TextDim, fontSize = 12.sp)
+            Button(onConnection) { Text(if (state.isServiceBound) "断开车辆" else "连接车辆") }
+            Text("车辆数据与控制统一通过 SOME/IP。灯光状态只读，寻车闪灯不等于近光灯开关。", color = HuColors.TextDim, fontSize = 12.sp)
+            Text("允许：门锁解锁 / 闭锁、寻车。禁止：电动车门、远近光灯、车窗、空调、动力和制动控制。", color = HuColors.TextDim, fontSize = 12.sp)
+            Text(if (state.isDemo) "演示模式不可控制实车" else state.controls.blockedReason.ifEmpty { "TBox 已声明能力；静止、P 挡、驻车制动有效" }, color = HuColors.TextDim, fontSize = 12.sp)
+            VehicleAction.entries.forEach { action ->
+                OutlinedButton({ confirmation = action }, enabled = !state.isDemo && state.isServiceBound && action in state.controls.enabledActions) {
+                    Text(action.label)
+                }
+            }
+            val outcome = when (state.controls.outcome) {
+                ControlOutcome.IDLE -> "尚未发送控制请求"
+                ControlOutcome.SUBMITTED -> "已提交，等待 TBox 结果"
+                ControlOutcome.ACCEPTED -> "TBox 已受理，等待硬件执行"
+                ControlOutcome.SUCCEEDED -> "TBox 报告执行成功；硬件状态以车辆上报为准"
+                ControlOutcome.FAILED -> "TBox 拒绝或执行失败"
+                ControlOutcome.UNKNOWN -> "执行结果未知；不会自动重试"
+                ControlOutcome.NOT_SENT -> "请求未提交"
+            }
+            Text(listOfNotNull(state.controls.action?.label, outcome).joinToString(" · "), color = HuColors.AccentBlue, fontSize = 12.sp)
             HorizontalDivider(color = Color(0xFF2C3140))
             val vehicle = state.vehicle
             val values =

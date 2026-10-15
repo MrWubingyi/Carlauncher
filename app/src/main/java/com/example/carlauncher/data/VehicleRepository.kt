@@ -1,5 +1,6 @@
 package com.example.carlauncher.data
 
+import com.example.vehicle.control.VehicleAction
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.carlauncher.service.VehicleSendService
@@ -23,6 +24,8 @@ class VehicleRepository {
         uiState.setValue(CockpitUiState.initial())
     }
 
+    fun requestControl(action: VehicleAction) { vehicleService?.requestControl(action) }
+
     fun refresh() {
         val service = vehicleService
         if (service == null) {
@@ -36,6 +39,7 @@ class VehicleRepository {
                 true,
                 service!!.someipStatus,
                 service!!.dataValidity,
+                service.controlSnapshot(),
             )
         )
     }

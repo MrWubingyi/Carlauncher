@@ -1,5 +1,6 @@
 package com.example.carlauncher.ui
 
+import com.example.vehicle.control.VehicleControlSnapshot
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.model.DataValidity
 import com.example.carlauncher.model.VehicleState
@@ -13,6 +14,7 @@ class CockpitUiState(
     val isServiceBound: Boolean,
     val transportSnapshot: Snapshot?,
     validity: DataValidity?,
+    val controls: VehicleControlSnapshot = VehicleControlSnapshot(),
 ) {
     val state: CockpitConnectionState
 

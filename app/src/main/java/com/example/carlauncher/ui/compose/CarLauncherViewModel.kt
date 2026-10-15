@@ -1,5 +1,6 @@
 package com.example.carlauncher.ui.compose
 
+import com.example.vehicle.control.*
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.carlauncher.data.VehicleRepository
@@ -30,6 +31,7 @@ data class CarLauncherUiState(
     val isServiceBound: Boolean = false,
     val connectionLabel: String = "SERVICE UNBOUND",
     val cockpit: CockpitUiState? = null,
+    val controls: VehicleControlSnapshot = VehicleControlSnapshot(),
     val vehicle: VehicleState? = null,
     val selectedNavIndex: Int = 0,
     val locationName: String = "DLF Mall of India, Noida Sector-18",
@@ -59,7 +61,7 @@ data class CarLauncherUiState(
     }
 }
 
-/** Local controls are a demo. The receive-only vehicle service is never written to. */
+/** Demo controls stay local; explicit live actions use the injected SOME/IP source. */
 class CarLauncherViewModel(private val savedState: SavedStateHandle = SavedStateHandle()) : ViewModel() {
     private val repository by lazy { VehicleRepository() }
     private val _uiState = MutableStateFlow(CarLauncherUiState(
@@ -91,6 +93,7 @@ class CarLauncherViewModel(private val savedState: SavedStateHandle = SavedState
             val live = !current.isDemo
             current.copy(
                 cockpit = snapshot, vehicle = vehicle,
+                controls = snapshot.controls,
                 isServiceBound = snapshot.isServiceBound,
                 connectionLabel = snapshot.connectionLabel,
                 hasVehicleData = vehicle != null,
@@ -103,6 +106,12 @@ class CarLauncherViewModel(private val savedState: SavedStateHandle = SavedState
             )
         }
     }
+    fun requestControl(action: VehicleAction) {
+        if (_uiState.value.isDemo || !_uiState.value.isServiceBound) return
+        repository.requestControl(action)
+        refresh()
+    }
+
     fun setDemo(enabled: Boolean) {
         savedState["demo"] = enabled
         _uiState.update {
@@ -156,6 +165,7 @@ class CarLauncherViewModel(private val savedState: SavedStateHandle = SavedState
         _uiState.update { it.copy(positionSeconds = (progress.coerceIn(0f, 1f) * it.track.seconds).toInt()) }
     }
     fun tick() {
+        refresh()
         _uiState.update {
             when {
                 !it.isPlaying -> it

@@ -1,5 +1,6 @@
 package com.example.carlauncher.ui.home
 
+import com.example.vehicle.control.*
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.Manifest
@@ -116,6 +117,34 @@ class ComposeDashboardTest {
         compose.onNodeWithText("等待车辆数据").assertIsDisplayed()
     }
 
+    @Test fun liveControls_requireCapabilityAndConfirmationWithoutOptimisticState() {
+        val source = StubVehicleSendService().withLatestState(VehicleState.Builder().setDoorLock(true).build())
+        compose.runOnIdle { model().attachService(source); model().selectNavItem(3) }
+        compose.onNodeWithText("解锁车门").performScrollTo().assertIsNotEnabled()
+        compose.runOnIdle {
+            source.controls = VehicleControlSnapshot(enabledActions = setOf(VehicleAction.UNLOCK), blockedReason = "")
+            model().refresh()
+        }
+        compose.onNodeWithText("锁车门").assertIsNotEnabled()
+        compose.onNodeWithText("解锁车门").assertIsEnabled().performClick()
+        compose.onNodeWithText("确认解锁车门").assertIsDisplayed()
+        compose.runOnIdle { assertTrue(source.commands.isEmpty()) }
+        compose.onNodeWithText("取消").performClick()
+        compose.runOnIdle { assertTrue(source.commands.isEmpty()) }
+        compose.onNodeWithText("解锁车门").performClick()
+        compose.onNodeWithText("发送请求").performClick()
+        compose.runOnIdle {
+            assertEquals(listOf(VehicleAction.UNLOCK), source.commands)
+            assertTrue(model().uiState.value.isLocked)
+            source.withLatestState(VehicleState.Builder().setDoorLock(false).build())
+            source.controls = VehicleControlSnapshot(outcome = ControlOutcome.SUCCEEDED, action = VehicleAction.UNLOCK)
+            model().refresh()
+            assertFalse(model().uiState.value.isLocked)
+            model().detachService()
+        }
+        compose.onNodeWithText("解锁车门").assertIsNotEnabled()
+    }
+
     @Test fun inputBounds_rejectInvalidValues() {
         compose.runOnIdle {
             val vm = model()
@@ -146,12 +175,12 @@ class ComposeDashboardTest {
         }
         try {
             compose.onNodeWithText("Control").performClick()
-            compose.onNodeWithText("开始接收").performClick()
+            compose.onNodeWithText("连接车辆").performClick()
             compose.waitUntil(10_000) { model().uiState.value.isServiceBound }
-            compose.onNodeWithText("停止接收").assertIsDisplayed().performClick()
+            compose.onNodeWithText("断开车辆").assertIsDisplayed().performClick()
             compose.waitUntil(10_000) { !model().uiState.value.isServiceBound }
             compose.runOnIdle { assertFalse(model().uiState.value.showVehicleValues) }
-            compose.onNodeWithText("开始接收").assertIsDisplayed()
+            compose.onNodeWithText("连接车辆").assertIsDisplayed()
         } finally {
             compose.activity.stopService(Intent(compose.activity, VehicleSendService::class.java))
         }

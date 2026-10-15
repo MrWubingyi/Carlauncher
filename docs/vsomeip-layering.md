@@ -1,6 +1,8 @@
 # vSomeIP 通用库与车辆适配边界
 
-更新：2026-10-15。通用传输已提取为独立 Android Library `:someip-android`；
+更新：2026-10-15。车辆网关数据/控制增量见 [TBox 车辆网关协议与边界](tbox-vehicle-gateway.md)。
+
+通用传输已提取为独立 Android Library `:someip-android`；
 车辆协议和 Launcher 接入保留在 `:app`。详细 API、接入示例和限制见
 [库说明](../someip-android/README.md)。
 

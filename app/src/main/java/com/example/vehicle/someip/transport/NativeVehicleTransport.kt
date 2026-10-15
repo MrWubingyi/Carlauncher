@@ -4,6 +4,8 @@ package com.example.vehicle.someip.transport
 interface NativeVehicleTransport {
     val isAvailable: Boolean
     fun start(): Boolean
+    /** Submission only; execution confirmation arrives as a correlated gateway event. */
+    fun send(payload: ByteArray): Boolean = false
     fun stop()
     fun setListener(listener: Listener?)
 

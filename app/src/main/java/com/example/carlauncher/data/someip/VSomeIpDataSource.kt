@@ -1,5 +1,6 @@
 package com.example.carlauncher.data.someip
 
+import com.example.vehicle.control.*
 import com.example.vehicle.someip.adapter.SomeIpVehicleAdapter
 import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
 import com.example.vehicle.someip.transport.NativeVehicleTransport
@@ -17,7 +18,7 @@ import com.example.vehicle.model.VehicleSignals
 open class VSomeIpDataSource(
     open val transport: NativeVehicleTransport?,
     open val connectionMonitor: SomeipConnectionMonitor?,
-) : VehicleDataSource {
+) : VehicleDataSource, VehicleControl {
     private val mainHandler = Handler(Looper.getMainLooper())
     private val adapter = SomeIpVehicleAdapter(
         requireNotNull(transport),
@@ -38,6 +39,9 @@ open class VSomeIpDataSource(
     var status: DataSourceStatus? = DataSourceStatus.STOPPED
         private set
 
+    override fun controlSnapshot(): VehicleControlSnapshot = adapter.controlSnapshot()
+    override fun requestControl(action: VehicleAction): Boolean = isRunning && adapter.requestControl(action)
+
     private val watchdogRunnable = object : Runnable {
         override fun run() {
             if (!isRunning) return
@@ -52,6 +56,10 @@ open class VSomeIpDataSource(
         this.listener = listener
         isRunning = true
         val started = adapter.start(object : SomeIpVehicleAdapter.Listener {
+            override fun onControlChanged() {
+                if (isRunning) this@VSomeIpDataSource.listener?.onControlChanged()
+            }
+
             override fun onSignals(signals: VehicleSignals) {
                 if (!isRunning) return
                 val state = VehicleSignalMapper.toVehicleState(signals)

@@ -13,6 +13,7 @@ import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.vehicle.control.*
 import com.example.carlauncher.ui.home.ComposeMainActivity
 import com.example.carlauncher.R
 import com.example.carlauncher.data.DataSourceStatus
@@ -35,7 +36,7 @@ open class VehicleSendService : Service() {
     // Serialize source lifecycle without blocking the main thread.
     private var sourceExecutor: ExecutorService? = null
     private val someipMonitor: SomeipConnectionMonitor = SomeipConnectionMonitor()
-    private var dataSource: VehicleDataSource? = null
+    @Volatile private var dataSource: VehicleDataSource? = null
 
     open val someipStatus: SomeipConnectionMonitor.Snapshot?
         get() = someipMonitor.snapshot()
@@ -48,6 +49,8 @@ open class VehicleSendService : Service() {
     /** 车辆数据源监听器，处理数据更新和状态变更 */
     private val dataListener: VehicleDataSource.Listener =
         object : VehicleDataSource.Listener {
+            override fun onControlChanged() = notifyStateChanged()
+
             override fun onStateChanged(state: VehicleState?) {
                 if (stopping || state == null) {
                     return
@@ -63,6 +66,7 @@ open class VehicleSendService : Service() {
                 }
 
                 sourceStatus = status
+                if (status != DataSourceStatus.CONNECTED) latestVehicleState = null
                 if (!stopping) {
                     notifyStateChanged()
                 }
@@ -72,6 +76,7 @@ open class VehicleSendService : Service() {
                 if (stopping) return
                 Log.e(TAG, "Vehicle data source error", exception)
                 sourceStatus = DataSourceStatus.ERROR
+                latestVehicleState = null
                 if (!stopping) {
                     notifyStateChanged()
                 }
@@ -189,6 +194,24 @@ open class VehicleSendService : Service() {
         }
         someipMonitor.startFailed()
         notifyStateChanged()
+    }
+
+    open fun controlSnapshot(): VehicleControlSnapshot =
+        if (stopping) VehicleControlSnapshot() else (dataSource as? VehicleControl)?.controlSnapshot() ?: VehicleControlSnapshot()
+
+    /** Runs on the same executor as source start/stop; the source rechecks all gates at send time. */
+    open fun requestControl(action: VehicleAction) {
+        if (stopping) return
+        try {
+            sourceExecutor?.execute {
+                if (!stopping) {
+                    (dataSource as? VehicleControl)?.requestControl(action)
+                    notifyStateChanged()
+                }
+            }
+        } catch (error: RejectedExecutionException) {
+            Log.e(TAG, "Control executor unavailable", error)
+        }
     }
 
     /** 获取最新的车辆状态 */

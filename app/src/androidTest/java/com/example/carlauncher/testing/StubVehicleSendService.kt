@@ -1,5 +1,6 @@
 package com.example.carlauncher.testing
 
+import com.example.vehicle.control.*
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.model.DataValidity
 import com.example.carlauncher.model.VehicleState
@@ -12,6 +13,11 @@ import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
  * 仅为 Repository / ViewModel / Compose 页面提供可控的服务快照读取， 不触发 onCreate、前台通知、TCP 或数据源等真实副作用。
  */
 class StubVehicleSendService : VehicleSendService() {
+
+    var controls = VehicleControlSnapshot()
+    val commands = mutableListOf<VehicleAction>()
+    override fun controlSnapshot(): VehicleControlSnapshot = controls
+    override fun requestControl(action: VehicleAction) { commands += action }
 
     private var latestState: VehicleState? = null
     private var sourceStatus: DataSourceStatus? = DataSourceStatus.CONNECTED

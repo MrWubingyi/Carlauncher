@@ -5,7 +5,7 @@ import com.example.someip.SomeIpClient
 import com.example.vehicle.someip.transport.NativeVehicleTransport
 import java.io.File
 
-/** Adapts the reusable SOME/IP client to the vehicle receive-only transport contract. */
+/** Adapts the reusable SOME/IP client to the vehicle byte transport contract. */
 open class VSomeIpNativeTransport internal constructor(
     private val createClient: () -> SomeIpClient,
 ) : NativeVehicleTransport {
@@ -36,6 +36,9 @@ open class VSomeIpNativeTransport internal constructor(
             if (!started) stop()
         }
     }
+
+    override fun send(payload: ByteArray): Boolean =
+        if (isAvailable) client?.send(payload) == true else false
 
     @Synchronized
     override fun stop() {

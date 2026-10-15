@@ -2,6 +2,8 @@ package com.example.vehicle.someip.adapter
 
 import com.example.vehicle.someip.transport.NativeVehicleTransport
 
+import com.example.vehicle.control.*
+import org.json.JSONObject
 import com.example.vehicle.model.VehicleSignals
 import com.example.vehicle.someip.codec.SomeIpEventCodec
 
@@ -18,10 +20,18 @@ class SomeIpVehicleAdapter(
     interface Listener {
         fun onSignals(signals: VehicleSignals)
         fun onStatus(status: Status)
+        fun onControlChanged() {}
         fun onError(error: Throwable)
     }
 
     private var listener: Listener? = null
+    private val control = VehicleControlSession(elapsedRealtime, transport::send) { listener?.onControlChanged() }
+
+    @Synchronized fun controlSnapshot(): VehicleControlSnapshot = control.snapshot()
+    @Synchronized fun requestControl(action: VehicleAction): Boolean {
+        if (!isRunning) return false
+        return try { control.request(action) } catch (error: Exception) { reportError(error); false }
+    }
     private var generation = 0L
     private var lastTimestamp = 0L
     private var lastSequence = -1L
@@ -42,7 +52,12 @@ class SomeIpVehicleAdapter(
         transport.setListener(object : NativeVehicleTransport.Listener {
             override fun onAvailabilityChanged(available: Boolean) = synchronized(this@SomeIpVehicleAdapter) {
                 if (!active(session)) return@synchronized
+                val wasAvailable = connectionMonitor.snapshot().isAvailable
                 connectionMonitor.onAvailability(available, elapsedRealtime())
+                control.onAvailability(available)
+                if (available && !wasAvailable) {
+                    try { control.queryCapabilities() } catch (error: Exception) { reportError(error) }
+                }
                 if (!available) {
                     resetOrdering()
                     publishStatus(Status.UNAVAILABLE)
@@ -54,6 +69,12 @@ class SomeIpVehicleAdapter(
             override fun onPayload(payload: ByteArray?) = synchronized(this@SomeIpVehicleAdapter) {
                 if (!active(session) || !connectionMonitor.snapshot().isAvailable) return@synchronized
                 val signals = try {
+                    require(payload != null && payload.size in 1..4096 && payload.none { it == 0.toByte() }) { "Invalid gateway payload" }
+                    val frame = JSONObject(String(payload, Charsets.UTF_8))
+                    if (frame.has("type")) {
+                        control.onFrame(frame)
+                        return@synchronized
+                    }
                     SomeIpEventCodec.decode(payload)
                 } catch (error: Exception) {
                     reportError(error)
@@ -66,6 +87,7 @@ class SomeIpVehicleAdapter(
                 lastTimestamp = signals.sourceTimestampMs
                 lastSequence = signals.sequence
                 connectionMonitor.onEvent(elapsedRealtime())
+                control.onSignals(signals)
                 status = Status.AVAILABLE
                 this@SomeIpVehicleAdapter.listener?.onSignals(signals)
                 if (active(session)) this@SomeIpVehicleAdapter.listener?.onStatus(status)
@@ -86,6 +108,7 @@ class SomeIpVehicleAdapter(
         }
         if (!started) {
             isRunning = false
+            control.onAvailability(false)
             generation++
             transport.setListener(null)
             connectionMonitor.startFailed()
@@ -104,6 +127,7 @@ class SomeIpVehicleAdapter(
 
     @Synchronized
     fun checkTimeout() {
+        try { control.checkTimeout() } catch (error: Exception) { reportError(error) }
         if (isRunning && connectionMonitor.checkTimeout(elapsedRealtime())) {
             publishStatus(Status.TIMED_OUT)
         }
@@ -115,6 +139,7 @@ class SomeIpVehicleAdapter(
         synchronized(this) {
             if (!isRunning) return
             isRunning = false
+            control.onAvailability(false)
             generation++
             transport.setListener(null)
             connectionMonitor.stop()

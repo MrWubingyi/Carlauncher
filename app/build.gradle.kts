@@ -44,6 +44,17 @@ android {
                 enable = false
             }
         }
+        create("profiling") {
+            initWith(getByName("release"))
+            applicationIdSuffix = ".profiling"
+            versionNameSuffix = "-profiling"
+            signingConfig = signingConfigs.getByName("debug")
+            isDebuggable = false
+            enableAndroidTestCoverage = false
+            enableUnitTestCoverage = false
+            // Resolve Android library dependencies through their release variant.
+            matchingFallbacks += listOf("release")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

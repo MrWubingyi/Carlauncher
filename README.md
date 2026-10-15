@@ -80,6 +80,22 @@ HTML、Checkstyle XML 和 SARIF 报告位于 `app/build/reports/detekt/`。
 规则配置中 `warningsAsErrors` 用于拒绝无效配置；代码违规的失败门槛由 Gradle 的
 `ignoreFailures = false` 和 `failOnSeverity = Warning` 控制。不要通过跳过任务或增加 baseline 绕过门禁。
 
+### simpleperf 热点函数采样
+
+`profiling` 构建继承当前 `release`，关闭 `debuggable` 和测试覆盖率插桩，使用
+独立包名和 Debug 签名。包名为
+`com.example.carlauncher.profiling`，桌面名称为 **CarLauncher Profiling**，可与普通应用共存。
+使用 Android 10+ 设备和 NDK 自带的 simpleperf，无需 root。
+
+```powershell
+.\gradlew.bat :app:assembleProfiling
+python tools/profiling/record-dashboard.py --sdk D:/Android/SDK --ndk D:/Android/SDK/ndk/28.2.13676358 --serial emulator-5554
+```
+
+环境准备、采样参数、离线报告生成、数据解释和故障处理见
+[simpleperf 集成文档](docs/simpleperf-profiling.md)。默认预热 15 秒，采样 60 秒首页交互；
+结果写入 Git 忽略的 `app/build/reports/simpleperf/`。
+
 vSomeIP 源码通过 `.gitmodules` 引用 `MrWubingyi/vsomeip`，位于 `third_party/vsomeip`，由主仓库固定提交。首次克隆也可使用 `git clone --recurse-submodules`；升级源码时须同时重建配套库并更新 `third_party/vsomeip-android/SOURCE_COMMIT`。
 
 Android 和 Ubuntu 上可见的 LVGL 仪表订阅**同一个** `vehicle_mock_service`，

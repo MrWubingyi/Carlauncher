@@ -5,6 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import java.io.File
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
+import com.example.someip.SomeIpClientConfig
 import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
@@ -12,6 +13,34 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 open class VSomeIpNativeTransportConfigTest {
+    @Test
+    fun bundledJsonAndExplicitOverridesConfigureTheLibraryOnAndroid() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val directory = File(context.cacheDir, "someip-json-${System.nanoTime()}")
+        assertTrue(directory.mkdirs())
+        val override = File(directory, "vsomeip-client.override.json")
+        var runtime: File? = null
+        try {
+            val source = context.assets.open("vsomeip-client.json").bufferedReader().use { it.readText() }
+            val preparer = SomeIpConfigPreparer(directory, { source }, { "10.0.2.16" })
+            runtime = preparer.prepare()
+            assertEquals(SomeIpClientConfig.fromJson(source, runtime.absolutePath).service,
+                SomeIpClientConfig.fromFile(runtime).service)
+            val custom = JSONObject(source).put("unicast", "192.0.2.42")
+            custom.getJSONObject("client-endpoint").put("service", "0x4321").put("event", "0x8020")
+            override.writeText(custom.toString())
+            runtime = preparer.prepare()
+            val loaded = SomeIpClientConfig.fromFile(runtime)
+            assertEquals(0x4321, loaded.service.serviceId)
+            assertEquals(0x8020, loaded.service.eventId)
+            assertEquals("192.0.2.42", JSONObject(runtime.readText()).getString("unicast"))
+        } finally {
+            runtime?.delete()
+            override.delete()
+            directory.delete()
+        }
+    }
+
     @Test
     @Throws(Exception::class)
     open fun localAddressRewritePreservesRemoteEndpointAndDiscoveryMode() {

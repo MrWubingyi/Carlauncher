@@ -17,12 +17,11 @@ import com.example.carlauncher.ui.home.ComposeMainActivity
 import com.example.carlauncher.R
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.data.VehicleDataSource
+import com.example.carlauncher.data.VehicleEventSourceFactory
+import com.example.carlauncher.data.VehicleServiceDependencies
 import com.example.carlauncher.model.DataValidity
 import com.example.carlauncher.model.VehicleState
-import com.example.vehicle.someip.transport.NativeVehicleTransport
 import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
-import com.example.carlauncher.data.someip.VSomeIpDataSource
-import com.example.vehicle.someip.android.VSomeIpNativeTransport
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
@@ -33,17 +32,13 @@ open class VehicleSendService : Service() {
     private val binder: IBinder = LocalBinder()
     private val mainHandler: Handler = Handler(Looper.getMainLooper())
 
-    // vSomeIP 生命周期专用单线程执行器，避免 native start/stop 阻塞主线程。
-    private var vsomeipExecutor: ExecutorService? = null
+    // Serialize source lifecycle without blocking the main thread.
+    private var sourceExecutor: ExecutorService? = null
     private val someipMonitor: SomeipConnectionMonitor = SomeipConnectionMonitor()
-    private var nativeTransport: NativeVehicleTransport? = null
-    private var vsomeipDataSource: VSomeIpDataSource? = null
+    private var dataSource: VehicleDataSource? = null
 
     open val someipStatus: SomeipConnectionMonitor.Snapshot?
-        get() {
-            return if (vsomeipDataSource != null) vsomeipDataSource!!.connectionMonitor!!.snapshot()
-            else someipMonitor.snapshot()
-        }
+        get() = someipMonitor.snapshot()
 
     @Volatile private var stopping: Boolean = false
     @Volatile private var latestVehicleState: VehicleState? = null
@@ -92,8 +87,8 @@ open class VehicleSendService : Service() {
             return DataValidity.INCOMPLETE
         }
 
-    // The native client is process-wide; serialize lifecycle across Service recreation too.
-    private class SomeipLifecycle {
+    // Preserve lifecycle ordering across Service recreation, including queued cleanup.
+    private class SourceLifecycle {
         companion object {
             internal val EXECUTOR: ExecutorService? = Executors.newSingleThreadExecutor()
         }
@@ -121,15 +116,14 @@ open class VehicleSendService : Service() {
         createNotificationChannel()
         startForeground(NOTIFICATION_ID, createNotification())
 
-        // 初始化 vSomeIP Event 数据源。
-        vsomeipExecutor = SomeipLifecycle.EXECUTOR
-        sourceStatus = DataSourceStatus.CONNECTING
-
-        // 固定生命周期所有权：Service 创建时初始化对象，但不重复启动
-        nativeTransport = VSomeIpNativeTransport(this)
-        vsomeipDataSource = VSomeIpDataSource(nativeTransport, someipMonitor)
-
-        startVsomeipClient()
+        try {
+            val dependencies = application as VehicleServiceDependencies
+            startDataSource(dependencies.vehicleEventSourceFactory, SourceLifecycle.EXECUTOR)
+        } catch (error: Exception) {
+            handleStartFailure(error)
+        } catch (error: LinkageError) {
+            handleStartFailure(error)
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -137,20 +131,24 @@ open class VehicleSendService : Service() {
         return Service.START_STICKY
     }
 
-    /** 调度 vSomeIP 启动到专用单线程执行器（不占主线程；native start 内部不再阻塞）。 */
-    private fun startVsomeipClient() {
+    /** Inject the composition boundary; creation and lifecycle run on the same serial executor. */
+    internal fun startDataSource(factory: VehicleEventSourceFactory, executor: ExecutorService?) {
         if (stopping) return
+        sourceExecutor = executor
+        sourceStatus = DataSourceStatus.CONNECTING
         notifyStateChanged()
-        val executor = vsomeipExecutor
-        val source = vsomeipDataSource
-        if (executor == null || executor.isShutdown || source == null) {
-            handleStartFailure(IllegalStateException("Vehicle source or lifecycle executor unavailable"))
+        if (executor == null || executor.isShutdown) {
+            handleStartFailure(IllegalStateException("Vehicle lifecycle executor unavailable"))
             return
         }
         try {
             executor.execute {
                 if (stopping) return@execute
+                var source: VehicleDataSource? = null
                 val failure = try {
+                    source = factory.create(this, someipMonitor)
+                    dataSource = source
+                    if (stopping) return@execute
                     source.start(dataListener)
                     check(source.isRunning) { "Vehicle data source did not start" }
                     null
@@ -162,7 +160,7 @@ open class VehicleSendService : Service() {
                 if (failure != null) {
                     // Cleanup stays on the lifecycle executor, before any subsequent start.
                     try {
-                        source.stop()
+                        source?.stop()
                     } catch (cleanupError: Exception) {
                         if (cleanupError !== failure) failure.addSuppressed(cleanupError)
                     } catch (cleanupError: LinkageError) {
@@ -194,12 +192,7 @@ open class VehicleSendService : Service() {
     }
 
     /** 获取最新的车辆状态 */
-    open fun getLatestVehicleState(): VehicleState? {
-        if (latestVehicleState != null) {
-            return latestVehicleState
-        }
-        return if (vsomeipDataSource != null) vsomeipDataSource!!.latestState else null
-    }
+    open fun getLatestVehicleState(): VehicleState? = latestVehicleState
 
     /** 获取数据源状态 */
     open fun getSourceStatus(): DataSourceStatus? {
@@ -252,27 +245,26 @@ open class VehicleSendService : Service() {
         stateListener = null
         mainHandler.removeCallbacksAndMessages(null)
 
-        // 停止 vSomeIP：排队到同一单线程执行器（与 start 保持先后顺序），
-        // 避免主线程被 native stop 的 join 阻塞；native stop 幂等（未启动则直接返回）。
-        val vsomeipExecutorToStop = vsomeipExecutor
-        vsomeipExecutor = null
-        if (vsomeipExecutorToStop != null) {
+        // Queue release after any in-flight factory/start task, including Service recreation.
+        val executorToStop = sourceExecutor
+        sourceExecutor = null
+        if (executorToStop != null) {
             try {
-                vsomeipExecutorToStop!!.execute {
+                executorToStop.execute {
                     try {
-                        if (vsomeipDataSource != null) {
-                            vsomeipDataSource!!.stop()
-                        }
+                        dataSource?.stop()
                         Log.i(TAG, "SOMEIP_RELEASED id=" + System.identityHashCode(this))
                     } catch (exception: Exception) {
-                        Log.e(TAG, "vsomeip stop failed", exception)
+                        Log.e(TAG, "Vehicle source stop failed", exception)
                     } catch (error: LinkageError) {
                         // Native loading can fail during cleanup; VM failures must propagate.
-                        Log.e(TAG, "vsomeip stop failed", error)
+                        Log.e(TAG, "Vehicle source stop failed", error)
+                    } finally {
+                        dataSource = null
                     }
                 }
             } catch (exception: RejectedExecutionException) {
-                Log.e(TAG, "schedule vsomeip stop rejected", exception)
+                Log.e(TAG, "Schedule vehicle source stop rejected", exception)
             }
         }
 

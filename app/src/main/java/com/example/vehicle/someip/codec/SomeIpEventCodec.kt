@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets
 import org.json.JSONException
 import org.json.JSONObject
 
-/** Event 0x8001: complete UTF-8 JSON vehicle snapshot, version 1. */
+/** Configured vehicle event: complete UTF-8 JSON vehicle snapshot, version 1. */
 class SomeIpEventCodec private constructor() {
     companion object {
 

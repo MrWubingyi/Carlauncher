@@ -2,16 +2,16 @@ package com.example.carlauncher.service
 
 import com.example.carlauncher.data.DataSourceStatus
 import com.example.carlauncher.data.VehicleDataSource
-import com.example.carlauncher.data.someip.VSomeIpDataSource
+import com.example.carlauncher.data.VehicleEventSourceFactory
+import com.example.carlauncher.model.VehicleState
 import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
-import com.example.vehicle.someip.transport.NativeVehicleTransport
 import java.util.concurrent.AbstractExecutorService
 import java.util.concurrent.RejectedExecutionException
 import java.util.concurrent.TimeUnit
 import org.junit.Assert.*
 import org.junit.Test
 
-/** Tests Service orchestration only; Android scheduling/notifications are not simulated here. */
+/** Tests injected interfaces without native transport, concrete sources or reflective injection. */
 class VehicleSendServiceStartupTest {
     private class QueuedExecutor : AbstractExecutorService() {
         val tasks = ArrayDeque<Runnable>()
@@ -32,38 +32,43 @@ class VehicleSendServiceStartupTest {
         override fun awaitTermination(timeout: Long, unit: TimeUnit) = isTerminated
     }
 
-    private class Transport : NativeVehicleTransport {
+    private class Source : VehicleDataSource {
         var starts = 0
         var stops = 0
         var succeeds = true
+        var startError: Throwable? = null
         var stopError: Throwable? = null
-        override val isAvailable = false
-        override fun setListener(listener: NativeVehicleTransport.Listener?) = Unit
-        override fun start(): Boolean { starts++; return succeeds }
-        override fun stop() { stops++; stopError?.let { throw it } }
+        var onStart: () -> Unit = {}
+        var onStop: () -> Unit = {}
+        var listener: VehicleDataSource.Listener? = null
+        override var isRunning = false
+        override fun start(listener: VehicleDataSource.Listener?) {
+            starts++
+            this.listener = listener
+            isRunning = succeeds
+            onStart()
+            startError?.let { throw it }
+        }
+        override fun stop() {
+            stops++
+            isRunning = false
+            onStop()
+            stopError?.let { throw it }
+        }
     }
 
     private val service = VehicleSendService()
     private val executor = QueuedExecutor()
-    private val transport = Transport()
-    private val monitor = field("someipMonitor").get(service) as SomeipConnectionMonitor
-
-    private fun field(name: String) = VehicleSendService::class.java.getDeclaredField(name).apply {
-        isAccessible = true
+    private val source = Source()
+    private var creations = 0
+    private val factory = VehicleEventSourceFactory { context, _ ->
+        assertSame(service, context)
+        creations++
+        source
     }
 
-    private fun schedule(
-        source: VSomeIpDataSource? = VSomeIpDataSource(transport, monitor),
-        availableExecutor: QueuedExecutor? = executor,
-    ): VSomeIpDataSource? {
-        field("vsomeipDataSource").set(service, source)
-        field("vsomeipExecutor").set(service, availableExecutor)
-        field("sourceStatus").set(service, DataSourceStatus.CONNECTING)
-        VehicleSendService::class.java.getDeclaredMethod("startVsomeipClient").apply {
-            isAccessible = true
-        }.invoke(service)
-        return source
-    }
+    private fun schedule(availableExecutor: QueuedExecutor? = executor) =
+        service.startDataSource(factory, availableExecutor)
 
     private fun assertFailed() {
         assertEquals(DataSourceStatus.ERROR, service.getSourceStatus())
@@ -71,89 +76,123 @@ class VehicleSendServiceStartupTest {
         assertNull(service.getLatestVehicleState())
     }
 
-    @Test fun startsOnlyOnExecutorAndPreservesConnectingUntilDataArrives() {
-        val source = schedule()!!
-        assertEquals(0, transport.starts)
+    @Test fun createsAndStartsOnlyOnExecutorAndPreservesConnectingUntilDataArrives() {
+        schedule()
+        assertEquals(0, creations)
+        assertEquals(0, source.starts)
         executor.drain()
-        assertEquals(1, transport.starts)
+        assertEquals(1, creations)
+        assertEquals(1, source.starts)
         assertTrue(source.isRunning)
         assertEquals(DataSourceStatus.CONNECTING, service.getSourceStatus())
-        source.stop()
+        service.onDestroy()
+        executor.drain()
     }
 
-    @Test fun failedReturnIsNotTreatedAsSuccessfulStart() {
-        transport.succeeds = false
-        val source = schedule()!!
+    @Test fun sourceThatRemainsStoppedIsNotTreatedAsSuccessfulStart() {
+        source.succeeds = false
+        schedule()
         executor.drain()
         assertFailed()
         assertFalse(source.isRunning)
-        assertEquals(1, transport.stops)
+        assertEquals(1, source.stops)
     }
 
-    @Test fun missingExecutorReportsFailureBeforeAdapterStarts() {
+    @Test fun missingExecutorReportsFailureWithoutCreatingSource() {
         schedule(availableExecutor = null)
         assertFailed()
-        assertEquals(0, transport.starts)
+        assertEquals(0, creations)
     }
 
-    @Test fun shutdownExecutorReportsFailureBeforeAdapterStarts() {
+    @Test fun shutdownExecutorReportsFailureWithoutCreatingSource() {
         executor.shutdown()
         schedule()
         assertFailed()
-        assertEquals(0, transport.starts)
+        assertEquals(0, creations)
     }
 
-    @Test fun submissionRejectionReportsFailure() {
+    @Test fun submissionRejectionReportsFailureWithoutCreatingSource() {
         executor.reject = true
         schedule()
         assertFailed()
-        assertEquals(0, transport.starts)
+        assertEquals(0, creations)
     }
 
-    @Test fun missingSourceReportsFailure() {
-        schedule(source = null)
+    @Test fun factoryExceptionUsesTheSameTerminalFailure() {
+        service.startDataSource(VehicleEventSourceFactory { _, _ ->
+            throw IllegalStateException("creation failed")
+        }, executor)
+        executor.drain()
         assertFailed()
-        assertTrue(executor.tasks.isEmpty())
+        assertEquals(0, source.starts)
+    }
+
+    @Test fun factoryLinkageFailureUsesTheSameTerminalFailure() {
+        service.startDataSource(VehicleEventSourceFactory { _, _ ->
+            throw UnsatisfiedLinkError("creation linkage failure")
+        }, executor)
+        executor.drain()
+        assertFailed()
     }
 
     @Test fun exceptionAfterPartialStartCleansUpBeforeReportingFailure() {
-        val source = object : VSomeIpDataSource(transport, monitor) {
-            override fun start(listener: VehicleDataSource.Listener?) {
-                super.start(listener)
-                throw IllegalStateException("failure after transport start")
-            }
-        }
-        schedule(source)
+        source.startError = IllegalStateException("failure after source start")
+        source.onStop = { assertEquals(DataSourceStatus.CONNECTING, service.getSourceStatus()) }
+        schedule()
         executor.drain()
         assertFailed()
         assertFalse(source.isRunning)
-        assertEquals(1, transport.stops)
+        assertEquals(1, source.stops)
     }
 
     @Test fun nativeLoadFailureAndCleanupFailureUseTheSameTerminalResult() {
         val failure = UnsatisfiedLinkError("test native load failure")
         val cleanupFailure = IllegalStateException("test cleanup failure")
-        transport.stopError = cleanupFailure
-        val source = object : VSomeIpDataSource(transport, monitor) {
-            override fun start(listener: VehicleDataSource.Listener?) {
-                super.start(listener)
-                throw failure
-            }
-        }
-        schedule(source)
+        source.startError = failure
+        source.stopError = cleanupFailure
+        schedule()
         executor.drain()
         assertFailed()
         assertFalse(source.isRunning)
         assertArrayEquals(arrayOf(cleanupFailure), failure.suppressed)
     }
 
-    @Test fun destructionBeforeQueuedStartPreventsTransportStartup() {
+    @Test fun destructionBeforeQueuedStartPreventsSourceCreation() {
         schedule()
         service.onDestroy()
         executor.drain()
-        assertEquals(0, transport.starts)
+        assertEquals(0, creations)
+        assertEquals(0, source.starts)
         assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
         assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
+    }
+
+    @Test fun destructionDuringCreationReleasesReturnedSourceWithoutStartingIt() {
+        service.startDataSource(VehicleEventSourceFactory { _, _ ->
+            service.onDestroy()
+            source
+        }, executor)
+        executor.drain()
+        assertEquals(0, source.starts)
+        assertEquals(1, source.stops)
+        assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
+    }
+
+    @Test fun callbacksPublishStateAndAreIgnoredAfterDestruction() {
+        schedule()
+        executor.drain()
+        val state = VehicleState.Builder().build()
+        source.listener!!.onStateChanged(state)
+        source.listener!!.onSourceStatusChanged(DataSourceStatus.CONNECTED)
+        assertSame(state, service.getLatestVehicleState())
+        assertEquals(DataSourceStatus.CONNECTED, service.getSourceStatus())
+        service.onDestroy()
+        source.listener!!.onStateChanged(VehicleState.Builder().build())
+        source.listener!!.onSourceStatusChanged(DataSourceStatus.CONNECTED)
+        source.listener!!.onError(IllegalStateException("late callback"))
+        executor.drain()
+        assertSame(state, service.getLatestVehicleState())
+        assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
     }
 
     @Test fun queuedDestructionContainsStopRuntimeException() {
@@ -165,40 +204,30 @@ class VehicleSendServiceStartupTest {
     }
 
     @Test fun queuedDestructionPropagatesTheOriginalVirtualMachineError() {
-        // Construct the failure directly; this test does not create memory pressure.
         val failure = OutOfMemoryError("simulated VM failure")
-        val source = queueDestructionWithStopFailure(failure)
-
+        queueDestructionWithStopFailure(failure)
         val thrown = assertThrows(OutOfMemoryError::class.java) { executor.drain() }
-
         assertSame(failure, thrown)
-        assertEquals(1, transport.stops)
+        assertEquals(1, source.stops)
         assertFalse(source.isRunning)
         assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
-        assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
     }
 
-    private fun queueDestructionWithStopFailure(failure: Throwable): VSomeIpDataSource {
-        val source = schedule()!!
+    private fun queueDestructionWithStopFailure(failure: Throwable) {
+        schedule()
         executor.drain()
-        assertTrue(source.isRunning)
-        transport.stopError = failure
-
+        source.stopError = failure
         service.onDestroy()
-
-        assertEquals(0, transport.stops)
+        assertEquals(0, source.stops)
         assertEquals(1, executor.tasks.size)
-        return source
     }
 
     private fun assertStopFailureIsContained(failure: Throwable) {
-        val source = queueDestructionWithStopFailure(failure)
+        queueDestructionWithStopFailure(failure)
         var nextLifecycleTaskRan = false
         executor.execute { nextLifecycleTaskRan = true }
-
         executor.drain()
-
-        assertEquals(1, transport.stops)
+        assertEquals(1, source.stops)
         assertFalse(source.isRunning)
         assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
         assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
@@ -206,17 +235,32 @@ class VehicleSendServiceStartupTest {
     }
 
     @Test fun failureAfterDestructionDoesNotOverwriteStoppedState() {
-        val source = object : VSomeIpDataSource(transport, monitor) {
-            override fun start(listener: VehicleDataSource.Listener?) {
-                service.onDestroy()
-                listener?.onSourceStatusChanged(DataSourceStatus.CONNECTING)
-                listener?.onError(IllegalStateException("late startup callback"))
-                throw IllegalStateException("late start failure")
-            }
+        source.onStart = {
+            service.onDestroy()
+            source.listener!!.onSourceStatusChanged(DataSourceStatus.CONNECTING)
+            source.listener!!.onError(IllegalStateException("late startup callback"))
+            throw IllegalStateException("late start failure")
         }
-        schedule(source)
+        schedule()
         executor.drain()
         assertEquals(DataSourceStatus.STOPPED, service.getSourceStatus())
         assertEquals(SomeipConnectionMonitor.State.STOPPED, service.someipStatus!!.state)
+    }
+
+    @Test fun sharedExecutorReleasesOldSourceBeforeCreatingTheNextServiceSource() {
+        val events = mutableListOf<String>()
+        source.onStop = { events += "old stopped" }
+        schedule()
+        executor.drain()
+        service.onDestroy()
+        val next = VehicleSendService()
+        next.startDataSource(VehicleEventSourceFactory { _, _ ->
+            events += "new created"
+            Source().apply { onStart = { events += "new started" } }
+        }, executor)
+        executor.drain()
+        assertEquals(listOf("old stopped", "new created", "new started"), events)
+        next.onDestroy()
+        executor.drain()
     }
 }

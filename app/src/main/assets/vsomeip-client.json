@@ -1,5 +1,15 @@
 {
-  "unicast": "192.168.31.248",
+  "unicast": "auto",
+  "client-endpoint": {
+    "application": "soc-vehicle-client",
+    "service": "0x1111",
+    "instance": "0x2222",
+    "event": "0x8001",
+    "event-group": "0x0001",
+    "method": "0x1001",
+    "max-event-payload-bytes": 4096,
+    "max-request-payload-bytes": 16
+  },
   "logging": { "level": "info", "console": "true" },
   "applications": [
     { "name": "soc-vehicle-client", "id": "0x5566" }

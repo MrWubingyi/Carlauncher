@@ -45,8 +45,7 @@ class CockpitUiState(
             return ("SOME/IP: " +
                 (if (transportSnapshot!!.isAvailable) "AVAILABLE" else "UNAVAILABLE") +
                 " | " +
-                eventStateLabel() +
-                " | EVENT 0x8001")
+                eventStateLabel())
         }
 
     val connectionState: String

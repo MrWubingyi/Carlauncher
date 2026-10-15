@@ -1,9 +1,10 @@
 # CarLauncher
 
-应用、JVM 单元测试和设备测试均使用 Kotlin，源码继续保留在 `app/src/*/java` 目录中。
+应用、JVM 单元测试和设备测试均使用 Kotlin。应用源码位于 `app/src/*/java`，
+通用 SOME/IP 客户端独立为 [`:someip-android`](someip-android/README.md)，可构建 AAR。
 项目使用 AGP 内置 Kotlin 支持，Room 通过 KSP 生成代码并继续导出到 `app/schemas`；
-XML/ViewBinding 界面、数据库版本及 C++/JNI 协议保持原有结构。
-JNI 入口和回调通过 `@JvmStatic` 保留 `VsomeipClient` 的 JVM 静态签名。
+XML/ViewBinding 界面、数据库版本及车辆线协议保持原有结构。
+应用通过 `SomeIpClient` 接口消费事件和发送字节；JNI、网络观察与 native 构建由库封装。
 
 ## GitHub 自动构建
 
@@ -37,7 +38,8 @@ Android ELF 依赖。缺库、缓存不匹配或损坏时，通过 SSH 在 Ubunt
 
 ```powershell
 git submodule update --init --recursive
-.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest
+.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest :someip-android:testDebugUnitTest
+.\gradlew.bat :someip-android:assembleDebug
 .\gradlew.bat :app:fullDebugUnitTestCoverageReport
 ```
 

@@ -39,7 +39,7 @@ open class VehicleEventProbeTest {
             )
         context!!.stopService(Intent(context, VehicleSendService::class.java))
         // Use current production SD config, not a saved legacy static Method probe config.
-        val config = java.io.File(context!!.getFilesDir(), "vsomeip/vsomeip-client.json")
+        val config = java.io.File(context!!.getFilesDir(), "vsomeip/vsomeip-client.override.json")
         val previous =
             if (config.exists()) java.nio.file.Files.readAllBytes(config.toPath()) else null
         java.nio.file.Files.deleteIfExists(config.toPath())

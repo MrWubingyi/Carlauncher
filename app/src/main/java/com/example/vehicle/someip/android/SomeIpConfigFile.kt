@@ -17,36 +17,12 @@ import org.json.JSONObject
 internal class SomeIpConfigFile(private val context: Context?) {
     @Throws(Exception::class)
     fun prepare(): File {
-        val configName = "vsomeip-client.json"
-        val dir = File(context!!.getFilesDir(), "vsomeip")
-        if (!dir.exists() && !dir.mkdirs()) {
-            throw IllegalStateException("mkdir vsomeip dir failed")
-        }
-        val config = File(dir, configName)
-        if (!config.exists()) {
-            copyAssetToFile(configName, config)
-        }
-
-        val localIp = findLocalIpv4()
-        if (localIp == null) {
-            throw IllegalStateException("no usable IPv4 address")
-        }
-        rewriteUnicast(config, localIp)
-        return config
-    }
-
-    @Throws(Exception::class)
-    private fun copyAssetToFile(assetName: String, target: File?) {
-        context!!.getAssets().open(assetName).use { `in` ->
-            FileOutputStream(target).use { out ->
-                val buf = ByteArray(4096)
-                var n = `in`.read(buf)
-                while (n > 0) {
-                    out.write(buf, 0, n)
-                    n = `in`.read(buf)
-                }
-            }
-        }
+        val application = requireNotNull(context) { "A Context is required to prepare SOME/IP configuration" }
+        return SomeIpConfigPreparer(
+            File(application.filesDir, "vsomeip"),
+            { application.assets.open("vsomeip-client.json").bufferedReader(Charsets.UTF_8).use { it.readText() } },
+            ::findLocalIpv4,
+        ).prepare()
     }
 
     private fun findLocalIpv4(): String? {

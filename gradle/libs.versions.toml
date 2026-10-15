@@ -13,6 +13,7 @@ constraintlayout = "2.2.1"
 fragment = "1.9.0"
 json = "20240303"
 androidxTestCore = "1.7.0"
+androidxTestRunner = "1.7.0"
 room = "2.8.5"
 ksp = "2.3.12"
 kotlin = "2.1.20"
@@ -37,6 +38,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 json = { group = "org.json", name = "json", version.ref = "json" }
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
 fragment-testing = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragment" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
@@ -61,6 +63,7 @@ navigation-compose = { group = "androidx.navigation", name = "navigation-compose
 [plugins]
 detekt = { id = "dev.detekt", version.ref = "detekt" }
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

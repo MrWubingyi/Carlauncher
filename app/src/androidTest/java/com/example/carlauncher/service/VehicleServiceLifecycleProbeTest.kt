@@ -13,7 +13,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.carlauncher.ui.home.ComposeMainActivity
 import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
-import com.example.vehicle.someip.android.jni.VsomeipClient
+import com.example.vehicle.someip.android.VSomeIpNativeTransport
+import com.example.vehicle.someip.codec.SomeipPayloadCodec
+import com.example.someip.SomeIpClient
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
@@ -45,7 +47,7 @@ open class VehicleServiceLifecycleProbeTest {
                 peer != null &&
                 local != null),
         )
-        val config = File(context!!.getFilesDir(), "vsomeip/vsomeip-client.json")
+        val config = File(context!!.getFilesDir(), "vsomeip/vsomeip-client.override.json")
         val original = if (config.exists()) Files.readAllBytes(config.toPath()) else null
         val serviceIntent = Intent(context, VehicleSendService::class.java)
         // Refuse to disturb a service the user already started.
@@ -59,7 +61,6 @@ open class VehicleServiceLifecycleProbeTest {
                 info!!.service!!.getClassName(),
             )
         }
-        assertFalse("probe requires an idle native client", VsomeipClient.isAvailable)
         // These normal runtime prompts otherwise cover the Activity and may outlive
         // its task on AAOS. The opt-in probe runs in Gradle's disposable app install.
         for (permission in
@@ -76,6 +77,8 @@ open class VehicleServiceLifecycleProbeTest {
         Files.createDirectories(config.toPath().getParent())
         val json =
             JSONObject()
+                .put("client-endpoint", JSONObject(context.assets.open("vsomeip-client.json")
+                    .bufferedReader().use { it.readText() }).getJSONObject("client-endpoint"))
                 .put("unicast", local)
                 .put("logging", JSONObject().put("level", "info").put("console", "true"))
                 .put(
@@ -123,6 +126,8 @@ open class VehicleServiceLifecycleProbeTest {
                             service!!.someipStatus!!.state == SomeipConnectionMonitor.State.ONLINE
                     }
                     val service = boundService(activity)
+                    val client = ownedClient(requireNotNull(service))
+                    assertTrue("Service owns the online client", client.isAvailable)
                     assertNotSame("restart must create a new Service", previous, service)
                     previous = service
                     val id = System.identityHashCode(service)
@@ -177,8 +182,8 @@ open class VehicleServiceLifecycleProbeTest {
                         SomeipConnectionMonitor.State.STOPPED,
                         service!!.someipStatus!!.state,
                     )
-                    assertFalse(VsomeipClient.isAvailable)
-                    assertFalse(VsomeipClient.buildAndSend(1, 1, 0, 0, 0))
+                    assertFalse(client.isAvailable)
+                    assertFalse(client.send(SomeipPayloadCodec.encode(1, 1, 0, 0, 0)))
                     assertFalse(
                         "duplicate stop must not find a running service",
                         context!!.stopService(serviceIntent),
@@ -240,6 +245,17 @@ open class VehicleServiceLifecycleProbeTest {
         method.invoke(activity)
     }
 
+    /** Inspect the actual Service-owned session so release assertions cannot pass on an idle peer. */
+    private fun ownedClient(service: VehicleSendService): SomeIpClient {
+        val source = VehicleSendService::class.java.getDeclaredField("dataSource")
+            .apply { isAccessible = true }
+            .get(service) as com.example.carlauncher.data.someip.VSomeIpDataSource
+        val transport = source.transport
+        return VSomeIpNativeTransport::class.java.getDeclaredField("client")
+            .apply { isAccessible = true }
+            .get(transport) as SomeIpClient
+    }
+
     private fun interface Condition {
         @Throws(Exception::class) fun get(): Boolean
     }
@@ -257,7 +273,7 @@ open class VehicleServiceLifecycleProbeTest {
 
     @Throws(Exception::class)
     private fun logcat(): String? =
-        shell("logcat -d -v brief -s VEHICLE_SERVICE:I VSOMEIP_JNI:I SERVICE_PROBE:I '*:S'")
+        shell("logcat -d -v brief -s VEHICLE_SERVICE:I SOMEIP_JNI:I VSOMEIP_CLIENT:I SERVICE_PROBE:I '*:S'")
 
     @Throws(Exception::class)
     private fun shell(command: String?): String? {

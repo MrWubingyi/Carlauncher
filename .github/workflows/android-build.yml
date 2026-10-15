@@ -59,7 +59,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Run Detekt
-        run: bash ./gradlew --no-daemon --stacktrace :app:detekt
+        run: bash ./gradlew --no-daemon --stacktrace :app:detekt :someip-android:detekt
 
       - name: Build Boost and vSomeIP from pinned sources
         run: bash tools/vsomeip-android/build-source.sh
@@ -68,6 +68,11 @@ jobs:
         run: >-
           bash ./gradlew --no-daemon --stacktrace --continue
           :app:assembleDebug :app:testDebugUnitTest
+          :someip-android:assembleDebug :someip-android:testDebugUnitTest
+
+      - name: Check SOME/IP dependency boundaries
+        shell: pwsh
+        run: ./tools/check-someip-layering.ps1
 
       - name: Verify APK contains the source-built library
         run: >-
@@ -99,13 +104,21 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+      - name: Upload SOME/IP library
+        uses: actions/upload-artifact@v6
+        with:
+          name: SomeIp-android-debug-x86_64-${{ github.run_number }}
+          path: someip-android/build/outputs/aar/someip-android-debug.aar
+          if-no-files-found: error
+          retention-days: 14
+
       # The existing report also scans manually collected device coverage under
       # app/build. Run it separately to avoid overlapping assemble task outputs.
       - name: Generate coverage report
         run: bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
 
       - name: Run Android Lint
-        run: bash ./gradlew --no-daemon --stacktrace :app:lintDebug
+        run: bash ./gradlew --no-daemon --stacktrace :app:lintDebug :someip-android:lintDebug
 
       - name: Upload test, coverage, lint, and Detekt reports
         if: ${{ always() }}
@@ -119,5 +132,7 @@ jobs:
             app/build/reports/lint-results-debug.html
             app/build/reports/lint-results-debug.xml
             app/build/reports/detekt/
+            someip-android/build/reports/
+            someip-android/build/test-results/testDebugUnitTest/
           if-no-files-found: warn
           retention-days: 14

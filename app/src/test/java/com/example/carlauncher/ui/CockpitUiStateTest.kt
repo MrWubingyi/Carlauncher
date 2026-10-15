@@ -55,7 +55,7 @@ open class CockpitUiStateTest {
         val state = ui(monitor, DataValidity.VALID)
         assertEquals(CockpitConnectionState.ONLINE, state!!.state)
         assertEquals("SOME/IP ONLINE", state!!.connectionLabel)
-        assertEquals("SOME/IP: AVAILABLE | ONLINE | EVENT 0x8001", state!!.transportLabel)
+        assertEquals("SOME/IP: AVAILABLE | ONLINE", state!!.transportLabel)
         assertEquals("Connection: ONLINE", state!!.connectionState)
         assertTrue(state!!.hasVehicleData())
         for (validity in
@@ -81,7 +81,7 @@ open class CockpitUiStateTest {
         val error = ui(monitor, DataValidity.VALID)
         assertEquals(CockpitConnectionState.INVALID_DATA, error!!.state)
         assertEquals("SOME/IP RESPONSE_ERROR", error!!.connectionLabel)
-        assertTrue(error!!.transportLabel!!.contains("EVENT 0x8001"))
+        assertFalse(error!!.transportLabel!!.contains("0x8001"))
         assertEquals("Connection: OFFLINE", error!!.connectionState)
         monitor.checkTimeout(3100)
         val timeout = ui(monitor, DataValidity.VALID)

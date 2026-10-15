@@ -52,7 +52,7 @@
     <string name="connection_state">SOME/IP %1$s</string>
     <string name="connection_invalid">SOME/IP ONLINE / INVALID DATA</string>
     <string name="transport_stopped">SOME/IP: STOPPED</string>
-    <string name="transport_state">SOME/IP: %1$s | %2$s | EVENT 0x8001</string>
+    <string name="transport_state">SOME/IP: %1$s | %2$s</string>
     <string name="state_no_data">NO DATA</string>
     <string name="state_start_failed">START_FAILED</string>
     <string name="state_invalid">INVALID</string>

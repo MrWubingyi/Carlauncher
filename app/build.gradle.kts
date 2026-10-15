@@ -8,7 +8,6 @@ plugins {
 
 android {
     namespace = "com.example.carlauncher"
-    ndkVersion = "28.2.13676358"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -27,12 +26,6 @@ android {
         }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        externalNativeBuild {
-            cmake {
-                cppFlags += ""
-                arguments += "-DANDROID_STL=c++_shared"
-            }
-        }
     }
 
     buildTypes {
@@ -63,12 +56,6 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
-    }
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
-        }
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
@@ -106,6 +93,7 @@ tasks.matching {
 }.configureEach { dependsOn(detektGate) }
 
 dependencies {
+    implementation(project(":someip-android"))
     implementation(libs.okhttp)
     implementation(libs.coroutines.android)
     implementation(libs.lifecycle.viewmodel.ktx)

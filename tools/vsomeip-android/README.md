@@ -1,7 +1,7 @@
 # Android 网络通知适配（vSomeIP 3.7.5）
 
 普通 Android 应用无法订阅 `NETLINK_ROUTE` 组播，原版 connector 无法触发外部路由启动。
-本补丁只替换 `__ANDROID__` 下的监听入口：由 CarLauncher 的 `ConnectivityManager.NetworkCallback`
+本补丁只替换 `__ANDROID__` 下的监听入口：由 `:someip-android` 的 `ConnectivityManager.NetworkCallback`
 提供真实 LinkProperties 和应用访问阻塞状态，经 JNI 导出的 `vsomeip_android_set_network_state`
 进入 vSomeIP。没有观察值时默认不可用；不更改 Linux 路径，也不固定声明网络在线。
 
@@ -14,7 +14,7 @@ CI 使用 Android CLI 安装环境，随后从源码编译 Boost 和 vSomeIP，�
 ```bash
 git submodule update --init --recursive
 bash tools/vsomeip-android/build-source.sh
-bash gradlew :app:assembleDebug :app:testDebugUnitTest
+bash gradlew :app:assembleDebug :app:testDebugUnitTest :someip-android:testDebugUnitTest
 ```
 
 在未应用本适配的 vSomeIP 3.7.5 源码上执行（示例使用原本机源码路径）：
@@ -43,7 +43,8 @@ bash gradlew :app:assembleDebug :app:testDebugUnitTest
 当前 API 24–32 无公开 RouteInfo type 检查，本适配对 SD 路由保持不可用；静态单播可用。
 本轮实测环境为 Android 15（API 35）、x86_64。配置 IP 变化后会撤销可用性；若获得新 IP，
 需要停止再启动 Service 以重新写入绑定地址，当前尚未自动迁移 native endpoint。
-Java 的 `start(Context, configPath)` 管理网络观察者；不带 Context 的入口只用于注册/启停探针。
+公共 `VSomeIp.create(context, config)` 创建客户端，`SomeIpClient.start(listener)` 管理网络观察者。
+探针也通过同一公开接口运行；JNI 绑定检查位于库自身的 instrumentation 测试。
 
 ## 验证
 

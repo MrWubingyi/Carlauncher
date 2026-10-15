@@ -114,7 +114,7 @@ try {
 
     Write-Host 'Running Detekt before preparing native dependencies...'
     Run "$root/gradlew.bat" @('--no-daemon', '-Porg.gradle.java.installations.auto-detect=false',
-        "-Porg.gradle.java.installations.paths=$JavaHome", ':app:detekt')
+        "-Porg.gradle.java.installations.paths=$JavaHome", ':app:detekt', ':someip-android:detekt')
 
     # A different repository commit or native script invalidates the cache.
     $inputText = "$commit`n$sourceCommit`n"
@@ -186,7 +186,7 @@ try {
         Write-Host "Saved machine settings to $configPath (ignored by Git)."
     }
     $tasks = @(':app:assembleDebug')
-    if ($Test) { $tasks += ':app:testDebugUnitTest' }
+    if ($Test) { $tasks += @(':app:testDebugUnitTest', ':someip-android:testDebugUnitTest') }
     Run "$root/gradlew.bat" (@('--no-daemon', '-Porg.gradle.java.installations.auto-detect=false',
         "-Porg.gradle.java.installations.paths=$JavaHome") + $tasks)
     $apk = Join-Path $root 'app/build/outputs/apk/debug/app-debug.apk'

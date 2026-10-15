@@ -1,8 +1,9 @@
 package com.example.vehicle.someip.android.jni
 
 import com.example.vehicle.someip.codec.SomeipPayloadCodec
+import com.example.vehicle.someip.android.VehicleSomeIpClientFactory
+import com.example.someip.SomeIpClient
 
-import android.content.Context
 import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -45,6 +46,7 @@ open class VsomeipNativeProbeTest {
         // No remote unicast or business port: availability must come from SOME/IP-SD.
         val json =
             JSONObject()
+                .put("client-endpoint", endpointConfig())
                 .put("unicast", local)
                 .put("logging", JSONObject().put("level", "info").put("console", "true"))
                 .put(
@@ -80,6 +82,7 @@ open class VsomeipNativeProbeTest {
         val config = File(context!!.getFilesDir(), "vsomeip-probe.json")
         val json =
             JSONObject()
+                .put("client-endpoint", endpointConfig())
                 .put("unicast", local)
                 .put("logging", JSONObject().put("level", "info").put("console", "true"))
                 .put(
@@ -106,28 +109,36 @@ open class VsomeipNativeProbeTest {
         return config
     }
 
+    private fun endpointConfig(): JSONObject {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        return JSONObject(context.assets.open("vsomeip-client.json").bufferedReader().use { it.readText() })
+            .getJSONObject("client-endpoint")
+    }
+
     @Throws(Exception::class)
     private fun runMethodProbe(config: File?) {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val client = VehicleSomeIpClientFactory.create(context, requireNotNull(config))
         val availability = LinkedBlockingQueue<Boolean?>()
         val responses = LinkedBlockingQueue<Int?>()
         val listener =
-            object : VsomeipClient.Listener {
-                override fun onAvailable(available: Boolean) {
+            object : SomeIpClient.Listener {
+                override fun onAvailabilityChanged(available: Boolean) {
                     if (available) availability.offer(true)
                 }
 
-                override fun onResponse(ok: Boolean, code: Int) {
-                    responses.offer(if (ok) 0 else if (code == 0) -1 else code)
+                override fun onPayload(payload: ByteArray) {}
+
+                override fun onResponse(ok: Boolean, returnCode: Int) {
+                    responses.offer(if (ok) 0 else if (returnCode == 0) -1 else returnCode)
                 }
             }
         try {
-            VsomeipClient.setListener(listener)
             for (cycle in 0..1) {
-                val context = InstrumentationRegistry.getInstrumentation().getTargetContext()
-                assertTrue("nativeStart", VsomeipClient.start(context, config!!.getAbsolutePath()))
+                assertTrue("client start", client.start(listener))
                 assertTrue(
-                    "idempotent nativeStart",
-                    VsomeipClient.start(context, config!!.getAbsolutePath()),
+                    "idempotent client start",
+                    client.start(listener),
                 )
                 assertEquals(
                     "service availability",
@@ -136,25 +147,26 @@ open class VsomeipNativeProbeTest {
                 )
                 val seq = 0x01020304 + cycle * 10
                 sendAndExpect(
+                    client,
                     responses,
                     SomeipPayloadCodec.encode(seq, 0x0102030405060708L, 100, 3, 0),
                     0,
                 )
-                sendAndExpect(responses, SomeipPayloadCodec.encode(seq + 1, 1, 201, 3, 0), 1)
+                sendAndExpect(client, responses, SomeipPayloadCodec.encode(seq + 1, 1, 201, 3, 0), 1)
                 val badSchema = SomeipPayloadCodec.encode(seq + 2, 1, 0, 0, 0)
                 badSchema[0] = 2
-                sendAndExpect(responses, badSchema, 1)
-                sendAndExpect(responses, SomeipPayloadCodec.encode(seq + 3, 1, 0, 0, 0), 0)
+                sendAndExpect(client, responses, badSchema, 1)
+                sendAndExpect(client, responses, SomeipPayloadCodec.encode(seq + 3, 1, 0, 0, 0), 0)
                 assertFalse(
                     "short payload must be rejected locally",
-                    VsomeipClient.nativeSendState(ByteArray(15)),
+                    sendVehicleRequest(client, ByteArray(15)),
                 )
-                VsomeipClient.stop()
-                VsomeipClient.stop()
-                assertFalse(VsomeipClient.isAvailable)
+                client.stop()
+                client.stop()
+                assertFalse(client.isAvailable)
                 assertFalse(
                     "stopped sends must not claim submission",
-                    VsomeipClient.buildAndSend(1, 1, 0, 0, 0),
+                    client.send(SomeipPayloadCodec.encode(1, 1, 0, 0, 0)),
                 )
                 InstrumentationRegistry.getInstrumentation().waitForIdleSync()
                 availability.clear()
@@ -162,24 +174,28 @@ open class VsomeipNativeProbeTest {
                 Log.i("VSOMEIP_PROBE", "cycle=" + cycle + " passed")
             }
         } finally {
-            VsomeipClient.clearListener(listener)
-            VsomeipClient.stop()
+            client.close()
         }
     }
 
     @Throws(Exception::class)
     private fun sendAndExpect(
+        client: SomeIpClient,
         responses: LinkedBlockingQueue<Int?>?,
         payload: ByteArray?,
         expected: Int,
     ) {
-        assertTrue("request submitted", VsomeipClient.nativeSendState(payload))
+        assertTrue("request submitted", sendVehicleRequest(client, payload))
         assertEquals(
             "response return code",
             Integer.valueOf(expected),
             responses!!.poll(5, TimeUnit.SECONDS),
         )
     }
+
+    // The 16-byte requirement belongs to the legacy vehicle Method protocol, not the library.
+    private fun sendVehicleRequest(client: SomeIpClient, payload: ByteArray?): Boolean =
+        payload != null && payload.size == SomeipPayloadCodec.SIZE && client.send(payload)
 
     @Test
     @Throws(Exception::class)
@@ -191,21 +207,24 @@ open class VsomeipNativeProbeTest {
                 local != null,
         )
         val config = probeConfig("192.0.2.1", local)
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val client = VehicleSomeIpClientFactory.create(context, requireNotNull(config))
         val registered = LinkedBlockingQueue<Boolean?>()
         val listener =
-            object : VsomeipClient.Listener {
+            object : SomeIpClient.Listener {
                 override fun onRegistered() {
                     registered.offer(true)
                 }
 
-                override fun onAvailable(available: Boolean) {}
+                override fun onAvailabilityChanged(available: Boolean) {}
 
-                override fun onResponse(ok: Boolean, code: Int) {}
+                override fun onPayload(payload: ByteArray) {}
+
+                override fun onResponse(ok: Boolean, returnCode: Int) {}
             }
         try {
-            VsomeipClient.setListener(listener)
             for (cycle in 0..2) {
-                assertTrue(VsomeipClient.start(config!!.getAbsolutePath()))
+                assertTrue(client.start(listener))
                 assertEquals(
                     "native routing registration",
                     java.lang.Boolean.TRUE,
@@ -213,21 +232,20 @@ open class VsomeipNativeProbeTest {
                 )
                 assertTrue(
                     "duplicate start is idempotent",
-                    VsomeipClient.start(config!!.getAbsolutePath()),
+                    client.start(listener),
                 )
-                VsomeipClient.stop()
-                VsomeipClient.stop()
-                assertFalse(VsomeipClient.isAvailable)
-                assertFalse(VsomeipClient.nativeSendState(null))
-                assertFalse(VsomeipClient.nativeSendState(ByteArray(15)))
-                assertFalse(VsomeipClient.buildAndSend(1, 1, 0, 0, 0))
+                client.stop()
+                client.stop()
+                assertFalse(client.isAvailable)
+                assertFalse(sendVehicleRequest(client, null))
+                assertFalse(sendVehicleRequest(client, ByteArray(15)))
+                assertFalse(client.send(SomeipPayloadCodec.encode(1, 1, 0, 0, 0)))
                 InstrumentationRegistry.getInstrumentation().waitForIdleSync()
                 registered.clear()
                 Log.i("VSOMEIP_PROBE", "registration-stop cycle=" + cycle + " passed")
             }
         } finally {
-            VsomeipClient.clearListener(listener)
-            VsomeipClient.stop()
+            client.close()
         }
     }
 }

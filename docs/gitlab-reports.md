@@ -68,3 +68,15 @@ HTML/JSON 和原始采样即使失败也上传。基线不随提交自动滚动�
 shell Runner 会执行仓库脚本，只应让可信提交使用该设备 Runner。
 
 设备专属场景、统计含义和限制见 [simpleperf 指南](simpleperf-profiling.md)。
+
+## 离线交互火焰图
+
+`tools/profiling/summarize.py`同时生成 `flamegraph.html`，单文件内含数据和交互，无需 CDN 或安装插件。
+GitLab simpleperf Job 的 **CPU flame graph (offline HTML)** 报告链接提供下载；也可从 artifacts 的
+`build/reports/simpleperf/raw/flamegraph.html` 获取。浏览器可能下载附件，下载后直接打开即可。
+
+默认从上到下显示进程、线程、调用者和叶函数，便于深调用栈阅读；取消 Root at top 可切换为传统向上火焰图。
+点击帧放大，Back 返回、Reset zoom 恢复，Find function 搜索高亮并显示去重的进程 CPU 占比；
+悬停或键盘聚焦显示完整函数名、inclusive/self CPU 时间及占比。宽度按 task-clock 事件 period 加权，
+递归栈不会去重，水平顺序不是时间轴。未知符号仍标为 unknown，不会伪造解析结果。
+火焰图用于定位 CPU 热点，性能阻断仍以版本化基线比较为准。

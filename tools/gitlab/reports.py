@@ -174,8 +174,19 @@ def simpleperf(input_dir, output):
                    f'baseline_actions={ref["actions"]}; current_actions={metadata.get("recorded_actions", 0)}; tolerance=5%'))
     compare(checks, 'scene_cpu_regression', summary['sampled_cpu_seconds'], ref['cpu_seconds'],
             base['thresholds']['simpleperf_cpu_percent'], 'user CPU seconds / 60s scene', base['source'])
-    return write_reports(output, 'Android performance (simpleperf)', checks,
-                         {'measurements': summary, 'provenance': metadata})
+    result = write_reports(output, 'Android performance (simpleperf)', checks,
+                           {'measurements': summary, 'provenance': metadata})
+    index = output / 'index.html'
+    index.write_text(index.read_text(encoding='utf-8') +
+                     '<p><a href="../raw/flamegraph.html">Interactive offline CPU flame graph</a></p>',
+                     encoding='utf-8')
+    if os.getenv('CI_JOB_URL'):
+        annotations = json.loads((output / 'annotations.json').read_text(encoding='utf-8'))
+        relative = input_dir.resolve().relative_to(ROOT).as_posix()
+        annotations['reports'].append({'external_link': {'label': 'CPU flame graph (offline HTML)',
+            'url': f'{os.environ["CI_JOB_URL"]}/artifacts/file/{relative}/flamegraph.html'}})
+        (output / 'annotations.json').write_text(json.dumps(annotations), encoding='utf-8')
+    return result
 
 
 def main():

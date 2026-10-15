@@ -8,6 +8,7 @@ import html
 import json
 from pathlib import Path
 import sys
+from flamegraph import add_stack, new_node, write_flamegraph
 
 
 def main():
@@ -25,6 +26,7 @@ def main():
     samples, total, unknown, no_callchain = 0, 0, 0, 0
     first_time, last_time = None, None
     events = set()
+    stacks = new_node('CarLauncher process (task-clock:u)')
     metadata = lib.MetaInfo()
     record_command = lib.GetRecordCmd()
     try:
@@ -42,6 +44,10 @@ def main():
             first_time = sample.time if first_time is None else min(first_time, sample.time)
             last_time = sample.time if last_time is None else max(last_time, sample.time)
             name = symbol.symbol_name
+            # simpleperf lists the immediate caller first; render root-to-leaf.
+            callers = [chain.entries[i].symbol.symbol_name for i in range(chain.nr)]
+            add_stack(stacks, [f'{sample.thread_comm} (tid {sample.tid})',
+                              *reversed(callers), name], period)
             own[name] += period
             libraries[symbol.dso_name] += period
             threads[(sample.tid, sample.thread_comm)] += period
@@ -60,6 +66,7 @@ def main():
     event = next(iter(events))
     if not event.startswith("task-clock"):
         raise RuntimeError(f"Time conversion requires task-clock, got {event}")
+    write_flamegraph(directory / 'flamegraph.html', stacks)
 
     def pct(value):
         return round(value * 100 / total, 4)
@@ -111,7 +118,7 @@ Self = executing this function; inclusive = this function or descendants. Inclus
 task-clock:u measures user-space CPU, not wall time or GPU time. Emulator results are diagnostic, not a device performance benchmark.</p>"""
     document += f"<p>Samples: {samples:,}; sampled CPU: {total / 1e9:.3f}s; sample span: {(last_time-first_time)/1e9:.3f}s; unknown leaf: {pct(unknown):.3f}%.</p>"
     document += "<p>Recorder statistics: <code>" + html.escape(metadata.get("record_stat", "Unavailable")) + "</code></p>"
-    document += "<p><a href='report.html'>Official simpleperf call graphs (requires CDN access)</a> | <a href='metadata.json'>Run metadata</a> | <a href='record.log'>Recorder log</a> | <a href='actions.jsonl'>Actions</a></p>"
+    document += "<p><a href='flamegraph.html'>Interactive offline CPU flame graph</a> | <a href='report.html'>Official simpleperf call graphs (requires CDN access)</a> | <a href='metadata.json'>Run metadata</a> | <a href='record.log'>Recorder log</a> | <a href='actions.jsonl'>Actions</a></p>"
     document += "<h2>Threads</h2>" + table(summary["threads"])
     document += "<h2>Functions sorted by self cost</h2>" + table(summary["top_self"])
     document += "<h2>Application functions sorted by inclusive cost</h2>" + table(app_functions[:50])

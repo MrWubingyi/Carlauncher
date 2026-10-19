@@ -37,6 +37,7 @@ internal fun HttpRecordsSection(
     ) {
         HorizontalDivider()
         Text("网络 JSON", style = MaterialTheme.typography.titleMedium)
+        Text("读取后保存到本地数据库，同名记录会更新。")
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -54,7 +55,7 @@ internal fun HttpRecordsSection(
                 onClick = { onLoad(delayed) },
                 enabled = !state.loading,
                 modifier = Modifier.testTag("httpLoad"),
-            ) { Text("读取网络数据") }
+            ) { Text("读取并保存") }
             OutlinedButton(
                 onClick = onCancel,
                 enabled = state.loading,

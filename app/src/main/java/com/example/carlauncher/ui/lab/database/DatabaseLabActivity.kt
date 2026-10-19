@@ -9,7 +9,16 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.carlauncher.data.provider.ProviderRecordsRepository
 import com.example.carlauncher.data.remote.HttpRecordsRepository
+import com.example.carlauncher.data.remote.PersistingRecordsRepository
+import com.example.carlauncher.data.local.RoomNetworkRecordsStore
+import com.example.carlauncher.data.local.JsonRecordsImporter
+import com.example.carlauncher.data.remote.RecordsSaveException
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
@@ -41,7 +50,12 @@ import android.provider.OpenableColumns
 
 class DatabaseLabActivity : ComponentActivity() {
     private val httpViewModel: HttpRecordsViewModel by viewModels {
-        HttpRecordsViewModel.factory(HttpRecordsRepository())
+        HttpRecordsViewModel.factory(
+            PersistingRecordsRepository(HttpRecordsRepository(), RoomNetworkRecordsStore(database))
+        )
+    }
+    private val providerViewModel: ProviderRecordsViewModel by viewModels {
+        ProviderRecordsViewModel.factory(ProviderRecordsRepository(applicationContext))
     }
     private val databaseExecutor = Executors.newSingleThreadExecutor()
     private lateinit var database: LabRoomDatabase
@@ -147,6 +161,7 @@ class DatabaseLabActivity : ComponentActivity() {
                     onDeleteSnapshot = ::deleteSnapshot,
                     onExportSnapshot = ::exportSnapshot,
                     onReadDocument = ::selectJsonDocument,
+                    providerContent = { ProviderQueryContent() },
                     networkContent = {
                         HttpRecordsSection(
                             state = httpState,
@@ -158,6 +173,16 @@ class DatabaseLabActivity : ComponentActivity() {
             }
         }
         openDatabaseAsync()
+    }
+
+    @Composable
+    private fun ProviderQueryContent() {
+        val state by providerViewModel.uiState.collectAsStateWithLifecycle()
+        ProviderRecordsSection(
+            state = state,
+            onQueryAll = providerViewModel::queryAll,
+            onQueryById = providerViewModel::queryById,
+        )
     }
 
     private fun openDatabaseAsync() {
@@ -396,7 +421,7 @@ class DatabaseLabActivity : ComponentActivity() {
 
     private fun readJsonDocument(uri: Uri) {
         Log.d(TAG, "readJsonDocument called with uri: $uri")
-        databaseExecutor.execute {
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
                 var displayName = "未知文件"
                 var sizeBytes: Long? = null
@@ -437,27 +462,36 @@ class DatabaseLabActivity : ComponentActivity() {
                     it.readText()
                 }
 
-                // 当前快照格式为 JSON 数组
+                // Parse every record before saving; reuse the network import transaction.
+                val count = JsonRecordsImporter(RoomNetworkRecordsStore(database)).importJson(json)
                 val records = JSONArray(json)
                 val sizeText = sizeBytes?.let { "$it B" } ?: "未知"
 
                 val display = """
                 文件名：$displayName
                 大小：$sizeText
-                记录数：${records.length()}
+                记录数：$count
 
                 ${records.toString(2)}
             """.trimIndent()
 
                 updateUi {
                     resultText = display
-                    status = "文档读取成功"
+                    status = "文档读取并保存成功，共 $count 条记录"
+                    actionsEnabled = true
+                }
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (exception: RecordsSaveException) {
+                Log.e(TAG, "Document save failed", exception)
+                updateUi {
+                    status = "文档读取成功，但保存到本地数据库失败，请重试"
                     actionsEnabled = true
                 }
             } catch (exception: JSONException) {
                 Log.w(TAG, "Invalid JSON document", exception)
                 updateUi {
-                    status = "文件不是有效的 JSON 数组，请重新选择"
+                    status = "JSON 格式或记录字段不正确，未保存，请重新选择"
                     actionsEnabled = true
                 }
             } catch (exception: Exception) {
@@ -493,6 +527,7 @@ internal fun DatabaseLabScreen(
     onExportSnapshot: () -> Unit,
     onReadDocument: () -> Unit,
     networkContent: @Composable () -> Unit = {},
+    providerContent: @Composable () -> Unit = {},
 ) {
     var name by rememberSaveable { mutableStateOf("") }
     var value by rememberSaveable { mutableStateOf("") }
@@ -658,10 +693,11 @@ internal fun DatabaseLabScreen(
                     enabled = actionsEnabled,
                     modifier = Modifier.weight(1f),
                 ) {
-                    Text("选择文档读取")
+                    Text("选择文档读取并保存")
                 }
             }
 
+            providerContent()
             networkContent()
 
             Text(

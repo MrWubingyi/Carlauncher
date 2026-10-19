@@ -1,6 +1,26 @@
 # HTTP JSON 分层接入说明
 
-本次仅增加现有 DatabaseLabActivity 的网络读取功能。数据库、内部快照、SAF 和文档读取继续沿用原实现。
+现有 DatabaseLabActivity 读取网络 JSON 或选择 JSON 文档后，先合并保存到原 Room 数据库，再显示成功。内部快照读取和 SAF 导出继续沿用原实现。
+
+“选择文档读取并保存”通过 ContentResolver 打开正文，再交给 JsonRecordsImporter 完整解析，最后复用 RoomNetworkRecordsStore 的事务合并。文档字段沿用导出快照：id、name、value、createdAt 必填，note 默认空字符串。任一记录格式错误，整份文档都不写入。合并、空数组、ID 和只读 Provider 规则与网络导入一致。
+
+文档导入追加验证：285 项 JVM 测试通过；模拟器上 19 项 Room 导入、Provider 和原页面回归测试通过。APK、Detekt、Lint 通过（0 错误、22 警告）；完整文档选择器手动流程尚未验收。日志为 `build/document-room-*.log`，默认构建仍被原生库来源不匹配阻塞，未执行远程构建。
+
+## 网络结果保存到 Room
+
+生产调用链：页面 → HttpRecordsViewModel → PersistingRecordsRepository → HttpRecordsRepository → RoomNetworkRecordsStore → 原 LabRoomDatabase。
+
+- `name` 沿用原表的唯一键；同名更新 value、note、created_at，保留本地 `_id`。新名称使用 Room 自增 ID，网络 id 不覆盖本地 ID。
+- 整个响应在 IO 线程的一个事务中合并；任一写入失败则整批回滚。同一响应中同名记录以后出现的内容为准。
+- 重复读取不会增加同名记录；空数组不清空数据库，服务器未返回的本地记录保留。
+- 只有事务完成后页面才显示“读取并保存成功”。数据库失败显示独立提示，可重试；网络或解析失败不触发写入。
+- 已取消请求的迟到响应在保存前被拒绝，事务内也检查取消。已经提交的事务不会因为之后取消而撤销。
+- Provider 继续只读、exported=false。保存直接经过 Room，不经过 Provider 写方法。保存后点击原数据库查询或 Provider“查询全部”查看结果；本次未增加自动观察刷新。
+- 网络结果区仍显示服务端 ID；Provider 返回本地 ID，两者可能不同。
+
+下面 2026-10-12/13 的验收记录描述当时仅展示的版本，不作为新增持久化行为的验收证据。
+
+本次持久化验证（2026-10-19）：app 全量 282 项 JVM 测试通过；API 35 模拟器上 19 项 Room/Provider 测试通过，其中新增两项验证合并幂等、空响应保留与失败事务回滚。设备测试使用隔离内存数据库，不代表完整网络页面的人工验收。Debug APK、测试 APK、Detekt 和 Lint 通过（Lint 0 错误、22 警告）。默认 build-local.ps1 的静态检查通过后仍因 `repository_commit` 原生库来源不匹配而阻塞，未启用远程构建。执行日志保存在忽略目录 `build/network-room-*.log`。
 
 ## 文件与职责
 
@@ -27,7 +47,7 @@
 4. Activity 向插槽传入 HttpRecordsSection：state 是收集结果，onLoad/onCancel 指向 ViewModel。
 5. 插槽在文件操作按钮之后、原数据库结果区之前渲染。
 
-UI -> loadRecords -> Repository.fetchRecords -> OkHttp 后台线程请求并解析 -> ViewModel 更新 StateFlow -> Compose 重绘。
+UI -> loadRecords -> Repository.fetchRecords -> OkHttp 后台线程请求并解析 -> Room 事务保存 -> ViewModel 更新 StateFlow -> Compose 重绘。
 
 这里故意用独立 HttpRecordsViewModel，仅管理新增网络区。它不读写原页面的 status、resultText、actionsEnabled 或 databaseExecutor。
 
@@ -60,7 +80,7 @@ UI -> loadRecords -> Repository.fetchRecords -> OkHttp 后台线程请求并解�
 | 断网 | 实际断开模拟器到主机的网络后读取，再恢复 | 显示失败或超时，恢复后正常读取 |
 | 取消 | 打开延迟，读取后在超时前取消；关闭延迟再读取 | 立即显示已取消，新请求成功，旧结果不覆盖 |
 
-停止 Python 服务只证明服务不可达，不等于模拟器断网。网络结果仅展示，不写入 Room。
+停止 Python 服务只证明服务不可达，不等于模拟器断网。成功后还应查询 Room/Provider，确认保存的字段与记录数量。
 
 构建和本地测试：
 

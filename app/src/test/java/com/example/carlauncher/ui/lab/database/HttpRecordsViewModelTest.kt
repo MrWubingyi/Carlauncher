@@ -23,6 +23,24 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HttpRecordsViewModelTest {
+    @Test fun saveFailureIsDistinctAndAllowsRetry() = runTest(dispatcher) {
+        var calls = 0
+        val model = HttpRecordsViewModel(RecordsRepository {
+            if (++calls == 1) throw com.example.carlauncher.data.remote.RecordsSaveException(
+                IllegalStateException("disk failure"),
+            )
+            listOf(record("retry"))
+        })
+        model.loadRecords()
+        advanceUntilIdle()
+        assertEquals("网络读取成功，但保存到本地数据库失败，请重试", model.uiState.value.message)
+        assertFalse(model.uiState.value.loading)
+        assertTrue(model.uiState.value.records.isEmpty())
+        model.loadRecords()
+        advanceUntilIdle()
+        assertEquals("读取并保存成功，共 1 条记录", model.uiState.value.message)
+    }
+
     private val dispatcher = StandardTestDispatcher()
 
     @Before fun setup() { Dispatchers.setMain(dispatcher) }

@@ -1,6 +1,6 @@
 package com.example.carlauncher.data.remote
 
-/** Network data only; never inserted into the Room database by this feature. */
+/** Remote IDs identify source records; Room assigns independent local IDs. */
 data class NetworkRecord(
     val id: Long,
     val name: String,

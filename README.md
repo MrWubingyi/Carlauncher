@@ -130,6 +130,45 @@ GitHub 同时构建 Profiling APK 并运行其 Lint，Actions Summary 展示静�
 需要时单独执行 `:app:connectedDebugAndroidTest`、`:someip-android:connectedDebugAndroidTest`，
 或参考以下文档；构建通过不能代替设备、协议和 UI 验收。
 
+## Room 记录只读查询
+
+现有 `DatabaseLabActivity` 的“当前 Room 记录 · 只读查询”区域可查询全部记录或指定 ID。
+调用经过 `ProviderRecordsViewModel` → `ProviderRecordsRepository` → `ContentResolver.query()`
+→ `LabRecordsProvider` → 原 `LabRoomDatabase`，返回 Cursor 后由 Repository 在 IO 线程转换并关闭。
+原页面的 Room 编辑功能继续可用，编辑后可手动重新查询。
+
+“网络 JSON”读取成功后会先将整批结果保存到同一个 Room 数据库，再显示成功。
+按唯一 `name` 合并，同名保留本地 ID 并更新内容，新名称使用本地自增 ID；空响应不清库。
+保存失败整批回滚并提示重试。保存后手动查询即可通过 Provider 读取新结果，Provider 仍拒绝写入。
+详见 [HTTP JSON 分层与保存规则](docs/http-json-layering.md)。
+
+| 契约 | 值 |
+| --- | --- |
+| authority | `${applicationId}.records`；Debug 为 `com.example.carlauncher.records` |
+| 集合 URI | `content://com.example.carlauncher.records/records` |
+| 单条 URI | `content://com.example.carlauncher.records/records/12` |
+| Cursor 固定列顺序 | `_id`, `name`, `value`, `created_at`, `note` |
+| 集合 MIME | `vnd.android.cursor.dir/vnd.com.example.carlauncher.record` |
+| 单条 MIME | `vnd.android.cursor.item/vnd.com.example.carlauncher.record` |
+
+`LabRecordsContract` 负责 URI、列名与 MIME；authority 随应用 ID 变化，兼容 Profiling 后缀。
+查询使用 `UriMatcher` 区分集合与非负 Long ID，默认按 `_id ASC` 排序；没有匹配记录时返回
+带同样列定义的空 Cursor。非法 URI、溢出 ID、URI 参数及片段均抛 `IllegalArgumentException`。
+projection 仅允许 null 或完整固定列；selection/selectionArgs 仅允许 null 或空值；
+sortOrder 仅允许 null、空串或 `_id ASC`。Bundle 查询只接受上述三个标准 SQL 参数键，
+其他参数明确报错，不提供任意 SQL 查询。调用方应在后台线程查询并使用 `Cursor.use`。
+
+Manifest 设置 `exported=false`、`grantUriPermissions=false`；`insert/update/delete` 均抛
+`UnsupportedOperationException`。本入口仅供应用内部读取，不提供跨应用共享或自动观察刷新。
+
+验证入口：`ProviderRecordsViewModelTest`（JVM）；`LabRecordsProviderInstrumentedTest`、
+`ProviderRecordsRepositoryInstrumentedTest` 和 `ProviderRecordsActivityTest`（设备）。前两项设备
+套件使用 API 29+ 的进程内 Resolver 包装器与隔离内存 Room/Cursor；Manifest 注册与页面
+测试另经真实 ContentResolver 只读查询现有库，不清空或填充用户数据。它们分别验证集合、
+单条、空结果、非法 URI、写拒绝、Cursor 关闭与页面入口，不代表跨应用 IPC 或性能验收。
+
+## 相关文档
+
 - [原生源码构建](third_party/vsomeip-android/README.md)
 - [SOME/IP 模块](someip-android/README.md)
 - [Android / Ubuntu / LVGL 联调](docs/local-someip-integration.md)

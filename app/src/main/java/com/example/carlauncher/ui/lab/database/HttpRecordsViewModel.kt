@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.carlauncher.data.remote.HttpStatusException
 import com.example.carlauncher.data.remote.NetworkRecord
 import com.example.carlauncher.data.remote.RecordsRepository
+import com.example.carlauncher.data.remote.RecordsSaveException
 import java.io.IOException
 import java.io.InterruptedIOException
 import kotlinx.coroutines.CancellationException
@@ -50,7 +51,7 @@ class HttpRecordsViewModel(
                 val records = repository.fetchRecords(delayed)
                 if (generation == requestGeneration) {
                     mutableUiState.value = HttpRecordsUiState(
-                        message = "读取成功，共 ${records.size} 条记录",
+                        message = "读取并保存成功，共 ${records.size} 条记录",
                         records = records,
                     )
                 }
@@ -60,6 +61,7 @@ class HttpRecordsViewModel(
             } catch (exception: Exception) {
                 if (generation == requestGeneration) {
                     val message = when (exception) {
+                        is RecordsSaveException -> "网络读取成功，但保存到本地数据库失败，请重试"
                         is HttpStatusException -> "服务器返回 HTTP ${exception.statusCode}"
                         is InterruptedIOException -> "请求超时，请重试"
                         is JSONException -> "响应 JSON 格式或记录字段不正确"

@@ -167,6 +167,39 @@ Manifest 设置 `exported=false`、`grantUriPermissions=false`；`insert/update/
 测试另经真实 ContentResolver 只读查询现有库，不清空或填充用户数据。它们分别验证集合、
 单条、空结果、非法 URI、写拒绝、Cursor 关闭与页面入口，不代表跨应用 IPC 或性能验收。
 
+## JSON 快照临时只读分享
+
+原 `DatabaseLabActivity` 增加“分享 JSON 快照（临时只读）”。先使用原“保存记录快照”
+生成 `filesDir/records_snapshot.json`；分享只复制这份现有文件，不重新查询或改写 Room。
+复制与保存、删除快照共用串行后台队列，保持原始 JSON 字节；每次使用独立副本，
+防止先前收到的 URI 在后一次分享中指向被覆盖的新内容。
+
+FileProvider 的 authority 为 `${applicationId}.snapshotfiles`，`exported=false`、
+`grantUriPermissions=true`。唯一映射为 `cache/json_shares/`，不暴露 files、数据库、
+cache 根目录或外部存储。原只读记录 Provider 的 `${applicationId}.records` 配置不变。
+
+分享使用 `ACTION_SEND`、`application/json`、`EXTRA_STREAM` 和同 URI 的 `ClipData`；
+发送 Intent 与 chooser 只设置 `FLAG_GRANT_READ_URI_PERMISSION`，不设置写入、
+持久化或前缀授权，也不向所有候选应用主动调用 `grantUriPermission()`。
+Manifest 的窄范围 `<queries>` 声明让 Android 11+ 可发现 JSON 分享接收入口。
+
+- 快照缺失：提示“快照文件不存在，请先保存记录快照”，不生成分享副本。
+- 无接收入口：提示安装／启用接收应用，并删除未发送副本；发现后启动入口失效也有反馈。
+- 正常启动：只提示已打开分享选择器，读取成功须由接收端确认；用户取消选择不算分享成功。
+- 成功发起后不在 `onStop()` 删除副本或撤权，避免打断接收端读取。授权由 Android
+  按接收任务生命周期管理；副本保留在可被系统回收的 cache，当前未设置固定时间清理。
+  临时授权不能撤回接收端已自行保存的内容。
+
+定向验证使用 `SnapshotShareRepositoryTest`（JVM）、
+`SnapshotFileProviderTest` 和 `SnapshotShareActivityTest`（设备）。
+`androidTest` APK 内的 **JSON Share Probe** 是独立 UID 的本地接收应用，
+读取实际 content URI、解析 JSON，记录字节数、SHA-256 和权限检查结果。
+接收器仅随测试 APK 安装，不进入生产 APK；它不联网。
+设备用例还覆盖原页面的缺文件、无接收入口反馈，以及接收任务结束后的无授权读取。
+测试不会执行 Room CRUD；缺文件用例暂时移动并还原原快照，无接收入口用例暂时禁用并还原测试接收器。
+
+详细实现与复现见 [JSON 分享与接收端验证](docs/json-snapshot-sharing.md)。
+
 ## 相关文档
 
 - [原生源码构建](third_party/vsomeip-android/README.md)

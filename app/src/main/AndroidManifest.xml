@@ -22,6 +22,10 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="application/json" />
+        </intent>
     </queries>
 
     <application
@@ -39,6 +43,15 @@
             android:authorities="${applicationId}.records"
             android:exported="false"
             android:grantUriPermissions="false" />
+        <provider
+            android:name=".data.provider.SnapshotFileProvider"
+            android:authorities="${applicationId}.snapshotfiles"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/snapshot_share_paths" />
+        </provider>
 
         <activity
             android:name=".ui.home.ComposeMainActivity"

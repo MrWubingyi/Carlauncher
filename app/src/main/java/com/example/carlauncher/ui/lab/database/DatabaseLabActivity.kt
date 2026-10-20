@@ -14,6 +14,7 @@ import com.example.carlauncher.data.remote.HttpRecordsRepository
 import com.example.carlauncher.data.remote.PersistingRecordsRepository
 import com.example.carlauncher.data.local.RoomNetworkRecordsStore
 import com.example.carlauncher.data.local.JsonRecordsImporter
+import com.example.carlauncher.data.local.SnapshotShareRepository
 import com.example.carlauncher.data.remote.RecordsSaveException
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CancellationException
@@ -41,6 +42,7 @@ import com.example.carlauncher.data.local.LabRoomDatabase
 import com.example.carlauncher.ui.compose.designsystem.HuTheme
 import java.util.concurrent.Executors
 import java.io.File
+import java.io.FileNotFoundException
 import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONException
@@ -58,6 +60,7 @@ class DatabaseLabActivity : ComponentActivity() {
         ProviderRecordsViewModel.factory(ProviderRecordsRepository(applicationContext))
     }
     private val databaseExecutor = Executors.newSingleThreadExecutor()
+    private val snapshotSharing by lazy { SnapshotShareRepository(cacheDir) }
     private lateinit var database: LabRoomDatabase
     private lateinit var recordDao: LabRecordDao
     private var status by mutableStateOf("")
@@ -161,6 +164,7 @@ class DatabaseLabActivity : ComponentActivity() {
                     onDeleteSnapshot = ::deleteSnapshot,
                     onExportSnapshot = ::exportSnapshot,
                     onReadDocument = ::selectJsonDocument,
+                    onShareSnapshot = ::shareSnapshot,
                     providerContent = { ProviderQueryContent() },
                     networkContent = {
                         HttpRecordsSection(
@@ -287,6 +291,46 @@ class DatabaseLabActivity : ComponentActivity() {
 
     private val snapshotFile: File
         get() = File(filesDir, "records_snapshot.json")
+
+    private fun shareSnapshot() {
+        if (!actionsEnabled) return
+        actionsEnabled = false
+        status = "正在准备 JSON 分享……"
+        // Shares the existing serial queue with save/delete so the copy cannot see a partial save.
+        databaseExecutor.execute {
+            try {
+                val copy = snapshotSharing.prepare(snapshotFile)
+                runOnUiThread { launchSnapshotShare(copy) }
+            } catch (_: FileNotFoundException) {
+                updateUi {
+                    actionsEnabled = true
+                    status = "快照文件不存在，请先保存记录快照"
+                }
+            } catch (exception: Exception) {
+                Log.e(TAG, "Prepare snapshot sharing failed", exception)
+                updateUi {
+                    actionsEnabled = true
+                    status = "准备 JSON 分享失败，请重试"
+                }
+            }
+        }
+    }
+
+    private fun launchSnapshotShare(copy: File) {
+        if (isFinishing || isDestroyed) {
+            snapshotSharing.discard(copy)
+            return
+        }
+        val result = try {
+            SnapshotShareLauncher(this).launch(copy)
+        } catch (exception: Exception) {
+            Log.e(TAG, "Launch snapshot sharing failed", exception)
+            SnapshotShareResult.FAILED
+        }
+        if (result != SnapshotShareResult.OPENED) snapshotSharing.discard(copy)
+        status = result.message
+        actionsEnabled = true
+    }
 
     private fun runSnapshotOperation(operation: () -> Pair<String, String?>) {
         if (!actionsEnabled) return
@@ -526,6 +570,7 @@ internal fun DatabaseLabScreen(
     onDeleteSnapshot: () -> Unit,
     onExportSnapshot: () -> Unit,
     onReadDocument: () -> Unit,
+    onShareSnapshot: () -> Unit = {},
     networkContent: @Composable () -> Unit = {},
     providerContent: @Composable () -> Unit = {},
 ) {
@@ -695,6 +740,14 @@ internal fun DatabaseLabScreen(
                 ) {
                     Text("选择文档读取并保存")
                 }
+            }
+
+            OutlinedButton(
+                onClick = onShareSnapshot,
+                enabled = actionsEnabled,
+                modifier = Modifier.fillMaxWidth().testTag("shareSnapshotButton"),
+            ) {
+                Text("分享 JSON 快照（临时只读）")
             }
 
             providerContent()

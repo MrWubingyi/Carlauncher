@@ -31,6 +31,8 @@ jobs:
     env:
       BASELINE_GITHUB_RUNNER_NAME: ${{ vars.BASELINE_GITHUB_JMH_RUNNER_NAME }}
       GRADLE_DOWNLOAD_URL: https://mirrors.cloud.tencent.com/gradle/gradle-9.5.0-bin.zip
+    outputs:
+      acceptance: ${{ steps.acceptance.outputs.acceptance }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -51,10 +53,8 @@ jobs:
             someip-android/build/intermediates/cxx/RelWithDebInfo/**/obj/x86_64/*.so
           if-no-files-found: error
           retention-days: 14
-      - name: Publish performance summary
-        if: ${{ always() }}
-        run: python3 tools/github/summarize.py --performance-only
       - name: Upload JMH reports even on failure
+        id: reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
@@ -63,6 +63,14 @@ jobs:
             build/reports/jvm-performance/
             app/build/reports/jmh/
           retention-days: 14
+
+      - name: Collect acceptance evidence
+        id: acceptance
+        if: ${{ always() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+          REPORT_URL: ${{ steps.reports.outputs.artifact-url }}
+        run: python3 tools/github/summarize.py --kind jmh
 
   simpleperf:
     name: Android baseline-device simpleperf
@@ -75,6 +83,8 @@ jobs:
     env:
       PERF_SERIAL: emulator-5554
       BASELINE_GITHUB_RUNNER_NAME: ${{ vars.BASELINE_GITHUB_SIMPLEPERF_RUNNER_NAME }}
+    outputs:
+      acceptance: ${{ steps.acceptance.outputs.acceptance }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -86,10 +96,8 @@ jobs:
       - name: Verify device and scenario, then record and enforce budget
         shell: pwsh
         run: ./tools/gitlab/run-simpleperf.ps1
-      - name: Publish performance summary
-        if: ${{ always() }}
-        run: python tools/github/summarize.py --performance-only
       - name: Upload preflight, samples, flame graph and JUnit
+        id: reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
@@ -98,10 +106,20 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+      - name: Collect acceptance evidence
+        id: acceptance
+        if: ${{ always() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+          REPORT_URL: ${{ steps.reports.outputs.artifact-url }}
+        run: python tools/github/summarize.py --kind simpleperf
+
   ui-regression:
     name: Windows screenshot regression
     runs-on: windows-2022
     timeout-minutes: 45
+    outputs:
+      acceptance: ${{ steps.acceptance.outputs.acceptance }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -127,6 +145,7 @@ jobs:
         if: ${{ always() }}
         run: python tools/visual-regression/test_ci.py
       - name: Upload screenshot reports including failures
+        id: reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
@@ -135,10 +154,20 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+      - name: Collect acceptance evidence
+        id: acceptance
+        if: ${{ always() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+          REPORT_URL: ${{ steps.reports.outputs.artifact-url }}
+        run: python tools/github/summarize.py --kind ui
+
   build:
     name: Debug APK and unit tests
     runs-on: ubuntu-24.04
     timeout-minutes: 120
+    outputs:
+      acceptance: ${{ steps.acceptance.outputs.acceptance }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -220,6 +249,7 @@ jobs:
           retention-days: 14
 
       - name: Upload Debug and Profiling APKs
+        id: apk
         uses: actions/upload-artifact@v6
         with:
           name: CarLauncher-debug-x86_64-${{ github.run_number }}
@@ -230,6 +260,7 @@ jobs:
           retention-days: 14
 
       - name: Upload SOME/IP library
+        id: aar
         uses: actions/upload-artifact@v6
         with:
           name: SomeIp-android-debug-x86_64-${{ github.run_number }}
@@ -241,12 +272,8 @@ jobs:
       # app/build. Run it separately to avoid overlapping assemble task outputs.
       - name: Generate coverage report
         run: bash ./gradlew --no-daemon --stacktrace :app:fullDebugUnitTestCoverageReport
-
-      - name: Publish review and test summary
-        if: ${{ always() }}
-        run: python3 tools/github/summarize.py
-
       - name: Upload test, coverage, lint, and Detekt reports
+        id: reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v6
         with:
@@ -266,3 +293,31 @@ jobs:
             someip-android/build/test-results/testDebugUnitTest/
           if-no-files-found: warn
           retention-days: 14
+
+      - name: Collect acceptance evidence
+        id: acceptance
+        if: ${{ always() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+          REPORT_URL: ${{ steps.reports.outputs.artifact-url }}
+          APK_URL: ${{ steps.apk.outputs.artifact-url }}
+          AAR_URL: ${{ steps.aar.outputs.artifact-url }}
+        run: python3 tools/github/summarize.py --kind build
+
+  acceptance-summary:
+    name: 中文验收摘要
+    if: ${{ always() }}
+    needs: [build, ui-regression, performance-build, simpleperf]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Test acceptance summary failure handling
+        run: python3 tools/github/test-summarize.py
+      - name: Publish Chinese acceptance summary
+        if: ${{ always() }}
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: python3 tools/github/summarize.py --aggregate

@@ -39,7 +39,17 @@ JMH 和 simpleperf 必须使用产生原基准的本地机器，不能将随机�
 [GitHub 自托管 Runner 安全说明](https://docs.github.com/en/actions/reference/security/secure-use)。
 没有配置自托管 Runner 时，性能任务会等待可用 Runner，不能声称已经通过。
 
-性能结果在各任务 Job Summary 中列出检查结果与具体差异。下载对应 artifacts 后打开
-`index.html`、截图 `summary-zh.html` 或 `raw/flamegraph.html`。
+打开一次 Actions 运行的 Summary，查看最后完成的 **中文验收摘要**：
+
+- 首行给出四项验收通过、失败或验收不完整；表格集中展示构建、六场景截图、JMH 和设备性能。
+- 构建列出两个模块的 JVM 测试数量、失败和跳过；截图列出变化/缺失场景；设备性能列出 CPU 实测、上限及相对变化。
+- 每行的报告下载链接来自本次上传步骤的 `artifact-url`，构建额外提供 APK/AAR。上传失败时显示不可用，不伪造链接。
+- 检查明细折叠展示；失败、取消、跳过、报告缺失或提交不一致均不会显示为完整验收通过。
+
+下载对应 artifacts 并解压后打开 `index.html`、截图 `summary-zh.html` 或
+设备报告 `raw/flamegraph.html`。下载需要登录并有仓库访问权限，产物保留 14 天。
+最终汇总任务只读取各任务输出，不重新采样或修改门禁；PR 跳过性能任务时显示验收不完整。
+工作流整体取消或 checkout 失败可能无法生成摘要，应以 Actions 的原始任务状态为准。
+`python tools/github/test-summarize.py` 验证摘要的成功、失败和证据缺失路径。
 [Actions artifacts](https://github.com/actions/download-artifact) 在同一 workflow 内传递构建产物。
 CI 配置和本地脚本测试通过不等于 GitHub 自托管环境已注册或实际运行成功。

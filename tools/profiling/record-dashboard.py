@@ -13,6 +13,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from replay import shell_script, parse_output, validate_results
+from preflight import SCENARIO, check as check_preflight, device_config
 
 ROOT = Path(__file__).resolve().parents[2]
 PACKAGE = "com.example.carlauncher.profiling"
@@ -85,6 +86,7 @@ def main():
     parser.add_argument("--warmup", type=int, default=15)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--replay-plan", type=Path, help="Fixed baseline device-side action schedule")
+    parser.add_argument("--baseline", type=Path, help="Require exact device/scenario match before warmup")
     args = parser.parse_args()
     if args.duration < 10 or args.warmup < 0 or not 1 <= args.frequency <= 1000:
         parser.error("duration >= 10, warmup >= 0 and frequency in 1..1000 required")
@@ -102,7 +104,15 @@ def main():
                PATH=str(adb.parent) + os.pathsep + os.environ.get("PATH", ""))
 
     def device(*command):
-        return run([adb, "-s", args.serial, *command], env=env).decode("utf-8", "replace").strip()
+        return run([adb, "-s", args.serial, *command], env=env, timeout=30).decode("utf-8", "replace").strip()
+
+    base = json.loads(args.baseline.read_text(encoding='utf-8')) if args.baseline else None
+    if base:
+        ref = base['simpleperf']
+        expected = {k: v for k, v in ref['config'].items() if k != 'action_plan'}
+        expected.update(event=ref['event'], record_options=ref['record_options'])
+        actual = device_config(device, args.serial, args.duration, args.warmup, args.frequency)
+        check_preflight(expected, actual, output, 'device_and_options')
 
     if int(device("shell", "getprop", "ro.build.version.sdk")) < 29:
         raise RuntimeError("Non-debuggable profileable builds require Android 10+")
@@ -116,7 +126,13 @@ def main():
     device("shell", "uiautomator", "dump", "/sdcard/carlauncher-profile-ui.xml")
     xml = device("shell", "cat", "/sdcard/carlauncher-profile-ui.xml")
     (output / "ui-before.xml").write_text(xml, encoding="utf-8")
-    actions = dashboard_actions(xml)
+    try:
+        actions = dashboard_actions(xml)
+    except (KeyError, RuntimeError, ET.ParseError) as error:
+        if base:
+            check_preflight({'action_plan': base['simpleperf']['config']['action_plan']},
+                            {'action_plan': f'UNAVAILABLE: {error}'}, output, 'live_dashboard')
+        raise
     metadata = {
         "started_utc": datetime.now(timezone.utc).isoformat(),
         "package": PACKAGE, "serial": args.serial,
@@ -128,20 +144,33 @@ def main():
         "git_head": run(["git", "rev-parse", "HEAD"], cwd=ROOT).decode().strip(),
         "worktree_status": run(["git", "status", "--short", "--ignore-submodules=all"], cwd=ROOT).decode(),
         "duration_seconds": args.duration, "warmup_seconds": args.warmup,
-        "scenario": "Repeated demo-map zoom/pan/recenter and demo-media next/play/seek/previous",
+        "scenario": SCENARIO,
         "limitations": "Device-specific user-space CPU only, no real media decoder or vehicle stream; JIT enabled, R8 disabled",
         "action_plan": actions,
     }
     replay = None
+    if base:
+        check_preflight(base['simpleperf']['config'], metadata, output, 'live_dashboard')
+        plan = json.loads(args.replay_plan.read_text(encoding='utf-8')) if args.replay_plan else {}
+        check_preflight({'replay_source_commit': base['source']['commit']},
+                        {'replay_source_commit': plan.get('source_commit')}, output, 'replay_provenance')
     if args.replay_plan:
         plan_bytes = args.replay_plan.read_bytes()
         replay = json.loads(plan_bytes)
         if args.duration != 60 or args.warmup != 15:
             raise ValueError('Baseline replay requires duration=60 and warmup=15')
+        expected_schedule, actual_schedule = {}, {}
         for phase in ('warmup', 'recording'):
             for index, entry in enumerate(replay['phases'][phase]):
                 name, command = actions[index % len(actions)]
-                if entry['action'] != name or entry['input'] != command:
+                key = f'{phase}[{index}]'
+                expected_schedule[key] = {'action': name, 'input': command}
+                actual_schedule[key] = {'action': entry['action'], 'input': entry['input']}
+        if base:
+            check_preflight(expected_schedule, actual_schedule, output, 'replay_schedule')
+        else:
+            for key, value in expected_schedule.items():
+                if actual_schedule[key] != value:
                     raise ValueError('Live dashboard does not match baseline action schedule')
         metadata['replay_mode'] = 'device-uptime-v1'
         metadata['replay_plan_sha256'] = hashlib.sha256(plan_bytes).hexdigest()

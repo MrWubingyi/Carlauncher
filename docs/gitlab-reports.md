@@ -38,6 +38,19 @@ JMH 耗时允许增加 20%；分配量允许增加 max(基线的 10%, 1 B/op)，
 
 ## Android simpleperf
 
+GitLab 与 GitHub 共用 `run-simpleperf.ps1` 和 `record-dashboard.py --baseline`。
+预检先读取真实设备 fingerprint、序列号、屏幕尺寸，并比较场景名称、预热/采样时间、
+采样事件和频率；不匹配时在安装 APK 前退出。安装并打开页面后，进一步比较实际语义树
+推导出的动作坐标与基准、重放计划来源提交；不匹配时不会开始预热或启动 simpleperf。
+日志逐项输出 `expected` / `actual`，`raw/preflight.json`、JUnit 和 HTML 保留差异，
+报告明确标记未采样，不能用旧的 perf.data 冒充本次成功。采样后的原有检查继续保留。
+设备离线或 ADB 查询失败也按不匹配处理。Android 15 不会被自动降级、伪造 fingerprint 或跳过。
+两个 CI 共用 Windows 命名互斥量 `Global\CarLauncherSimpleperf`，设备被占用时立即失败。
+
+当前基准要求 Android 13 `TEA1.250515.001/13505934`、1408×792。
+使用独立 `CarLauncher_Perf_API33` AVD 占用 `emulator-5554`，避免将日常 Android 15 AVD
+用于性能比较；预检只校验，不会自动停止、切换或擦除正在使用的模拟器。
+
 Docker Job 构建本次提交的 Profiling APK，并提供未剥离原生符号。Windows shell Runner
 使用本机 SDK/NDK 和指定设备执行已有的 `record-dashboard.py`、`summarize.py`：预热 15 秒，
 采样 60 秒，同时执行地图和媒体演示操作。采样 Job 持有独占 resource_group。

@@ -15,6 +15,33 @@ spec.loader.exec_module(reports)
 
 
 class ReportTests(unittest.TestCase):
+    def test_runner_identity_is_provider_specific_and_fail_closed(self):
+        base = reports.baseline()
+        with patch.dict('os.environ', {'GITHUB_ACTIONS': 'true', 'RUNNER_NAME': 'approved-host'}, clear=True):
+            self.assertEqual('failed', reports.runner_check('jmh', base)[1])
+            with patch.dict('os.environ', {'BASELINE_GITHUB_RUNNER_NAME': 'approved-host'}):
+                self.assertEqual('passed', reports.runner_check('jmh', base)[1])
+            with patch.dict('os.environ', {'BASELINE_GITHUB_RUNNER_NAME': 'different-host'}):
+                self.assertEqual('failed', reports.runner_check('jmh', base)[1])
+        with patch.dict('os.environ', {'CI_RUNNER_ID': base['runner_ids']['simpleperf']}, clear=True):
+            self.assertEqual('passed', reports.runner_check('simpleperf', base)[1])
+
+    def test_preflight_failure_needs_no_samples_and_preserves_field_differences(self):
+        raw = self.root / 'raw'
+        raw.mkdir()
+        data = {'passed': False, 'stages': [{'stage': 'device', 'passed': False,
+                'differences': [{'field': 'fingerprint', 'expected': 'Android 13', 'actual': 'Android 15'}]}]}
+        (raw / 'preflight.json').write_text(json.dumps(data))
+        self.assertEqual(1, reports.simpleperf(raw, self.output, 1))
+        failure = ET.parse(self.output / 'junit.xml').getroot().find('testcase/failure')
+        self.assertIn('Android 13', failure.text)
+        self.assertIn('Android 15', failure.text)
+        self.assertIn('not sampled', (self.output / 'index.html').read_text())
+
+    def test_failed_process_does_not_reuse_old_successful_samples(self):
+        self.assertEqual(1, reports.simpleperf(self.root, self.output, 1))
+        self.assertIn('recording_process', (self.output / 'junit.xml').read_text())
+
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)

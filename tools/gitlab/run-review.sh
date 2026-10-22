@@ -3,6 +3,7 @@ set -euo pipefail
 python3 tools/gitlab/test-reports.py
 python3 tools/profiling/test-flamegraph.py
 python3 tools/profiling/test-replay.py
+python3 tools/profiling/test-preflight.py
 mkdir -p build/reports/code-review
 status=0
 bash ./gradlew --no-daemon --max-workers=2 --stacktrace --continue \

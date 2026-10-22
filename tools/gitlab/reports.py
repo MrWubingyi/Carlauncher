@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/profiling"))
 from replay import validate_results
+from preflight import differences
 
 
 def write_reports(output, title, checks, details):
@@ -32,7 +33,7 @@ def write_reports(output, title, checks, details):
     github_run = (f"{os.getenv('GITHUB_SERVER_URL', 'https://github.com')}/{os.getenv('GITHUB_REPOSITORY')}/actions/runs/{os.getenv('GITHUB_RUN_ID')}"
                   if os.getenv('GITHUB_RUN_ID') else None)
     result = {'commit': os.getenv('CI_COMMIT_SHA') or os.getenv('GITHUB_SHA'), 'job': os.getenv('CI_JOB_URL') or github_run,
-              'runner': {'id': os.getenv('CI_RUNNER_ID'), 'name': os.getenv('CI_RUNNER_DESCRIPTION'),
+              'runner': {'id': os.getenv('CI_RUNNER_ID'), 'name': os.getenv('CI_RUNNER_DESCRIPTION') or os.getenv('RUNNER_NAME'),
                          'image': os.getenv('CI_JOB_IMAGE'), 'platform': platform.platform()},
               'checks': checks, 'details': details}
     (output / 'summary.json').write_text(json.dumps(result, indent=2, allow_nan=False), encoding='utf-8')
@@ -109,6 +110,20 @@ def baseline():
     return data
 
 
+def runner_check(kind, base):
+    if os.getenv('GITHUB_ACTIONS') == 'true':
+        expected = os.getenv('BASELINE_GITHUB_RUNNER_NAME', '')
+        actual = os.getenv('RUNNER_NAME', '')
+        passed = bool(expected) and actual == expected
+        message = f'Approved same-host GitHub runner: expected={expected!r}; actual={actual!r}'
+    else:
+        expected = base['runner_ids'][kind]
+        actual = os.getenv('CI_RUNNER_ID')
+        passed = actual == expected
+        message = f'GitLab runner: expected={expected!r}; actual={actual!r}'
+    return ('baseline_runner', 'passed' if passed else 'failed', message)
+
+
 def compare(checks, name, current, reference, percent, unit, source, absolute=0):
     values = (current, reference, percent, absolute)
     if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in values) or reference <= 0 or current < 0 or percent < 0 or absolute < 0:
@@ -140,7 +155,7 @@ def jmh(input_file, output):
     checks.append(('measurements_present', 'passed' if len(data) >= 4 else 'failed', f'{len(data)} benchmarks'))
     base = baseline()
     if os.getenv('CI'):
-        checks.append(('baseline_runner', 'passed' if os.getenv('CI_RUNNER_ID') == base['runner_ids']['jmh'] else 'failed', 'Expected runner ' + base['runner_ids']['jmh']))
+        checks.append(runner_check('jmh', base))
     expected = base['jmh']
     names = [item['benchmark'] for item in data]
     checks.append(('baseline_benchmark_set', 'passed' if len(names) == len(set(names)) and set(names) == set(expected) else 'failed', str(names)))
@@ -156,11 +171,22 @@ def jmh(input_file, output):
     return write_reports(output, 'JVM performance (JMH)', checks, measurements)
 
 
-def simpleperf(input_dir, output):
+def simpleperf(input_dir, output, exit_code=0):
+    preflight_file = input_dir / 'preflight.json'
+    if preflight_file.exists():
+        preflight = json.loads(preflight_file.read_text(encoding='utf-8'))
+        if not preflight['passed']:
+            checks = [(f"preflight.{stage['stage']}.{item['field']}", 'failed',
+                       f"expected={json.dumps(item['expected'])}; actual={json.dumps(item['actual'])}")
+                      for stage in preflight['stages'] for item in stage['differences']]
+            return write_reports(output, 'simpleperf preflight failed (not sampled)', checks, preflight)
+    if exit_code:
+        return write_reports(output, 'simpleperf execution failed',
+                             [('recording_process', 'failed', f'exit={exit_code}; see job log')], {})
     summary = json.loads((input_dir / 'summary.json').read_text(encoding='utf-8'))
     metadata = json.loads((input_dir / 'metadata.json').read_text(encoding='utf-8'))
     valid = summary['samples'] > 0 and summary['sampled_cpu_seconds'] > 0
-    provenance = metadata.get('git_head') == os.getenv('CI_COMMIT_SHA', metadata.get('git_head'))
+    provenance = metadata.get('git_head') == (os.getenv('CI_COMMIT_SHA') or os.getenv('GITHUB_SHA') or metadata.get('git_head'))
     checks = [('actual_cpu_samples', 'passed' if valid else 'failed',
                f"samples={summary['samples']}, sampled_user_cpu_seconds={summary['sampled_cpu_seconds']}"),
               ('dashboard_actions_executed', 'passed' if metadata.get('recorded_actions', 0) > 0 else 'failed',
@@ -169,14 +195,15 @@ def simpleperf(input_dir, output):
               ]
     base = baseline()
     if os.getenv('CI'):
-        checks.append(('baseline_runner', 'passed' if os.getenv('CI_RUNNER_ID') == base['runner_ids']['simpleperf'] else 'failed', 'Expected runner ' + base['runner_ids']['simpleperf']))
+        checks.append(runner_check('simpleperf', base))
     ref = base['simpleperf']
     command = metadata.get('record_command', [])
     options = command[command.index('-r') + 1] if '-r' in command else None
     checks.append(('baseline_record_options', 'passed' if options == ref['record_options'] else 'failed', str(options)))
-    compatible = all(metadata.get(k) == v for k, v in ref['config'].items()) and summary.get('event') == ref['event']
+    mismatches = differences(dict(ref['config'], event=ref['event']), dict(metadata, event=summary.get('event')))
+    compatible = not mismatches
     checks.append(('baseline_device_and_scenario', 'passed' if compatible else 'failed',
-                   'Device, screen, scenario, duration and warmup must match baseline'))
+                   json.dumps(mismatches) if mismatches else 'All device and scenario fields match baseline'))
     # A slower workload must not pass just because it performed fewer actions.
     action_ratio = metadata.get('recorded_actions', 0) / ref['actions']
     checks.append(('workload_comparable', 'passed' if 0.95 <= action_ratio <= 1.05 else 'failed',
@@ -216,17 +243,23 @@ def simpleperf(input_dir, output):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('kind', choices=('review', 'jmh', 'simpleperf'))
+    parser.add_argument('kind', choices=('review', 'jmh', 'simpleperf', 'runner'))
+    parser.add_argument('--benchmark', choices=('jmh', 'simpleperf'))
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--input', type=Path)
     parser.add_argument('--exit-code', type=int, default=0)
     args = parser.parse_args()
     try:
+        if args.kind == 'runner':
+            if not args.benchmark:
+                raise ValueError('--benchmark is required for runner validation')
+            return write_reports(args.output, 'Performance runner preflight',
+                                 [runner_check(args.benchmark, baseline())], {})
         if args.kind == 'review':
             return review(args.output, args.exit_code)
         if args.kind == 'jmh':
             return jmh(args.input, args.output)
-        return simpleperf(args.input, args.output)
+        return simpleperf(args.input, args.output, args.exit_code)
     except Exception as error:
         write_reports(args.output, args.kind, [('report_generation', 'failed', str(error))], {})
         print(f'Report generation failed: {error}', file=sys.stderr)

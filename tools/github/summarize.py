@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Publish existing review/JUnit results without changing any scanner gates."""
 import html
+import argparse
 import json
 import os
 from pathlib import Path
@@ -9,9 +10,42 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def performance_lines():
+    lines = ['## Performance gates', '']
+    for name, directory in [('JMH', 'build/reports/jvm-performance'),
+                            ('simpleperf', 'build/reports/simpleperf/gitlab')]:
+        paths = list((ROOT / directory).rglob('summary.json'))
+        if not paths:
+            continue
+        lines += [f'### {name}', '', '| Check | Result | Details |', '| --- | --- | --- |']
+        for path in sorted(paths):
+            data = json.loads(path.read_text(encoding='utf-8'))
+            for check, state, message in data['checks']:
+                cells = [html.escape(str(value)).replace('|', '&#124;').replace('\n', ' ')
+                         for value in (check, state, message)]
+                lines.append('| ' + ' | '.join(cells) + ' |')
+        lines += ['']
+    return lines + ['Raw samples, preflight differences, JUnit, HTML and flame graphs are in job artifacts.', '']
+
+
+def publish(document):
+    summary = os.getenv('GITHUB_STEP_SUMMARY')
+    if summary:
+        with Path(summary).open('a', encoding='utf-8') as stream:
+            stream.write(document)
+    else:
+        print(document)
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--performance-only', action='store_true')
+    args = parser.parse_args()
+    if args.performance_only:
+        publish('\n'.join(performance_lines()))
+        return
     lines = ['## Android checks', '',
-             'JMH and Android simpleperf run in GitLab only; no performance measurements run here.', '']
+             'JMH and Android simpleperf are gated in separate baseline-host jobs on trusted default-branch runs.', '']
     review = ROOT / 'build/reports/code-review/summary.json'
     if review.is_file():
         data = json.loads(review.read_text(encoding='utf-8'))
@@ -39,12 +73,7 @@ def main():
     lines += ['', 'APK/AAR, native provenance, XML/HTML reports and coverage are uploaded as workflow artifacts.',
               'Coverage report generation does not execute the 90%/85% coverage verification gate.', '']
     document = '\n'.join(lines)
-    summary = os.getenv('GITHUB_STEP_SUMMARY')
-    if summary:
-        with Path(summary).open('a', encoding='utf-8') as stream:
-            stream.write(document)
-    else:
-        print(document)
+    publish(document)
 
 
 if __name__ == '__main__':

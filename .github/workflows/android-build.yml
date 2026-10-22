@@ -10,9 +10,90 @@ permissions:
 
 concurrency:
   group: android-build-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  # Do not interrupt an in-flight device recording on a newer push.
+  cancel-in-progress: false
 
 jobs:
+  # Use the existing baseline hosts; hosted VMs are not comparable to this baseline.
+  performance-build:
+    name: Baseline-host JMH and profiling payload
+    if: ${{ github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    needs: [build, ui-regression]
+    runs-on: [self-hosted, Linux, X64, carlauncher-docker]
+    concurrency:
+      group: carlauncher-jmh
+      cancel-in-progress: false
+    timeout-minutes: 60
+    env:
+      BASELINE_GITHUB_RUNNER_NAME: ${{ vars.BASELINE_GITHUB_JMH_RUNNER_NAME }}
+      GRADLE_DOWNLOAD_URL: https://mirrors.cloud.tencent.com/gradle/gradle-9.5.0-bin.zip
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: CarLauncher-native-x86_64-${{ github.run_number }}
+          path: build/native/artifact/
+      - name: Build profiling payload and enforce JMH in baseline Docker image
+        run: bash tools/github/run-performance-build.sh
+      - name: Upload profiling APK and native symbols
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-performance-inputs-${{ github.run_number }}
+          path: |
+            app/build/outputs/apk/profiling/app-profiling.apk
+            someip-android/build/intermediates/cxx/RelWithDebInfo/**/obj/x86_64/*.so
+          if-no-files-found: error
+          retention-days: 14
+      - name: Publish performance summary
+        if: ${{ always() }}
+        run: python3 tools/github/summarize.py --performance-only
+      - name: Upload JMH reports even on failure
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-jmh-${{ github.run_number }}
+          path: |
+            build/reports/jvm-performance/
+            app/build/reports/jmh/
+          retention-days: 14
+
+  simpleperf:
+    name: Android baseline-device simpleperf
+    needs: performance-build
+    runs-on: [self-hosted, Windows, X64, carlauncher-device]
+    timeout-minutes: 20
+    concurrency:
+      group: aaos-simpleperf-device
+      cancel-in-progress: false
+    env:
+      PERF_SERIAL: emulator-5554
+      BASELINE_GITHUB_RUNNER_NAME: ${{ vars.BASELINE_GITHUB_SIMPLEPERF_RUNNER_NAME }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: CarLauncher-performance-inputs-${{ github.run_number }}
+          path: .
+      - name: Verify device and scenario, then record and enforce budget
+        shell: pwsh
+        run: ./tools/gitlab/run-simpleperf.ps1
+      - name: Publish performance summary
+        if: ${{ always() }}
+        run: python tools/github/summarize.py --performance-only
+      - name: Upload preflight, samples, flame graph and JUnit
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-simpleperf-${{ github.run_number }}
+          path: build/reports/simpleperf/
+          if-no-files-found: warn
+          retention-days: 14
+
   ui-regression:
     name: Windows screenshot regression
     runs-on: windows-2022

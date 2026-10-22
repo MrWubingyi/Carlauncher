@@ -119,6 +119,9 @@ Gradle 缓存目录访问失败需要修复该目录权限或按执行环境授�
 
 ## CI 与设备验证
 
+本地 GitLab、Docker/设备 Runner 的完整部署与源码分享步骤见
+[本地 GitLab 与 Android CI 搭建指南](tools/gitlab/README.md)。
+
 GitHub 的 [Android Build](.github/workflows/android-build.yml) 构建原生库、APK/AAR，
 运行静态检查、单元测试、分层检查、APK 校验并生成覆盖率报告。
 GitHub 同时构建 Profiling APK 并运行其 Lint，Actions Summary 展示静态审查与测试汇总，

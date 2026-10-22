@@ -1,122 +1,187 @@
-# Explicit source-only rules. A finding fails the build; no baseline is used.
+# Kotlin 源码检查规则；扫描范围由 Gradle 配置，违规使构建失败，不使用 baseline。
+# active 启用对应规则组或规则；includes/excludes 仅限定所属规则的文件范围。
+# 校验规则配置，尽早发现无效规则名或属性。
 config:
+  # 启用配置校验。
   validation: true
+  # 将配置校验警告视为错误（不是源码规则的严重级别设置）。
   warningsAsErrors: true
 
+# 复杂度与可维护性检查。
 complexity:
   active: true
+  # 限制单个条件表达式中的条件数量。
   ComplexCondition:
     active: true
+    # 最多允许 4 个条件。
     allowedConditions: 4
+  # 限制方法的圈复杂度，控制分支带来的理解与测试成本。
   CyclomaticComplexMethod:
     active: true
+    # 允许的圈复杂度上限为 20。
     allowedComplexity: 20
+    # 忽略仅包含单个 when 表达式的方法。
     ignoreSingleWhenExpression: true
+    # 计算复杂度时忽略简单的 when 分支。
     ignoreSimpleWhenEntries: true
+    # 计算复杂度时不计入规则识别的嵌套作用域函数。
     ignoreNestingFunctions: true
+    # 带有下列注解的声明不参与本条规则检查。
     ignoreAnnotated: ['Composable']
+    # 本条规则排除 JVM 测试和设备测试目录。
     excludes: ['**/test/**', '**/androidTest/**']
+  # 限制方法长度，避免职责过于集中。
   LongMethod:
     active: true
+    # 允许的方法长度上限为 80 行，按规则的行数统计方式计算。
     allowedLines: 80
+    # 带有下列注解的声明不参与本条规则检查。
     ignoreAnnotated: ['Composable']
+    # 本条规则排除 JVM 测试和设备测试目录。
     excludes: ['**/test/**', '**/androidTest/**']
+  # 限制代码块嵌套深度。
   NestedBlockDepth:
     active: true
+    # 允许的嵌套深度上限为 5。
     allowedDepth: 5
+    # 带有下列注解的声明不参与本条规则检查。
     ignoreAnnotated: ['Composable']
+    # 本条规则排除 JVM 测试和设备测试目录。
     excludes: ['**/test/**', '**/androidTest/**']
 
+# 检查可能遗漏实现的空代码块。
 empty-blocks:
   active: true
+  # 检查空 catch，避免意外忽略异常。
   EmptyCatchBlock:
     active: true
+    # 异常变量名为 _ 或以 ignore/expected 开头时允许有意忽略异常。
     allowedExceptionNameRegex: '_|(ignore|expected).*'
+  # 检查空 do-while 循环体。
   EmptyDoWhileBlock:
     active: true
+  # 检查空 else 分支。
   EmptyElseBlock:
     active: true
+  # 检查空 finally 块。
   EmptyFinallyBlock:
     active: true
+  # 检查空 for 循环体。
   EmptyForBlock:
     active: true
+  # 检查空函数体。
   EmptyFunctionBlock:
     active: true
+    # 允许重写方法保留空实现。
     ignoreOverridden: true
+  # 检查空 if 分支。
   EmptyIfBlock:
     active: true
+  # 检查空初始化块。
   EmptyInitBlock:
     active: true
+  # 检查空 try 块。
   EmptyTryBlock:
     active: true
+  # 检查空 when 块。
   EmptyWhenBlock:
     active: true
+  # 检查空 while 循环体。
   EmptyWhileBlock:
     active: true
 
+# 异常处理检查：保留诊断信息并避免掩盖失败。
 exceptions:
   active: true
+  # 检查 TODO 等未实现声明。
   NotImplementedDeclaration:
     active: true
+  # 禁止直接调用 printStackTrace，使用项目日志机制记录异常。
   PrintStackTrace:
     active: true
+  # 检查捕获后不做处理就直接重新抛出的异常。
   RethrowCaughtException:
     active: true
+  # 检查吞掉异常或丢失原始异常信息的处理。
   SwallowedException:
     active: true
+    # 异常变量名为 _ 或以 ignore/expected 开头时允许有意忽略异常。
     allowedExceptionNameRegex: '_|(ignore|expected).*'
+  # 禁止在 finally 中抛异常，避免覆盖原始异常。
   ThrowingExceptionFromFinally:
     active: true
+  # 检查缺少消息和原因的异常构造。
   ThrowingExceptionsWithoutMessageOrCause:
     active: true
+    # 本条规则排除 JVM 测试和设备测试目录。
     excludes: ['**/test/**', '**/androidTest/**']
+  # 检查捕获后重新创建并抛出同类型异常的写法。
   ThrowingNewInstanceOfSameException:
     active: true
+  # 限制捕获范围过大的异常类型；本项目禁用的类型见 exceptionNames。
   TooGenericExceptionCaught:
     active: true
-    # Framework and transport boundaries may catch Exception/RuntimeException.
-    # VM errors must propagate; catch a specific native linkage error if needed.
+    # 框架与传输边界允许捕获 Exception/RuntimeException。
+    # 禁止笼统捕获 Throwable/Error；需要处理原生链接错误时应捕获具体类型。
     exceptionNames: ['Throwable', 'Error']
+    # 不按异常变量名豁免上述宽泛类型的捕获。
     allowedExceptionNameRegex: '^$'
+  # 检查抛出过于宽泛的异常类型，具体类型列表使用规则默认值。
   TooGenericExceptionThrown:
     active: true
 
+# 命名规范；未显式设置的命名模式使用规则默认值。
 naming:
   active: true
+  # 检查类名的大驼峰命名。
   ClassNaming:
     active: true
+  # 检查函数命名；Compose 函数与测试方法使用下方注解豁免。
   FunctionNaming:
     active: true
+    # 带有下列注解的声明不参与本条规则检查。
     ignoreAnnotated: ['Composable', 'Test']
+  # 检查函数参数的小驼峰命名。
   FunctionParameterNaming:
     active: true
+  # 检查包名格式。
   PackageNaming:
     active: true
 
+# 通用编码风格及生产代码协程使用约束。
 style:
   active: true
+  # 禁止生产代码导入下列协程 API；测试代码允许使用。
   ForbiddenImport:
     active: true
+    # 本条规则排除 JVM 测试和设备测试目录。
     excludes: ['**/test/**', '**/androidTest/**']
+    # GlobalScope 缺少生命周期归属；runBlocking 会阻塞调用线程。
     forbiddenImports:
       - value: 'kotlinx.coroutines.GlobalScope'
         reason: 'Use a lifecycle-owned scope so work can be cancelled.'
       - value: 'kotlinx.coroutines.runBlocking'
         reason: 'Do not block Android production threads; use suspending calls.'
+  # 循环体必须使用大括号。
   MandatoryBracesLoops:
     active: true
+  # 文件末尾保留换行符。
   NewLineAtEndOfFile:
     active: true
 
-# Public SOME/IP API only; internal implementation and test source sets stay outside this gate.
+# 文档门禁仅覆盖下方路径中的 SOME/IP 公共 API（含嵌套公开类型）。
+# internal 实现、测试和 app 不在此门禁范围内；文档语义准确性仍需人工审查。
 comments:
   active: true
+  # 公开类型必须提供 KDoc。
   UndocumentedPublicClass:
     active: true
     includes: ['**/someip-android/src/main/java/com/example/someip/*.kt']
+  # 公开函数必须提供 KDoc。
   UndocumentedPublicFunction:
     active: true
     includes: ['**/someip-android/src/main/java/com/example/someip/*.kt']
+  # 检查已有 KDoc 的参数、属性等标签是否与声明一致。
   OutdatedDocumentation:
     active: true
     includes: ['**/someip-android/src/main/java/com/example/someip/*.kt']

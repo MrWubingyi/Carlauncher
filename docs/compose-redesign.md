@@ -23,7 +23,7 @@
 
 - `:app:assembleDebug`：编译安装。
 - `:app:testDebugUnitTest`：现有 JVM 回归。
-- `:app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.carlauncher.ComposeDashboardTest`：温度/模式及重建恢复、地图返回、五页导航、媒体队列和边界、实时数据替换/断线清空。
+- `:app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.zqautomotive.launcher.ComposeDashboardTest`：温度/模式及重建恢复、地图返回、五页导航、媒体队列和边界、实时数据替换/断线清空。
 - 实机截图与执行记录保存在本地 `evidence/compose-redesign/`；该目录按项目既有规则不提交。
 
 2026-09-28 验证结果：Debug 构建通过；220 项 JVM 测试通过；7 项 Compose 设备测试通过（含首次点击启动真实 Service、停止解绑）；Lint 为 0 错误、58 警告、7 提示。设备为 Android 15 Automotive 模拟器。手动 SOME/IP 联调收到 ONLINE、96 km/h、3200 rpm、70% 电量；实时数据展示与原服务一致。

@@ -16,7 +16,7 @@
     "jmh_allocation_absolute_bytes": 1
   },
   "jmh": {
-    "com.example.carlauncher.perf.VehicleBenchmarks.decodeBinary": {
+    "com.zqautomotive.launcher.perf.VehicleBenchmarks.decodeBinary": {
       "score": 8.848585049617771,
       "unit": "ns/op",
       "allocation": 64.00006114355747,
@@ -32,7 +32,7 @@
         "threads": 1
       }
     },
-    "com.example.carlauncher.perf.VehicleBenchmarks.decodeSnapshot": {
+    "com.zqautomotive.launcher.perf.VehicleBenchmarks.decodeSnapshot": {
       "score": 6803.865191038322,
       "unit": "ns/op",
       "allocation": 5704.047060587338,
@@ -48,7 +48,7 @@
         "threads": 1
       }
     },
-    "com.example.carlauncher.perf.VehicleBenchmarks.encodeBinary": {
+    "com.zqautomotive.launcher.perf.VehicleBenchmarks.encodeBinary": {
       "score": 5.0702688379867125,
       "unit": "ns/op",
       "allocation": 32.00003503604851,
@@ -64,7 +64,7 @@
         "threads": 1
       }
     },
-    "com.example.carlauncher.perf.VehicleBenchmarks.validateState": {
+    "com.zqautomotive.launcher.perf.VehicleBenchmarks.validateState": {
       "score": 2.537138907690603,
       "unit": "ns/op",
       "allocation": 1.747116801863805e-05,

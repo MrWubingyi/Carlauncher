@@ -41,7 +41,7 @@ timeout -s INT 90 tcpdump -U -ni ens33 'udp port 30509' -w method-probe.pcap
 确认模拟器当前 IPv4，然后在 CarLauncher 根目录运行：
 
 ```powershell
-.\gradlew.bat :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=com.example.vehicle.someip.android.jni.VsomeipNativeProbeTest#requestResponseRejectAndRestart' '-Pandroid.testInstrumentationRunnerArguments.someipPeer=192.168.31.248' '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.0.2.16' --offline
+.\gradlew.bat :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=com.zqautomotive.vehicle.someip.android.jni.VsomeipNativeProbeTest#requestResponseRejectAndRestart' '-Pandroid.testInstrumentationRunnerArguments.someipPeer=192.168.31.248' '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.0.2.16' --offline
 ```
 
 测试配置写入应用私有 `vsomeip-probe.json`，不会覆盖 Service 使用的配置。
@@ -53,7 +53,7 @@ Client ID / Session ID，TX 另外提供应用 seq 和完整 payload hex，可�
 独立验证 native 注册和启停（不要求 Ubuntu 对端可用）：
 
 ```powershell
-.\gradlew.bat :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=com.example.vehicle.someip.android.jni.VsomeipNativeProbeTest#nativeRegistrationAndRepeatedStopAreSafe' '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.0.2.16' '-Pandroid.testInstrumentationRunnerArguments.someipLifecycle=true' --offline
+.\gradlew.bat :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=com.zqautomotive.vehicle.someip.android.jni.VsomeipNativeProbeTest#nativeRegistrationAndRepeatedStopAreSafe' '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.0.2.16' '-Pandroid.testInstrumentationRunnerArguments.someipLifecycle=true' --offline
 ```
 
 普通设备测试不会启用上述两个探针，JUnit 将其记录为跳过；真实运行结果必须单独记录。

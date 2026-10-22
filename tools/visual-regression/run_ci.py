@@ -11,7 +11,7 @@ import time
 import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
-TEST = "com.example.carlauncher.ui.screenshot.HomeScreenshotTest"
+TEST = "com.zqautomotive.launcher.ui.screenshot.HomeScreenshotTest"
 
 
 def run_command(command, log):

@@ -1,13 +1,13 @@
-package com.example.carlauncher.ui.compose
+package com.zqautomotive.launcher.ui.compose
 
 import android.content.Context
 import android.view.View
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor
 import androidx.lifecycle.ViewModelStore
-import com.example.carlauncher.ui.home.host.LauncherConnection
-import com.example.carlauncher.ui.home.map.MapTask
-import com.example.carlauncher.ui.home.map.MapTaskFactory
+import com.zqautomotive.launcher.ui.home.host.LauncherConnection
+import com.zqautomotive.launcher.ui.home.map.MapTask
+import com.zqautomotive.launcher.ui.home.map.MapTaskFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher

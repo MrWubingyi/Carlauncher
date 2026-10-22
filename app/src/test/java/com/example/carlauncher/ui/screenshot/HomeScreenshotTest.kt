@@ -1,4 +1,4 @@
-package com.example.carlauncher.ui.screenshot
+package com.zqautomotive.launcher.ui.screenshot
 
 import android.app.Application
 import androidx.activity.ComponentActivity
@@ -11,15 +11,15 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.lifecycle.ViewModelStore
 import com.dropbox.differ.SimpleImageComparator
-import com.example.carlauncher.data.DataSourceStatus
-import com.example.carlauncher.model.DataValidity
-import com.example.carlauncher.model.VehicleState
-import com.example.carlauncher.service.VehicleSendService
-import com.example.carlauncher.ui.compose.CarLauncherScreen
-import com.example.carlauncher.ui.compose.CarLauncherViewModel
-import com.example.carlauncher.ui.compose.components.DashboardClock
-import com.example.carlauncher.ui.compose.components.LocalDashboardClock
-import com.example.vehicle.someip.adapter.SomeipConnectionMonitor
+import com.zqautomotive.launcher.data.DataSourceStatus
+import com.zqautomotive.launcher.model.DataValidity
+import com.zqautomotive.launcher.model.VehicleState
+import com.zqautomotive.launcher.service.VehicleSendService
+import com.zqautomotive.launcher.ui.compose.CarLauncherScreen
+import com.zqautomotive.launcher.ui.compose.CarLauncherViewModel
+import com.zqautomotive.launcher.ui.compose.components.DashboardClock
+import com.zqautomotive.launcher.ui.compose.components.LocalDashboardClock
+import com.zqautomotive.vehicle.someip.adapter.SomeipConnectionMonitor
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
 import com.github.takahirom.roborazzi.captureScreenRoboImage

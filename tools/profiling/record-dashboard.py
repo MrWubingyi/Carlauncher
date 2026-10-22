@@ -16,8 +16,8 @@ from replay import shell_script, parse_output, validate_results
 from preflight import SCENARIO, check as check_preflight, device_config
 
 ROOT = Path(__file__).resolve().parents[2]
-PACKAGE = "com.example.carlauncher.profiling"
-ACTIVITY = PACKAGE + "/com.example.carlauncher.ui.home.ComposeMainActivity"
+PACKAGE = "com.zqautomotive.launcher.profiling"
+ACTIVITY = PACKAGE + "/com.zqautomotive.launcher.ui.home.ComposeMainActivity"
 
 
 def run(command, **kwargs):

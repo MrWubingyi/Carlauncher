@@ -69,7 +69,7 @@ Get-Content -Raw .\tools\someip-probe\socket-tap-sd-probe.py |
 
 ```powershell
 .\gradlew.bat :app:connectedDebugAndroidTest --offline `
-  '-Pandroid.testInstrumentationRunnerArguments.class=com.example.carlauncher.someip.VsomeipNativeProbeTest#discoversServiceAndExchangesMethods' `
+  '-Pandroid.testInstrumentationRunnerArguments.class=com.zqautomotive.launcher.someip.VsomeipNativeProbeTest#discoversServiceAndExchangesMethods' `
   '-Pandroid.testInstrumentationRunnerArguments.someipSd=true' `
   '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.203.0.2'
 ```

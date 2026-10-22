@@ -1,0 +1,46 @@
+package com.zqautomotive.launcher.data
+
+import com.zqautomotive.vehicle.control.VehicleAction
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.zqautomotive.launcher.service.VehicleSendService
+import com.zqautomotive.launcher.ui.CockpitUiState
+
+class VehicleRepository {
+
+    private val uiState: MutableLiveData<CockpitUiState?> =
+        MutableLiveData<CockpitUiState?>(CockpitUiState.initial())
+    private var vehicleService: VehicleSendService? = null
+
+    fun getUiState(): LiveData<CockpitUiState?> = uiState
+
+    fun attachService(service: VehicleSendService?) {
+        vehicleService = service
+        refresh()
+    }
+
+    fun detachService() {
+        vehicleService = null
+        uiState.setValue(CockpitUiState.initial())
+    }
+
+    fun requestControl(action: VehicleAction) { vehicleService?.requestControl(action) }
+
+    fun refresh() {
+        val service = vehicleService
+        if (service == null) {
+            uiState.setValue(CockpitUiState.initial())
+            return
+        }
+        uiState.setValue(
+            CockpitUiState(
+                service!!.getLatestVehicleState(),
+                service!!.getSourceStatus(),
+                true,
+                service!!.someipStatus,
+                service!!.dataValidity,
+                service.controlSnapshot(),
+            )
+        )
+    }
+}

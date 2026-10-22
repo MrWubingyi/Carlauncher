@@ -1,4 +1,4 @@
-package com.example.carlauncher.ui.home.cards
+package com.zqautomotive.launcher.ui.home.cards
 
 import androidx.lifecycle.SavedStateHandle
 import org.junit.Assert.*

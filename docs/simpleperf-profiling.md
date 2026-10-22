@@ -9,7 +9,7 @@
 | 配置 | 值及作用 |
 | --- | --- |
 | Gradle 构建类型 | `profiling`，通过 `initWith(release)` 继承当前 release 配置 |
-| 包名 / 版本后缀 | `com.example.carlauncher.profiling` / `-profiling`，可与普通应用共存 |
+| 包名 / 版本后缀 | `com.zqautomotive.launcher.profiling` / `-profiling`，可与普通应用共存 |
 | 桌面名称 / 签名 | CarLauncher Profiling / Debug 签名，便于本地安装 |
 | 调试及插桩 | `isDebuggable = false`，关闭 Android 测试和 JVM 测试覆盖率 |
 | Manifest | 仅 `app/src/profiling/AndroidManifest.xml` 声明 `<profileable android:shell="true" />` |

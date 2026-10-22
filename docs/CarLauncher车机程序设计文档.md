@@ -35,7 +35,7 @@ Network/About 目前是详情容器入口，未实现服务器配置和完整关
 
 | 项目 | 当前配置 |
 |---|---|
-| 应用 ID / namespace | com.example.carlauncher |
+| 应用 ID / namespace | com.zqautomotive.launcher |
 | 应用版本 | versionCode=1，versionName=1.0 |
 | 模块 | 单一 app 模块 |
 | 业务语言 | Java；Gradle 使用 Kotlin DSL |

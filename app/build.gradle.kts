@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.carlauncher"
+    namespace = "com.zqautomotive.launcher"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -17,11 +17,12 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.carlauncher"
+        applicationId = "com.zqautomotive.launcher"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        // 车机上已有同名系统桌面 versionCode=5；覆盖升级必须不低于 6。
+        versionCode = 6
+        versionName = "1.0.0.6"
 
         ndk {
             abiFilters += listOf("x86_64")
@@ -137,7 +138,7 @@ tasks.register<JavaExec>("jvmPerformanceReport") {
     mainClass.set("org.openjdk.jmh.Main")
     val report = layout.buildDirectory.file("reports/jmh/results.json")
     doFirst { report.get().asFile.parentFile.mkdirs() }
-    args("com.example.carlauncher.perf.VehicleBenchmarks", "-wi", "3", "-i", "5",
+    args("com.zqautomotive.launcher.perf.VehicleBenchmarks", "-wi", "3", "-i", "5",
         "-w", "1s", "-r", "1s", "-f", "2", "-t", "1", "-foe", "true",
         "-prof", "gc", "-rf", "json", "-rff", report.get().asFile.absolutePath,
         "-jvmArgs", "-Xms256m -Xmx512m")

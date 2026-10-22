@@ -40,4 +40,4 @@ Car/VHAL 的实际连接仍在既有 `VehicleSendService` 数据源链路中，V
 
 `CarLauncherApplication` 和跨页面使用的 `ThemePreferences` 保留在应用根包。现有 Compose 组件仍位于 `ui/compose/`，数据库实现仍位于 `data/local/`。资源文件继续遵循 Android 的 `res/layout` 等目录约定。
 
-Manifest、显式 Intent 的类引用、Service 通知返回首页的入口和布局预览的 `tools:context` 已使用新包名。应用 ID 与 Activity 类名保持不变；外部若通过完整组件名启动页面，需要使用新包名，例如 `com.example.carlauncher/.ui.home.ComposeMainActivity`。
+Manifest、显式 Intent 的类引用、Service 通知返回首页的入口和布局预览的 `tools:context` 已使用新包名。应用 ID 与 Activity 类名保持不变；外部若通过完整组件名启动页面，需要使用新包名，例如 `com.zqautomotive.launcher/.ui.home.ComposeMainActivity`。

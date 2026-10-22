@@ -43,7 +43,7 @@ flowchart LR
 | app `VSomeIpDataSource` / mapper | watchdog 调度、状态映射、发布 `VehicleState` | 报文解析、native 调用 |
 
 应用只通过 `implementation(project(":someip-android"))` 依赖库。库不依赖 `:app`、
-`com.example.vehicle` 或 `com.example.carlauncher`；边界脚本已加入 CI。
+`com.example.vehicle` 或 `com.zqautomotive.launcher`；边界脚本已加入 CI。
 应用的 `NativeVehicleTransport` 是车辆适配器使用的窄接口，
 `VSomeIpNativeTransport` 负责将库的通用事件转换到这个接口。
 

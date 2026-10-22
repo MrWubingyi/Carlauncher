@@ -63,7 +63,7 @@ helper 不带 `--network-only` 的旧行为仅用于隔离自动测试：它会�
 网络和服务都准备好后，显式专项测试命令为：
 
 ```powershell
-.\gradlew.bat :app:connectedDebugAndroidTest --offline '-Pandroid.testInstrumentationRunnerArguments.class=com.example.carlauncher.service.VehicleEventProbeTest' '-Pandroid.testInstrumentationRunnerArguments.someipEvents=true'
+.\gradlew.bat :app:connectedDebugAndroidTest --offline '-Pandroid.testInstrumentationRunnerArguments.class=com.zqautomotive.launcher.service.VehicleEventProbeTest' '-Pandroid.testInstrumentationRunnerArguments.someipEvents=true'
 ```
 
 该测试会自动操作并关闭测试 Activity；手动看 UI 时使用 app → Run。

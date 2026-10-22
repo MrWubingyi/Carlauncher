@@ -1,8 +1,8 @@
-package com.example.carlauncher.data.local
+package com.zqautomotive.launcher.data.local
 
-import com.example.carlauncher.data.remote.NetworkRecord
-import com.example.carlauncher.data.remote.NetworkRecordsStore
-import com.example.carlauncher.data.remote.RecordsSaveException
+import com.zqautomotive.launcher.data.remote.NetworkRecord
+import com.zqautomotive.launcher.data.remote.NetworkRecordsStore
+import com.zqautomotive.launcher.data.remote.RecordsSaveException
 import kotlinx.coroutines.runBlocking
 import org.json.JSONException
 import org.junit.Assert.*

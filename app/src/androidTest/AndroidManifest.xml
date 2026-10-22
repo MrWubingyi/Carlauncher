@@ -3,10 +3,10 @@
     <!-- Runs as the test APK's own UID, not inside the instrumented app process. -->
     <application>
         <activity
-            android:name="com.example.carlauncher.shareprobe.JsonShareReceiverActivity"
+            android:name="com.zqautomotive.launcher.shareprobe.JsonShareReceiverActivity"
             android:exported="true"
             android:label="JSON Share Probe"
-            android:taskAffinity="com.example.carlauncher.test.jsonshare"
+            android:taskAffinity="com.zqautomotive.launcher.test.jsonshare"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

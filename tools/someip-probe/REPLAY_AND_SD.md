@@ -29,7 +29,7 @@ Android 启用 SD 时持有 Wi-Fi MulticastLock，在启动失败或停止时释
 `CHANGE_WIFI_MULTICAST_STATE`。组播锁只能取消设备的 Wi-Fi 接收过滤，不能代替网络设备转发组播。
 
 ```powershell
-.\gradlew.bat :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=com.example.vehicle.someip.android.jni.VsomeipNativeProbeTest#discoversServiceAndExchangesMethods' '-Pandroid.testInstrumentationRunnerArguments.someipSd=true' '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.0.2.16' --offline
+.\gradlew.bat :app:connectedDebugAndroidTest '-Pandroid.testInstrumentationRunnerArguments.class=com.zqautomotive.vehicle.someip.android.jni.VsomeipNativeProbeTest#discoversServiceAndExchangesMethods' '-Pandroid.testInstrumentationRunnerArguments.someipSd=true' '-Pandroid.testInstrumentationRunnerArguments.someipLocal=10.0.2.16' --offline
 ```
 
 Ubuntu 的 `run-sd-probe.sh` 将服务和 `ens33` 抓包限制为 60 秒（再留 5 秒强制退出期限）。

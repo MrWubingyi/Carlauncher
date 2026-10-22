@@ -68,7 +68,7 @@ JVM：
 .\gradlew.bat :app:assembleDebug :app:assembleDebugAndroidTest --offline --no-daemon --max-workers=2
 adb -s emulator-5554 install -r --user 10 app\build\outputs\apk\debug\app-debug.apk
 adb -s emulator-5554 install -r --user 10 app\build\outputs\apk\androidTest\debug\app-debug-androidTest.apk
-adb -s emulator-5554 shell am instrument --user 10 -w -r -e class 'com.example.carlauncher.ui.lab.database.SnapshotShareActivityTest,com.example.carlauncher.data.provider.SnapshotFileProviderTest' com.example.carlauncher.test/androidx.test.runner.AndroidJUnitRunner
+adb -s emulator-5554 shell am instrument --user 10 -w -r -e class 'com.zqautomotive.launcher.ui.lab.database.SnapshotShareActivityTest,com.zqautomotive.launcher.data.provider.SnapshotFileProviderTest' com.zqautomotive.launcher.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
 安装测试 APK 后再次查询应出现 JSON Share Probe。不同设备须先核对实际用户 ID。

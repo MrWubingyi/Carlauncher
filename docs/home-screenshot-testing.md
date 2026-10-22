@@ -29,7 +29,7 @@
 先配置本机完整 JDK 21 的 `JAVA_HOME`。在仓库根目录运行：
 
 ```powershell
-.\gradlew.bat :app:verifyRoborazziDebug --tests 'com.example.carlauncher.ui.screenshot.HomeScreenshotTest' '-Proborazzi.test.compare=true'
+.\gradlew.bat :app:verifyRoborazziDebug --tests 'com.zqautomotive.launcher.ui.screenshot.HomeScreenshotTest' '-Proborazzi.test.compare=true'
 ```
 
 原生 HTML 报告在 `app/build/reports/roborazzi/debug/index.html`，机器结果在
@@ -54,7 +54,7 @@ PowerShell 中带点号的 `-P` 参数必须加引号，避免被拆为 Gradle �
 ```powershell
 python tools/visual-regression/prepare_baseline.py --ref c8a706161d32928a71c83b479ca618fb68debc63 --output build/ui-regression/before-new
 Push-Location build/ui-regression/before-new
-.\gradlew.bat :app:recordRoborazziDebug --tests 'com.example.carlauncher.ui.screenshot.HomeScreenshotTest'
+.\gradlew.bat :app:recordRoborazziDebug --tests 'com.zqautomotive.launcher.ui.screenshot.HomeScreenshotTest'
 Pop-Location
 ```
 
@@ -64,7 +64,7 @@ Pop-Location
 如需同时保留当前截图供并排展示，将 record 输出指向独立的 `build/` 目录，**不能指向基准目录**：
 
 ```powershell
-.\gradlew.bat :app:recordRoborazziDebug --tests 'com.example.carlauncher.ui.screenshot.HomeScreenshotTest' '-PhomeScreenshotDirectory=build/outputs/home-current'
+.\gradlew.bat :app:recordRoborazziDebug --tests 'com.zqautomotive.launcher.ui.screenshot.HomeScreenshotTest' '-PhomeScreenshotDirectory=build/outputs/home-current'
 python tools/visual-regression/report.py --baseline app/src/test/screenshots/home --current app/build/outputs/home-current --manifest build/ui-regression/before-new-source-manifest.json --output build/ui-regression/report
 ```
 

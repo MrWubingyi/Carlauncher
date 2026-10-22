@@ -34,7 +34,6 @@ import com.example.carlauncher.R
 import com.example.carlauncher.ui.compose.CarLauncherUiState
 import com.example.carlauncher.ui.compose.designsystem.HuColors
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 import kotlinx.coroutines.delay
 
@@ -77,8 +76,9 @@ private fun EnergyMeter(label: String, value: String, fraction: Float, icon: Ima
 
 @Composable
 fun WeatherStatus(modifier: Modifier = Modifier, onOpenApps: () -> Unit, onWifi: () -> Unit, onBluetooth: () -> Unit) {
-    var now by remember { mutableStateOf(Date()) }
-    LaunchedEffect(Unit) { while (true) { now = Date(); delay(30_000) } }
+    val clock = LocalDashboardClock.current
+    var now by remember(clock) { mutableStateOf(clock.now()) }
+    LaunchedEffect(clock) { while (true) { now = clock.now(); delay(30_000) } }
     Panel(modifier) {
         BoxWithConstraints(Modifier.fillMaxSize()) {
             val wide = maxWidth > 650.dp

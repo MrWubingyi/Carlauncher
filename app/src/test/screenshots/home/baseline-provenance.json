@@ -1,0 +1,72 @@
+{
+  "reference_commit": "c8a706161d32928a71c83b479ca618fb68debc63",
+  "scope": "Pre-refactor blobs for four files, with identical current unrelated edits and screenshot harness",
+  "replaced": {
+    "app/src/main/java/com/example/carlauncher/ui/home/ComposeMainActivity.kt": {
+      "current_sha256": "68b8c7ad9f9930cd3a9d078596668f382bacd26373fa3edb364ab5c03ab9385d",
+      "baseline_sha256": "addcea0704c43c5dc5fdbf3d5872e4923c9638f4fc6a5abd039e5311bf6cd654",
+      "origin": "c8a706161d32928a71c83b479ca618fb68debc63"
+    },
+    "app/src/main/java/com/example/carlauncher/ui/compose/CarLauncherScreen.kt": {
+      "current_sha256": "c5ebf1fdd5f217ff7cda7971319a5d78b4eafed8eac950118d31ecc4cf40e0ba",
+      "baseline_sha256": "5803f833571e80014726acd033c50e73a7079bc2cd5f19776a1cd3160523d142",
+      "origin": "c8a706161d32928a71c83b479ca618fb68debc63"
+    },
+    "app/src/main/java/com/example/carlauncher/ui/compose/CarLauncherViewModel.kt": {
+      "current_sha256": "895d8006c2c9f6065e6431b7cf4cbbc2be4666f046bb503796b281b86a83b13d",
+      "baseline_sha256": "b00b0e573462a3335b573f68c3e36ad0ab4c77a979270912f010d369822345c1",
+      "origin": "c8a706161d32928a71c83b479ca618fb68debc63"
+    },
+    "app/src/main/java/com/example/carlauncher/ui/compose/components/MapCard.kt": {
+      "current_sha256": "9dfaf7b70d101ca3607cb433fc8320acd0e52bca3ba007f8a93245281c5df73b",
+      "baseline_sha256": "254b9d73064702301c8e399af8e2a33c99052ff49bd0769fb1097114b02c05ed",
+      "origin": "c8a706161d32928a71c83b479ca618fb68debc63"
+    }
+  },
+  "shared_fixture": {
+    "app/build.gradle.kts": {
+      "current_sha256": "c14c0f3a084a2c7ed3b91edf6fba8973ba9a27fe5a50e3955783b36aabddcbc9",
+      "baseline_sha256": "c14c0f3a084a2c7ed3b91edf6fba8973ba9a27fe5a50e3955783b36aabddcbc9",
+      "origin": "current-worktree-shared"
+    },
+    "app/src/main/java/com/example/carlauncher/ui/compose/components/DashboardClock.kt": {
+      "current_sha256": "4b2bd7d52df5f2272c56e86aff17396d5bf206471094fed513c74a6d6f2f22f3",
+      "baseline_sha256": "4b2bd7d52df5f2272c56e86aff17396d5bf206471094fed513c74a6d6f2f22f3",
+      "origin": "current-worktree-shared"
+    },
+    "app/src/main/java/com/example/carlauncher/ui/compose/components/DashboardPanels.kt": {
+      "current_sha256": "b8144ebe9e33bedfabcbbd022cfecc2eea7fa9b973e57be14c0275b2e83df171",
+      "baseline_sha256": "b8144ebe9e33bedfabcbbd022cfecc2eea7fa9b973e57be14c0275b2e83df171",
+      "origin": "current-worktree-shared"
+    },
+    "app/src/test/java/com/example/carlauncher/ui/screenshot/HomeScreenshotTest.kt": {
+      "current_sha256": "2452b377e5820b92f9668ddb8275ae93dc535dae1a1f94f4b370c4c9bdebf415",
+      "baseline_sha256": "2452b377e5820b92f9668ddb8275ae93dc535dae1a1f94f4b370c4c9bdebf415",
+      "origin": "current-worktree-shared"
+    },
+    "gradle/libs.versions.toml": {
+      "current_sha256": "9273c8450c8f883c95da5d82d9ab13650867187666d02b38407d02b8475207c7",
+      "baseline_sha256": "9273c8450c8f883c95da5d82d9ab13650867187666d02b38407d02b8475207c7",
+      "origin": "current-worktree-shared"
+    }
+  },
+  "environment": {
+    "os": "Windows",
+    "jdk": 21,
+    "sdk": 35,
+    "qualifiers": "en-rUS-w1408dp-h792dp-land-mdpi",
+    "timezone": "Asia/Shanghai",
+    "clock": "2026-10-21T10:00:00+08:00",
+    "roborazzi": "1.76.0",
+    "robolectric": "4.17"
+  },
+  "images": {
+    "home_connected.png": "12c947a16d95d7733068e58f20a6caa65033fee1b7ce68b9ec24857c48b9f1c1",
+    "home_demo.png": "2f0fe56b7000a712e6fb49bb2d58051f4bcc0318ff1459cee29bfde7729b82f0",
+    "map_fullscreen.png": "df21c918895af9bbf9dc22dfa93ace055b3f1e6e7419f61263801856b5baf2d8",
+    "media_queue.png": "141a2fe32de3c9e99ddb46c2b35ce5e3c230ae06be8e1806cb0fb47eaba0129a",
+    "vehicle_connected.png": "da351aee5e80c87bd3a106d863098f1844e9bcb390b307e4c0779809e6ce878f",
+    "vehicle_disconnected.png": "01a1d001b4ae05839ce6f2fa0ddc4c0e9b15f5506710b6025aa080044ae39258"
+  },
+  "baseline_reproducibility": "Six images byte-identical across the original and synchronized test fixture runs"
+}

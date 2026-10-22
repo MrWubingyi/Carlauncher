@@ -2,25 +2,24 @@ package com.example.carlauncher.ui.home
 
 import android.Manifest
 import android.app.Activity
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.getValue
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.carlauncher.ui.home.map.MapTaskContainer
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import com.example.carlauncher.R
 import com.example.carlauncher.ThemePreferences
-import com.example.carlauncher.service.VehicleSendService
 import com.example.carlauncher.ui.apps.AppDrawerActivity
 import com.example.carlauncher.ui.compose.CarLauncherScreen
 import com.example.carlauncher.ui.compose.CarLauncherViewModel
@@ -28,12 +27,12 @@ import com.example.carlauncher.ui.lab.broadcast.BroadcastLabActivity
 import com.example.carlauncher.ui.lab.database.DatabaseLabActivity
 import com.example.carlauncher.ui.settings.FragmentLabActivity
 
+/**
+ * Selects the home layout, assembles cards and mounts the optional map task view.
+ * Host/service/task lifetime belongs to CarLauncherViewModel; card logic to HomeCardModule.
+ */
 class ComposeMainActivity : ComponentActivity() {
     private val viewModel: CarLauncherViewModel by viewModels()
-    private var vehicleService: VehicleSendService? = null
-    private var bindingActive = false
-    private val serviceIntent by lazy { Intent(this, VehicleSendService::class.java) }
-    private val listener = VehicleSendService.StateListener { viewModel.refresh() }
     private val permissionRequest =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
@@ -85,27 +84,19 @@ class ComposeMainActivity : ComponentActivity() {
             Log.i(TAG, "Database result: $message")
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }
-    private val connection =
-        object : ServiceConnection {
-            override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-                vehicleService = (binder as? VehicleSendService.LocalBinder)?.service
-                viewModel.attachService(vehicleService)
-                vehicleService?.setStateListener(listener)
-            }
-
-            override fun onServiceDisconnected(name: ComponentName?) {
-                vehicleService = null
-                viewModel.detachService()
-            }
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(TAG,"on Create")
         enableEdgeToEdge()
         setContent {
+            val mapTask by viewModel.mapTask.collectAsStateWithLifecycle()
             CarLauncherScreen(
                 viewModel = viewModel,
+                cards = viewModel.cards,
+                layout = HomeLayout.Adaptive,
+                mapContent = mapTask?.let { task ->
+                    { MapTaskContainer(task, Modifier.fillMaxSize()) }
+                },
                 onConnectionToggle = ::toggleConnection,
                 onOpenApps = { startActivity(Intent(this, AppDrawerActivity::class.java)) },
                 onOpenSettings = { startActivity(Intent(this, FragmentLabActivity::class.java)) },
@@ -122,14 +113,10 @@ class ComposeMainActivity : ComponentActivity() {
     }
 
     private fun toggleConnection() {
-        if (vehicleService != null) {
-            releaseBinding()
-            stopService(serviceIntent)
+        if (viewModel.isVehicleConnected) {
+            showConnectionResult(viewModel.toggleConnection())
             return
         }
-        // bindService(flags = 0) can leave a pending registration without delivering a binder.
-        // A registration alone must not turn the first Start click into a Stop operation.
-        if (bindingActive) releaseBinding()
         val permissions = mutableListOf<String>()
         if (
             Build.VERSION.SDK_INT >= 33 &&
@@ -146,28 +133,18 @@ class ComposeMainActivity : ComponentActivity() {
             permissions += "android.car.permission.CAR_SPEED"
         }
         if (permissions.isNotEmpty()) permissionRequest.launch(permissions.toTypedArray())
-        try {
-            viewModel.setDemo(false)
-            ContextCompat.startForegroundService(this, serviceIntent)
-            bindingActive = bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE)
-            if (!bindingActive) {
-                stopService(serviceIntent)
-                Log.e(TAG, "Unable to bind VehicleSendService")
-                Toast.makeText(this, "无法绑定车辆接收服务", Toast.LENGTH_LONG).show()
-            }
-        } catch (error: RuntimeException) {
-            releaseBinding()
-            Log.e(TAG, "Unable to start VehicleSendService", error)
-            Toast.makeText(this, "无法启动接收服务：${error.localizedMessage}", Toast.LENGTH_LONG)
-                .show()
-        }
+        showConnectionResult(viewModel.toggleConnection())
+    }
+
+    private fun showConnectionResult(message: String?) {
+        if (message != null) Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onStart() {
         super.onStart()
         Log.i(TAG,"on start")
 
-        if (!bindingActive) bindingActive = bindService(serviceIntent, connection, 0)
+        viewModel.onHostStart(applicationContext)
     }
 
     override fun onResume() {
@@ -189,16 +166,8 @@ class ComposeMainActivity : ComponentActivity() {
 
         Log.i(TAG, message)
     }
-    private fun releaseBinding() {
-        vehicleService?.clearStateListener(listener)
-        if (bindingActive) unbindService(connection)
-        bindingActive = false
-        vehicleService = null
-        viewModel.detachService()
-    }
-
     override fun onStop() {
-        releaseBinding()
+        viewModel.onHostStop()
         Log.i(TAG,"on stop")
         super.onStop()
     }

@@ -30,22 +30,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.carlauncher.ui.CockpitText
 import com.example.carlauncher.ui.compose.components.*
 import com.example.carlauncher.ui.compose.designsystem.HuColors
 import com.example.carlauncher.ui.compose.designsystem.HuTheme
-import kotlinx.coroutines.delay
+
+import com.example.carlauncher.ui.home.cards.HomeCardModules
+import com.example.carlauncher.ui.home.HomeLayout
 
 private const val TAG = "CAR_LAUNCHER_UI"
 
 @Composable
 fun CarLauncherScreen(
     viewModel: CarLauncherViewModel = viewModel(),
+    cards: HomeCardModules = viewModel.cards,
+    mapContent: (@Composable () -> Unit)? = null,
+    layout: HomeLayout = HomeLayout.Adaptive,
     onConnectionToggle: () -> Unit = {},
     onOpenApps: () -> Unit = {},
     onOpenSettings: () -> Unit = {},
@@ -53,21 +55,12 @@ fun CarLauncherScreen(
     onOpenDatabase: () -> Unit = {},
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val lifecycle = LocalLifecycleOwner.current.lifecycle
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
     val keyboard = LocalSoftwareKeyboardController.current
     var fullMap by rememberSaveable { mutableStateOf(false) }
     var destination by rememberSaveable { mutableStateOf("") }
     var showQueue by rememberSaveable { mutableStateOf(false) }
-    LaunchedEffect(lifecycle, viewModel) {
-        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            while (true) {
-                delay(1_000)
-                viewModel.tick()
-            }
-        }
-    }
     BackHandler(fullMap || state.selectedNavIndex != 0) {
         if (fullMap) fullMap = false else viewModel.selectNavItem(0)
     }
@@ -99,27 +92,17 @@ fun CarLauncherScreen(
     }
 
     val media: @Composable (Modifier) -> Unit = { modifier ->
-        MediaCard(
-            state,
-            modifier,
-            viewModel::togglePlayPause,
-            viewModel::nextTrack,
-            viewModel::previousTrack,
-            viewModel::toggleFavorite,
-            viewModel::toggleRepeat,
-            viewModel::toggleMute,
-            { showQueue = true },
-            viewModel::seek,
-        )
+        cards.media.Content(state, modifier) { showQueue = true }
     }
     val rightContent: @Composable (Modifier) -> Unit = { modifier ->
         when (state.selectedNavIndex) {
             0,
             1 ->
-                MapCard(
+                cards.map.Content(
                     modifier,
                     bottomClearance = if (state.selectedNavIndex == 0) 182.dp else 0.dp,
                     onFullScreen = { fullMap = true },
+                    taskContent = if (fullMap) null else mapContent,
                 ) {
                     if (state.selectedNavIndex == 0)
                         media(
@@ -184,7 +167,7 @@ fun CarLauncherScreen(
                             }
                         }
                         media(Modifier.fillMaxWidth().height(150.dp))
-                        Playlist(state, viewModel::selectTrack)
+                        Playlist(state, cards.media.presenter::selectTrack)
                     }
                 }
         }
@@ -196,48 +179,13 @@ fun CarLauncherScreen(
                 .windowInsetsPadding(WindowInsets.safeDrawing)
                 .padding(10.dp)
         ) {
-            val wide = maxWidth >= 900.dp
+            val wide = layout.isWide(maxWidth)
             val header = (maxHeight * .10f).coerceIn(64.dp, 84.dp)
             val footer = (maxHeight * .145f).coerceIn(78.dp, 112.dp)
             val climate = (maxHeight * .19f).coerceIn(138.dp, 160.dp)
             val left: @Composable (Modifier) -> Unit = { modifier ->
-                Column(modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    EnergyStatus(state, Modifier.fillMaxWidth().height(header))
-                    ClimatePanel(
-                        state,
-                        Modifier.fillMaxWidth().height(climate),
-                        viewModel::toggleCoolWarm,
-                        viewModel::toggleAutoDrive,
-                        viewModel::setPassengerTemp,
-                        viewModel::setDriverTemp,
-                    )
-                    Box(Modifier.weight(1f).fillMaxWidth()) {
-                        HuCard(
-                            state,
-                            Modifier.fillMaxSize(),
-                            viewModel::setGear,
-                            viewModel::toggleLights,
-                            viewModel::toggleLock,
-                            onOpenSettings,
-                        )
-                        TextButton(
-                            { selectTab(3) },
-                            Modifier.align(Alignment.TopStart).padding(start = 10.dp),
-                        ) {
-                            Text(
-                                if (state.isDemo) "DEMO · 演示模式"
-                                else if (state.hasVehicleData) state.connectionLabel else "等待车辆数据",
-                                color = HuColors.TextDim,
-                                fontSize = 10.sp,
-                            )
-                        }
-                    }
-                    BottomDriveModeCard(
-                        state,
-                        Modifier.fillMaxWidth().height(footer),
-                        viewModel::setAutomatic,
-                    )
-                }
+                cards.vehicle.Content(state, modifier, header, climate, footer,
+                    onOpenSettings, { selectTab(3) })
             }
             val right: @Composable (Modifier) -> Unit = { modifier ->
                 Column(modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -279,10 +227,11 @@ fun CarLauncherScreen(
                     }
                 }
                 if (fullMap)
-                    MapCard(
+                    cards.map.Content(
                         Modifier.fillMaxSize(),
                         fullScreen = true,
                         onFullScreen = { fullMap = false },
+                        taskContent = mapContent,
                     )
             }
         }
@@ -292,7 +241,7 @@ fun CarLauncherScreen(
                 title = { Text("播放队列 · 演示") },
                 text = {
                     Playlist(state) {
-                        viewModel.selectTrack(it)
+                        cards.media.presenter.selectTrack(it)
                         showQueue = false
                     }
                 },

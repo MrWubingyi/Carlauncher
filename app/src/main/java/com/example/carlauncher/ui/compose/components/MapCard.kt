@@ -35,11 +35,11 @@ import com.example.carlauncher.ui.compose.designsystem.HuColors
 
 /** Offline illustration, intentionally separate from the external real-navigation action. */
 @Composable
-fun MapCard(modifier: Modifier = Modifier, fullScreen: Boolean = false, bottomClearance: Dp = 0.dp, onFullScreen: () -> Unit, content: @Composable BoxScope.() -> Unit = {}) {
+fun MapCard(modifier: Modifier = Modifier, fullScreen: Boolean = false, bottomClearance: Dp = 0.dp, onFullScreen: () -> Unit, taskContent: (@Composable () -> Unit)? = null, content: @Composable BoxScope.() -> Unit = {}) {
     var zoom by remember { mutableFloatStateOf(1f) }
     var pan by remember { mutableStateOf(Offset.Zero) }
     Box(modifier.background(Color(0xFF10131C)).clipToBounds()) {
-        DarkMapCanvas(Modifier.fillMaxSize().pointerInput(Unit) {
+        if (taskContent != null) taskContent() else DarkMapCanvas(Modifier.fillMaxSize().pointerInput(Unit) {
             detectTransformGestures { _, delta, scale, _ ->
                 zoom = (zoom * scale).coerceIn(1f, 3f)
                 val limitX = size.width * (zoom - 1) / 2
@@ -58,12 +58,12 @@ fun MapCard(modifier: Modifier = Modifier, fullScreen: Boolean = false, bottomCl
                 Text(if (fullScreen) "Exit Full Screen" else "Full Screen", color = Color.White, modifier = Modifier.padding(start = 6.dp), fontSize = 13.sp)
             }
         }
-        Column(Modifier.align(Alignment.TopEnd).padding(top = 72.dp, end = 14.dp).background(Color(0xEE202530))) {
+        if (taskContent == null) Column(Modifier.align(Alignment.TopEnd).padding(top = 72.dp, end = 14.dp).background(Color(0xEE202530))) {
             DashboardIcon(Icons.Outlined.Add, "Zoom in", { zoom = (zoom + .25f).coerceAtMost(3f) })
             DashboardIcon(Icons.Outlined.Remove, "Zoom out", { zoom = (zoom - .25f).coerceAtLeast(1f); pan = Offset.Zero })
             DashboardIcon(Icons.Outlined.MyLocation, "Recenter map", { zoom = 1f; pan = Offset.Zero }, active = true)
         }
-        Text("DEMO MAP · 拖动 / 缩放", Modifier.align(Alignment.BottomStart).padding(8.dp).background(Color(0xD90E111A)).padding(6.dp), color = HuColors.TextDim, fontSize = 10.sp, lineHeight = 12.sp)
+        if (taskContent == null) Text("DEMO MAP · 拖动 / 缩放", Modifier.align(Alignment.BottomStart).padding(8.dp).background(Color(0xD90E111A)).padding(6.dp), color = HuColors.TextDim, fontSize = 10.sp, lineHeight = 12.sp)
         content()
     }
 }

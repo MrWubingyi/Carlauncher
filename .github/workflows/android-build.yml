@@ -13,6 +13,43 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  ui-regression:
+    name: Windows screenshot regression
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: gradle/actions/setup-gradle@v5
+      - name: Install screenshot dependencies
+        shell: pwsh
+        run: |
+          python -m pip install Pillow==12.3.0
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" 'platforms;android-36.1' 'build-tools;36.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1'
+          exit $LASTEXITCODE
+      - name: Verify goldens and generate Chinese report
+        run: python tools/visual-regression/run_ci.py
+      - name: Test screenshot report failure handling
+        if: ${{ always() }}
+        run: python tools/visual-regression/test_ci.py
+      - name: Upload screenshot reports including failures
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: CarLauncher-ui-regression-${{ github.run_number }}
+          path: build/ui-regression/ci/
+          if-no-files-found: warn
+          retention-days: 14
+
   build:
     name: Debug APK and unit tests
     runs-on: ubuntu-24.04

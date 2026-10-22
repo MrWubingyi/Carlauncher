@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.roborazzi)
     checkstyle
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
@@ -60,10 +61,34 @@ android {
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
+        unitTests.all {
+            it.maxHeapSize = "2g"
+            it.jvmArgs(
+                "--add-opens=java.base/java.lang=ALL-UNNAMED",
+                "--add-opens=java.base/java.util=ALL-UNNAMED",
+                "--add-opens=java.base/java.io=ALL-UNNAMED",
+                "--add-opens=java.base/java.net=ALL-UNNAMED",
+                "--add-opens=java.base/java.security=ALL-UNNAMED",
+                "--add-opens=java.base/java.text=ALL-UNNAMED",
+                "--add-opens=java.base/jdk.internal.access=ALL-UNNAMED",
+                "--add-opens=java.desktop/java.awt.font=ALL-UNNAMED",
+                "--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+            )
+            it.systemProperty("user.timezone", "Asia/Shanghai")
+            it.systemProperty("robolectric.dependency.repo.url", "https://repo.maven.apache.org/maven2")
+            it.systemProperty("home.screenshot.directory",
+                providers.gradleProperty("homeScreenshotDirectory").getOrElse("src/test/screenshots/home"))
+        }
     }
     lint {
         abortOnError = true
     }
+}
+
+roborazzi {
+    outputDir.set(file("src/test/screenshots/home"))
+    compare { outputDir.set(layout.buildDirectory.dir("outputs/roborazzi/home")) }
 }
 
 ksp {
@@ -138,6 +163,10 @@ dependencies {
     implementation(libs.fragment)
     implementation(libs.material)
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.roborazzi.compose)
+    testImplementation(libs.androidx.test.core)
     testImplementation(libs.json)
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.espresso.core)
@@ -157,6 +186,9 @@ dependencies {
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
+    testImplementation(composeBom)
+    testImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
     androidTestImplementation(libs.compose.ui.test.junit4)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.graphics)

@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # Hosted Windows defaults to cp1252; report summaries include Chinese text.
+  PYTHONUTF8: '1'
+
 concurrency:
   group: android-build-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   # Do not interrupt an in-flight device recording on a newer push.

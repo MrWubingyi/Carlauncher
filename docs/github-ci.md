@@ -1,5 +1,8 @@
 # GitHub Actions 与 GitLab CI 对齐
 
+另一台 Windows 机器无法运行截图任务时，参见 [UI 回归 Runner 配置与排障](ui-regression-runner-setup.md)：
+包括工具链检查、GitLab 专用 UI 标签、GitHub 托管/自托管区别及报告诊断。
+
 两边共用静态检查、性能报告生成器、预检、重放计划和 `performance-baseline.json`。
 没有增加或调整基准及门槛。GitHub 的构建和 Roborazzi 仍使用托管 Runner；
 JMH 和 simpleperf 必须使用产生原基准的本地机器，不能将随机托管 VM 当成同一性能环境。

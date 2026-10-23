@@ -22,26 +22,26 @@ function Assert-NoDependency([string]$RelativePath, [string]$Pattern) {
 # Lightweight source dependency guard; compilation/tests remain separate checks.
 Assert-NoDependency 'someip-android/src/main/cpp/native' '(?m)^\s*#include.*(jni\.h|carlauncher|VehicleSomeIpConfig|VehicleProp|aidl/)'
 Assert-NoDependency 'someip-android/src/main/cpp/jni' '(vsomeip::|register_message_handler|request_service\(|subscribe\()'
-Assert-NoDependency 'someip-android/src/main' '(com\.example\.(carlauncher|vehicle)|VehicleSomeIpConfig|SomeipPayloadCodec|soc-vehicle-client|0x1111|0x2222)'
+Assert-NoDependency 'someip-android/src/main' '(com\.zqautomotive\.(launcher|vehicle)|VehicleSomeIpConfig|SomeipPayloadCodec|soc-vehicle-client|0x1111|0x2222)'
 Assert-NoDependency 'app/src/main/java' '(import com\.example\.someip\.internal\.|System\.loadLibrary\("(vsomeip3|someip_jni|carlauncher)"\))'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/android' 'external fun'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/android' '(SomeIpService\(|soc-vehicle-client|0x1111|0x2222)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle' '(?m)^import com\.example\.carlauncher\.'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/model' '(?m)^import (android\.|androidx\.|com\.example\.vehicle\.someip\.)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/codec' '(?m)^import (android\.|androidx\.|com\.example\.vehicle\.someip\.(adapter|transport|android)\.)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/adapter' '(?m)^import (android\.|androidx\.|com\.example\.vehicle\.someip\.android\.)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/transport/NativeVehicleTransport.kt' '(?m)^import (android\.|androidx\.|com\.example\.carlauncher\.(model|data)\.)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/adapter/SomeIpVehicleAdapter.kt' '(?m)^import (android\.|androidx\.|com\.example\.carlauncher\.(model|data)\.)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/android/VSomeIpNativeTransport.kt' '(SomeIpEventCodec|VehicleEventCodec|VehicleSignalMapper|import .*\.VehicleState|NativeBridge|VsomeipClient)'
-Assert-NoDependency 'app/src/main/java/com/example/vehicle/someip/android' '(?m)^import com\.example\.vehicle\.someip\.adapter\.'
-Assert-NoDependency 'app/src/main/java/com/example/carlauncher/data/someip/VSomeIpDataSource.kt' '(JSONObject|SomeIpEventCodec|VehicleEventCodec|VsomeipClient\.)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/android' 'external fun'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/android' '(SomeIpService\(|soc-vehicle-client|0x1111|0x2222)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle' '(?m)^import com\.zqautomotive\.launcher\.'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/model' '(?m)^import (android\.|androidx\.|com\.zqautomotive\.vehicle\.someip\.)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/codec' '(?m)^import (android\.|androidx\.|com\.zqautomotive\.vehicle\.someip\.(adapter|transport|android)\.)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/adapter' '(?m)^import (android\.|androidx\.|com\.zqautomotive\.vehicle\.someip\.android\.)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/transport/NativeVehicleTransport.kt' '(?m)^import (android\.|androidx\.|com\.zqautomotive\.launcher\.(model|data)\.)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/adapter/SomeIpVehicleAdapter.kt' '(?m)^import (android\.|androidx\.|com\.zqautomotive\.launcher\.(model|data)\.)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/android/VSomeIpNativeTransport.kt' '(SomeIpEventCodec|VehicleEventCodec|VehicleSignalMapper|import .*\.VehicleState|NativeBridge|VsomeipClient)'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/vehicle/someip/android' '(?m)^import com\.zqautomotive\.vehicle\.someip\.adapter\.'
+Assert-NoDependency 'app/src/main/java/com/zqautomotive/launcher/data/someip/VSomeIpDataSource.kt' '(JSONObject|SomeIpEventCodec|VehicleEventCodec|VsomeipClient\.)'
 
 # Only these integration files may reference the library, and only its listed public API.
 # Scan all production source sets (including debug/release/flavors), not just main/java.
 $publicApiUsers = @{
-    'app/src/main/java/com/example/vehicle/someip/android/VehicleSomeIpClientFactory.kt' = @('SomeIpClient', 'VSomeIp')
-    'app/src/main/java/com/example/vehicle/someip/android/VSomeIpNativeTransport.kt' = @('SomeIpClient')
-    'app/src/main/java/com/example/vehicle/someip/android/SomeIpConfigPreparer.kt' = @('SomeIpClientConfig')
+    'app/src/main/java/com/zqautomotive/vehicle/someip/android/VehicleSomeIpClientFactory.kt' = @('SomeIpClient', 'VSomeIp')
+    'app/src/main/java/com/zqautomotive/vehicle/someip/android/VSomeIpNativeTransport.kt' = @('SomeIpClient')
+    'app/src/main/java/com/zqautomotive/vehicle/someip/android/SomeIpConfigPreparer.kt' = @('SomeIpClientConfig')
 }
 $productionSets = Get-ChildItem -LiteralPath (Join-Path $root 'app/src') -Directory |
     Where-Object { $_.Name -notmatch '^(test|androidTest)' }
@@ -54,8 +54,8 @@ foreach ($sourceSet in $productionSets) {
         }
         if ($file.Extension -notin @('.kt', '.java', '.c', '.h', '.hpp', '.cpp')) { continue }
         $content = Get-Content -LiteralPath $file.FullName -Raw
-        if ($relative -match '/com/example/carlauncher/service/' -and
-            $content -match '(VSomeIpNativeTransport|VSomeIpDataSource|NativeVehicleTransport|SomeIpVehicleEventSourceFactory|com\.example\.vehicle\.someip\.android|com\.example\.carlauncher\.data\.someip\.)') {
+        if ($relative -match '/com/zqautomotive/launcher/service/' -and
+            $content -match '(VSomeIpNativeTransport|VSomeIpDataSource|NativeVehicleTransport|SomeIpVehicleEventSourceFactory|com\.zqautomotive\.vehicle\.someip\.android|com\.zqautomotive\.launcher\.data\.someip\.)') {
             $violations.Add("${relative}: Service must use the injected factory and VehicleDataSource interfaces")
         }
         foreach ($reference in [regex]::Matches($content, 'com\.example\.someip\.([\w*]+)')) {
